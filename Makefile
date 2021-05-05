@@ -32,18 +32,6 @@ clean:
 docs: doxygen.conf $(SOURCES) $(HEADERS)
 	doxygen $<
 
-.PHONY: update_pages
-update_pages: coverage docs
-	rm -rf stash
-	mkdir -p stash/$(BUILD_ROOT)
-	cp -r $(BUILD_ROOT)/cov stash/$(BUILD_ROOT)/
-	cp $(BUILD_ROOT)/coverage.svg stash/$(BUILD_ROOT)/
-	cp -r docs stash/
-	git checkout gh-pages
-	cp -r stash/$(BUILD_ROOT)/cov $(BUILD_ROOT)/
-	cp stash/$(BUILD_ROOT)/coverage.svg $(BUILD_ROOT)/
-	cp -r stash/docs ./
-
 .PHONY: debug_makefile
 debug_makefile:
 	$(MAKE) -C $(BUILD_ROOT) $(MAKECMDGOALS)

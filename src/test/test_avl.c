@@ -44,11 +44,11 @@ int main(){
 	cr8r_vec_ft ft = cr8r_vecft_u64;
 	ft.base.data = &rseq;
 	if(!cr8r_vec_init(&iseq, &ft, 7)){
-		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector.\e[0m\n");
+		fprintf(stderr, "\e[1;31mERROR: Could not allocate iseq vector.\e[0m\n");
 		exit(1);
 	}
 	if(!cr8r_vec_resize(&rseq, &ft, 7)){
-		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector.\e[0m\n");
+		fprintf(stderr, "\e[1;31mERROR: Could not allocate rseq vector.\e[0m\n");
 		exit(1);
 	}
 	cr8r_sla sla;
