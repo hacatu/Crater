@@ -25,10 +25,10 @@ void processRemoveSequence(const cr8r_vec *rseq, const cr8r_vec_ft *rseq_ft){
 }
 
 void processInsertSequence(const cr8r_vec *iseq, const cr8r_vec_ft *iseq_ft){
-	fprintf(stderr, "\e[1;34m(");
+	/*fprintf(stderr, "\e[1;34m(");
 	for(uint64_t i = 0; i < iseq->len; ++i){
 		fprintf(stderr, i == iseq->len - 1 ? "%"PRIu64")\e[0m\n" : "%"PRIu64",", *(uint64_t*)cr8r_vec_get((cr8r_vec*)iseq, iseq_ft, i));
-	}
+	}*/
 	cr8r_vec *rseq = iseq_ft->base.data;
 	cr8r_vec_ft rseq_ft = *iseq_ft;
 	rseq_ft.base.data = (cr8r_vec*)iseq;

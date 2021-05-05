@@ -13,11 +13,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run Coverage and Doxygen
       run: |
-        sudo apt install -y lcov
+        sudo apt-get install -y lcov doxygen
         make coverage
         if [ $(grep -cF `printf "\e[1;31m"` build/debug/log/test*.log) != 0 ]; then false; fi
         make docs
         mv build/debug/cov website/
+        mkdir -p website/build/debug
+        mv build/debug/coverage.svg website/build/debug/
     - name: Deploy Coverage and Docs to Pages
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
