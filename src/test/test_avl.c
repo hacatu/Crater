@@ -47,7 +47,7 @@ int main(){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate iseq vector.\e[0m\n");
 		exit(1);
 	}
-	if(!cr8r_vec_resize(&rseq, &ft, 7)){
+	if(!cr8r_vec_init(&rseq, &ft, 7)){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate rseq vector.\e[0m\n");
 		exit(1);
 	}
