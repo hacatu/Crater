@@ -20,6 +20,7 @@ jobs:
         mv build/debug/cov website/
         mkdir -p website/build/debug
         mv build/debug/coverage.svg website/build/debug/
+        mv docs website/
     - name: Deploy Coverage and Docs to Pages
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
