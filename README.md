@@ -1,8 +1,8 @@
 # Crater Container Library
 
-
+[![GitHub CI](https://github.com/hacatu/Crater/actions/workflows/cov_and_docs.yml/badge.svg)](https://github.com/hacatu/Crater/actions/workflows/cov_and_docs.yml)
 [![Documentation](https://img.shields.io/badge/-documentation-gray)](https://hacatu.github.io/Crater/docs)
-[![Coverage](https://hacatu.github.io/Crater/build/debug/coverage.svg)](https://hacatu.github.io/Crater/build/debug/cov)
+[![Coverage](https://hacatu.github.io/Crater/coverage.svg)](https://hacatu.github.io/Crater/cov)
 
 Crater provides simple, fast generic collections in plain C.
 All containers can be parameterized by specifying callback functions in a "function table".
