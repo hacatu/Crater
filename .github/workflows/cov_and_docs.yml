@@ -1,0 +1,24 @@
+name: Run Coverage and Update Docs
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Coverage and Doxygen
+      run: |
+        make coverage
+        if [ $(grep -cF `printf "\e[1;31m"` build/debug/log/test*.log) != 0 ]; then false; fi
+        make docs
+        mv build/debug/cov website/
+    - name: Deploy Coverage and Docs to Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: website
