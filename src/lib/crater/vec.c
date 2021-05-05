@@ -36,10 +36,12 @@ uint64_t cr8r_default_new_size(cr8r_base_ft *base, uint64_t cap){
 
 void *cr8r_default_resize(cr8r_base_ft *base, void *p, uint64_t cap){
 	if(!cap){
-		free(p);
+		if(p){
+			free(p);
+		}
 		return NULL;
 	}
-	return realloc(p, cap*base->size);
+	return p ? realloc(p, cap*base->size) : malloc(cap*base->size);
 }
 
 int cr8r_default_cmp(const cr8r_base_ft *base, const void *a, const void *b){
@@ -56,7 +58,7 @@ void cr8r_default_swap(cr8r_base_ft *base, void *a, void *b){
 }
 
 bool cr8r_vec_init(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
-	void *tmp = ft->resize(&ft->base, 0, cap);
+	void *tmp = ft->resize(&ft->base, NULL, cap);
 	if(!tmp){
 		return false;
 	}
