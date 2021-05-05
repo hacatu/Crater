@@ -1,0 +1,11 @@
+-I../../include
+-Wextra
+-Werror
+-std=c99
+-ggdb3
+-DDEBUG
+-fno-strict-aliasing
+-fno-eliminate-unused-debug-types
+--coverage
+-fsanitize=address
+

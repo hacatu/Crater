@@ -1,0 +1,10 @@
+-Llib
+-lcrater
+-lm
+-fuse-ld=gold
+-ggdb3
+-fno-strict-aliasing
+-fno-eliminate-unused-debug-types
+--coverage
+-fsanitize=address
+
