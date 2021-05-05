@@ -1,0 +1,121 @@
+<head>
+	<title>Crater Container Library</title>
+	<link rel="stylesheet" type="text/css" href="main.css" media="screen"/>
+	<!-->Credit for image: Mozilla's emoji set</-->
+	<link rel="icon" type="image/x-icon" href="crater.png"/>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<div id="float_hdr">
+		<table>
+			<tbody>
+				<tr>
+					<td class="cur_subpage_link">☄️ Crater</td>
+					<td class="cur_subpage_link">About</td>
+					<td><a class="subpage_link" href="docs/index.html">Docs</a></td>
+					<td><a class="subpage_link" href="cov/index.html">Coverage</a></td>
+					<td><a class="subpage_link" href="https://github.com/hacatu/Crater">Source</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="hidden_hdr"></div>
+	<div class="subpage" id="about_page">
+		<div class="tsect">
+			<h1>About Crater</h1>
+			<div class="tsect_body">
+				<table><colgroup>
+					<col span="1" style="width: 40%;">
+					<col span="1" style="width: 60%;">
+					</colgroup>
+					<tbody><tr>
+				<td>
+					<div class="highlight highlight-source-c"><pre>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>assert.h<span class="pl-pds">&gt;</span></span>
+
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>crater/avl.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>crater/sla.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>crater/vec.h<span class="pl-pds">&gt;</span></span>
+
+cr8r_avl_ft avlft_u64sla;
+
+<span class="pl-k">void</span> <span class="pl-en">processRemoveSequence</span>(<span class="pl-k">const</span> cr8r_vec *rseq, <span class="pl-k">const</span> cr8r_vec_ft *rseq_ft){
+	cr8r_vec *iseq = rseq_ft-&gt;<span class="pl-smi">base</span>.<span class="pl-smi">data</span>;
+	cr8r_avl_node *r = <span class="pl-c1">NULL</span>, *it;
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; i &lt; iseq-&gt;<span class="pl-smi">len</span>; ++i){
+		<span class="pl-c1">assert</span>(<span class="pl-c1">cr8r_avl_insert</span>(&amp;r, <span class="pl-c1">cr8r_vec_get</span>(iseq, rseq_ft, i), &amp;avlft_u64sla));
+	}
+	it = <span class="pl-c1">cr8r_avl_first</span>(r);
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; it; ++i, it = <span class="pl-c1">cr8r_avl_next</span>(it)){
+		<span class="pl-c1">assert</span>(i == *(<span class="pl-c1">uint64_t</span>*)(it-&gt;<span class="pl-smi">data</span>));
+	}
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; i &lt; rseq-&gt;<span class="pl-smi">len</span>; ++i){
+		<span class="pl-c1">assert</span>(<span class="pl-c1">cr8r_avl_remove</span>(&amp;r, <span class="pl-c1">cr8r_vec_get</span>((cr8r_vec*)rseq, rseq_ft, i), &amp;avlft_u64sla));
+	}
+	<span class="pl-c1">assert</span>(!r);
+}
+
+<span class="pl-k">void</span> <span class="pl-en">processInsertSequence</span>(<span class="pl-k">const</span> cr8r_vec *iseq, <span class="pl-k">const</span> cr8r_vec_ft *iseq_ft){
+	<span class="pl-c1">fprintf</span>(stderr, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\e</span>[1;34m(<span class="pl-pds">"</span></span>);
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; i &lt; iseq-&gt;<span class="pl-smi">len</span>; ++i){
+		<span class="pl-c1">fprintf</span>(stderr, i == iseq-&gt;<span class="pl-smi">len</span> - <span class="pl-c1">1</span> ? <span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>PRIu64<span class="pl-s"><span class="pl-pds">"</span>)<span class="pl-cce">\e</span>[0m<span class="pl-cce">\n</span><span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>PRIu64<span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span>, *(<span class="pl-c1">uint64_t</span>*)<span class="pl-c1">cr8r_vec_get</span>((cr8r_vec*)iseq, iseq_ft, i));
+	}
+	cr8r_vec *rseq = iseq_ft-&gt;<span class="pl-smi">base</span>.<span class="pl-smi">data</span>;
+	cr8r_vec_ft rseq_ft = *iseq_ft;
+	rseq_ft.<span class="pl-smi">base</span>.<span class="pl-smi">data</span> = (cr8r_vec*)iseq;
+	<span class="pl-c1">cr8r_vec_clear</span>(rseq, &amp;rseq_ft);
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">7</span>; ++i){
+		<span class="pl-c1">cr8r_vec_pushr</span>(rseq, &amp;rseq_ft, &amp;i);
+	}
+	<span class="pl-c1">cr8r_vec_forEachPermutation</span>(rseq, &amp;rseq_ft, processRemoveSequence);
+}
+
+<span class="pl-k">int</span> <span class="pl-en">main</span>(){
+	cr8r_vec iseq, rseq;
+	cr8r_vec_ft ft = cr8r_vecft_u64;
+	ft.<span class="pl-smi">base</span>.<span class="pl-smi">data</span> = &amp;rseq;
+	<span class="pl-k">if</span>(!<span class="pl-c1">cr8r_vec_init</span>(&amp;iseq, &amp;ft, <span class="pl-c1">7</span>)){
+		<span class="pl-c1">fprintf</span>(stderr, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\e</span>[1;31mERROR: Could not allocate vector.<span class="pl-cce">\e</span>[0m<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
+		<span class="pl-c1">exit</span>(<span class="pl-c1">1</span>);
+	}
+	<span class="pl-k">if</span>(!<span class="pl-c1">cr8r_vec_init</span>(&amp;rseq, &amp;ft, <span class="pl-c1">7</span>)){
+		<span class="pl-c1">fprintf</span>(stderr, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\e</span>[1;31mERROR: Could not allocate vector.<span class="pl-cce">\e</span>[0m<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
+		<span class="pl-c1">exit</span>(<span class="pl-c1">1</span>);
+	}
+	cr8r_sla sla;
+	<span class="pl-k">if</span>(!<span class="pl-c1">cr8r_avl_ft_initsla</span>(&amp;avlft_u64sla, &amp;sla, <span class="pl-k">sizeof</span>(<span class="pl-c1">uint64_t</span>), <span class="pl-c1">7</span>, cr8r_default_cmp_u64, <span class="pl-c1">NULL</span>)){
+		<span class="pl-c1">fprintf</span>(stderr, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\e</span>[1;31mERROR: Could not reserve slab allocator.<span class="pl-cce">\e</span>[0m<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
+		<span class="pl-c1">exit</span>(<span class="pl-c1">1</span>);
+	}
+	<span class="pl-k">for</span>(<span class="pl-c1">uint64_t</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">7</span>; ++i){
+		<span class="pl-c1">cr8r_vec_pushr</span>(&amp;iseq, &amp;ft, &amp;i);
+	}
+	<span class="pl-c1">cr8r_vec_forEachPermutation</span>(&amp;iseq, &amp;ft, processInsertSequence);
+	<span class="pl-c1">cr8r_sla_delete</span>(&amp;sla);
+	<span class="pl-c1">cr8r_vec_delete</span>(&amp;iseq, &amp;ft);
+	<span class="pl-c1">cr8r_vec_delete</span>(&amp;rseq, &amp;ft);
+}</pre></div>
+				</td>
+				<td><div>
+Crater is a fast, flexible data structure library for C.
+Includes AVL trees, hash tables, vectors, and circular linked lists,
+with support for using AVL trees and vectors as heaps.
+Crater also provides a slab allocator to accelerate linked data structures.
+				<p>
+All Crater containers are generic and can support any type using callbacks specified
+in function tables.
+This approach is very flexible and allows a single element type to be used in a lot of
+different ways.  For example, a struct containing x, y, and z coordinates and a distance
+value can be used as the element type in an AVL tree, and, simply by changing the comparison
+function, which coordinate acts as the key can be changed, or the x/y slope could be used
+as the key, or so on.
+				</p>
+				</div></td>
+				</tr></tbody></table>
+			</div>
+		</div>
+	</div>
+</body>
+
