@@ -22,6 +22,24 @@ uint64_t cr8r_default_hash_u64(const cr8r_base_ft *ft, const void *_a){
 	return (uint64_t)(prod >> 64) ^ (uint64_t)prod;
 }
 
+uint64_t cr8r_default_hash(const cr8r_base_ft *ft, const void *_a){
+	const char *a = _a;
+	uint64_t h = 5381;
+	for(uint64_t i = 0; i < ft->size; ++i){
+		h = 31*h + a[i];
+	}
+	return h;
+}
+
+uint64_t cr8r_default_hash_cstr(const cr8r_base_ft *ft, const void *_a){
+	const char *a = *(const char**)_a;
+	uint64_t h = 5381;
+	for(char c = *a; c; c = *++a){
+		h = 31*h + c;
+	}
+	return h;
+}
+
 int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b){
 	uint64_t a = *(const uint64_t*)_a, b = *(const uint64_t*)_b;
 	if(a < b){
@@ -32,9 +50,17 @@ int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b)
 	return 1;
 }
 
+int cr8r_default_cmp_cstr(const cr8r_base_ft *ft, const void *_a, const void *_b){
+	return strcmp(*(const char**)_a, *(const char**)_b);
+}
+
 int cr8r_default_replace(cr8r_base_ft *ft, void *_a, void *_b){
-	memcpy(_a, _b, 8);
+	memcpy(_a, _b, ft->size);
 	return 1;
+}
+
+void cr8r_default_free(cr8r_base_ft *ft, void *_p){
+	free(*(void**)_p);
 }
 
 cr8r_hashtbl_ft cr8r_htft_u64_void = {

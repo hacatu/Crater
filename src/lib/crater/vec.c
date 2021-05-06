@@ -224,7 +224,7 @@ bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
 }
 
 bool cr8r_vec_popr(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
-	if(!self->cap){
+	if(!self->len){
 		return false;
 	}
 	memcpy(o, self->buf + (--self->len)*ft->base.size, ft->base.size);

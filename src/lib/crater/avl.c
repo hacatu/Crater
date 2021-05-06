@@ -647,7 +647,7 @@ void cr8r_avl_sift_down_bounded(cr8r_avl_node *r, cr8r_avl_node *u, cr8r_avl_ft 
 	while(1){
 		if(r->left && r->left != u){
 			if(r->right){
-				min_child = ft->cmp(&ft->base, r->left->data, r->right->data) < 0 ? r->left : r->right;
+				min_child = ft->cmp(&ft->base, r->left->data, r->right->data) > 0 ? r->left : r->right;
 			}else{
 				min_child = r->left;
 			}
@@ -656,7 +656,7 @@ void cr8r_avl_sift_down_bounded(cr8r_avl_node *r, cr8r_avl_node *u, cr8r_avl_ft 
 		}else{
 			break;
 		}
-		if(ft->cmp(&ft->base, min_child->data, r->data) >= 0){
+		if(ft->cmp(&ft->base, min_child->data, r->data) <= 0){
 			break;
 		}
 		cr8r_avl_swap_data(min_child, r, ft->base.size);
@@ -670,6 +670,53 @@ void cr8r_avl_heapify(cr8r_avl_node *r, cr8r_avl_ft *ft){
 			cr8r_avl_sift_down(r, ft);
 		}
 	}
+}
+
+cr8r_avl_node *cr8r_avl_heappop_node(cr8r_avl_node **r, cr8r_avl_ft *ft){
+	if(!*r){
+		return NULL;
+	}
+	cr8r_avl_node *s = *r;
+	while(1){
+		if(s->balance == -1){
+			s = s->left;
+		}else if(s->right){
+			s = s->right;
+		}else{
+			break;
+		}
+	}
+	if(s == *r){
+		*r = NULL;
+		return s;
+	}
+	for(cr8r_avl_node *u = s; u != *r; u = u->parent){
+		signed char db = u->parent->left == u ? 1 : -1;
+		u->parent->balance += db;
+		if(u->parent->balance){
+			break;
+		}
+	}
+	if(s->parent->left == s){
+		s->parent->left = NULL;
+	}else{
+		s->parent->right = NULL;
+	}
+	s->parent = NULL;//(*r)->parent must be NULL
+	if((s->left = (*r)->left)){
+		s->left->parent = s;
+	}
+	if((s->right = (*r)->right)){
+		s->right->parent = s;
+	}
+	s->balance = (*r)->balance;
+	ASSERT_ALL(s);
+	(*r)->left = (*r)->right = NULL;
+	(*r)->balance = 0;
+	cr8r_avl_node *res = *r;
+	*r = s;
+	cr8r_avl_sift_down(s, ft);
+	return res;
 }
 
 void cr8r_avl_reorder(cr8r_avl_node *r, cr8r_avl_ft *ft){

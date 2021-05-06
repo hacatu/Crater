@@ -35,14 +35,15 @@ void cr8r_sla_delete(cr8r_sla *self){
 void *cr8r_sla_alloc(cr8r_sla *self){
 	if(!self->first_elem){
 		uint64_t slab_cap = self->slab_cap << 1;
-		void *slab = malloc(slab_cap*self->elem_size), **slabs;
+		char (*slab)[self->elem_size] = malloc(slab_cap*self->elem_size);
+		void **slabs;
 		if(!slab){
 			return NULL;
 		}else if(!(slabs = realloc(self->slabs, (self->slabs_len + 1)*sizeof(void*)))){
 			free(slab);
 			return NULL;
 		}
-		self->first_elem = slabs[self->slabs_len++] = slab;
+		self->first_elem = slabs[self->slabs_len++] = (void*)slab;
 		self->slabs = slabs;
 		for(uint64_t i = 0; i + 1 < slab_cap; ++i){
 			*(void**)(slab + i) = slab + i + 1;

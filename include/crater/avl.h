@@ -289,6 +289,13 @@ void cr8r_avl_sift_down(cr8r_avl_node *r, cr8r_avl_ft*);
 /// @param [in, out] r: root of the tree to heapify
 void cr8r_avl_heapify(cr8r_avl_node *r, cr8r_avl_ft*);
 
+/// Treat the avl tree as a max heap and remove the top element
+///
+/// Restores heap invariant afterwards
+/// @param [in, out] r: pointer to pointer to root node, updated to point to new root node afterwards
+/// @return pointer to removed node, or NULL if *r was NULL
+cr8r_avl_node *cr8r_avl_heappop_node(cr8r_avl_node **r, cr8r_avl_ft*);
+
 /// Reorder the tree so that it is sorted according to a new ordering function
 ///
 /// Currently this works by heapifying the tree in place and then placing the nodes in order one by one,

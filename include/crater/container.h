@@ -64,8 +64,24 @@ void cr8r_default_swap(cr8r_base_ft*, void *a, void *b);
 /// Multiplies the value by a fixed prime and xors the high and low words of the 128 bit result
 uint64_t cr8r_default_hash_u64(const cr8r_base_ft*, const void*);
 
+/// "Default" ft->hash implementation (for hash tables)
+///
+/// WARNING: this may have problems with padded structs or doubles
+/// since equal values can have different representations in memory.
+/// A custom implementation is preferable for padded structs,
+/// anything containing doubles, or scalar types.
+uint64_t cr8r_default_hash(const cr8r_base_ft*, const void*);
+
+/// "Default" ft->hash implementation for null terminated strings (for hash tables)
+///
+/// Uses the djb2 algorithm
+uint64_t cr8r_default_hash_cstr(const cr8r_base_ft*, const void*);
+
 /// "Default" ft->cmp implementation for uint64_t
 int cr8r_default_cmp_u64(const cr8r_base_ft*, const void*, const void*);
+
+/// "Default" ft->cmp implementation for null terminated strings
+int cr8r_default_cmp_cstr(const cr8r_base_ft*, const void*, const void*);
 
 /// "Default" ft->add implementation (for avl trees and hash tables)
 ///
@@ -96,6 +112,8 @@ void *cr8r_default_alloc_sla(cr8r_base_ft*);
 /// not the element size, of the container (avl tree or circular list).
 /// See { @link cr8r_cll_ft_initsla } and { @link cr8r_cll_ft_initsla }.
 void cr8r_default_free_sla(cr8r_base_ft*, void*);
+
+void cr8r_default_free(cr8r_base_ft*, void*);
 
 /// Generate a random integer uniformly on [a, b)
 ///

@@ -1,0 +1,2 @@
+website/crater.png is from [Mozilla's emoji set](https://github.com/mozilla/fxemoji), under CC BY 4.0
+resources/frankenstein.txt is from project gutenberg, a site providing books whose copyright has expired and are public domain
