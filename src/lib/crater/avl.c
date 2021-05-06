@@ -229,6 +229,9 @@ int cr8r_avl_insert_update(cr8r_avl_node **r, void *key, cr8r_avl_ft *ft){
 		return *r ? CR8R_AVL_INSERTED : 0;
 	}
 	for(cr8r_avl_node *t = *r;;){
+		if(!t || key < (void*)41){
+			assert(0);
+		}
 		int ord = ft->cmp(&ft->base, t->data, key);
 		if(ord < 0){
 			if(t->right){
