@@ -90,7 +90,7 @@ void avl_appender(void *self, word_count *wc){
 	if(!strcmp(wc->word, "p")){
 		self = self;
 	}
-	fprintf(stderr, "\e[1;33m&self=%p, self=%p\e[0m\n", self, *(cr8r_avl_node**)self);
+	//fprintf(stderr, "\e[1;33m&self=%p, self=%p\e[0m\n", self, *(cr8r_avl_node**)self);
 	if(!cr8r_avl_insert_update(self, wc, &avlft_wc)){
 		fprintf(stderr, "\e[1;31mERROR: Could not append word count in avl tree!\e[0m");
 	}
@@ -143,7 +143,7 @@ int main(){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate hash table!\e[0m\n");
 		exit(1);
 	}
-	cr8r_avl_node *wordcount_avl;
+	cr8r_avl_node *wordcount_avl = NULL;
 	if(!cr8r_avl_ft_initsla(&avlft_wc, &avl_wc_sla, sizeof(word_count), 100, cr8r_default_cmp_cstr, combine_u64_then_free)){
 		cr8r_hash_destroy(&wordcount_ht, &htft_wc);
 		munmap(text_buf, text_len);
