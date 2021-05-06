@@ -2,6 +2,7 @@
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
+#include <assert.h>
 
 #include <crater/hash.h>
 
