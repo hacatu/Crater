@@ -90,7 +90,7 @@ void avl_appender(void *self, word_count *wc){
 	if(!strcmp(wc->word, "p")){
 		self = self;
 	}
-	fprintf(stderr, "\e[1;33m&self=%p, self=%p\e[0m\n", self, *self);
+	fprintf(stderr, "\e[1;33m&self=%p, self=%p\e[0m\n", self, *(cr8r_avl_node**)self);
 	if(!cr8r_avl_insert_update(self, wc, &avlft_wc)){
 		fprintf(stderr, "\e[1;31mERROR: Could not append word count in avl tree!\e[0m");
 	}
