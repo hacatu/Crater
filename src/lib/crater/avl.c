@@ -241,6 +241,7 @@ int cr8r_avl_insert_update(cr8r_avl_node **r, void *key, cr8r_avl_ft *ft){
 					return 0;
 				}
 				*r = cr8r_avl_insert_retrace(t->right);
+				ASSERT_ALL(*r);
 				return CR8R_AVL_INSERTED;
 			}
 		}else if(ord > 0){
@@ -251,6 +252,7 @@ int cr8r_avl_insert_update(cr8r_avl_node **r, void *key, cr8r_avl_ft *ft){
 					return 0;
 				}
 				*r = cr8r_avl_insert_retrace(t->left);
+				ASSERT_ALL(*r);
 				return CR8R_AVL_INSERTED;
 			}
 		}else{

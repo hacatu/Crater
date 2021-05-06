@@ -2,7 +2,6 @@
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
-#include <assert.h>
 
 #include <crater/hash.h>
 
@@ -52,9 +51,6 @@ int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b)
 }
 
 int cr8r_default_cmp_cstr(const cr8r_base_ft *ft, const void *_a, const void *_b){
-	/*if(_a < (void*)100){
-		assert(0);
-	}*/
 	return strcmp(*(const char**)_a, *(const char**)_b);
 }
 
