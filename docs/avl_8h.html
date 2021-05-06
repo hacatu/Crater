@@ -188,6 +188,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a446d233258677dfa634aeb5b60857f15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#a446d233258677dfa634aeb5b60857f15">cr8r_avl_heapify</a> (<a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> *r, <a class="el" href="structcr8r__avl__ft.html">cr8r_avl_ft</a> *)</td></tr>
 <tr class="memdesc:a446d233258677dfa634aeb5b60857f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the avl tree into a max heap in place.  <a href="avl_8h.html#a446d233258677dfa634aeb5b60857f15">More...</a><br /></td></tr>
 <tr class="separator:a446d233258677dfa634aeb5b60857f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b28a2f3ba6dc52f38a5a8bb974f6e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#a36b28a2f3ba6dc52f38a5a8bb974f6e2">cr8r_avl_heappop_node</a> (<a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> **r, <a class="el" href="structcr8r__avl__ft.html">cr8r_avl_ft</a> *)</td></tr>
+<tr class="memdesc:a36b28a2f3ba6dc52f38a5a8bb974f6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treat the avl tree as a max heap and remove the top element.  <a href="avl_8h.html#a36b28a2f3ba6dc52f38a5a8bb974f6e2">More...</a><br /></td></tr>
+<tr class="separator:a36b28a2f3ba6dc52f38a5a8bb974f6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cbcbe1cb3032c126794fb3fb6f55a45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#a3cbcbe1cb3032c126794fb3fb6f55a45">cr8r_avl_reorder</a> (<a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> *r, <a class="el" href="structcr8r__avl__ft.html">cr8r_avl_ft</a> *)</td></tr>
 <tr class="memdesc:a3cbcbe1cb3032c126794fb3fb6f55a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorder the tree so that it is sorted according to a new ordering function.  <a href="avl_8h.html#a3cbcbe1cb3032c126794fb3fb6f55a45">More...</a><br /></td></tr>
 <tr class="separator:a3cbcbe1cb3032c126794fb3fb6f55a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,8 +297,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (if cmp, alloc, or free is NULL) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00037">37</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="afef37e961bb3fd70a7c0dca8c0b162cf"></a>
@@ -361,8 +362,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (if cmp, sla, or reserve is NULL/0 or the slab allocator cannot reserve enough memory) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00056">56</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a0957ddd9af1e5ccf143d75b9cba08508"></a>
@@ -426,8 +425,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the new, initialized node, or NULL if ft-&gt;alloc fails </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00104">104</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a8a6b0ce9af0fbac11aabfb72a4fd7e88"></a>
@@ -471,8 +468,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if allocation fails or a node with the given element is already present in the tree, 1 if the element is not present and insertion suceeds. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00190">190</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -518,8 +513,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if no node with the given element exists in the tree, 1 if successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00259">259</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a1715ac023962286958c00d73753def60"></a>
@@ -564,8 +557,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if allocation fails, 1 (AVL_INSERTED) if the element is not present and insertion suceeds, 2 (AVL_UPDATED) if an existing node was updated. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00226">226</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a865c31955e987179e00b92c131d26335"></a>
@@ -602,8 +593,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the new root node of the tree that contained n, in case it changed. Can be NULL. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00268">268</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -649,8 +638,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the new root, in case it changed, or NULL if a node with the same element as n already exists. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00486">486</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a9ce7ae4aa9f1ff38a0f098f5dfc5a375"></a>
@@ -687,8 +674,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the new root of the tree that contained the node, in case its root changed. Can be NULL if the last node was removed. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00506">506</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -734,8 +719,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the node matching the given key, or NULL if no match exists. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00120">120</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a909e9240331a0c26ec30cd039bb39284"></a>
@@ -780,8 +763,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the last node in the tree on the search path for the given key. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00133">133</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a7e48b77b0c84dde64dc0d7b3fcbb34fd"></a>
@@ -808,8 +789,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the root of the tree containing n. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00113">113</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -838,8 +817,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the node with the lowest key in the tree </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00176">176</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a8a4ce6adaedb8065007151720d017a37"></a>
@@ -866,8 +843,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the inorder successor of n </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00082">82</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -896,8 +871,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the node with the greatest key in the tree </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00183">183</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="adc53d6b26505c9659c48bf532da64950"></a>
@@ -924,8 +897,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the inorder predecessor of n </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00093">93</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -971,8 +942,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to a node whose key is a maximal inclusive lower bound </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00146">146</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="afb8c6e573d04691f416c96bbf373d2e1"></a>
@@ -1017,8 +986,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to a node whose key is a minimal exclusive upper bound </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00161">161</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="aaed02212808cd23297e192b769986d3c"></a>
@@ -1054,8 +1021,6 @@ DESCRIPTION</h1>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00479">479</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -1100,8 +1065,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00515">515</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a167669111edf2a29943c2c40def381ce"></a>
@@ -1138,8 +1101,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the root of the tree, in case it changes, or NULL if a duplicate key is encountered </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00594">594</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -1178,8 +1139,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the root of the tree, in case it changes, or NULL if a duplicate key is encountered </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00606">606</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a96c254012fdc9159a219b3bb132df912"></a>
@@ -1207,8 +1166,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the first node in a postorder traversal </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00618">618</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="ac8c1f7d2adc02d947e94aff60ca4e2e2"></a>
@@ -1235,8 +1192,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the next node in a postorder traversal </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00630">630</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>
@@ -1274,8 +1229,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00641">641</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
-
 </div>
 </div>
 <a id="a446d233258677dfa634aeb5b60857f15"></a>
@@ -1312,7 +1265,42 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00667">667</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
+</div>
+</div>
+<a id="a36b28a2f3ba6dc52f38a5a8bb974f6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b28a2f3ba6dc52f38a5a8bb974f6e2">&#9670;&nbsp;</a></span>cr8r_avl_heappop_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a>* cr8r_avl_heappop_node </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> **&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__avl__ft.html">cr8r_avl_ft</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Treat the avl tree as a max heap and remove the top element. </p>
+<p>Restores heap invariant afterwards </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">r</td><td>pointer to pointer to root node, updated to point to new root node afterwards </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to removed node, or NULL if *r was NULL </dd></dl>
 
 </div>
 </div>
@@ -1349,8 +1337,6 @@ DESCRIPTION</h1>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="avl_8c_source.html#l00675">675</a> of file <a class="el" href="avl_8c_source.html">avl.c</a>.</p>
 
 </div>
 </div>

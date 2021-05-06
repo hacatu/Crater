@@ -324,8 +324,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (if resize is NULL) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00009">9</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a5d8cd0da55cbed50ba9a46811a807582"></a>
@@ -369,8 +367,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation failure) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00060">60</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="aaddb6c45cb315fe0582c59c53427bb1a"></a>
@@ -401,8 +397,6 @@ DESCRIPTION</h1>
 
 <p>Delete all entries in a vector and free its buffer. </p>
 <p>ft-&gt;del (can be NULL) is called on each element, then ft-&gt;resize is called to "resize" to 0. the fields of the vector are all zeroed out </p>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00069">69</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -447,8 +441,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation failure) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00079">79</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -507,8 +499,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation failure or invalid bounds) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00096">96</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a2619b3844488731f3361d09ad76ef855"></a>
@@ -552,8 +542,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation or invalid bounds) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00103">103</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="adc6c53aa17d83328eda34a5d1a94e3ba"></a>
@@ -584,8 +572,6 @@ DESCRIPTION</h1>
 
 <p>Resize a vector's reserved buffer to its length. </p>
 <p>Exactly like <a class="el" href="vec_8h.html#a2619b3844488731f3361d09ad76ef855">cr8r_vec_resize</a> with self-&gt;len as the cap parameter </p><dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation, shouldn't happen unless ft-&gt;resize can fail to shrink) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00116">116</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -618,8 +604,6 @@ DESCRIPTION</h1>
 <p>Remove all elements from a vector. </p>
 <p>Calls ft-&gt;del if applicable, and sets len to 0 </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00126">126</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="af2e172bf065de190599427ce03d4d831"></a>
@@ -650,8 +634,6 @@ DESCRIPTION</h1>
 
 <p>Shuffle the vector into a random permutation. </p>
 <p>The algorithm produces permutations uniformly in theory, although in practice the number of permutations of a sufficiently large vector is enormously larger than the state space of any pseudorandom number generator. This won't cause any remotely meaningful patterns. </p>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00205">205</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -696,8 +678,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the element at index i, or NULL if i is out of bounds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00169">169</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="aabeda529e2562f99f42c1044e217cc70"></a>
@@ -741,8 +721,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the element at index i, or NULL if i is out of bounds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00176">176</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="aa2aefad9c344d8c7d9a25b236d813312"></a>
@@ -763,8 +741,6 @@ DESCRIPTION</h1>
 
 <p>Get the length of a vector. </p>
 <p>Simply returns self-&gt;len </p><dl class="section return"><dt>Returns</dt><dd>the length of the vector </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00186">186</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -809,8 +785,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00212">212</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a599c09159cb69c595de1aff43ee10b83"></a>
@@ -853,8 +827,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (ie if the vector was empty) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00226">226</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -899,8 +871,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00235">235</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="ad1e46add615e3db6087de21050005522"></a>
@@ -943,8 +913,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (ie if the vector was empty) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00250">250</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -996,8 +964,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00259">259</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1057,8 +1023,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00281">281</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1153,8 +1117,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00135">135</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a5d51bc905d119424b59a57b6973041f5"></a>
@@ -1199,8 +1161,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00154">154</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="ad8b8a19195b2639c4f526423272c07ad"></a>
@@ -1243,8 +1203,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the predicate function returns 1 on all elements, 0 (as soon as it doesn't) otherwise </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00313">313</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1289,8 +1247,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 (as soon as) the predicate function returns 1 on any element, 0 if it returns 0 on all of them </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00322">322</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a6c46fe63b3e84780b58260594e79a30a"></a>
@@ -1334,8 +1290,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the vector contains the element, 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00331">331</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a3b32323f2ef92ca85694161725826e97"></a>
@@ -1378,8 +1332,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the index of the element if it is in the vector, or -1 otherwise </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00335">335</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1431,8 +1383,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the final accumulator value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00370">370</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a467b6a8b19b8ab8c55b2bb1abf855a0f"></a>
@@ -1483,8 +1433,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the final accumulator value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00377">377</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="a9bcbace693b2aa77a48b55291d74ad4f"></a>
@@ -1515,8 +1463,6 @@ DESCRIPTION</h1>
 
 <p>Sort a vector in-place according to ft-&gt;cmp. </p>
 <p>Currently uses heapsort, so average and worst case time complexities are both O(n*log(n)). </p>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00384">384</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1562,8 +1508,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation failure) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00395">395</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="ae6f8d8acbaa9e05a05deb6173fb203ae"></a>
@@ -1608,8 +1552,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation failure) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00356">356</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="aeee6e47feb7b49bf85b42d29acc41240"></a>
@@ -1652,8 +1594,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the vector contains the element, 0 otherwise </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00403">403</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>
@@ -1698,8 +1638,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>index of the element in the vector, or -1 if not present </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00407">407</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
-
 </div>
 </div>
 <a id="ab4b70ed397697cecf35ff74c2f8a0b7d"></a>
@@ -1742,8 +1680,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if a is lexicographically before b, +1 visa versa, or 0 if they are equal </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vec_8c_source.html#l00423">423</a> of file <a class="el" href="vec_8c_source.html">vec.c</a>.</p>
 
 </div>
 </div>

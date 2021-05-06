@@ -213,8 +213,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (if hash or cmp is NULL) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00050">50</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="abed62bd620bc2114e84247fc8122ec58"></a>
@@ -258,8 +256,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00070">70</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="aaec8f26b3fd50f09f1c5f77df1db1d74"></a>
@@ -302,8 +298,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the element if found (which could be invalidated by another hash table operation) or NULL if absent </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00221">221</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
 
 </div>
 </div>
@@ -355,8 +349,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to an element with the same key if one exists, otherwise a pointer to the element inserted into the hash table, as if <a class="el" href="hash_8h.html#aaec8f26b3fd50f09f1c5f77df1db1d74">cr8r_hash_get</a> were called atomically afterwards </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00228">228</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="a10b2be8a15ee34e093470226d4b4954f"></a>
@@ -407,8 +399,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to an element with the same key if one exists, otherwise a pointer to the element inserted into the hash table, as if <a class="el" href="hash_8h.html#aaec8f26b3fd50f09f1c5f77df1db1d74">cr8r_hash_get</a> were called atomically afterwards </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00273">273</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="a22608115942167ecbb8f360b221e6daa"></a>
@@ -452,8 +442,6 @@ DESCRIPTION</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the element is found (and removed), 0 if the element is not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00353">353</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="ae5d9fee9a0b621015764ecfd9fdd88b4"></a>
@@ -496,8 +484,6 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00360">360</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="ab8653d192969d6e4aaf4550476848876"></a>
@@ -529,8 +515,6 @@ DESCRIPTION</h1>
 <p>Remove all entries from the hash table. </p>
 <p><a class="el" href="structcr8r__hashtbl__ft.html#a9963013838e00397269e333d10781c60">cr8r_hashtbl_ft::del</a> is called on every entry if specified, otherwise this is constant time assuming free is. Does not set the unused deleted bit unless a delete function is specified. Frees the older, smaller internal table if two are present, which will also cause incremental moving to stop the next time it would occur. </p>
 
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00374">374</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
-
 </div>
 </div>
 <a id="aa6bd568a7a8d50a91bee2caab9611039"></a>
@@ -561,8 +545,6 @@ DESCRIPTION</h1>
 
 <p>Free the resources held by the hashtable. </p>
 <p>If <a class="el" href="structcr8r__hashtbl__ft.html#a9963013838e00397269e333d10781c60">cr8r_hashtbl_ft::del</a> is specified, it is called on every entry before free is called, otherwise, this function is constant time if free is. </p>
-
-<p class="definition">Definition at line <a class="el" href="hash_8c_source.html#l00398">398</a> of file <a class="el" href="hash_8c_source.html">hash.c</a>.</p>
 
 </div>
 </div>

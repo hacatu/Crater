@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-05-05 08:43:00</td>
+            <td class="headerValue">2021-05-06 04:40:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -97,31 +97,32 @@
 <a name="35"><span class="lineNum">      35 </span><span class="lineCov">  177811000 : void *cr8r_sla_alloc(cr8r_sla *self){</span></a>
 <a name="36"><span class="lineNum">      36 </span><span class="lineCov">  177811000 :         if(!self-&gt;first_elem){</span></a>
 <a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :                 uint64_t slab_cap = self-&gt;slab_cap &lt;&lt; 1;</span></a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :                 void *slab = malloc(slab_cap*self-&gt;elem_size), **slabs;</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :                 if(!slab){</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :                         return NULL;</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :                 }else if(!(slabs = realloc(self-&gt;slabs, (self-&gt;slabs_len + 1)*sizeof(void*)))){</span></a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :                         free(slab);</span></a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :                         return NULL;</span></a>
-<a name="44"><span class="lineNum">      44 </span>            :                 }</a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :                 self-&gt;first_elem = slabs[self-&gt;slabs_len++] = slab;</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :                 self-&gt;slabs = slabs;</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :                 for(uint64_t i = 0; i + 1 &lt; slab_cap; ++i){</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :                         *(void**)(slab + i) = slab + i + 1;</span></a>
-<a name="49"><span class="lineNum">      49 </span>            :                 }</a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :                 *(void**)(slab + slab_cap - 1) = NULL;</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :                 self-&gt;slab_cap = slab_cap;</span></a>
-<a name="52"><span class="lineNum">      52 </span>            :         }</a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">  177811000 :         void *ret = self-&gt;first_elem;</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">  177811000 :         self-&gt;first_elem = *(void**)self-&gt;first_elem;</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">  177811000 :         return ret;</span></a>
-<a name="56"><span class="lineNum">      56 </span>            : }</a>
-<a name="57"><span class="lineNum">      57 </span>            : </a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">  177811000 : void cr8r_sla_free(cr8r_sla *self, void *p){</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">  177811000 :         *(void**)p = self-&gt;first_elem;</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">  177811000 :         self-&gt;first_elem = p;</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">  177811000 : }</span></a>
-<a name="62"><span class="lineNum">      62 </span>            : </a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :                 char (*slab)[self-&gt;elem_size] = malloc(slab_cap*self-&gt;elem_size);</span></a>
+<a name="39"><span class="lineNum">      39 </span>            :                 void **slabs;</a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :                 if(!slab){</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :                         return NULL;</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :                 }else if(!(slabs = realloc(self-&gt;slabs, (self-&gt;slabs_len + 1)*sizeof(void*)))){</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :                         free(slab);</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :                         return NULL;</span></a>
+<a name="45"><span class="lineNum">      45 </span>            :                 }</a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :                 self-&gt;first_elem = slabs[self-&gt;slabs_len++] = (void*)slab;</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :                 self-&gt;slabs = slabs;</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :                 for(uint64_t i = 0; i + 1 &lt; slab_cap; ++i){</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :                         *(void**)(slab + i) = slab + i + 1;</span></a>
+<a name="50"><span class="lineNum">      50 </span>            :                 }</a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :                 *(void**)(slab + slab_cap - 1) = NULL;</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :                 self-&gt;slab_cap = slab_cap;</span></a>
+<a name="53"><span class="lineNum">      53 </span>            :         }</a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">  177811000 :         void *ret = self-&gt;first_elem;</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">  177811000 :         self-&gt;first_elem = *(void**)self-&gt;first_elem;</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">  177811000 :         return ret;</span></a>
+<a name="57"><span class="lineNum">      57 </span>            : }</a>
+<a name="58"><span class="lineNum">      58 </span>            : </a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">  177811000 : void cr8r_sla_free(cr8r_sla *self, void *p){</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">  177811000 :         *(void**)p = self-&gt;first_elem;</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">  177811000 :         self-&gt;first_elem = p;</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">  177811000 : }</span></a>
+<a name="63"><span class="lineNum">      63 </span>            : </a>
 </pre>
       </td>
     </tr>
