@@ -204,6 +204,13 @@ bool cr8r_vec_pushl(cr8r_vec*, cr8r_vec_ft*, const void *e);
 bool cr8r_vec_popl(cr8r_vec*, cr8r_vec_ft*, void *o);
 
 
+/// Filter a vector in-place
+///
+/// ft->del is called on elements that fail the predicate, if applicable
+/// @param [in] pred: predicate to check elements with
+/// @return 1 on success, 0 on failure (memory allocation, shouldn't happen unless ft->resize can fail to shrink)
+bool cr8r_vec_filter(cr8r_vec*, cr8r_vec_ft*, bool (*pred)(const void*));
+
 /// Create a new vector as a subsequence matching a predicate
 ///
 /// Iterate over the elements of a vector and copy them into a new vector if they match the predicate.
@@ -212,7 +219,7 @@ bool cr8r_vec_popl(cr8r_vec*, cr8r_vec_ft*, void *o);
 /// @param [in] src: vector to copy filtered sequence from
 /// @param [in] pred: predicate to check elements with
 /// @return 1 on success, 0 on failure (allocation failure)
-bool cr8r_vec_filter(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*, bool (*pred)(const void*));
+bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*, bool (*pred)(const void*));
 
 /// Create a new vector by applying a transformation function to each element
 ///

@@ -256,7 +256,23 @@ bool cr8r_vec_popl(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
 	return true;
 }
 
-bool cr8r_vec_filter(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, bool (*pred)(const void*)){
+bool cr8r_vec_filter(cr8r_vec *self, cr8r_vec_ft *ft, bool (*pred)(const void*)){
+	uint64_t j = 0;
+	for(uint64_t i = 0; i < self->len; ++i){
+		if(pred(self->buf + i*ft->base.size)){
+			if(i > j){
+				memcpy(self->buf + j*ft->base.size, self->buf + i*ft->base.size, ft->base.size);
+			}
+			++j;
+		}else if(ft->del){
+			ft->del(&ft->base, self->buf + i*ft->base.size);
+		}
+	}
+	self->len = j;
+	return cr8r_vec_trim(self, ft);
+}
+
+bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, bool (*pred)(const void*)){
 	dest->len = 0;
 	if(!cr8r_vec_resize(dest, ft, src->len)){
 		return false;
