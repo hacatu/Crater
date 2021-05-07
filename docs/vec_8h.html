@@ -146,9 +146,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ad1e46add615e3db6087de21050005522"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ad1e46add615e3db6087de21050005522">cr8r_vec_popl</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *o)</td></tr>
 <tr class="memdesc:ad1e46add615e3db6087de21050005522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an element from the left hand end of a vector.  <a href="vec_8h.html#ad1e46add615e3db6087de21050005522">More...</a><br /></td></tr>
 <tr class="separator:ad1e46add615e3db6087de21050005522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a367dbd85da97639035851b5cb7092c3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a367dbd85da97639035851b5cb7092c3c">cr8r_vec_filter</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, bool(*pred)(const void *))</td></tr>
-<tr class="memdesc:a367dbd85da97639035851b5cb7092c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vector as a subsequence matching a predicate.  <a href="vec_8h.html#a367dbd85da97639035851b5cb7092c3c">More...</a><br /></td></tr>
-<tr class="separator:a367dbd85da97639035851b5cb7092c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbf4d21bfe0ecf4236689abbcdd9692"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a9dbf4d21bfe0ecf4236689abbcdd9692">cr8r_vec_filter</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, bool(*pred)(const void *))</td></tr>
+<tr class="memdesc:a9dbf4d21bfe0ecf4236689abbcdd9692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter a vector in-place.  <a href="vec_8h.html#a9dbf4d21bfe0ecf4236689abbcdd9692">More...</a><br /></td></tr>
+<tr class="separator:a9dbf4d21bfe0ecf4236689abbcdd9692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308fb59b1a449476504fa42ef604503b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a308fb59b1a449476504fa42ef604503b">cr8r_vec_filtered</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, bool(*pred)(const void *))</td></tr>
+<tr class="memdesc:a308fb59b1a449476504fa42ef604503b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vector as a subsequence matching a predicate.  <a href="vec_8h.html#a308fb59b1a449476504fa42ef604503b">More...</a><br /></td></tr>
+<tr class="separator:a308fb59b1a449476504fa42ef604503b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e5fe3e3e68886fe5fc7c81cdd60951"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a62e5fe3e3e68886fe5fc7c81cdd60951">cr8r_vec_map</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, void(*f)(void *o, const void *e))</td></tr>
 <tr class="memdesc:a62e5fe3e3e68886fe5fc7c81cdd60951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vector by applying a transformation function to each element.  <a href="vec_8h.html#a62e5fe3e3e68886fe5fc7c81cdd60951">More...</a><br /></td></tr>
 <tr class="separator:a62e5fe3e3e68886fe5fc7c81cdd60951"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -916,14 +919,57 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a367dbd85da97639035851b5cb7092c3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a367dbd85da97639035851b5cb7092c3c">&#9670;&nbsp;</a></span>cr8r_vec_filter()</h2>
+<a id="a9dbf4d21bfe0ecf4236689abbcdd9692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dbf4d21bfe0ecf4236689abbcdd9692">&#9670;&nbsp;</a></span>cr8r_vec_filter()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool cr8r_vec_filter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool(*)(const void *)&#160;</td>
+          <td class="paramname"><em>pred</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Filter a vector in-place. </p>
+<p>ft-&gt;del is called on elements that fail the predicate, if applicable </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pred</td><td>predicate to check elements with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (memory allocation, shouldn't happen unless ft-&gt;resize can fail to shrink) </dd></dl>
+
+</div>
+</div>
+<a id="a308fb59b1a449476504fa42ef604503b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a308fb59b1a449476504fa42ef604503b">&#9670;&nbsp;</a></span>cr8r_vec_filtered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cr8r_vec_filtered </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
