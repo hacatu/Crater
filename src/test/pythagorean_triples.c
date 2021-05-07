@@ -1,3 +1,4 @@
+// This test case is based on Project Euler problem 9
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
