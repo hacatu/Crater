@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 #include <crater/container.h>
+#include <crater/prand.h>
 
 /// A vector
 /// Take care if manipulating these fields directly, this should only
@@ -150,7 +151,7 @@ void cr8r_vec_clear(cr8r_vec*, cr8r_vec_ft*);
 /// the number of permutations of a sufficiently large vector is enormously larger
 /// than the state space of any pseudorandom number generator.  This won't
 /// cause any remotely meaningful patterns.
-void cr8r_vec_shuffle(cr8r_vec*, cr8r_vec_ft*);
+void cr8r_vec_shuffle(cr8r_vec*, cr8r_vec_ft*, cr8r_prng*);
 
 
 /// Get the element at a given index

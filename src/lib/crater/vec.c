@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <string.h>
-#include <sys/random.h>
 
 #include <crater/vec.h>
 #include <crater/heap.h>
@@ -187,24 +186,9 @@ uint64_t cr8r_vec_len(cr8r_vec *self){
 	return self->len;
 }
 
-uint64_t cr8r_rand_uniform_u64(uint64_t a, uint64_t b){
-	uint64_t l = b - a, r = 0, bytes = (71 - __builtin_clzll(l))/8;
-	uint64_t ub;
-	if(bytes == 8){
-		ub = 0x7FFFFFFFFFFFFFFFull%l*-2;
-	}else{
-		ub = 1ull << (bytes*8);
-		ub -= ub%l;
-	}
-	do{
-		getrandom(&r, bytes, 0);
-	}while(r >= ub);
-	return r%l + a;
-}
-
-void cr8r_vec_shuffle(cr8r_vec *self, cr8r_vec_ft *ft){
+void cr8r_vec_shuffle(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_prng *prng){
 	for(uint64_t i = self->len - 1, j; i; --i){
-		j = cr8r_rand_uniform_u64(0, i + 1);
+		j = cr8r_prng_uniform_u64(prng, 0, i + 1);
 		ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size);
 	}
 }

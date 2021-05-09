@@ -115,12 +115,6 @@ void cr8r_default_free_sla(cr8r_base_ft*, void*);
 
 void cr8r_default_free(cr8r_base_ft*, void*);
 
-/// Generate a random integer uniformly on [a, b)
-///
-/// Currently uses getrandom internally, should be moved to a faster source since
-/// this is not intended for crypographically secure use.
-uint64_t cr8r_rand_uniform_u64(uint64_t a, uint64_t b);
-
 
 /// Cast a flexible length array member to a given type using union hackery sorcery
 #define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)
