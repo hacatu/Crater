@@ -79,6 +79,7 @@ $(function() {
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="container_8h_source.html">crater/container.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="prand_8h_source.html">crater/prand.h</a>&gt;</code><br />
 </div>
 <p><a href="vec_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -122,9 +123,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac836b7eb6db947abf22dd5e69694814f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ac836b7eb6db947abf22dd5e69694814f">cr8r_vec_clear</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:ac836b7eb6db947abf22dd5e69694814f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all elements from a vector.  <a href="vec_8h.html#ac836b7eb6db947abf22dd5e69694814f">More...</a><br /></td></tr>
 <tr class="separator:ac836b7eb6db947abf22dd5e69694814f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2e172bf065de190599427ce03d4d831"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#af2e172bf065de190599427ce03d4d831">cr8r_vec_shuffle</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
-<tr class="memdesc:af2e172bf065de190599427ce03d4d831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuffle the vector into a random permutation.  <a href="vec_8h.html#af2e172bf065de190599427ce03d4d831">More...</a><br /></td></tr>
-<tr class="separator:af2e172bf065de190599427ce03d4d831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b6dcca4bdbc7caf7df8a78525c3ef0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aa4b6dcca4bdbc7caf7df8a78525c3ef0">cr8r_vec_shuffle</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
+<tr class="memdesc:aa4b6dcca4bdbc7caf7df8a78525c3ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuffle the vector into a random permutation.  <a href="vec_8h.html#aa4b6dcca4bdbc7caf7df8a78525c3ef0">More...</a><br /></td></tr>
+<tr class="separator:aa4b6dcca4bdbc7caf7df8a78525c3ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca7f424dd3f0a87649bf94995900b6c8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">cr8r_vec_get</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t i)</td></tr>
 <tr class="memdesc:aca7f424dd3f0a87649bf94995900b6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the element at a given index.  <a href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">More...</a><br /></td></tr>
 <tr class="separator:aca7f424dd3f0a87649bf94995900b6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -238,7 +239,7 @@ DESCRIPTION</h1>
 <p>Function table for vector. </p>
 <p>Imagine this struct as the class of the vector. This struct specifies the size of the elements in a vector in bytes, as well as how to perform necessary operations (compare, copy, etc). Remember that function tables must be initialized manually. In particular, the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00037">37</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00038">38</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +322,7 @@ DESCRIPTION</h1>
     <tr><td class="paramdir">[in]</td><td class="paramname">del</td><td>called on any element before deleting it. can be NULL if no action is required. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">copy</td><td>copy an element. can be NULL if memcpy is sufficient. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">cmp</td><td>comparison function. must not be NULL to call search and sort functions. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">swap</td><td>swap two element. only required for a few functions (namely <a class="el" href="vec_8h.html#af2e172bf065de190599427ce03d4d831">cr8r_vec_shuffle</a>). <a class="el" href="container_8h.html#abaed3e57335670ca2dfbc304b75fede2">cr8r_default_swap</a> is a good generic choice. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">swap</td><td>swap two element. only required for a few functions (namely <a class="el" href="vec_8h.html#aa4b6dcca4bdbc7caf7df8a78525c3ef0">cr8r_vec_shuffle</a>). <a class="el" href="container_8h.html#abaed3e57335670ca2dfbc304b75fede2">cr8r_default_swap</a> is a good generic choice. </td></tr>
   </table>
   </dd>
 </dl>
@@ -609,8 +610,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="af2e172bf065de190599427ce03d4d831"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2e172bf065de190599427ce03d4d831">&#9670;&nbsp;</a></span>cr8r_vec_shuffle()</h2>
+<a id="aa4b6dcca4bdbc7caf7df8a78525c3ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b6dcca4bdbc7caf7df8a78525c3ef0">&#9670;&nbsp;</a></span>cr8r_vec_shuffle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -625,6 +626,12 @@ DESCRIPTION</h1>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
