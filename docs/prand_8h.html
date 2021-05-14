@@ -69,7 +69,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">prand.h File Reference</div>  </div>
 </div><!--header-->
@@ -123,12 +124,24 @@ Macros</h2></td></tr>
 <tr class="memitem:ad0b8baf171f3b749ee0e2bdeba34fbd5"><td class="memItemLeft" align="right" valign="top"><a id="ad0b8baf171f3b749ee0e2bdeba34fbd5"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_PRNG_MT_F</b>&#160;&#160;&#160;6364136223846793005</td></tr>
 <tr class="separator:ad0b8baf171f3b749ee0e2bdeba34fbd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a697bd74cf66c43d00cf8336d18aa371f"><td class="memItemLeft" align="right" valign="top"><a id="a697bd74cf66c43d00cf8336d18aa371f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_PRNG_LFM_R</b>&#160;&#160;&#160;127</td></tr>
+<tr class="separator:a697bd74cf66c43d00cf8336d18aa371f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bc8bc54884b864acc1daaf32009d434"><td class="memItemLeft" align="right" valign="top"><a id="a8bc8bc54884b864acc1daaf32009d434"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_PRNG_LFM_S</b>&#160;&#160;&#160;97</td></tr>
+<tr class="separator:a8bc8bc54884b864acc1daaf32009d434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa673bed586c615993c4e56d44c15df"><td class="memItemLeft" align="right" valign="top"><a id="a0aa673bed586c615993c4e56d44c15df"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_DEFAULT_PRNG_SM_SEED</b>&#160;&#160;&#160;0xd20499955ff0e57c</td></tr>
+<tr class="separator:a0aa673bed586c615993c4e56d44c15df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30bbfdf3037017d7a166176218e3dda"><td class="memItemLeft" align="right" valign="top"><a id="ac30bbfdf3037017d7a166176218e3dda"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_DEFAULT_PRNG_LCG_SEED</b>&#160;&#160;&#160;0xe9352d1427990d8e</td></tr>
+<tr class="separator:ac30bbfdf3037017d7a166176218e3dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cd943590491468398f92590563efd51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a8cd943590491468398f92590563efd51">cr8r_prng_seed</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, const char seed[*])</td></tr>
-<tr class="memdesc:a8cd943590491468398f92590563efd51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the state of a prng.  <a href="prand_8h.html#a8cd943590491468398f92590563efd51">More...</a><br /></td></tr>
-<tr class="separator:a8cd943590491468398f92590563efd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4596f7c54d9872920c2f57ccae72bc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t)</td></tr>
+<tr class="memdesc:ad4596f7c54d9872920c2f57ccae72bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the state of a prng.  <a href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">More...</a><br /></td></tr>
+<tr class="separator:ad4596f7c54d9872920c2f57ccae72bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a38a11e931811a1475c5c49202a8d4b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a7a38a11e931811a1475c5c49202a8d4b">cr8r_prng_get_u32</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
 <tr class="memdesc:a7a38a11e931811a1475c5c49202a8d4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a single uint32_t from a prng.  <a href="prand_8h.html#a7a38a11e931811a1475c5c49202a8d4b">More...</a><br /></td></tr>
 <tr class="separator:a7a38a11e931811a1475c5c49202a8d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,27 +154,43 @@ Functions</h2></td></tr>
 <tr class="memitem:ac45352623df6ef36bd0198da18fd4200"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t a, uint64_t b)</td></tr>
 <tr class="memdesc:ac45352623df6ef36bd0198da18fd4200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a uint64_t which is uniformly distributed on [a, b).  <a href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">More...</a><br /></td></tr>
 <tr class="separator:ac45352623df6ef36bd0198da18fd4200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93412d1b22265782ceaaa41ce9404948"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">cr8r_prng_log_mod_t64</a> (uint64_t h)</td></tr>
+<tr class="memdesc:a93412d1b22265782ceaaa41ce9404948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find x (the discrete logarithm) so that h = g**x mod 2**64.  <a href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">More...</a><br /></td></tr>
+<tr class="separator:a93412d1b22265782ceaaa41ce9404948"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acae0db179a04990f3ec47a1e29e986f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a> ()</td></tr>
 <tr class="memdesc:acae0db179a04990f3ec47a1e29e986f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on the system's prng device.  <a href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">More...</a><br /></td></tr>
 <tr class="separator:acae0db179a04990f3ec47a1e29e986f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcbc4b86c3db859a68ff1f5883966643"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#adcbc4b86c3db859a68ff1f5883966643">cr8r_prng_init_lcg</a> (uint64_t seed)</td></tr>
 <tr class="memdesc:adcbc4b86c3db859a68ff1f5883966643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on a Linear Congruential Generator.  <a href="prand_8h.html#adcbc4b86c3db859a68ff1f5883966643">More...</a><br /></td></tr>
 <tr class="separator:adcbc4b86c3db859a68ff1f5883966643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d20b436567d7a3c4a07128ab79353ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a4d20b436567d7a3c4a07128ab79353ea">cr8r_prng_init_lfg</a> (const char seed[static 6 *12+1])</td></tr>
-<tr class="memdesc:a4d20b436567d7a3c4a07128ab79353ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on a Lagged Fibonacci Generator.  <a href="prand_8h.html#a4d20b436567d7a3c4a07128ab79353ea">More...</a><br /></td></tr>
-<tr class="separator:a4d20b436567d7a3c4a07128ab79353ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59593ec213c0a258e487689a6551c1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ac59593ec213c0a258e487689a6551c1d">cr8r_prng_init_lfg_sc</a> (uint64_t seed)</td></tr>
+<tr class="memdesc:ac59593ec213c0a258e487689a6551c1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on a Subtract with Carry Lagged Fibonacci Generator.  <a href="prand_8h.html#ac59593ec213c0a258e487689a6551c1d">More...</a><br /></td></tr>
+<tr class="separator:ac59593ec213c0a258e487689a6551c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78392309413c5be1f05b316c52da8219"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a78392309413c5be1f05b316c52da8219">cr8r_prng_init_lfg_m</a> (uint64_t seed)</td></tr>
+<tr class="memdesc:a78392309413c5be1f05b316c52da8219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on a Multiplication Lagged Fibonnacci Generator.  <a href="prand_8h.html#a78392309413c5be1f05b316c52da8219">More...</a><br /></td></tr>
+<tr class="separator:a78392309413c5be1f05b316c52da8219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad39caeaee76bef3a59c3848a07bf9ad8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ad39caeaee76bef3a59c3848a07bf9ad8">cr8r_prng_init_mt</a> (uint64_t seed)</td></tr>
 <tr class="memdesc:ad39caeaee76bef3a59c3848a07bf9ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on a Mersenne Twister Generator.  <a href="prand_8h.html#ad39caeaee76bef3a59c3848a07bf9ad8">More...</a><br /></td></tr>
 <tr class="separator:ad39caeaee76bef3a59c3848a07bf9ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e1afaf8dd815ad1e0a51896b512904e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a9e1afaf8dd815ad1e0a51896b512904e">cr8r_prng_init_xoro</a> (const char seed[static 32])</td></tr>
-<tr class="memdesc:a9e1afaf8dd815ad1e0a51896b512904e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on Vigna and Blackman's Xoroshiro256** algorithm.  <a href="prand_8h.html#a9e1afaf8dd815ad1e0a51896b512904e">More...</a><br /></td></tr>
-<tr class="separator:a9e1afaf8dd815ad1e0a51896b512904e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae814a4e6c3c4bd37a99f7262c622dfe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ae814a4e6c3c4bd37a99f7262c622dfe3">cr8r_prng_init_xoro</a> (uint64_t seed)</td></tr>
+<tr class="memdesc:ae814a4e6c3c4bd37a99f7262c622dfe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on Vigna and Blackman's Xoroshiro256** algorithm.  <a href="prand_8h.html#ae814a4e6c3c4bd37a99f7262c622dfe3">More...</a><br /></td></tr>
+<tr class="separator:ae814a4e6c3c4bd37a99f7262c622dfe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ddb37ca49e0102188bdbf2e6b11dfa5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5">cr8r_prng_init_splitmix</a> (uint64_t seed)</td></tr>
+<tr class="memdesc:a6ddb37ca49e0102188bdbf2e6b11dfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a PRNG based on Vigna's version of SplitMix.  <a href="prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5">More...</a><br /></td></tr>
+<tr class="separator:a6ddb37ca49e0102188bdbf2e6b11dfa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac6111faad151beef22c18ff5596f8da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
 <tr class="memdesc:aac6111faad151beef22c18ff5596f8da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump a xoro based prng forwards by 2**128 steps quickly.  <a href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">More...</a><br /></td></tr>
 <tr class="separator:aac6111faad151beef22c18ff5596f8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60f6578400630293828baecb190811f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
 <tr class="memdesc:a60f6578400630293828baecb190811f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump a xoro based prng forwards by 2**192 steps quickly.  <a href="prand_8h.html#a60f6578400630293828baecb190811f7">More...</a><br /></td></tr>
 <tr class="separator:a60f6578400630293828baecb190811f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0809010c1f86d7834baa6bdb4db71b1d"><td class="memItemLeft" align="right" valign="top"><a id="a0809010c1f86d7834baa6bdb4db71b1d"></a>
+<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a></td></tr>
+<tr class="memdesc:a0809010c1f86d7834baa6bdb4db71b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default SplitMix prng, automatically used to extend seed values to state values if needed. <br /></td></tr>
+<tr class="separator:a0809010c1f86d7834baa6bdb4db71b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
@@ -181,8 +210,8 @@ DESCRIPTION</h1>
 
 <p class="definition">Definition in file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a8cd943590491468398f92590563efd51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cd943590491468398f92590563efd51">&#9670;&nbsp;</a></span>cr8r_prng_seed()</h2>
+<a id="ad4596f7c54d9872920c2f57ccae72bc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4596f7c54d9872920c2f57ccae72bc7">&#9670;&nbsp;</a></span>cr8r_prng_seed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,8 +225,8 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>seed</em>[ *]&#160;</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,7 +237,7 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Set the state of a prng. </p>
-<p>See the generator initialization functions for information on whether a single uint64_t or the entire state should be supplied, as well as what inputs are disallowed. </p><dl class="section return"><dt>Returns</dt><dd>true if the seed value is acceptable for the given generator, false otherwise </dd></dl>
+<p>WARNING: accesses <a class="el" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a> for generators where state_size &gt; 4, all accesses to the default splitmix prng should be done in the same thread or protected by locks. If necessary, the given seed is extended using splitmix to generate random bytes according to prng-&gt;state_size, and then prng-&gt;fixup_state is called. Returns false only if fixup_state fails. </p>
 
 </div>
 </div>
@@ -328,6 +357,37 @@ DESCRIPTION</h1>
 
 </div>
 </div>
+<a id="a93412d1b22265782ceaaa41ce9404948"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93412d1b22265782ceaaa41ce9404948">&#9670;&nbsp;</a></span>cr8r_prng_log_mod_t64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t cr8r_prng_log_mod_t64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find x (the discrete logarithm) so that h = g**x mod 2**64. </p>
+<p>This is a key step in "jumping" multiplicative lagged Fibonacci generators because it allows us to rewrite x_i = x_(i-s) * x_(i-r) mod 2**k by expressing x_i as g**(a_i mod 2**(k-2)).</p>
+<p>At least, it would let us do this, but discrete logarithm modulo powers of 2 works differently than discrete logarithm modulo powers of odd primes. A generator for the multiplicative group only exists mod 2, 4, p**k, and 2*p**k where p is any odd prime. In particular, the multiplicative group modulo 2**k does not have a generator for k &gt; 2 and instead decomposes as the direct product of the multiplicative group mod 8 and the cyclic group mod 2**(k-2). The multiplicative group mod 8, aka the klein 4 group, has 4 elements: 1, 3, 5, and 7. It is more convenient to use the representation 1, 2**(k-1)-1, 2**(k-1)+1, -1.</p>
+<p>Therefore, we can express each x_i as g**(a_i)*p**(b_i)*q**(c_i) where p and q represent the generators of the klein 4 group, namely 2**(k-1)-1 and 2**(k-1)+1. This turns the difficult to understand recurrence x_i = x_(i-s)*s_(i-r) mod 2**k into three separate linear recurrences which are easy to understand, namely a_i = a_(i-s) + a_(i-r) mod 2**(k-2), the same for b mod 2, and the same for c mod 2.</p>
+<p>h must be odd or the result will be garbage. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>power of g to find the exponent of </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">g</td><td>base of logarithm. because the multiplicative group of 2**64 is not cyclic, g can be +/-3 or 2**63 +/- 3 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>discrete logarithm x so that h = g**x mod 2**64. The low 62 bits are x. the high 2 bits encode which g to use: 0 -&gt; 3, 1 -&gt; -3, 2 -&gt; 2**63 + 3, 3 -&gt; 2**63 - 3. On failure, 0 is returned, which should only happen if h is even, but still, check if 0 is returned and h is not 1. </dd></dl>
+
+</div>
+</div>
 <a id="acae0db179a04990f3ec47a1e29e986f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acae0db179a04990f3ec47a1e29e986f0">&#9670;&nbsp;</a></span>cr8r_prng_init_system()</h2>
 
@@ -365,28 +425,49 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Create a PRNG based on a Linear Congruential Generator. </p>
-<p>Seed value must not be 0! Seed value is a single uint64_t, on calls to <a class="el" href="prand_8h.html#a8cd943590491468398f92590563efd51">cr8r_prng_seed</a> it should be passed by address. LCGs are extremely fast and simple PRNGs that work by the rule x_n = a*x_(n-1) + c mod m. So if m is a power of 2 larger than 4 (ie 8 or higher), the maximal period is m/4 which is achieved for any a = 3 or 5 mod 8. The LCG parameters used are the same as muslc, namely a = 6364136223846793005, c = 1, and m = 2**64. Using any other values for m and c is unreasonable. The state is simply a 64 bit number, and the hi 32 bits are returned for each output. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new lcg based prng (must be free'd), or NULL on failure (allocation/seed == 0) ( <a class="el" href="prand_8h.html#a8cd943590491468398f92590563efd51">cr8r_prng_seed</a> will also fail if seed == 0 is passed) </dd></dl>
+<p>Seed value must not be 0! Seed value is a single uint64_t, on calls to <a class="el" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a> it should be passed by address. LCGs are extremely fast and simple PRNGs that work by the rule x_n = a*x_(n-1) + c mod m. So if m is a power of 2 larger than 4 (ie 8 or higher), the maximal period is m/4 which is achieved for any a = 3 or 5 mod 8. The LCG parameters used are the same as muslc, namely a = 6364136223846793005, c = 1, and m = 2**64. Using any other values for m and c is unreasonable. The state is simply a 64 bit number, and the hi 32 bits are returned for each output. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new lcg based prng (must be free'd), or NULL on failure (allocation/seed == 0) ( <a class="el" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a> will also fail if seed == 0 is passed) </dd></dl>
 
 </div>
 </div>
-<a id="a4d20b436567d7a3c4a07128ab79353ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d20b436567d7a3c4a07128ab79353ea">&#9670;&nbsp;</a></span>cr8r_prng_init_lfg()</h2>
+<a id="ac59593ec213c0a258e487689a6551c1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac59593ec213c0a258e487689a6551c1d">&#9670;&nbsp;</a></span>cr8r_prng_init_lfg_sc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcr8r__prng.html">cr8r_prng</a>* cr8r_prng_init_lfg </td>
+          <td class="memname"><a class="el" href="structcr8r__prng.html">cr8r_prng</a>* cr8r_prng_init_lfg_sc </td>
           <td>(</td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>seed</em>[static 6 *12+1]</td><td>)</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Create a PRNG based on a Lagged Fibonacci Generator. </p>
-<p>Seed value is used as a sequence of 12 48-bit integers followed by a single bit. At least one term in the seed sequence must be odd! In general, an LFG is defined by two "lookbacks" and a binary operation, so that x_n = x_[n-s] # x_[n-r] mod m for some binary operation #. This implementation uses the same parameters (namely s == 12, r == 5, m == 2**48, # == subtraction with carry) as the C++ standard library. The extra state/seed bit is the carry bit. In general, choosing good s nd r values is possible by considering irreducible polynomials of the form x^s + x^r + 1 mod 2 with s/r approaching the golden ratio. However, choosing the seed value is difficult and I could not find a good reference for it. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new lfg based prng (must be free'd), or NULL on failure (allocation/seed has no odd terms) ( <a class="el" href="prand_8h.html#a8cd943590491468398f92590563efd51">cr8r_prng_seed</a> will also fail if seed == 0 is passed) </dd></dl>
+<p>Create a PRNG based on a Subtract with Carry Lagged Fibonacci Generator. </p>
+<p>WARNING: accesses <a class="el" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a>, all accesses to the default splitmix prng should be done in the same thread or protected by locks. In general, an LFG is defined by two "lookbacks" and a binary operation, so that x_n = x_[n-s] # x_[n-r] mod m for some binary operation #. This implementation uses the same parameters (namely s == 12, r == 5, m == 2**48, # == subtraction with carry) as the C++ standard library. The extra state/seed bit is the carry bit. In general, choosing good s nd r values is possible by considering irreducible polynomials of the form x^s + x^r + 1 mod 2 with s/r approaching the golden ratio. However, choosing the seed value is difficult and I could not find a good reference for it. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new lfg based prng (must be free'd), or NULL on failure (allocation failure; fixup_state should not fail) </dd></dl>
+
+</div>
+</div>
+<a id="a78392309413c5be1f05b316c52da8219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78392309413c5be1f05b316c52da8219">&#9670;&nbsp;</a></span>cr8r_prng_init_lfg_m()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__prng.html">cr8r_prng</a>* cr8r_prng_init_lfg_m </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a PRNG based on a Multiplication Lagged Fibonnacci Generator. </p>
+<p>WARNING: accesses <a class="el" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a>, all accesses to the default splitmix prng should be done in the same thread or protected by locks. This should produce higher quality random numbers than the subtract with carry approach (measured by ising model simulation). It also does not need an extra carry bit in the state. The considerations when picking such a generator are almost exactly the same as when picking an additive LFG such as subtract with carry, except that all terms in the seed sequence must be odd and the linear recurrence is in the exponents rather than the values directly. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new lfg based prng (must be free'd), or NULL on failure (allocation failure; fixup_state should not fail) </dd></dl>
 
 </div>
 </div>
@@ -407,12 +488,12 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Create a PRNG based on a Mersenne Twister Generator. </p>
-<p>Seed value is a single uint64_t. If calling <a class="el" href="prand_8h.html#a8cd943590491468398f92590563efd51">cr8r_prng_seed</a> it should be passed by pointer. The state is 312 uint64_t's (2496 bytes), plus an additional index (1 more uint64_t or 8 more bytes). The full state is generated from the seed by a LCG. The parameters used here (including for the LCG) are the standard MT19937-64 generator configuration. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new MT based prng (must be free'd), or NULL on failure (allocation; currently all seed values are permitted) </dd></dl>
+<p>Seed value is a single uint64_t. If calling <a class="el" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a> it should be passed by pointer. The state is 312 uint64_t's (2496 bytes), plus an additional index (1 more uint64_t or 8 more bytes). The full state is generated from the seed by a LCG. The parameters used here (including for the LCG) are the standard MT19937-64 generator configuration. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new MT based prng (must be free'd), or NULL on failure (allocation; currently all seed values are permitted) </dd></dl>
 
 </div>
 </div>
-<a id="a9e1afaf8dd815ad1e0a51896b512904e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e1afaf8dd815ad1e0a51896b512904e">&#9670;&nbsp;</a></span>cr8r_prng_init_xoro()</h2>
+<a id="ae814a4e6c3c4bd37a99f7262c622dfe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae814a4e6c3c4bd37a99f7262c622dfe3">&#9670;&nbsp;</a></span>cr8r_prng_init_xoro()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -420,15 +501,36 @@ DESCRIPTION</h1>
         <tr>
           <td class="memname"><a class="el" href="structcr8r__prng.html">cr8r_prng</a>* cr8r_prng_init_xoro </td>
           <td>(</td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>seed</em>[static 32]</td><td>)</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Create a PRNG based on Vigna and Blackman's Xoroshiro256** algorithm. </p>
-<p>This PRNG seems to be very fast, closer to an LCG than a bulkier but more typical feedback shift register algorithm like MT, yet still have good properties on most tests. However, it has not been widely used for as long as MT. The seed/state is 32 bytes (4 uint64_t's) Also see <a class="el" href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a> and <a class="el" href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a> </p><dl class="section return"><dt>Returns</dt><dd>pointer to new xoroshiro256** based prng (must be free'd), or NULL on failure (allocation; currently seed value is not quality checked) </dd></dl>
+<p>WARNING: accesses <a class="el" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a>, all accesses to the default splitmix prng should be done in the same thread or protected by locks. This PRNG seems to be very fast, closer to an LCG than a bulkier but more typical feedback shift register algorithm like MT, yet still have good properties on most tests. However, it has not been widely used for as long as MT. The seed/state is 32 bytes (4 uint64_t's) Also see <a class="el" href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a> and <a class="el" href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a> </p><dl class="section return"><dt>Returns</dt><dd>pointer to new xoroshiro256** based prng (must be free'd), or NULL on failure (allocation; algorithm is seed-agnostic) </dd></dl>
+
+</div>
+</div>
+<a id="a6ddb37ca49e0102188bdbf2e6b11dfa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ddb37ca49e0102188bdbf2e6b11dfa5">&#9670;&nbsp;</a></span>cr8r_prng_init_splitmix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__prng.html">cr8r_prng</a>* cr8r_prng_init_splitmix </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a PRNG based on Vigna's version of SplitMix. </p>
+<p>SplitMix is a light hash applied to a counter. This algorithm passes all testU01 tests, however, it is mostly included to initialize the other PRNGS. </p><dl class="section return"><dt>Returns</dt><dd>pointer to new splitmix based prng (must be free'd), or NULL on failure (allocation failure; algorithm is seed-agnostic) </dd></dl>
 
 </div>
 </div>

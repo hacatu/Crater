@@ -84,9 +84,9 @@ uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__prng.html#acad82ec56f5375dec4952ab53d19933f">get_u32</a> )(void *)</td></tr>
 <tr class="memdesc:acad82ec56f5375dec4952ab53d19933f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback to get 4 unsigned bytes from the underlying generator. <br /></td></tr>
 <tr class="separator:acad82ec56f5375dec4952ab53d19933f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8f451d407078c6d2631f9cc1d04e6bb"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__prng.html#ad8f451d407078c6d2631f9cc1d04e6bb">seed</a> )(void *, const void *)</td></tr>
-<tr class="memdesc:ad8f451d407078c6d2631f9cc1d04e6bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback to seed the underlying generator.  <a href="structcr8r__prng.html#ad8f451d407078c6d2631f9cc1d04e6bb">More...</a><br /></td></tr>
-<tr class="separator:ad8f451d407078c6d2631f9cc1d04e6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d92064b671999f431160aca468c7bd"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__prng.html#a03d92064b671999f431160aca468c7bd">fixup_state</a> )(void *)</td></tr>
+<tr class="memdesc:a03d92064b671999f431160aca468c7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called after "randomizing" the state.  <a href="structcr8r__prng.html#a03d92064b671999f431160aca468c7bd">More...</a><br /></td></tr>
+<tr class="separator:a03d92064b671999f431160aca468c7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a879ecc91f97101db0b83bf04ca795c3e"><td class="memItemLeft" align="right" valign="top"><a id="a879ecc91f97101db0b83bf04ca795c3e"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__prng.html#a879ecc91f97101db0b83bf04ca795c3e">state</a> []</td></tr>
 <tr class="memdesc:a879ecc91f97101db0b83bf04ca795c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">flexible length array so that the generator's state can be stored in the same allocation <br /></td></tr>
@@ -98,24 +98,22 @@ char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 
 <p class="definition">Definition at line <a class="el" href="prand_8h_source.html#l00072">72</a> of file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="ad8f451d407078c6d2631f9cc1d04e6bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8f451d407078c6d2631f9cc1d04e6bb">&#9670;&nbsp;</a></span>seed</h2>
+<a id="a03d92064b671999f431160aca468c7bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d92064b671999f431160aca468c7bd">&#9670;&nbsp;</a></span>fixup_state</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool(* cr8r_prng::seed) (void *, const void *)</td>
+          <td class="memname">bool(* cr8r_prng::fixup_state) (void *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback to seed the underlying generator. </p>
-<p>This can either mean "seed with enough entropy to populate the
-entire state" or "seed with a small &lt;= 8 byte value, extended
-to the full state size with some PRNG". </p>
+<p>Called after "randomizing" the state. </p>
+<p>Typically the state is initialized using splitmix and then this function is called to ensure it is good. </p>
 
-<p class="definition">Definition at line <a class="el" href="prand_8h_source.html#l00081">81</a> of file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="prand_8h_source.html#l00080">80</a> of file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
 
 </div>
 </div>
