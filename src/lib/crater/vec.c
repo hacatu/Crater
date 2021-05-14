@@ -93,7 +93,7 @@ inline static bool _sub_copy(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *f
 }
 
 bool cr8r_vec_sub(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
-	if(b >= src->len || b < a || !cr8r_vec_init(dest, ft, b - a)){
+	if(b > src->len || b < a || !cr8r_vec_init(dest, ft, b - a)){
 		return false;
 	}
 	return _sub_copy(dest, src, ft, a, b);
