@@ -74,21 +74,22 @@ typedef struct{
 	uint64_t state_size;
 	/// Callback to get 4 unsigned bytes from the underlying generator
 	uint32_t (*get_u32)(void*);
-	/// Callback to seed the underlying generator.
-	/// This can either mean "seed with enough entropy to populate the
-	/// entire state" or "seed with a small <= 8 byte value, extended
-	/// to the full state size with some PRNG".
-	bool (*seed)(void*, const void*);
+	/// Called after "randomizing" the state.
+	/// Typically the state is initialized using splitmix and then this function is called to
+	/// ensure it is good.
+	bool (*fixup_state)(void*);
 	/// flexible length array so that the generator's state can be stored in the same allocation
 	char state[];
 } cr8r_prng;
 
 /// Set the state of a prng
 ///
-/// See the generator initialization functions for information on whether a single uint64_t
-/// or the entire state should be supplied, as well as what inputs are disallowed.
-/// @return true if the seed value is acceptable for the given generator, false otherwise
-bool cr8r_prng_seed(cr8r_prng*, const char seed[*]);
+/// WARNING: accesses { @link cr8r_default_prng_splitmix } for generators where state_size > 4,
+/// all accesses to the default splitmix prng should be done in the same thread or protected by locks.
+/// If necessary, the given seed is extended using splitmix to generate random bytes according to
+/// prng->state_size, and then prng->fixup_state is called.  Returns false only if fixup_state
+/// fails.
+bool cr8r_prng_seed(cr8r_prng*, uint64_t);
 
 /// Get a single uint32_t from a prng
 ///
@@ -118,6 +119,37 @@ void cr8r_prng_get_bytes(cr8r_prng*, uint64_t size, char buf[static size]);
 /// This should always take less than 4 32 bit samples on average.
 uint64_t cr8r_prng_uniform_u64(cr8r_prng*, uint64_t a, uint64_t b);
 
+/// Find x (the discrete logarithm) so that h = g**x mod 2**64
+///
+/// This is a key step in "jumping" multiplicative lagged Fibonacci generators
+/// because it allows us to rewrite x_i = x_(i-s) * x_(i-r) mod 2**k
+/// by expressing x_i as g**(a_i mod 2**(k-2)).
+///
+/// At least, it would let us do this, but discrete logarithm modulo powers of 2
+/// works differently than discrete logarithm modulo powers of odd primes.
+/// A generator for the multiplicative group only exists mod 2, 4, p**k, and 2*p**k where
+/// p is any odd prime.  In particular, the multiplicative group modulo 2**k does not
+/// have a generator for k > 2 and instead decomposes as the direct product of the multiplicative
+/// group mod 8 and the cyclic group mod 2**(k-2).  The multiplicative group mod 8, aka
+/// the klein 4 group, has 4 elements: 1, 3, 5, and 7.  It is more convenient to use the
+/// representation 1, 2**(k-1)-1, 2**(k-1)+1, -1.
+///
+/// Therefore, we can express each x_i as g**(a_i)*p**(b_i)*q**(c_i) where p and q represent
+/// the generators of the klein 4 group, namely 2**(k-1)-1 and 2**(k-1)+1.
+/// This turns the difficult to understand recurrence x_i = x_(i-s)*s_(i-r) mod 2**k
+/// into three separate linear recurrences which are easy to understand, namely
+/// a_i = a_(i-s) + a_(i-r) mod 2**(k-2), the same for b mod 2, and the same for c mod 2.
+///
+/// h must be odd or the result will be garbage.
+/// @param [in] h: power of g to find the exponent of
+/// @param [out] g: base of logarithm.  because the multiplicative group of 2**64 is not
+/// cyclic, g can be +/-3 or 2**63 +/- 3
+/// @return discrete logarithm x so that h = g**x mod 2**64.  The low 62 bits are x.
+/// the high 2 bits encode which g to use: 0 -> 3, 1 -> -3, 2 -> 2**63 + 3, 3 -> 2**63 - 3.
+/// On failure, 0 is returned, which should only happen if h is even, but still, check if 0
+/// is returned and h is not 1.
+uint64_t cr8r_prng_log_mod_t64(uint64_t h);
+
 // these constants are taken from the standard MT19937-64 generator configuration
 #define CR8R_PRNG_MT_N 312
 #define CR8R_PRNG_MT_M 156
@@ -131,6 +163,13 @@ uint64_t cr8r_prng_uniform_u64(cr8r_prng*, uint64_t a, uint64_t b);
 #define CR8R_PRNG_MT_C 0xFFF7EEE000000000
 #define CR8R_PRNG_MT_L 43
 #define CR8R_PRNG_MT_F 6364136223846793005
+
+#define CR8R_PRNG_LFM_R 127
+#define CR8R_PRNG_LFM_S 97
+
+#define CR8R_DEFAULT_PRNG_SM_SEED 0xd20499955ff0e57c
+
+#define CR8R_DEFAULT_PRNG_LCG_SEED 0xe9352d1427990d8e
 
 /// Create a PRNG based on the system's prng device
 ///
@@ -157,10 +196,10 @@ cr8r_prng *cr8r_prng_init_system();
 /// ( { @link cr8r_prng_seed } will also fail if seed == 0 is passed)
 cr8r_prng *cr8r_prng_init_lcg(uint64_t seed);
 
-/// Create a PRNG based on a Lagged Fibonacci Generator
+/// Create a PRNG based on a Subtract with Carry Lagged Fibonacci Generator
 ///
-/// Seed value is used as a sequence of 12 48-bit integers followed by
-/// a single bit.  At least one term in the seed sequence must be odd!
+/// WARNING: accesses { @link cr8r_default_prng_splitmix }, all accesses to the default splitmix
+/// prng should be done in the same thread or protected by locks.
 /// In general, an LFG is defined by two "lookbacks" and a binary operation,
 /// so that x_n = x_[n-s] # x_[n-r] mod m for some binary operation #.
 /// This implementation uses the same parameters (namely s == 12, r == 5,
@@ -171,9 +210,23 @@ cr8r_prng *cr8r_prng_init_lcg(uint64_t seed);
 /// However, choosing the seed value is difficult and I could not find a good
 /// reference for it.
 /// @return pointer to new lfg based prng (must be free'd), or NULL on failure
-/// (allocation/seed has no odd terms) ( { @link cr8r_prng_seed }
-/// will also fail if seed == 0 is passed)
-cr8r_prng *cr8r_prng_init_lfg(const char seed[static 6*12 + 1]);
+/// (allocation failure; fixup_state should not fail)
+cr8r_prng *cr8r_prng_init_lfg_sc(uint64_t seed);
+
+/// Create a PRNG based on a Multiplication Lagged Fibonnacci Generator
+///
+/// WARNING: accesses { @link cr8r_default_prng_splitmix }, all accesses to the default splitmix
+/// prng should be done in the same thread or protected by locks.
+/// This should produce higher quality random numbers than the subtract with carry approach
+/// (measured by ising model simulation).  It also does not need an extra carry bit
+/// in the state.  The considerations when picking such a generator are
+/// almost exactly the same as when picking an additive LFG such as
+/// subtract with carry, except that all terms in the seed sequence must
+/// be odd and the linear recurrence is in the exponents rather than the
+/// values directly.
+/// @return pointer to new lfg based prng (must be free'd), or NULL on failure
+/// (allocation failure; fixup_state should not fail)
+cr8r_prng *cr8r_prng_init_lfg_m(uint64_t seed);
 
 /// Create a PRNG based on a Mersenne Twister Generator
 ///
@@ -188,14 +241,28 @@ cr8r_prng *cr8r_prng_init_mt(uint64_t seed);
 
 /// Create a PRNG based on Vigna and Blackman's Xoroshiro256** algorithm
 ///
+/// WARNING: accesses { @link cr8r_default_prng_splitmix }, all accesses to the default splitmix
+/// prng should be done in the same thread or protected by locks.
 /// This PRNG seems to be very fast, closer to an LCG than a bulkier but more typical
 /// feedback shift register algorithm like MT, yet still have good properties on most tests.
 /// However, it has not been widely used for as long as MT.
 /// The seed/state is 32 bytes (4 uint64_t's)
 /// Also see { @link cr8r_prng_xoro_jump_t128 } and { @link cr8r_prng_xoro_jump_t192 }
 /// @return pointer to new xoroshiro256** based prng (must be free'd), or NULL on failure
-/// (allocation; currently seed value is not quality checked)
-cr8r_prng *cr8r_prng_init_xoro(const char seed[static 32]);
+/// (allocation; algorithm is seed-agnostic)
+cr8r_prng *cr8r_prng_init_xoro(uint64_t seed);
+
+/// Create a PRNG based on Vigna's version of SplitMix
+///
+/// SplitMix is a light hash applied to a counter.
+/// This algorithm passes all testU01 tests, however, it is mostly
+/// included to initialize the other PRNGS.
+/// @return pointer to new splitmix based prng (must be free'd), or NULL on failure
+/// (allocation failure; algorithm is seed-agnostic)
+cr8r_prng *cr8r_prng_init_splitmix(uint64_t seed);
+
+/// Default SplitMix prng, automatically used to extend seed values to state values if needed.
+extern cr8r_prng *cr8r_default_prng_splitmix;
 
 /// Jump a xoro based prng forwards by 2**128 steps quickly
 ///
