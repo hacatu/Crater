@@ -345,11 +345,8 @@ void cr8r_vec_reverse(cr8r_vec *self, cr8r_vec_ft *ft){
 	if(self->len < 2){
 		return;
 	}
-	char buf[ft->base.size];
 	for(uint64_t i = 0, j = self->len - 1; i < j; ++i, --j){
-		memcpy(buf, self->buf + i*ft->base.size, ft->base.size);
-		memcpy(self->buf + i*ft->base.size, self->buf + j*ft->base.size, ft->base.size);
-		memcpy(self->buf + j*ft->base.size, buf, ft->base.size);
+		ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size);
 	}
 }
 
@@ -361,9 +358,10 @@ bool cr8r_vec_reversed(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 		for(uint64_t i = 0, j = src->len - 1; i < src->len; ++i, --j){
 			ft->copy(&ft->base, dest->buf + i*ft->base.size, src->buf + j*ft->base.size);
 		}
-	}else for(uint64_t i = 0, j = src->len - 1; i < src->len; ++i, --i){
+	}else for(uint64_t i = 0, j = src->len - 1; i < src->len; ++i, --j){
 		memcpy(dest->buf + i*ft->base.size, src->buf + j*ft->base.size, ft->base.size);
 	}
+	dest->len = src->len;
 	return true;
 }
 
@@ -433,6 +431,28 @@ int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft *ft){
 			return ord;
 		}
 	}
+}
+
+uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n){
+	uint64_t res = 1;
+	while(e){
+		if(e&1){
+			res = (unsigned __int128)res * (unsigned __int128)b % (unsigned __int128)n;
+		}
+		b = (unsigned __int128)b * (unsigned __int128)b % (unsigned __int128)n;
+		e >>= 1;
+	}
+	return res;
+}
+
+void *cr8r_default_acc_sum_u64(void *_acc, const void *e){
+	return (void*)((uint64_t)_acc + *(const uint64_t*)e);
+}
+
+void *cr8r_default_acc_sumpowmod_u64(void *_acc, const void *e){
+	uint64_t *acc = _acc;
+	acc[0] = (acc[0] + cr8r_powmod(*(const uint64_t*)e, acc[1], acc[2]))%acc[2];
+	return acc;
 }
 
 cr8r_vec_ft cr8r_vecft_u64 = {

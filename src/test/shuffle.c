@@ -28,6 +28,15 @@ int main(){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector!\e[0m");
 		exit(1);
 	}
+	if(cr8r_vec_cmp(&nums_shuf, &nums_asc, &cr8r_vecft_u64)){
+		free(prng);
+		cr8r_vec_delete(&nums_asc, &cr8r_vecft_u64);
+		cr8r_vec_delete(&nums_shuf, &cr8r_vecft_u64);
+		fprintf(stderr, "\e[1;31mERROR: Copyng vector failed!\e[0m");
+		exit(1);
+	}
+	cr8r_vec_delete(&nums_shuf, &cr8r_vecft_u64);
+	cr8r_vec_copy(&nums_shuf, &nums_asc, &cr8r_vecft_u64);
 	uint64_t passed = num_trials;
 	for(uint64_t i = 0; i < num_trials; ++i){
 		cr8r_vec_shuffle(&nums_shuf, &cr8r_vecft_u64, prng);
@@ -36,12 +45,19 @@ int main(){
 			--passed;
 		}
 	}
-	cr8r_vec_delete(&nums_asc, &cr8r_vecft_u64);
 	cr8r_vec_delete(&nums_shuf, &cr8r_vecft_u64);
 	free(prng);
 	fprintf(stderr, passed == num_trials ?
 		"\e[1;32mSuccess: passed %"PRIu64"/%"PRIu64" tests\e[0m\n" :
 		"\e[1;31mFailed: passed %"PRIu64"/%"PRIu64" tests\e[0m\n", passed, num_trials
 	);
+	cr8r_vec_reversed(&nums_shuf, &nums_asc, &cr8r_vecft_u64);
+	cr8r_vec_reverse(&nums_shuf, &cr8r_vecft_u64);
+	if(cr8r_vec_cmp(&nums_shuf, &nums_asc, &cr8r_vecft_u64)){
+		fprintf(stderr, "\e[1;31mERROR: vec_reversed -> vec_reverse failed!\e[0m\n");
+		exit(1);
+	}
+	cr8r_vec_delete(&nums_asc, &cr8r_vecft_u64);
+	cr8r_vec_delete(&nums_shuf, &cr8r_vecft_u64);
 }
 

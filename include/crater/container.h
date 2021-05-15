@@ -113,8 +113,18 @@ void *cr8r_default_alloc_sla(cr8r_base_ft*);
 /// See { @link cr8r_cll_ft_initsla } and { @link cr8r_cll_ft_initsla }.
 void cr8r_default_free_sla(cr8r_base_ft*, void*);
 
+/// ft->del implementation (for hash tables or vectors)
+///
+/// Wraps free().  Keep in mind that the second argument is
+/// a pointer to an element and is dereferenced before being freed.
+/// For example, malloc'd C strings are stored as single pointers,
+/// so a vector of C strings is really a vector of pointers, and
+/// a pointer to an element of such a vector is a pointer to a
+/// pointer to some null terminated character sequence.
 void cr8r_default_free(cr8r_base_ft*, void*);
 
+/// Raise b to the power of e modulo n using binary exponentiation
+uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 
 /// Cast a flexible length array member to a given type using union hackery sorcery
 #define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)

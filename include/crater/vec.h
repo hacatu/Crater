@@ -376,5 +376,18 @@ int64_t cr8r_vec_indexs(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 /// @return -1 if a is lexicographically before b, +1 visa versa, or 0 if they are equal
 int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft*);
 
+/// Callback for { @link cr8r_vec_foldr } to sum up elements in vector
+///
+/// The first argument is treated as a uint64_t, NOT a pointer to uint64_t.
+/// Thus the call can be (uint64_t)cr8r_vec_foldr(self, ft, (void*)0, cr8r_default_acc_sum_u64).
+void *cr8r_default_acc_sum_u64(void*, const void*);
+
+/// Callback for { @link cr8r_vec_foldr } to sum up powers of elements in a vector mod a number
+///
+/// The first argument MUST be a pointer to three consecutive uint64_t's: the accumulator,
+/// the exponent, and the modulus, respectively.  The same pointer is returned: the accumulator
+/// is modified in place.
+void *cr8r_default_acc_sumpowmod_u64(void*, const void*);
+
 extern cr8r_vec_ft cr8r_vecft_u64;
 
