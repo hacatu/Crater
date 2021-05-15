@@ -205,6 +205,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_
 <tr class="memitem:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">cr8r_vec_cmp</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *a, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *b, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lexicographically compare two vectors.  <a href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">More...</a><br /></td></tr>
 <tr class="separator:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1184bc298656ebf85ea805949148bead"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a1184bc298656ebf85ea805949148bead">cr8r_default_acc_sum_u64</a> (void *, const void *)</td></tr>
+<tr class="memdesc:a1184bc298656ebf85ea805949148bead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up elements in vector.  <a href="vec_8h.html#a1184bc298656ebf85ea805949148bead">More...</a><br /></td></tr>
+<tr class="separator:a1184bc298656ebf85ea805949148bead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a188b2103e12f33772f020668bbc474ea"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a188b2103e12f33772f020668bbc474ea">cr8r_default_acc_sumpowmod_u64</a> (void *, const void *)</td></tr>
+<tr class="memdesc:a188b2103e12f33772f020668bbc474ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up powers of elements in a vector mod a number.  <a href="vec_8h.html#a188b2103e12f33772f020668bbc474ea">More...</a><br /></td></tr>
+<tr class="separator:a188b2103e12f33772f020668bbc474ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -1733,6 +1739,68 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if a is lexicographically before b, +1 visa versa, or 0 if they are equal </dd></dl>
+
+</div>
+</div>
+<a id="a1184bc298656ebf85ea805949148bead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1184bc298656ebf85ea805949148bead">&#9670;&nbsp;</a></span>cr8r_default_acc_sum_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_default_acc_sum_u64 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up elements in vector. </p>
+<p>The first argument is treated as a uint64_t, NOT a pointer to uint64_t. Thus the call can be (uint64_t)cr8r_vec_foldr(self, ft, (void*)0, cr8r_default_acc_sum_u64). </p>
+
+</div>
+</div>
+<a id="a188b2103e12f33772f020668bbc474ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a188b2103e12f33772f020668bbc474ea">&#9670;&nbsp;</a></span>cr8r_default_acc_sumpowmod_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_default_acc_sumpowmod_u64 </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up powers of elements in a vector mod a number. </p>
+<p>The first argument MUST be a pointer to three consecutive uint64_t's: the accumulator, the exponent, and the modulus, respectively. The same pointer is returned: the accumulator is modified in place. </p>
 
 </div>
 </div>
