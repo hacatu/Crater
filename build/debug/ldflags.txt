@@ -7,4 +7,5 @@
 -fno-eliminate-unused-debug-types
 --coverage
 -fsanitize=address
+-pthread
 
