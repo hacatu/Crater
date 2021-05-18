@@ -7,6 +7,13 @@
 
 #include <crater/prand.h>
 
+typedef union{
+	double as_double;
+	struct{
+		uint64_t sign:1, exp:11, fraction:52;
+	};
+} double_bits_t;
+
 bool cr8r_prng_seed(cr8r_prng *self, uint64_t seed){
 	if(self->state_size > sizeof(uint64_t)){
 		uint64_t _state = *(uint64_t*)cr8r_default_prng_splitmix->state;
@@ -60,6 +67,17 @@ uint64_t cr8r_prng_uniform_u64(cr8r_prng *self, uint64_t a, uint64_t b){
 		}while(r >= ub);
 	}
 	return r%l + a;
+}
+
+double cr8r_prng_uniform01_double(cr8r_prng *self){
+	uint64_t u = cr8r_prng_get_u64(self);
+	if(!u){
+		return 0.;
+	}
+	uint64_t exp_decrease = __builtin_clzll(u);
+	u <<= exp_decrease;
+	double_bits_t bits = {.sign= 0, .exp= 1022 - exp_decrease, .fraction= u >> 12};
+	return bits.as_double;
 }
 
 inline static uint64_t pow_ti_mod_tj(uint64_t b, uint64_t i, uint64_t j){

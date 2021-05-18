@@ -29,9 +29,16 @@
 /// smaller state to generate more state from a smaller initial state.
 /// For example, the Mersenne Twister has 2496 bytes of state but is usually
 /// initialized from 8 bytes using a Linear Congruential Generator.
-/// Whether the full state is needed or a smaller state is automatically expanded
-/// is specified in the documentation for the specific generator types.
-/// The quality of some PRNGs is more sensitive to the seed than that of others.
+/// The cr8r_prng_init_* functions use a uint32_t as a seed by default.
+/// This is generally sufficient, but keep in mind the disadantages and consider
+/// if setting the full state is required for your use case.
+///
+/// A prng's output sequence is a mathematical function of its state.  Thus,
+/// when a prng is initialized from a 32 bit seed, there are only 2**32 possible
+/// output sequences (or fewer if the state has some restriction).
+/// This is usually a lot, but can skew probabilities in some cases.
+/// For example, for some prngs it is impossible to generate 0 as the first output
+/// if initial state is obtained by extending a 32 bit seed.
 ///
 /// PRNGs generally have a finite period, meaning they eventually repeat.
 /// You can generally expect this to be around at most 2^B where B is the number
@@ -53,6 +60,33 @@
 /// PRNG for a single seed.  "jump" functions allow a PRNG to be advanced as if it
 /// were called a huge number of times very quickly.  Currently, only 2 fixed
 /// size jump functions for Xoro are available, but more will be added soon.
+///
+/// The fact that randomized seeds are (usually, not as much for lcgs) worse than
+/// "jumping" to equidistant points in the output sequence may be very
+/// counterintuitive.  It was for me at first.  The reason is due to an even
+/// deeper peculiarity of prngs: namely, a maximal period prng goes through each
+/// STATE at most once per period by the pidgeonhole principle.  But moreover,
+/// the k-tuples it produces are limited: for large enough k, it is mathematically
+/// impossible for it to produce every possible k-tuple.  For example, if the
+/// state is 128 bytes, there are at most 2**1024 states.  However, there are
+/// 2**1032 129-tuples of bytes, so it is impossible for such a prng to generate all
+/// such tuples.  We want to generate all k-tuples for as large a k as possible
+/// without compromising randomness though.  To achieve this, it is common for
+/// prngs to generate all k-tuples equally often for some k smaller than their state,
+/// For k == 1, this represents the simple fact that all bytes should be generated
+/// equally likely.  True random bytes are equally distributed.  And while true random
+/// k-tuples are equally likely, the probability of generating a fixed number of
+/// truly random k-tuples and getting perfectly equal amounts of all of them
+/// goes to zero very quickly.  So in this sense the output of a prng can be very contrived,
+/// but this is necessary to make as many sequences as possible occur in the output.
+///
+/// Essentially, this is a tradeoff between "local" and "global" properties of the output
+/// sequence.  An experement that requires random numbers cares about these local properties
+/// (is every sufficiently short byte sequence possible and equally likely, are outputs
+/// uncorrelated, etc), but not global properties (do all k-tuples occur exactly the same
+/// number of times).  Put another way, you would expect the ratio of frequencies of any
+/// two k-tuples to approach 1 as you generated more and more random numbers, but
+/// you would expect the absolute difference to possibly be very large.
 ///
 /// Finally, some PRNGs are more suitable for cryptography and secure
 /// purporses than others.  Generally this comes at the cost of speed.
@@ -118,6 +152,12 @@ void cr8r_prng_get_bytes(cr8r_prng*, uint64_t size, char buf[static size]);
 /// time until a result below the highest multiple of b - a <= 1 << 64 is obtained.
 /// This should always take less than 4 32 bit samples on average.
 uint64_t cr8r_prng_uniform_u64(cr8r_prng*, uint64_t a, uint64_t b);
+
+/// Get a double which is uniformly distributed on [0, 1)
+///
+/// Does not include denormalized numbers, only normal format doubles
+/// from 0 inclusive to 1 exclusive.
+double cr8r_prng_uniform01_double(cr8r_prng*);
 
 /// Find x (the discrete logarithm) so that h = g**x mod 2**64
 ///
