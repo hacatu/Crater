@@ -154,6 +154,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac45352623df6ef36bd0198da18fd4200"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t a, uint64_t b)</td></tr>
 <tr class="memdesc:ac45352623df6ef36bd0198da18fd4200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a uint64_t which is uniformly distributed on [a, b).  <a href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">More...</a><br /></td></tr>
 <tr class="separator:ac45352623df6ef36bd0198da18fd4200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7fe1aadb2ff4641ea385d0578309c52"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ae7fe1aadb2ff4641ea385d0578309c52">cr8r_prng_uniform01_double</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
+<tr class="memdesc:ae7fe1aadb2ff4641ea385d0578309c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a double which is uniformly distributed on [0, 1)  <a href="prand_8h.html#ae7fe1aadb2ff4641ea385d0578309c52">More...</a><br /></td></tr>
+<tr class="separator:ae7fe1aadb2ff4641ea385d0578309c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93412d1b22265782ceaaa41ce9404948"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">cr8r_prng_log_mod_t64</a> (uint64_t h)</td></tr>
 <tr class="memdesc:a93412d1b22265782ceaaa41ce9404948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find x (the discrete logarithm) so that h = g**x mod 2**64.  <a href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">More...</a><br /></td></tr>
 <tr class="separator:a93412d1b22265782ceaaa41ce9404948"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,9 +206,12 @@ DESCRIPTION</h1>
 <p>Comprehensive pseudorandom number generation interfaces.</p>
 <p>PRNGs in general function by having an internal state (8-2496 bytes for the currently implemented generators), applying a function to the whole state, and then returning a part of the state (always 4 bytes for the generators implemented here). The function that transforms the state is not necessarily difficult to reverse or predict.</p>
 <p>However, the entire state should be impossible to recover from less than state/4 outputs and difficult to recover from state_size/4 outputs. More importantly, the outputs should satisfy certain randomness tests, like producing bytes with equal frequency and so forth. Some of the most well known and widely used tests are the diehard tests, testU01, and the NIST tests.</p>
-<p>PRNGs need to have their state initialized by "seeding". This can be done either by setting the entire state or by using a PRNG with smaller state to generate more state from a smaller initial state. For example, the Mersenne Twister has 2496 bytes of state but is usually initialized from 8 bytes using a Linear Congruential Generator. Whether the full state is needed or a smaller state is automatically expanded is specified in the documentation for the specific generator types. The quality of some PRNGs is more sensitive to the seed than that of others.</p>
+<p>PRNGs need to have their state initialized by "seeding". This can be done either by setting the entire state or by using a PRNG with smaller state to generate more state from a smaller initial state. For example, the Mersenne Twister has 2496 bytes of state but is usually initialized from 8 bytes using a Linear Congruential Generator. The cr8r_prng_init_* functions use a uint32_t as a seed by default. This is generally sufficient, but keep in mind the disadantages and consider if setting the full state is required for your use case.</p>
+<p>A prng's output sequence is a mathematical function of its state. Thus, when a prng is initialized from a 32 bit seed, there are only 2**32 possible output sequences (or fewer if the state has some restriction). This is usually a lot, but can skew probabilities in some cases. For example, for some prngs it is impossible to generate 0 as the first output if initial state is obtained by extending a 32 bit seed.</p>
 <p>PRNGs generally have a finite period, meaning they eventually repeat. You can generally expect this to be around at most 2^B where B is the number of state bits. For instance, an LCG with modulus 2**64 has maximal period 2**62, the standard MT with 19968 bits of state has period 2**19967, and Xoroshiro256** with 256 bits of state has period 2**256 (maximal for any possible PRNG by the pidgeonhole principle).</p>
 <p>You may wish to write a program that generates random numbers in multiple threads. Generally, Crater functions require you to do appropriate locking on your own, but for PRNGs the situation is more subtle. If using a single PRNG from multiple threads, it MUST be locked, unless it is known to be a "system" PRNG since then the state is maintained by the OS. However, locking is usually not ideal because it has significant overhead if you are generating a lot of random numbers. Therefore, use a different PRNG in each thread. HOWEVER, you should NOT simply use a different seed for each, as for some PRNG types this can cause increased correlation. Instead, the particular "jump" functions should be used to split up the output of the PRNG for a single seed. "jump" functions allow a PRNG to be advanced as if it were called a huge number of times very quickly. Currently, only 2 fixed size jump functions for Xoro are available, but more will be added soon.</p>
+<p>The fact that randomized seeds are (usually, not as much for lcgs) worse than "jumping" to equidistant points in the output sequence may be very counterintuitive. It was for me at first. The reason is due to an even deeper peculiarity of prngs: namely, a maximal period prng goes through each STATE at most once per period by the pidgeonhole principle. But moreover, the k-tuples it produces are limited: for large enough k, it is mathematically impossible for it to produce every possible k-tuple. For example, if the state is 128 bytes, there are at most 2**1024 states. However, there are 2**1032 129-tuples of bytes, so it is impossible for such a prng to generate all such tuples. We want to generate all k-tuples for as large a k as possible without compromising randomness though. To achieve this, it is common for prngs to generate all k-tuples equally often for some k smaller than their state, For k == 1, this represents the simple fact that all bytes should be generated equally likely. True random bytes are equally distributed. And while true random k-tuples are equally likely, the probability of generating a fixed number of truly random k-tuples and getting perfectly equal amounts of all of them goes to zero very quickly. So in this sense the output of a prng can be very contrived, but this is necessary to make as many sequences as possible occur in the output.</p>
+<p>Essentially, this is a tradeoff between "local" and "global" properties of the output sequence. An experement that requires random numbers cares about these local properties (is every sufficiently short byte sequence possible and equally likely, are outputs uncorrelated, etc), but not global properties (do all k-tuples occur exactly the same number of times). Put another way, you would expect the ratio of frequencies of any two k-tuples to approach 1 as you generated more and more random numbers, but you would expect the absolute difference to possibly be very large.</p>
 <p>Finally, some PRNGs are more suitable for cryptography and secure purporses than others. Generally this comes at the cost of speed. Only "system", the wrapper around Linux's getrandom syscall, should be considered secure. </p>
 
 <p class="definition">Definition in file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
@@ -354,6 +360,27 @@ DESCRIPTION</h1>
 
 <p>Get a uint64_t which is uniformly distributed on [a, b). </p>
 <p>The output is not low-biased: if b - a &lt;= 1 &lt;&lt; 32, the generator is sampled 32 bits at a time until a result below the highest multiple of b - a &lt;= 1 &lt;&lt; 32 is obtained. This should always take less than 2 samples on average. If b - a &gt; 1 &lt;&lt; 32, the generator is sampled 64 bits at a time until a result below the highest multiple of b - a &lt;= 1 &lt;&lt; 64 is obtained. This should always take less than 4 32 bit samples on average. </p>
+
+</div>
+</div>
+<a id="ae7fe1aadb2ff4641ea385d0578309c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7fe1aadb2ff4641ea385d0578309c52">&#9670;&nbsp;</a></span>cr8r_prng_uniform01_double()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double cr8r_prng_uniform01_double </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__prng.html">cr8r_prng</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a double which is uniformly distributed on [0, 1) </p>
+<p>Does not include denormalized numbers, only normal format doubles from 0 inclusive to 1 exclusive. </p>
 
 </div>
 </div>

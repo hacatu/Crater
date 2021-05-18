@@ -72,75 +72,77 @@ $(function() {
 <div class="contents">
 <a href="prand_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structcr8r__prng.html">   72</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">   74</a></span>&#160;    uint64_t <a class="code" href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">state_size</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#acad82ec56f5375dec4952ab53d19933f">   76</a></span>&#160;    uint32_t (*get_u32)(<span class="keywordtype">void</span>*);</div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a03d92064b671999f431160aca468c7bd">   80</a></span>&#160;    bool (*fixup_state)(<span class="keywordtype">void</span>*);</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a879ecc91f97101db0b83bf04ca795c3e">   82</a></span>&#160;    <span class="keywordtype">char</span> state[];</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;} <a class="code" href="structcr8r__prng.html">cr8r_prng</a>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;uint32_t <a class="code" href="prand_8h.html#a7a38a11e931811a1475c5c49202a8d4b">cr8r_prng_get_u32</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;uint64_t <a class="code" href="prand_8h.html#a640f3191869f0095292da9a06975ef7f">cr8r_prng_get_u64</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#a877804d40fe3e0b5257145333d41a627">cr8r_prng_get_bytes</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t size, <span class="keywordtype">char</span> buf[<span class="keyword">static</span> size]);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;uint64_t <a class="code" href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t a, uint64_t b);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;uint64_t <a class="code" href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">cr8r_prng_log_mod_t64</a>(uint64_t h);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">// these constants are taken from the standard MT19937-64 generator configuration</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_N 312</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_M 156</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_R 31</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_A 0xB5026F5AA96619E9</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_U 29</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_D 0x5555555555555555</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_S 17</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_B 0x71D67FFFEDA60000</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_T 37</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_C 0xFFF7EEE000000000</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_L 43</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_F 6364136223846793005</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#define CR8R_PRNG_LFM_R 127</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#define CR8R_PRNG_LFM_S 97</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">#define CR8R_DEFAULT_PRNG_SM_SEED 0xd20499955ff0e57c</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#define CR8R_DEFAULT_PRNG_LCG_SEED 0xe9352d1427990d8e</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a>();</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#adcbc4b86c3db859a68ff1f5883966643">cr8r_prng_init_lcg</a>(uint64_t seed);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ac59593ec213c0a258e487689a6551c1d">cr8r_prng_init_lfg_sc</a>(uint64_t seed);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a78392309413c5be1f05b316c52da8219">cr8r_prng_init_lfg_m</a>(uint64_t seed);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ad39caeaee76bef3a59c3848a07bf9ad8">cr8r_prng_init_mt</a>(uint64_t seed);</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ae814a4e6c3c4bd37a99f7262c622dfe3">cr8r_prng_init_xoro</a>(uint64_t seed);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5">cr8r_prng_init_splitmix</a>(uint64_t seed);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a>;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="structcr8r__prng.html">  106</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">  108</a></span>&#160;    uint64_t <a class="code" href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">state_size</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#acad82ec56f5375dec4952ab53d19933f">  110</a></span>&#160;    uint32_t (*get_u32)(<span class="keywordtype">void</span>*);</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a03d92064b671999f431160aca468c7bd">  114</a></span>&#160;    bool (*fixup_state)(<span class="keywordtype">void</span>*);</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structcr8r__prng.html#a879ecc91f97101db0b83bf04ca795c3e">  116</a></span>&#160;    <span class="keywordtype">char</span> state[];</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;} <a class="code" href="structcr8r__prng.html">cr8r_prng</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;uint32_t <a class="code" href="prand_8h.html#a7a38a11e931811a1475c5c49202a8d4b">cr8r_prng_get_u32</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;uint64_t <a class="code" href="prand_8h.html#a640f3191869f0095292da9a06975ef7f">cr8r_prng_get_u64</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#a877804d40fe3e0b5257145333d41a627">cr8r_prng_get_bytes</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t size, <span class="keywordtype">char</span> buf[<span class="keyword">static</span> size]);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;uint64_t <a class="code" href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*, uint64_t a, uint64_t b);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keywordtype">double</span> <a class="code" href="prand_8h.html#ae7fe1aadb2ff4641ea385d0578309c52">cr8r_prng_uniform01_double</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;uint64_t <a class="code" href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">cr8r_prng_log_mod_t64</a>(uint64_t h);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">// these constants are taken from the standard MT19937-64 generator configuration</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_N 312</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_M 156</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_R 31</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_A 0xB5026F5AA96619E9</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_U 29</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_D 0x5555555555555555</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_S 17</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_B 0x71D67FFFEDA60000</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_T 37</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_C 0xFFF7EEE000000000</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_L 43</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#define CR8R_PRNG_MT_F 6364136223846793005</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#define CR8R_PRNG_LFM_R 127</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#define CR8R_PRNG_LFM_S 97</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#define CR8R_DEFAULT_PRNG_SM_SEED 0xd20499955ff0e57c</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#define CR8R_DEFAULT_PRNG_LCG_SEED 0xe9352d1427990d8e</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a>();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#adcbc4b86c3db859a68ff1f5883966643">cr8r_prng_init_lcg</a>(uint64_t seed);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ac59593ec213c0a258e487689a6551c1d">cr8r_prng_init_lfg_sc</a>(uint64_t seed);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a78392309413c5be1f05b316c52da8219">cr8r_prng_init_lfg_m</a>(uint64_t seed);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ad39caeaee76bef3a59c3848a07bf9ad8">cr8r_prng_init_mt</a>(uint64_t seed);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#ae814a4e6c3c4bd37a99f7262c622dfe3">cr8r_prng_init_xoro</a>(uint64_t seed);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5">cr8r_prng_init_splitmix</a>(uint64_t seed);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcr8r__prng.html">cr8r_prng</a> *<a class="code" href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="keywordtype">void</span> <a class="code" href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a>(<a class="code" href="structcr8r__prng.html">cr8r_prng</a>*);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aprand_8h_html_a0809010c1f86d7834baa6bdb4db71b1d"><div class="ttname"><a href="prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d">cr8r_default_prng_splitmix</a></div><div class="ttdeci">cr8r_prng * cr8r_default_prng_splitmix</div><div class="ttdoc">Default SplitMix prng, automatically used to extend seed values to state values if needed.</div></div>
 <div class="ttc" id="aprand_8h_html_aac6111faad151beef22c18ff5596f8da"><div class="ttname"><a href="prand_8h.html#aac6111faad151beef22c18ff5596f8da">cr8r_prng_xoro_jump_t128</a></div><div class="ttdeci">void cr8r_prng_xoro_jump_t128(cr8r_prng *)</div><div class="ttdoc">Jump a xoro based prng forwards by 2**128 steps quickly.</div></div>
 <div class="ttc" id="aprand_8h_html_ac59593ec213c0a258e487689a6551c1d"><div class="ttname"><a href="prand_8h.html#ac59593ec213c0a258e487689a6551c1d">cr8r_prng_init_lfg_sc</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_lfg_sc(uint64_t seed)</div><div class="ttdoc">Create a PRNG based on a Subtract with Carry Lagged Fibonacci Generator.</div></div>
-<div class="ttc" id="astructcr8r__prng_html"><div class="ttname"><a href="structcr8r__prng.html">cr8r_prng</a></div><div class="ttdoc">A PseudoRandom Number Generator.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00072">prand.h:72</a></div></div>
+<div class="ttc" id="astructcr8r__prng_html"><div class="ttname"><a href="structcr8r__prng.html">cr8r_prng</a></div><div class="ttdoc">A PseudoRandom Number Generator.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00106">prand.h:106</a></div></div>
 <div class="ttc" id="aprand_8h_html_ad39caeaee76bef3a59c3848a07bf9ad8"><div class="ttname"><a href="prand_8h.html#ad39caeaee76bef3a59c3848a07bf9ad8">cr8r_prng_init_mt</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_mt(uint64_t seed)</div><div class="ttdoc">Create a PRNG based on a Mersenne Twister Generator.</div></div>
 <div class="ttc" id="aprand_8h_html_a93412d1b22265782ceaaa41ce9404948"><div class="ttname"><a href="prand_8h.html#a93412d1b22265782ceaaa41ce9404948">cr8r_prng_log_mod_t64</a></div><div class="ttdeci">uint64_t cr8r_prng_log_mod_t64(uint64_t h)</div><div class="ttdoc">Find x (the discrete logarithm) so that h = g**x mod 2**64.</div></div>
 <div class="ttc" id="aprand_8h_html_ad4596f7c54d9872920c2f57ccae72bc7"><div class="ttname"><a href="prand_8h.html#ad4596f7c54d9872920c2f57ccae72bc7">cr8r_prng_seed</a></div><div class="ttdeci">bool cr8r_prng_seed(cr8r_prng *, uint64_t)</div><div class="ttdoc">Set the state of a prng.</div></div>
@@ -150,8 +152,9 @@ $(function() {
 <div class="ttc" id="aprand_8h_html_ac45352623df6ef36bd0198da18fd4200"><div class="ttname"><a href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a></div><div class="ttdeci">uint64_t cr8r_prng_uniform_u64(cr8r_prng *, uint64_t a, uint64_t b)</div><div class="ttdoc">Get a uint64_t which is uniformly distributed on [a, b).</div></div>
 <div class="ttc" id="aprand_8h_html_adcbc4b86c3db859a68ff1f5883966643"><div class="ttname"><a href="prand_8h.html#adcbc4b86c3db859a68ff1f5883966643">cr8r_prng_init_lcg</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_lcg(uint64_t seed)</div><div class="ttdoc">Create a PRNG based on a Linear Congruential Generator.</div></div>
 <div class="ttc" id="aprand_8h_html_a60f6578400630293828baecb190811f7"><div class="ttname"><a href="prand_8h.html#a60f6578400630293828baecb190811f7">cr8r_prng_xoro_jump_t192</a></div><div class="ttdeci">void cr8r_prng_xoro_jump_t192(cr8r_prng *)</div><div class="ttdoc">Jump a xoro based prng forwards by 2**192 steps quickly.</div></div>
+<div class="ttc" id="aprand_8h_html_ae7fe1aadb2ff4641ea385d0578309c52"><div class="ttname"><a href="prand_8h.html#ae7fe1aadb2ff4641ea385d0578309c52">cr8r_prng_uniform01_double</a></div><div class="ttdeci">double cr8r_prng_uniform01_double(cr8r_prng *)</div><div class="ttdoc">Get a double which is uniformly distributed on [0, 1)</div></div>
 <div class="ttc" id="aprand_8h_html_ae814a4e6c3c4bd37a99f7262c622dfe3"><div class="ttname"><a href="prand_8h.html#ae814a4e6c3c4bd37a99f7262c622dfe3">cr8r_prng_init_xoro</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_xoro(uint64_t seed)</div><div class="ttdoc">Create a PRNG based on Vigna and Blackman's Xoroshiro256** algorithm.</div></div>
-<div class="ttc" id="astructcr8r__prng_html_a29af229501a36e0e32158d294b16af12"><div class="ttname"><a href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">cr8r_prng::state_size</a></div><div class="ttdeci">uint64_t state_size</div><div class="ttdoc">Size of the state information for the implementation, in bytes.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00074">prand.h:74</a></div></div>
+<div class="ttc" id="astructcr8r__prng_html_a29af229501a36e0e32158d294b16af12"><div class="ttname"><a href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">cr8r_prng::state_size</a></div><div class="ttdeci">uint64_t state_size</div><div class="ttdoc">Size of the state information for the implementation, in bytes.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00108">prand.h:108</a></div></div>
 <div class="ttc" id="aprand_8h_html_a6ddb37ca49e0102188bdbf2e6b11dfa5"><div class="ttname"><a href="prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5">cr8r_prng_init_splitmix</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_splitmix(uint64_t seed)</div><div class="ttdoc">Create a PRNG based on Vigna's version of SplitMix.</div></div>
 <div class="ttc" id="aprand_8h_html_a640f3191869f0095292da9a06975ef7f"><div class="ttname"><a href="prand_8h.html#a640f3191869f0095292da9a06975ef7f">cr8r_prng_get_u64</a></div><div class="ttdeci">uint64_t cr8r_prng_get_u64(cr8r_prng *)</div><div class="ttdoc">Get a single uint64_t from a prng.</div></div>
 <div class="ttc" id="aprand_8h_html_acae0db179a04990f3ec47a1e29e986f0"><div class="ttname"><a href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_system()</div><div class="ttdoc">Create a PRNG based on the system's prng device.</div></div>
