@@ -148,9 +148,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a640f3191869f0095292da9a06975ef7f"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a640f3191869f0095292da9a06975ef7f">cr8r_prng_get_u64</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *)</td></tr>
 <tr class="memdesc:a640f3191869f0095292da9a06975ef7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a single uint64_t from a prng.  <a href="prand_8h.html#a640f3191869f0095292da9a06975ef7f">More...</a><br /></td></tr>
 <tr class="separator:a640f3191869f0095292da9a06975ef7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a877804d40fe3e0b5257145333d41a627"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#a877804d40fe3e0b5257145333d41a627">cr8r_prng_get_bytes</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t size, char buf[static size])</td></tr>
-<tr class="memdesc:a877804d40fe3e0b5257145333d41a627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill a buffer with random bytes from a prng.  <a href="prand_8h.html#a877804d40fe3e0b5257145333d41a627">More...</a><br /></td></tr>
-<tr class="separator:a877804d40fe3e0b5257145333d41a627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbef6761d11dd124732c47d034e3e3bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#afbef6761d11dd124732c47d034e3e3bd">cr8r_prng_get_bytes</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t size, void *buf)</td></tr>
+<tr class="memdesc:afbef6761d11dd124732c47d034e3e3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill a buffer with random bytes from a prng.  <a href="prand_8h.html#afbef6761d11dd124732c47d034e3e3bd">More...</a><br /></td></tr>
+<tr class="separator:afbef6761d11dd124732c47d034e3e3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45352623df6ef36bd0198da18fd4200"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">cr8r_prng_uniform_u64</a> (<a class="el" href="structcr8r__prng.html">cr8r_prng</a> *, uint64_t a, uint64_t b)</td></tr>
 <tr class="memdesc:ac45352623df6ef36bd0198da18fd4200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a uint64_t which is uniformly distributed on [a, b).  <a href="prand_8h.html#ac45352623df6ef36bd0198da18fd4200">More...</a><br /></td></tr>
 <tr class="separator:ac45352623df6ef36bd0198da18fd4200"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,8 +289,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a877804d40fe3e0b5257145333d41a627"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a877804d40fe3e0b5257145333d41a627">&#9670;&nbsp;</a></span>cr8r_prng_get_bytes()</h2>
+<a id="afbef6761d11dd124732c47d034e3e3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbef6761d11dd124732c47d034e3e3bd">&#9670;&nbsp;</a></span>cr8r_prng_get_bytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,8 +310,8 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>buf</em>[static size]&#160;</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
