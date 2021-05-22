@@ -1,6 +1,7 @@
 -Llib
 -lcrater
 -lm
+-lSDL2
 -fuse-ld=gold
 -ggdb3
 -fno-strict-aliasing

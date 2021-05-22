@@ -26,8 +26,8 @@ void ising2D_step(ising2D_lattice *self, cr8r_prng *prng){
 	// as
 	// number not matching = __builtin_popcount((-(neighbor_mask & 1)^neighbor_mask) & 0x1D) < 2.
 	// and the increase in energy will be 8 - 4*(number not matching)
-	uint64_t num_not_matching = __builtin_popcount((-(neighbor_mask & 1)^neighbor_mask) & 0x1E);
-	if(num_not_matching <= 2 || cr8r_prng_uniform01_double(prng) <= exp(self->B*(8 - 4*num_not_matching))){
+	int64_t num_not_matching = __builtin_popcount((-(neighbor_mask & 1)^neighbor_mask) & 0x1E);
+	if(num_not_matching >= 2 || cr8r_prng_uniform01_double(prng) <= exp(self->B*(4*num_not_matching - 8))){
 		self->spin_masks[i >> 6] ^= 1ull << (i&0x3F);
 	}
 }

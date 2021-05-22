@@ -19,13 +19,13 @@ class Lattice2D:
 		j = random.randrange(self.n**2)
 		i = j%self.n
 		j //= self.n
-		num_not_matching = [self.sites[i2%self.n][j2%self.n] for (i2,j2) in ((i+1,j),(i-1,j),(i,j+1),(i,j-1))].count(self.sites[i][j])
-		# energy before flipping is 4 - 2*num_not_matching
-		# energy after flipping is 4 - 2*(4 - num_not matching) = 2*num_not_matching - 4
-		# so energy decreases if 2*num_not_matching - 4 <= 4 - 2*num_not_matching <-> 4*num_not_matching <= 8 <-> num_not_matching <= 2
-		# and otherwise the change in energy is 4*num_not_matching - 8
+		num_matching = [self.sites[i2%self.n][j2%self.n] for (i2,j2) in ((i+1,j),(i-1,j),(i,j+1),(i,j-1))].count(self.sites[i][j])
+		# energy before flipping is 4 - 2*num_matching
+		# energy after flipping is 4 - 2*(4 - num_matching) = 2*num_matching - 4
+		# so energy decreases if 2*num_matching - 4 <= 4 - 2*num_matching <-> 4*num_matching <= 8 <-> num_matching <= 2
+		# and otherwise the change in energy is 4*num_matching - 8
 		
-		if num_not_matching <= 2 or random.random() <= math.exp(self.B*(8 - 4*num_not_matching)):
+		if num_matching <= 2 or random.random() <= math.exp(self.B*(8 - 4*num_matching)):
 			self.sites[i][j] *= -1
 	
 	def draw(self, screen):

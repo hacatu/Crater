@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <stdio.h>
 
+#include <crater/opts.h>
 #include "ising.h"
 
 const int SCREEN_WIDTH = 800;
@@ -29,7 +30,7 @@ void init(void){
 	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")){
 		printf("Warning: Linear texture filtering not enabled!");
 	}
-	window = SDL_CreateWindow("Construction Visualization", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Ice Ice Baby", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	if(!window){
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
@@ -41,12 +42,6 @@ void init(void){
 	}
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 }
-
-typedef struct{
-	uint64_t size;
-	double B;
-	uint64_t spin_masks[];
-} ising2D_lattice;
 
 static void draw_lattice(const ising2D_lattice *self){
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -63,7 +58,7 @@ static void draw_lattice(const ising2D_lattice *self){
 	}
 }
 
-int main(void){
+void run_tests(){
 	fprintf(stderr, "\e[1;34mRunning Ising Model tests on prngs...\e[0m\n");
 	double energy_probs[50];
 	for(uint64_t n = 2; n < 6; ++n){
@@ -81,31 +76,61 @@ int main(void){
 		}
 		fprintf(stderr, "\e[1;32mE(H)=%f\e[0m\n", mean_energy);
 	}
+}
+
+bool generate_random_seed(cr8r_opt *self){
+	cr8r_prng *sys_rng = cr8r_prng_init_system();
+	if(!sys_rng){
+		fprintf(stderr, "\e[1;31mERROR: Could not initialize sys rng!\e[0m\n");
+		return false;
+	}
+	cr8r_prng_get_bytes(sys_rng, sizeof(uint64_t), self->dest);
+	fprintf(stderr, "\e[1;33mseed=%"PRIx64"\e[0m\n", *(uint64_t*)self->dest);
+	free(sys_rng);
+	return true;
+}
+
+int main(int argc, char **argv){
+	if(argc == 1){
+		run_tests();
+		exit(0);
+	}
+	uint64_t n = 400;
+	double B = 10;
+	uint64_t seed;
+	
+	cr8r_opt options[] = {
+		CR8R_OPT_HELP(options, "Crater Ising model test/demo\n"
+			"Written by hacatu\n\n"
+			"Usage:\n"
+			"\t`ising`: run automated tests (no gui)\n"
+			"\t`ising <options>` run SDL2 demo\n\n"),
+		CR8R_OPT_GENERIC_OPTIONAL(&n, "n", "side", "lattice side length (default 400, must be positive)"),
+		CR8R_OPT_GENERIC_OPTIONAL(&B, "B", "beta", "inverse temperature (default 10, must be positive)"),
+		{.dest = &seed, .arg_mode = CR8R_OPT_ARGMODE_REQUIRED,
+			.short_name = "s", .long_name = "seed",
+			.description = "seed for prng (64 bit number), if not specified, a random seed is used and logged",
+			.on_opt = cr8r_opt_parse_ull, .on_missing = generate_random_seed},
+		CR8R_OPT_END()
+	};
+	if(!cr8r_opt_parse(options, &((cr8r_opt_cfg){.stop_on_first_err=true}), argc, argv)){
+		exit(1);
+	}
+	
 	init();
-	uint64_t n = 400, N = n*n, spin_masks_nmemb = N/64 + 1;
+	uint64_t N = n*n, spin_masks_nmemb = N/64 + 1;
 	ising2D_lattice *latt = calloc(offsetof(ising2D_lattice, spin_masks) + spin_masks_nmemb*sizeof(uint64_t), 1);
 	if(!latt){
 		exit(1);
 	}
-	cr8r_prng *prng = NULL;
-	{
-		cr8r_prng *sys_rng = cr8r_prng_init_system();
-		if(!sys_rng){
-			fprintf(stderr, "\e[1;31mERROR: Could not initialize sys rng!\e[0m\n");
-			exit(1);
-		}
-		uint64_t seed = cr8r_prng_get_u64(sys_rng);
-		free(sys_rng);
-		prng = cr8r_prng_init_lfg_m(seed);
-		if(!prng){
-			fprintf(stderr, "\e[1;31mERROR: Could not initialize prng!\e[0m\n");
-			exit(1);
-		}
-		fprintf(stderr, "\e[1;33mseed=%"PRIx64"\e[0m\n", seed);
+	cr8r_prng *prng =  cr8r_prng_init_lfg_m(seed);
+	if(!prng){
+		fprintf(stderr, "\e[1;31mERROR: Could not initialize prng!\e[0m\n");
+		exit(1);
 	}
-	latt->size = n;
-	latt->B = 10;
 	cr8r_prng_get_bytes(prng, spin_masks_nmemb*sizeof(uint64_t), latt->spin_masks);
+	latt->size = n;
+	latt->B = B;
 	draw_lattice(latt);
 	SDL_RenderPresent(renderer);
 	SDL_Event e;
@@ -117,6 +142,7 @@ int main(void){
 				free(latt);
 				exit(0);
 			}else if(e.type == SDL_KEYDOWN){
+				// no controls currently implemented
 				switch(e.key.keysym.sym){
 				case SDLK_LEFT:
 					break;
@@ -137,7 +163,7 @@ int main(void){
 		draw_lattice(latt);
 		SDL_RenderPresent(renderer);
 		
-		int elapsed_time = SDL_GetTicks() - start;
+		int elapsed_time = SDL_GetTicks() - start_time;
 		if(elapsed_time < 0){
 			continue;//time overflowed
 		}

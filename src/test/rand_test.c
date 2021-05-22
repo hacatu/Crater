@@ -121,6 +121,9 @@ int main(){
 	fprintf(stderr, "\e[1;34mTesting %d %s samples with sequential bytes correlation test...\e[0m\n", 1000000, "MT");
 	test_stat = cr8r_rndchk_corr_bytes(prng, 1000000);
 	fprintf(stderr, "\e[1;33m --> %f\e[0m\n", test_stat);
+	for(uint64_t i = 0; i < 10; ++i){
+		fprintf(stderr, "\e[1;33m%f ~ U(0, 1)\e[0m\n", cr8r_prng_uniform01_double(prng));
+	}
 	free(prng);
 }
 

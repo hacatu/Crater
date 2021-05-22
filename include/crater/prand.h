@@ -141,7 +141,7 @@ uint64_t cr8r_prng_get_u64(cr8r_prng*);
 /// Fill a buffer with random bytes from a prng
 ///
 /// Gotten from ceil(size / 4) calls to self->get_u32
-void cr8r_prng_get_bytes(cr8r_prng*, uint64_t size, char buf[static size]);
+void cr8r_prng_get_bytes(cr8r_prng*, uint64_t size, void *buf);
 
 /// Get a uint64_t which is uniformly distributed on [a, b).
 ///

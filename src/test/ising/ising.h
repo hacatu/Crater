@@ -2,7 +2,7 @@
 
 #include <inttypes.h>
 
-#include <crater/prng.h>
+#include <crater/prand.h>
 
 typedef struct{
 	uint64_t size;

@@ -73,6 +73,14 @@ cr8r_hashtbl_ft cr8r_htft_u64_void = {
 	.load_factor = .7
 };
 
+cr8r_hashtbl_ft cr8r_htft_cstr_u64 = {
+	.base.data = NULL,
+	.base.size = sizeof(cr8r_htent_cstr_u64),
+	.hash = cr8r_default_hash_cstr,
+	.cmp = cr8r_default_cmp_cstr,
+	.load_factor = .5
+};
+
 bool cr8r_hash_ft_init(cr8r_hashtbl_ft *ft,
 	void *data, uint64_t size,
 	uint64_t (*hash)(const cr8r_base_ft*, const void*),

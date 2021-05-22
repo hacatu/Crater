@@ -73,15 +73,16 @@ $(SIMPLE_TEST_BINS): bin/test/%: obj/test/%.o | $(SIMPLE_LIB_ARCS) $(COMPOUND_LI
 $(COMPOUND_TEST_BINS): bin/test/%: obj/test/%.compound | $(SIMPLE_LIB_ARCS) $(COMPOUND_LIB_ARCS) bin/test
 	$(LD) -o $@ $(filter obj/test/$*/%.o,$(TEST_OBJS)) $(TEST_LDFLAGS)
 
-obj/%.compound: $(@D)
-	@touch $@
+#obj/%.compound: $(@D)
+#	@touch $@
 
 define make-compound
 obj/$(1)/$(2).compound: $(filter obj/$(1)/$(2)/%.o,$(3))
+	touch obj/$(1)/$(2).compound
 endef
 
 $(foreach c,$(patsubst lib/lib%.a,%,$(COMPOUND_LIB_ARCS)),$(eval $(call make-compound,lib,$c,$(LIB_OBJS))))
-$(foreach c,$(patsubst bin/test/%,%,$(COMPOUND_TEST_BINS)),$(eval $(call make-compound,bin/test,$c,$(TEST_OBJS))))
+$(foreach c,$(patsubst bin/test/%,%,$(COMPOUND_TEST_BINS)),$(eval $(call make-compound,test,$c,$(TEST_OBJS))))
 $(foreach c,$(patsubst bin/%,%,$(COMPOUND_BINARIES)),$(eval $(call make-compound,bin,$c,$(BINARY_OBJS))))
 
 .PHONY: test
@@ -99,7 +100,7 @@ clean:
 	-rm -rf bin lib notes cov obj log test
 
 debug_makefile:
-	@echo $(LIB_OBJS)
+	@echo $(COMPOUND_TEST_BINS)
 
 obj/%.o: obj/%.d
 

@@ -237,3 +237,12 @@ extern const uint64_t cr8r_hash_u64_prime;
 /// function table for using hash table as set of uint64_t's
 extern cr8r_hashtbl_ft cr8r_htft_u64_void;
 
+/// entry type for cstr -> uint64_t mapping
+typedef struct{
+	const char* str;
+	uint64_t n;
+} cr8r_htent_cstr_u64;
+
+/// function table for using hash table as map from c strings to uint64_t's
+extern cr8r_hashtbl_ft cr8r_htft_cstr_u64;
+

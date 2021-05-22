@@ -10,7 +10,7 @@
 typedef union{
 	double as_double;
 	struct{
-		uint64_t sign:1, exp:11, fraction:52;
+		uint64_t fraction:52, exp:11, sign:1;
 	};
 } double_bits_t;
 
@@ -35,7 +35,7 @@ uint64_t cr8r_prng_get_u64(cr8r_prng *self){
 	return res | ((uint64_t)self->get_u32(self->state) << 32);
 }
 
-void cr8r_prng_get_bytes(cr8r_prng *self, uint64_t size, char buf[static size]){
+void cr8r_prng_get_bytes(cr8r_prng *self, uint64_t size, void *buf){
 	uint64_t i;
 	for(i = 0; i + sizeof(uint32_t) <= size; i += sizeof(uint32_t)){
 		uint32_t tmp = self->get_u32(self->state);

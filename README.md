@@ -4,13 +4,66 @@
 [![Documentation](https://img.shields.io/badge/-documentation-gray)](https://hacatu.github.io/Crater/docs)
 [![Coverage](https://hacatu.github.io/Crater/coverage.svg)](https://hacatu.github.io/Crater/cov)
 
-Crater provides simple, fast generic collections in plain C.
+Crater provides simple, fast generic collections in plain C and some other general purpose utilities.
 All containers can be parameterized by specifying callback functions in a "function table".
 
-Also includes a slab allocator to support allocating nodes in linked structures more efficiently than malloc.
+###Features
+- AVL trees
+	- Ordered map/dictionary like interface with `O(log(n))` worst case time for insertion, removal, and lookup
+	- Amortized `O(1)` time to find next element in inorder/postorder traversal
+	- Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)
+	- Node allocator is configurable (see slab allocator)
+	- Include operations on nodes (remove and insert existing nodes rather than entries to decrease allocations)
+	- Support finding lowest upper bound/highest lower bound node
+	- Existing AVL trees can be reordered according to a different sorting function or as a heap
+	- Can be used as ordered sets (by having the entry type only consist of information that the comparison function considers, ie just a "key" with no "value")
+- Hash tables
+	- Unordered map/dictionary like interface with `O(1)` average case time for insertion, removal, and lookup
+	- Amortized `O(1)` time to find next element in iteration (order of iteration is unspecified)
+	- Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)
+	- Use incremental resizing (have two tables internally while resizing and amortize moving entries over
+	 insert/remove operations).  Entries are stored directly in the hash table using quadratic probing on collisions.
+- Vectors
+	- Self resizing array with standard constant time operations
+	- Allocator and growth rate are configurable (can specify function to compute new size)
+	- Include pushl/popl (linear time left access) and `O(nlog(n))` sorting (using heapsort)
+	- Support using vectors as heaps (min and max with configurable comparison function)
+	- Include operations for sorted vectors (find element index in sorted list, etc)
+- Circularly linked lists
+	- Exist
+	- Not currently tested
+- Slab allocator
+	- Group together many fixed size allocations so that allocating nodes in linked structures can be handled more efficiently than malloc
+	- Can grow internal storage (exponentially) without invalidating already allocated nodes
+- Pseudorandom Number Generators
+	- Linear Congruential Generator, Lagged Fibonacci Subtract with Carry, Lagged Fibonacci Multiplication, Mersenne Twister, Xoroshiro256**,
+	 SplitMix64, and Linux `/dev/random`
+	- Can generate random `uint32_t`s, `uint64_t`s, uniform `uint64_t`s in a range, random bytes into a buffer, and random `double`s on `[0,1)`
+	 directly
+	- Some prng types support jumping to facillitate setting up multiple independent streams.  All will eventually be supported.
+	 See prng documentation for details
+	- These are all well tested prngs with good characteristics (and some drawbacks), and we run a few tests to confirm they work correctly:
+	 byte distribution, byte correlation, and ising model
 
-AVL trees, hash tables, vectors, and circular linked lists are currently provided, and both vectors and AVL trees include
-heap functions.  Pairing heaps, k-d trees, and possibly red black trees and double linked lists are planned.
+- Command line argument parsing
+	- Flexible system allows optional and required options
+	- Options may have required, optional, or no argument
+	- Options may have short and long names
+	- Type generic macro can be used to easily configure options for any scalar type by only specifying destination pointer, short name,
+	 long name, description, and whether or not the option is required
+	- Options can specify `on_missing` behavior to generate a random value if an optional argument is missing, or do anything else in the event
+	 of a missing option
+	- Required arguments are characterized by having `on_missing` be a null function pointer
+	- Inspired by argparse, but with support for `on_missing` and any type
+	- Namely, `char`, `_Bool`, signed and unsigned versions of `char`, `short`, `int`, `long`, `long long`, and `__int128`, plus `float`,
+	 `double`, and `long double` are supported by `CR8R_OPT_GENERIC_OPTIONAL` and `CR8R_OPT_GENERIC_REQUIRED`.  `_Complex *` and `_Imaginary *`
+	 are not currently supported by the type generic macros, but these and any aggregate types can be implemented with a custom `on_opt` callback.
+	 A custom callback can also be used to perform a narrower range check, like forcing a number to be 0-100
+	- Default help option to print help and descriptions is provided, and some options for argument parsing behavior are available (whether all/only
+	 one error is reported as well as basic support for positional arguments)
+
+Pairing heaps, k-d trees, and possibly red black trees and double linked lists are planned, as well as more support for jumping in the prng part of
+the library and expansion of command line argument handling.
 
 Each container type has an associated function table type.
 For example, the AVL tree ft has `alloc`, `free`, `cmp`, and `add` callbacks, to allocate nodes,
@@ -61,6 +114,8 @@ and `doxygen` are required for coverage and documentation, and `gold` is specifi
 If you do not have `gold`, you can switch the line `-fuse-ld=gold` to `-fuse-ld=lld` or remove it in
 `$(BUILD_ROOT)/ldflags.txt`.
 
+Further, some of the tests need `SDL2`.
+
 `-fno-strict-aliasing` is important to keep because the elements in most containers are stored in flexible length
 `char` arrays, and strict aliasing has to be disabled to allow a two way conversion between `char*` and `T*`.
 
@@ -72,6 +127,53 @@ it to your system libraries by doing `sudo cp build/debug/lib/libcrater.a /usr/l
 linked with simply `-lcrater`.
 
 ## Examples
+
+Look in src/test for more examples!
+
+### Command Line Arguments (from src/test/ising/render.c)
+```C
+#include <crater/opts.h>
+#include <crater/prand.h>
+
+...
+
+bool generate_random_seed(cr8r_opt *self){
+	cr8r_prng *sys_rng = cr8r_prng_init_system();
+	if(!sys_rng){
+		fprintf(stderr, "\e[1;31mERROR: Could not initialize sys rng!\e[0m\n");
+		return false;
+	}
+	cr8r_prng_get_bytes(sys_rng, sizeof(uint64_t), self->dest);
+	fprintf(stderr, "\e[1;33mseed=%"PRIx64"\e[0m\n", *(uint64_t*)self->dest);
+	free(sys_rng);
+	return true;
+}
+
+int main(int argc, char **argv){
+	uint64_t n = 400;
+	double B = 10;
+	uint64_t seed;
+
+	cr8r_opt options[] = {
+		CR8R_OPT_HELP(options, "Crater Ising model test/demo\n"
+			"Written by hacatu\n\n"
+			"Usage:\n"
+			"\t`ising`: run automated tests (no gui)\n"
+			"\t`ising <options>` run SDL2 demo\n\n"),
+		CR8R_OPT_GENERIC_OPTIONAL(&n, "n", "side", "lattice side length (default 400, must be positive)"),
+		CR8R_OPT_GENERIC_OPTIONAL(&B, "B", "beta", "inverse temperature (default 10, must be positive)"),
+		{.dest = &seed, .arg_mode = CR8R_OPT_ARGMODE_REQUIRED,
+			.short_name = "s", .long_name = "seed",
+			.description = "seed for prng (64 bit number), if not specified, a random seed is used and logged",
+			.on_opt = cr8r_opt_parse_ull, .on_missing = generate_random_seed},
+		CR8R_OPT_END()
+	};
+	if(!cr8r_opt_parse(options, &((cr8r_opt_cfg){.stop_on_first_err=true}), argc, argv)){
+		exit(1);
+	}
+	...
+}
+```
 
 ### Test All Insert/Remove Sequences for size 7 AVL Trees
 ```C
