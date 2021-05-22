@@ -85,7 +85,7 @@ bool ising2D_compute_energy_probs(uint64_t n, double B, double energy_probs[stat
 		}
 		*/
 		uint64_t j = __builtin_ctzll(curr_gray^prev_gray);
-		int64_t energy_change = ising2D_flip(latt, __builtin_ctzll(curr_gray^prev_gray));
+		int64_t energy_change = ising2D_flip(latt, j);
 		//fprintf(stderr, "\e[1;33m  --> H=%"PRIi64", flipping %"PRIu64", dH=%"PRIi64"\e[0m\n", energy, j, energy_change);
 		
 		energy += energy_change;

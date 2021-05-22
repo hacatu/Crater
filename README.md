@@ -7,7 +7,7 @@
 Crater provides simple, fast generic collections in plain C and some other general purpose utilities.
 All containers can be parameterized by specifying callback functions in a "function table".
 
-###Features
+### Features
 - AVL trees
 	- Ordered map/dictionary like interface with `O(log(n))` worst case time for insertion, removal, and lookup
 	- Amortized `O(1)` time to find next element in inorder/postorder traversal

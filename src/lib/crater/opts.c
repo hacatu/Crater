@@ -458,7 +458,7 @@ static inline bool parse_long_opt(cr8r_hashtbl_t *long_opts, cr8r_opt *opts, cr8
 			if(opt){
 				fprintf(stderr, "Invalid argument to option --%s\n", opts[ent->n].long_name);
 			}else{
-				fprintf(stderr, "Crater opt error: option --%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed");
+				fprintf(stderr, "Crater opt error: option --%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed\n", opts[ent->n].long_name);
 			}
 			opts[ent->n].found = true;
 			return false;
@@ -521,7 +521,7 @@ static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts
 		if(opts[ent->n].on_opt){
 			if(!opts[ent->n].on_opt(opts + ent->n, opt)){
 				if(opts[ent->n].arg_mode == 2 && !opt){
-					fprintf(stderr, "Crater opt error: option -%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed");
+					fprintf(stderr, "Crater opt error: option -%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed\n", opts[ent->n].short_name);
 				}else{
 					fprintf(stderr, "Invalid argument to option -%s\n", opts[ent->n].short_name);
 				}

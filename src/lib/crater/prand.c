@@ -244,7 +244,6 @@ static bool cr8r_prng_lfg_m_fixup(void *_state){
 cr8r_prng *cr8r_prng_init_lfg_m(uint64_t seed){
 	cr8r_prng *res = malloc(offsetof(cr8r_prng, state) + sizeof(cr8r_prng_lfg_m_state));
 	if(res){
-		uint64_t _seed = *(uint64_t*)cr8r_default_prng_splitmix->state;
 		res->state_size = sizeof(cr8r_prng_lfg_m_state);
 		res->get_u32 = cr8r_prng_lfg_m_get_u32;
 		res->fixup_state = cr8r_prng_lfg_m_fixup;
@@ -274,7 +273,8 @@ typedef struct{
 
 static const uint64_t cr8r_prng_mt_lomask = (1ull << CR8R_PRNG_MT_R) - 1;
 static const uint64_t cr8r_prng_mt_himask = ~cr8r_prng_mt_lomask;
- 
+
+/*
 static bool cr8r_prng_mt_seed(void *_state, const void *_seed){
 	uint64_t seed = *(const uint64_t*)_seed;
 	if(!seed){
@@ -288,6 +288,7 @@ static bool cr8r_prng_mt_seed(void *_state, const void *_seed){
 	}
 	return true;
 }
+*/
 
 static bool cr8r_prng_mt_fixup(void *_state){
 	return true;
