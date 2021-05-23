@@ -82,17 +82,14 @@ void hashtbl_appender(void *self, word_count *wc){
 	int status;
 	cr8r_hash_append(self, &htft_wc, wc, &status);
 	if(!status){
-		fprintf(stderr, "\e[1;31mERROR: Could not append word count in hashtbl!\e[0m");
+		fprintf(stderr, "\e[1;31mERROR: Could not append word count in hashtbl!\e[0m\n");
 	}
 }
 
 void avl_appender(void *self, word_count *wc){
-	if(!strcmp(wc->word, "p")){
-		self = self;
-	}
 	//fprintf(stderr, "\e[1;33m&self=%p, self=%p\e[0m\n", self, *(cr8r_avl_node**)self);
 	if(!cr8r_avl_insert_update(self, wc, &avlft_wc)){
-		fprintf(stderr, "\e[1;31mERROR: Could not append word count in avl tree!\e[0m");
+		fprintf(stderr, "\e[1;31mERROR: Could not append word count in avl tree!\e[0m\n");
 	}
 }
 
@@ -130,13 +127,17 @@ void collect_words(uint64_t text_len, const char text_buf[static text_len], void
 	}
 }
 
-int main(){
-	fprintf(stderr, "\e[1;34mCounting all words in Frankenstein:\e[0m\n");
+int main(int argc, char **argv){
+	if(argc != 2){
+		fprintf(stderr, "\e[1;31mIncorrect usage.  Please specify a file like\n%s <filename>\e[0m\n", *argv);
+		exit(1);
+	}
 	uint64_t text_len;
-	char *text_buf = mmap_open("../../resources/frankenstein.txt", &text_len);
+	char *text_buf = mmap_open(argv[1], &text_len);
 	if(!text_buf){
 		exit(1);
 	}
+	fprintf(stderr, "\e[1;34mCounting all words in file \"%s\"...\e[0m\n", argv[1]);
 	cr8r_hashtbl_t wordcount_ht;
 	if(!cr8r_hash_init(&wordcount_ht, &htft_wc, 100)){
 		munmap(text_buf, text_len);

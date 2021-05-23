@@ -339,29 +339,29 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 	for(cr8r_opt *opt; opt = opts + num_opts, opt->short_name || opt->long_name; ++num_opts){
 		int char_len;
 		if(opt->arg_mode && !opt->on_opt){
-			fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (argument to opt allowed but on_opt missing)\e[0m\n");
+			fprintf(stderr, "Crater opt error: invalid opt spec (argument to opt allowed but on_opt missing)\n");
 			return false;
 		}else if(opt->long_name && !*opt->long_name){
-			fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (long_name is empty string (use NULL instead))\e[0m\n");
+			fprintf(stderr, "Crater opt error: invalid opt spec (long_name is empty string (use NULL instead))\n");
 			return false;
 		}else if(opt->short_name && !*opt->short_name){
-			fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (short_name is empty string (use NULL instead))\e[0m\n");
+			fprintf(stderr, "Crater opt error: invalid opt spec (short_name is empty string (use NULL instead))\n");
 			return false;
 		}else if(opt->short_name && ((char_len = mblen(opt->short_name, MB_CUR_MAX)) == -1 || opt->short_name[char_len])){
-			fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (short_name contains invalid multibyte character or multiple locale characters)\e[0m\n");
+			fprintf(stderr, "Crater opt error: invalid opt spec (short_name contains invalid multibyte character or multiple locale characters)\n");
 			return false;
 		}else if(opt->short_name && strchr("-= ", *opt->short_name)){
-			fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (short_name is '-', '=', or ' ', which are not permitted)\e[0m\n");
+			fprintf(stderr, "Crater opt error: invalid opt spec (short_name is '-', '=', or ' ', which are not permitted)\n");
 			return false;
 		}else if(opt->long_name){
 			for(uint64_t i = 0; (char_len = mblen(opt->long_name + i, MB_CUR_MAX)) > 0; i += char_len){
 				if(char_len == 1 && strchr("= ", opt->long_name[i])){
-					fprintf(stderr, "\e[1;31mCrater opt error: invalid opt spec (long_name contains '=' or ' ', which are not permitted)\e[0m\n");
+					fprintf(stderr, "Crater opt error: invalid opt spec (long_name contains '=' or ' ', which are not permitted)\n");
 					return false;
 				}
 			}
 		}else if(opt->arg_mode < 0 || opt->arg_mode > 2){
-			fprintf(stderr, "\e[1;31mCrater opt error: unknown value for arg_mode\e[0m\n");
+			fprintf(stderr, "Crater opt error: unknown value for arg_mode\n");
 			return false;
 		}
 		opt->found = false;
@@ -369,12 +369,12 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 		num_short += !!opt->short_name;
 	}
 	if(!cr8r_hash_init(long_opts, &cr8r_htft_cstr_u64, num_long*3)){
-		fprintf(stderr, "\e[1;31mCrater opt error: could not allocate long_opts table!\e[0m\n");
+		fprintf(stderr, "Crater opt error: could not allocate long_opts table!\n");
 		return false;
 	}
 	if(!cr8r_hash_init(short_opts, &cr8r_htft_cstr_u64, num_short*3)){
 		cr8r_hash_destroy(long_opts, &cr8r_htft_cstr_u64);
-		fprintf(stderr, "\e[1;31mCrater opt error: could not allocate short_opts table!\e[0m\n");
+		fprintf(stderr, "Crater opt error: could not allocate short_opts table!\n");
 		return false;
 	}
 	bool success = true;
@@ -383,7 +383,7 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 		if(opts[i].short_name){
 			cr8r_hash_insert(short_opts, &cr8r_htft_cstr_u64, &(cr8r_htent_cstr_u64){opts[i].short_name, i}, &status);
 			if(status != 1){
-				fprintf(stderr, "\e[1;31mCrater opt error: %s\e[0m\n", status ? "duplicate short name" : "hash_insert failed!");
+				fprintf(stderr, "Crater opt error: %s\n", status ? "duplicate short name" : "hash_insert failed!");
 				success = false;
 				break;
 			}
@@ -391,7 +391,7 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 		if(opts[i].long_name){
 			cr8r_hash_insert(long_opts, &cr8r_htft_cstr_u64, &(cr8r_htent_cstr_u64){opts[i].long_name, i}, &status);
 			if(status != 1){
-				fprintf(stderr, "\e[1;31mCrater opt error: %s\e[0m\n", status ? "duplicate long name" : "hash_insert failed!");
+				fprintf(stderr, "Crater opt error: %s\n", status ? "duplicate long name" : "hash_insert failed!");
 				success = false;
 				break;
 			}

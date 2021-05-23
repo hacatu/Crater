@@ -1,0 +1,30 @@
+{
+	"ising": {
+		"log_diff_tests": [[]]
+	},
+	"palindrome_2_and_10": {
+		"no_red_tests": [[]]
+	},
+	"palindrome_product": {
+		"no_red_tests": [[]]
+	},
+	"prime_power_triples": {
+		"no_red_tests": [[]]
+	},
+	"rand_test": {
+		"no_red_tests": [[]]
+	},
+	"shuffle": {
+		"no_red_tests": [[]]
+	},
+	"test_avl": {
+		"no_red_tests": [[]]
+	},
+	"vec_ftor": {
+		"no_red_tests": [[]]
+	},
+	"wordcount": {
+		"log_diff_tests": [["../../resources/frankenstein.txt"]]
+	}
+}
+

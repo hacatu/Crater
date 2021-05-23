@@ -40,7 +40,7 @@ void processInsertSequence(const cr8r_vec *iseq, const cr8r_vec_ft *iseq_ft){
 }
 
 int main(){
-	fprintf(stderr, "\e[1;34mTesting AVL tree with all possible sequences of 7 inserts/removals\n(this could take a minute or two)...\e[0m\n");
+	fprintf(stderr, "\e[1;34mTesting AVL tree with all 25401600 possible sequences of 7 inserts/removals\n(this could take a minute or two)...\e[0m\n");
 	cr8r_vec iseq, rseq;
 	cr8r_vec_ft ft = cr8r_vecft_u64;
 	ft.base.data = &rseq;
@@ -64,5 +64,6 @@ int main(){
 	cr8r_sla_delete(&sla);
 	cr8r_vec_delete(&iseq, &ft);
 	cr8r_vec_delete(&rseq, &ft);
+	fprintf(stderr, "\e[1;32mSuccess: Passed 25401600/25401600 tests\e[0m\n");
 }
 

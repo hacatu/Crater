@@ -106,6 +106,7 @@ int main(){
 		s += *(uint64_t*)cr8r_vec_get(&pals_both, &cr8r_vecft_u64, i);
 	}
 	cr8r_vec_delete(&pals_both, &cr8r_vecft_u64);
-	fprintf(stderr, s == 872187 ? "\e[1;32mGot sum %"PRIu64"\e[0m\n" : "\e[1;31mGot wrong sum %"PRIu64"\e[0m\n", s);
+	fprintf(stderr, s == 872187 ? "\e[1;32mGot sum %"PRIu64"\e[0m\n\e[1;32mSuccess: passed 1/1 tests\e[0m\n"
+		: "\e[1;31mERROR: Got wrong sum %"PRIu64"\e[0m\n\e[1;31mFailed: passed 0/1 tests\e[0m\n", s);
 }
 

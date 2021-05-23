@@ -103,9 +103,17 @@ int main(){
 	cr8r_vec_filter(&vec_abcs, &vecft_u64_3, perim_divides_1000);
 	uint64_t *abc = cr8r_vec_getx(&vec_abcs, &vecft_u64_3, -1);
 	uint64_t k = 1000/(abc[0] + abc[1] + abc[2]);
-	fprintf(stderr,
-		"\e[1;32m%"PRIu64", %"PRIu64", %"PRIu64" is the unique Pythagorean triple with perimeter 1000.\n"
-		"The product of the elements is %"PRIu64"\e[0m\n", abc[0]*k, abc[1]*k, abc[2]*k, abc[0]*k*abc[1]*k*abc[2]*k);
+	uint64_t prod = abc[0]*k*abc[1]*k*abc[2]*k;
+	if(prod == 31875000){
+		fprintf(stderr,
+			"\e[1;32m%"PRIu64", %"PRIu64", %"PRIu64" is the unique Pythagorean triple with perimeter 1000.\n"
+			"The product of the elements is %"PRIu64"\e[0m\n"
+			"\e[1;32mSuccess: passed 1/1 tests\e[0m\n", abc[0]*k, abc[1]*k, abc[2]*k, prod);
+	}else{
+		fprintf(stderr,
+			"\e[1;31mFound incorrect Pythagorean triple %"PRIu64", %"PRIu64", %"PRIu64" with product %"PRIu64"\e[0m\n"
+			"\e[1;31mFailed: passed 0/1 tests\e[0m\n", abc[0]*k, abc[1]*k, abc[2]*k, prod);
+	}
 	cr8r_vec_delete(&vec_abcs, &vecft_u64_3);
 }
 

@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo apt-get install -y lcov doxygen libsdl2-dev
         make coverage
-        if [ $(grep -cF `printf "\e[1;31m"` build/debug/log/test*.log) != 0 ]; then false; fi
+        grep -qF `printf "\e[1;32mtest.py suite passed all tests!\e[0m"` build/debug/log/test*.log
         make docs
         mv build/debug/cov website/
         mv build/debug/coverage.svg website/

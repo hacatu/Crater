@@ -117,7 +117,8 @@ int main(){
 		}
 	}
 	cr8r_vec_delete(&primes, &cr8r_vecft_u64);
-	fprintf(stderr, "\e[1;32mFound %"PRIu64" prime power triples!\e[0m\n", ppts.full);
+	fprintf(stderr, ppts.full == 1097343 ? "\e[1;32mFound %"PRIu64" prime power triples!\e[0m\n\e[1;32mSuccess: passed 1/1 tests\e[0m\n"
+		: "\e[1;31mGot wrong number of prime power triples %"PRIu64"\e[0m\n\e[1;31mFailed: passed 0/1 tests\e[0m\n", ppts.full);
 	cr8r_hash_destroy(&ppts, &htft_replace);
 }
 

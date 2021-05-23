@@ -87,8 +87,7 @@ $(foreach c,$(patsubst bin/%,%,$(COMPOUND_BINARIES)),$(eval $(call make-compound
 
 .PHONY: test
 test: all $(SIMPLE_TEST_BINS) $(COMPOUND_TEST_BINS) log
-	#-./test.sh &> log/test`date -u +%s`.log
-	../../test.sh `pwd` 2>&1 | tee log/test`date +%m-%d-%y-%R:%S`.log
+	../../test/test.py ../../test `pwd`/bin/test 2>&1 | tee log/test`date +%m-%d-%y-%R:%S`.log
 
 .PHONY: coverage
 coverage: test | cov

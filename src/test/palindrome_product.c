@@ -35,7 +35,8 @@ int main(){
 				uint64_t palindrome = 100001*a + 10010*b + 1100*c;
 				if(cr8r_hash_get(&products, &cr8r_htft_u64_void, &palindrome)){
 					cr8r_hash_destroy(&products, &cr8r_htft_u64_void);
-					fprintf(stderr, "\e[1;32mLargest palindrome is %"PRIu64"\e[0m\n", palindrome);
+					fprintf(stderr, palindrome == 906609 ? "\e[1;32mLargest palindrome is %"PRIu64"\e[0m\n\e[1;32mSuccess: passed 1/1 tests\e[0m\n"
+						: "\e[1;31mGot wrong result %"PRIu64"\e[0m\n\e[1;31mFailed: passed 0/1 tests\e[0m\n", palindrome);
 					exit(0);
 				}
 			}

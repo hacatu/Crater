@@ -53,7 +53,7 @@ int64_t ising2D_flip(ising2D_lattice *self, uint64_t i){
 	return 4*num_not_matching - 8;
 }
 
-bool ising2D_compute_energy_probs(uint64_t n, double B, double energy_probs[static n*n + 1]){
+bool ising2D_compute_energy_probs(uint64_t n, double B, double *energy_probs){
 	int64_t N = n*n;
 	if(N > 63){
 		return false;
