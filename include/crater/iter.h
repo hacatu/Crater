@@ -55,5 +55,3 @@ typedef enum{
 	HAC_ITER_COPY = 1ull << 10
 } HAC_ITER_TRAITS;
 
-#endif
-

@@ -75,6 +75,7 @@ Some convenient default callbacks are also included.
 
 ## Building
 
+### Overview/Linux
 This library uses variant makefiles for each build type.  To build the debug variant, simply run `make`
 in the project root directory.  The resulting files will be in `build/debug/lib` and `build/debug/bin`.
 
@@ -118,6 +119,20 @@ Further, some of the tests need `SDL2`.
 
 `-fno-strict-aliasing` is important to keep because the elements in most containers are stored in flexible length
 `char` arrays, and strict aliasing has to be disabled to allow a two way conversion between `char*` and `T*`.
+
+To use clang instead of gcc, `make CC=clang LD=clang test` can be used.  You may wish to edit `build/debug/ldflags.txt`
+to not use gold since it causes some link warnings in clang.
+
+### Windows
+
+Try installing the Windows subsystem for Linux or setting Crater up in VSCode.
+VSCodium on Linux is able to build and manage Crater pretty well, using the
+`clangd` and `Makefile Tools` extensions.  You will need to create a copy of
+`build/debug/cflags.txt` in the project root called `compile_flags.txt` but
+with the `-I../../include` line changed to `-Iinclude`, this should make `clangd`
+work properly.  Simply running the make commands in VSCode's bash terminal is
+recommended because the `Makefile Tools` extension does not handle ANSI escape
+sequences so its output is hard to read.
 
 ## Linking
 Once the library has been built, it can be linked with C programs by adding the flags `-Lbuild/debug/lib -lcrater`
