@@ -145,20 +145,6 @@ inline static uint64_t cr8r_hash_find_slot_ap(cr8r_hashtbl_t *self, const cr8r_h
 	return ~0ULL;
 }
 
-inline static uint64_t cr8r_hash_find_slot_ex(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft, const void *key){
-	uint64_t a = ft->hash(&ft->base,key) % self->len_a;
-	for(uint64_t j = 0, i; j < self->len_a; ++j){
-		i = (a + (j&1 ? j*j : self->len_a - j*j%self->len_a))%self->len_a;
-		uint64_t f = (self->flags_a[i >> 5] >> (i&0x1F))&0x100000001ULL;
-		if(!(f&0x100000000ULL)){
-			return i;
-		}else if(!ft->cmp(&ft->base, key, self->table_a + i*ft->base.size)){
-			return ~0ULL;
-		}
-	}
-	return ~0ULL;
-}
-
 inline static int cr8r_hash_ix_start(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft){
 	uint64_t i = self->len_a ? 64 - __builtin_clzll(self->len_a - 1) : 1;
 	uint64_t new_len = exp_primes[i];

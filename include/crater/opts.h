@@ -217,8 +217,8 @@ bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt);
 /// @param [in] _short_name: short name for the option.  Must be a single (possibly multibyte) character besides ' ', '-', or '='
 /// @param [in] _long_name: long name for the option.  May not contain ' ' or '='.  At least one of _long_name and _short_name must be nonnull
 /// @param [in] _description: description of the option to print in help text.
-#define CR8R_OPT_GENERIC_REQUIRED(_dest, _short_name, _long_name, _description) ((cr8r_opt)){\
-	_CR8R_OPT_GENERIC_OPTFIELDS((_dest), (_short_name), (_long_name), (_description))}
+#define CR8R_OPT_GENERIC_REQUIRED(_dest, _short_name, _long_name, _description) ((cr8r_opt){\
+	_CR8R_OPT_GENERIC_OPTFIELDS((_dest), (_short_name), (_long_name), (_description))})
 
 #define CR8R_OPT_HELP(_opts, _description) ((cr8r_opt){.dest=(_opts), .short_name="h", .long_name="help", .description=(_description), .on_opt=cr8r_opt_print_help, .on_missing=cr8r_opt_missing_optional})
 #define CR8R_OPT_END() ((cr8r_opt){.short_name=NULL, .long_name=NULL})
