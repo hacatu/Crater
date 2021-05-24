@@ -76,6 +76,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;inttypes.h&gt;</code><br />
 </div>
 <p><a href="opts_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -112,6 +113,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a9577e6c81889291632b4492da5b13ecc"><td class="memItemLeft" align="right" valign="top"><a id="a9577e6c81889291632b4492da5b13ecc"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPT_END</b>()&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.short_name=NULL, .long_name=NULL})</td></tr>
 <tr class="separator:a9577e6c81889291632b4492da5b13ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab45db6b83cb8143f2d7ba76f81d622c6"><td class="memItemLeft" align="right" valign="top"><a id="ab45db6b83cb8143f2d7ba76f81d622c6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPTS_FATAL_ERRS</b>&#160;&#160;&#160;1ull</td></tr>
+<tr class="separator:ab45db6b83cb8143f2d7ba76f81d622c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5953a6599ec7766fbbbcde3a27b07670"><td class="memItemLeft" align="right" valign="top"><a id="a5953a6599ec7766fbbbcde3a27b07670"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPTS_ALLOW_STRAY_DASH</b>&#160;&#160;&#160;2ull</td></tr>
+<tr class="separator:a5953a6599ec7766fbbbcde3a27b07670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -264,7 +271,7 @@ DESCRIPTION</h1>
 <div class="line">    __int128: cr8r_opt_parse_i128,                                             \</div>
 <div class="line">    <span class="keywordtype">unsigned</span> __int128: cr8r_opt_parse_u128),</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00177">177</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00181">181</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -320,7 +327,7 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00209">209</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00213">213</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -361,8 +368,8 @@ DESCRIPTION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    ((<a class="code" href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a>)){\</div>
-<div class="line">    _CR8R_OPT_GENERIC_OPTFIELDS((_dest), (_short_name), (_long_name), (_description))}</div>
+<b>Value:</b><div class="fragment"><div class="line">    ((<a class="code" href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a>){\</div>
+<div class="line">    _CR8R_OPT_GENERIC_OPTFIELDS((_dest), (_short_name), (_long_name), (_description))})</div>
 </div><!-- fragment -->
 <p>Represents a description for a required scalar option. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -375,7 +382,7 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00220">220</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00224">224</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -395,7 +402,7 @@ DESCRIPTION</h1>
 <p>Description of a command line option A list of these, terminated with a certain sentinel value, must be passed to <a class="el" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>. </p>
 <p>See <a class="el" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a> and <a class="el" href="opts_8h.html#a390e2e9c382f2099af1f292cf674387a">CR8R_OPT_GENERIC_REQUIRED</a> for macros that can automatically generate these descriptions </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00020">20</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00021">21</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -491,7 +498,7 @@ DESCRIPTION</h1>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aopts_8h_html_a5ad35d0fa8d4ca0c36a23abffe11399e"><div class="ttname"><a href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a></div><div class="ttdeci">struct cr8r_opt cr8r_opt</div><div class="ttdoc">Description of a command line option A list of these, terminated with a certain sentinel value,...</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00020">opts.h:20</a></div></div>
+<div class="ttc" id="aopts_8h_html_a5ad35d0fa8d4ca0c36a23abffe11399e"><div class="ttname"><a href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a></div><div class="ttdeci">struct cr8r_opt cr8r_opt</div><div class="ttdoc">Description of a command line option A list of these, terminated with a certain sentinel value,...</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00021">opts.h:21</a></div></div>
 <div class="ttc" id="aopts_8h_html_a89194c1a8e2ef26f7d51fb20cb2a4bce"><div class="ttname"><a href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a></div><div class="ttdeci">bool cr8r_opt_missing_optional(cr8r_opt *self)</div><div class="ttdoc">&quot;Default&quot; implementation of on_missing that returns true to indicate it is ok for the option to be mi...</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -80,10 +80,10 @@ Data Fields</h2></td></tr>
 void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__opt__cfg.html#a1d333ef6d2412e7bbc4f15db12333f7d">data</a></td></tr>
 <tr class="memdesc:a1d333ef6d2412e7bbc4f15db12333f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom data for on_arg if needed. <br /></td></tr>
 <tr class="separator:a1d333ef6d2412e7bbc4f15db12333f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a888e9c33b68d8258ecbe004e33e796e5"><td class="memItemLeft" align="right" valign="top"><a id="a888e9c33b68d8258ecbe004e33e796e5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__opt__cfg.html#a888e9c33b68d8258ecbe004e33e796e5">stop_on_first_err</a></td></tr>
-<tr class="memdesc:a888e9c33b68d8258ecbe004e33e796e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether option parsing should fail and return false after the first error or after all errors. <br /></td></tr>
-<tr class="separator:a888e9c33b68d8258ecbe004e33e796e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb7fd3ce07be38a897dd950d20e6aa0"><td class="memItemLeft" align="right" valign="top"><a id="abcb7fd3ce07be38a897dd950d20e6aa0"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__opt__cfg.html#abcb7fd3ce07be38a897dd950d20e6aa0">flags</a></td></tr>
+<tr class="memdesc:abcb7fd3ce07be38a897dd950d20e6aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags to control option parsing Can be zero or more of the following or'd together: CR8R_OPTS_FATAL_ERRS: if set, option parsing will stop after the first error instead of trying to find all errors before failing CR8R_OPTS_ALLOW_STRAY_DASH: if set, a command line argument "-" is treated as a positional argument instead of an errors. <br /></td></tr>
+<tr class="separator:abcb7fd3ce07be38a897dd950d20e6aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3242b2d82ce6af409414539118a52ad"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__opt__cfg.html#af3242b2d82ce6af409414539118a52ad">on_arg</a> )(void *<a class="el" href="structcr8r__opt__cfg.html#a1d333ef6d2412e7bbc4f15db12333f7d">data</a>, int argc, char **argv, int i)</td></tr>
 <tr class="memdesc:af3242b2d82ce6af409414539118a52ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback to handle positional arguments.  <a href="structcr8r__opt__cfg.html#af3242b2d82ce6af409414539118a52ad">More...</a><br /></td></tr>
 <tr class="separator:af3242b2d82ce6af409414539118a52ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -91,7 +91,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>General configuration settings for parsing options. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00081">81</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00082">82</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="af3242b2d82ce6af409414539118a52ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3242b2d82ce6af409414539118a52ad">&#9670;&nbsp;</a></span>on_arg</h2>
@@ -108,7 +108,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 <p>Callback to handle positional arguments. </p>
 <p>Command line arguments beginning with "-" are either short option groups or long options. An argument not beginning with "-" following one that does is considered an argument to the latter. Any other argument, or any argument after "--" which terminates option parsing, is considered a positional argument. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00091">91</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00095">95</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>

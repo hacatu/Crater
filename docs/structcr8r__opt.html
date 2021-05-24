@@ -99,7 +99,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00021">21</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00022">22</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ac6b7c79343c83b25ee7d8416ea154a05"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6b7c79343c83b25ee7d8416ea154a05">&#9670;&nbsp;</a></span>dest</h2>
@@ -116,7 +116,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>POINTER to variable/memory to store result in. </p>
 <p>on_opt and on_missing are responsible for setting this. To have a default value, the variable pointed by dest may be initialized or on_missing may be used. May be NULL. Can also be used to provide CUSTOM callbacks with extra data as well as a pointers to memory to initialize. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00027">27</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00028">28</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -135,7 +135,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Flag indicating whether or not the option was found. </p>
 <p>Should not be set, managed by <a class="el" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>. Automatically set to false before parsing starts and true when this argument is found (but after calling on_opt if applicable). Can be checked after parsing is done to find which arguments were/weren't found, as an alternative to on_missing. Can also be checked in on_opt to determine if this option has been encountered before (ie is a duplicate). </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00034">34</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00035">35</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -154,7 +154,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>0 indicates this option does not take an argument, 1 indicates this option has a required argument, and 2 indicates this option has an optional argument. </p>
 <p>For long form options, <code>--long-name=argument</code> (argument in same command line argument after an '=') or <code>--long-name argument</code> (argument in next command line argument) are permitted. If either of these occurs, the argument will be passed to on_opt. Otherwise (if there is no '=' and the next command line argument starts with '-'), the option is considered to not havean argument. If arg_required is true, this is an error and on_opt is not called. If arg_required is false, on_opt is called with NULL. For short form options, note that <code>-ab=argument</code> and <code>-ab argument</code> are both valid ways of providing a short form option <code>a</code> with no argument and <code>b</code> with argument "argument", but <code>-bargument</code> is not a valid way of doing this. This would be interpreted as 9 short form options with no arguments, or possibly an argument to <code>t</code> depending on what follows. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00046">46</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00047">47</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +173,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The short name for this option. </p>
 <p>Must not contain '-', '=', ' ', or more than one character. However, multibyte characters are allowed. May be NULL, but if both short_name and long_name are NULL then this indicates the end of the option list. Any character in a short form option group (command line argument starting with a '-') is checked using this name. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00052">52</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00053">53</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -192,7 +192,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The long name for this option. </p>
 <p>Must not contain '=' or ' ', but may contain any number of characters including multibyte characters and '-'. May be NULL, but if both short_name and long_name are NULL then this indicates the end of the option list. Any long form option (part of a command line argument which starts with "--" and stops if an '=' is encountered) is checked using this name. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00059">59</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00060">60</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Function to call when this option is encountered. </p>
 <p>If NULL, any argument is ignored and the only effect of encountering this option is setting <code>found</code> (and hence not calling on_missing if applicable). If this function returns false, the argument to this option is considered invalid. The argument to the option, opt, can be supplied in the command line either in the same command line argument as the option but separated by an '=', or in the next command line argument but not preceded by a '-'. If no such argument is found, opt is NULL, so if arg_required is not set, on_opt must be prepared to deal with that. found is set after calling this function, so it can be used to check if this option is provided more than once. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00070">70</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00071">71</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +230,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Function to call after reading command line arguments if this option was not found. </p>
 <p>If the option is not found and this function is NULL or returns false, this option is considered missing. This function should return true if it is ok for this option to be missing ( <a class="el" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a> can be used to always return true, also see <a class="el" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a> ). This function can also be used to initialize a variable in a default way if it is not provided as an option, eg by randomizing it, offering more flexibility than simply giving the variable a default value. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00077">77</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00078">78</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
