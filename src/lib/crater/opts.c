@@ -432,53 +432,46 @@ static inline bool parse_long_opt(cr8r_hashtbl_t *long_opts, cr8r_opt *opts, cr8
 	if(eq_chr){
 		*eq_chr = '=';
 	}
+	bool success = true;
 	if(eq_chr){//option argument can be passed after an '=' in the same argv entry
 		opt = eq_chr + 1;
 		++*argi;
 		if(opts[ent->n].arg_mode == 0){
 			fprintf(stderr, "Option --%s does not take an argument\n", opts[ent->n].long_name);
-			opts[ent->n].found = true;
-			return false;
+			success = false;
 		}
 	}else if(opts[ent->n].arg_mode == 0){
 		++*argi;
-		opts[ent->n].found = true;
-		return true;
 	}else if(*argi + 1 != argc && *argv[*argi + 1] != '-'){//or in the next argv entry, if it does not start with '-'
 		opt = argv[*argi + 1];
 		*argi += 2;
 	}else if(opts[ent->n].arg_mode == 1){//or there is no option argument
 		fprintf(stderr, "Option --%s missing required argument\n", opts[ent->n].long_name);
 		++*argi;
-		opts[ent->n].found = true;
-		return false;
-	}//if arg_mode == 2 and on_opt is not NULL, on_opt must be able to tolerate NULL opt
-	if(opts[ent->n].on_opt){
+		success = false;
+	}
+	// if arg_mode is 0 or 2 and on_opt is not NULL, on_opt must be able to tolerate NULL opt
+	// if arg_mode == 1, an error will be reported and on_opt will never be called if opt is NULL
+	if(success && opts[ent->n].on_opt){
 		if(!opts[ent->n].on_opt(opts + ent->n, opt)){
 			if(opt){
 				fprintf(stderr, "Invalid argument to option --%s\n", opts[ent->n].long_name);
 			}else{
 				fprintf(stderr, "Crater opt error: option --%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed\n", opts[ent->n].long_name);
 			}
-			opts[ent->n].found = true;
-			return false;
+			success = false;
 		}
 	}
 	opts[ent->n].found = true;
-	return true;
+	return success;
 }
 
 static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv, int *argi){
 	char *opt = NULL;
 	cr8r_htent_cstr_u64 *ent = NULL;
-	if(!argv[*argi][1]){
-		fprintf(stderr, "Stray \"-\" in argv\n");
-		++*argi;
-		return false;
-	}
 	bool success = true, reading_group = true;
 	for(int j = 1, char_len; reading_group && argv[*argi][j]; j += char_len){
-		if(!success && cfg->stop_on_first_err){
+		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
 			return false;
 		}
 		char_len = mblen(argv[*argi] + j, MB_CUR_MAX);
@@ -496,29 +489,27 @@ static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts
 			success = false;
 			continue;
 		}
+		bool curr_success = true;
 		if(tmp_chr == '='){
 			opt = argv[*argi] + j + char_len + 1;
 			++*argi;
 			reading_group = false;
 			if(opts[ent->n].arg_mode == 0){
 				fprintf(stderr, "Option -%s does not take an argument\n", opts[ent->n].short_name);
-				success = false;
-				break;
+				success = curr_success = false;
 			}
-		}else if(opts[ent->n].arg_mode == 0){
-			opts[ent->n].found = true;
-			continue;
-		}else if(!tmp_chr && *argi + 1 != argc && *argv[*argi + 1] != '-'){
+		// if the current option accepts an argument (arg_mode is 1 or 2),
+		// the current option is the last one in the group, and the next command line argument does
+		// not begin with a dash
+		}else if(opts[ent->n].arg_mode && !tmp_chr && *argi + 1 != argc && *argv[*argi + 1] != '-'){
 			opt = argv[*argi + 1];
 			*argi += 2;
 			reading_group = false;
 		}else if(opts[ent->n].arg_mode == 1){
 			fprintf(stderr, "Option -%s missing required argument (are you missing a ' '/'='?)\n", opts[ent->n].short_name);
-			success = false;
-			opts[ent->n].found = true;
-			continue;
+			success = curr_success = false;
 		}
-		if(opts[ent->n].on_opt){
+		if(curr_success && opts[ent->n].on_opt){
 			if(!opts[ent->n].on_opt(opts + ent->n, opt)){
 				if(opts[ent->n].arg_mode == 2 && !opt){
 					fprintf(stderr, "Crater opt error: option -%s has arg_mode 2 but on_opt failed on NULL.  arg_mode or on_opt should be changed\n", opts[ent->n].short_name);
@@ -526,8 +517,6 @@ static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts
 					fprintf(stderr, "Invalid argument to option -%s\n", opts[ent->n].short_name);
 				}
 				success = false;
-				opts[ent->n].found = true;
-				continue;
 			}
 		}
 		opts[ent->n].found = true;
@@ -544,20 +533,32 @@ bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 		return false;
 	}
 	bool success = true;
-	for(int i = 1; i < argc;){
+	int i = 1;
+	while(i < argc){
 		if(*argv[i] != '-'){
 			if(!cfg->on_arg || !cfg->on_arg(cfg->data, argc, argv, i)){
+				fprintf(stderr, "Failed to parse positional argument %i \"%s\"\n", i, argv[i]);
 				success = false;
 			}
+			++i;
 		}else if(argv[i][1] == '-'){
 			if(!argv[i][2]){//encountered "--"; done
 				break;
 			}//otherwise we have a "--long_name" option
 			success &= parse_long_opt(&long_opts, opts, cfg, argc, argv, &i);
+		}else if(!argv[i][1]){//encountered "-"
+			if(!(cfg->flags & CR8R_OPTS_ALLOW_STRAY_DASH)){
+				fprintf(stderr, "Stray \"-\" in argv\n");
+				success = false;
+			}else if(!cfg->on_arg || !cfg->on_arg(cfg->data, argc, argv, i)){
+				fprintf(stderr, "Failed to parse positional argument %i \"%s\"\n", i, argv[i]);
+				success = false;
+			}
+			++i;
 		}else{
 			success &= parse_short_optgrp(&short_opts, opts, cfg, argc, argv, &i);
 		}
-		if(!success && cfg->stop_on_first_err){
+		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
 			cr8r_hash_destroy(&long_opts, &cr8r_htft_cstr_u64);
 			cr8r_hash_destroy(&short_opts, &cr8r_htft_cstr_u64);
 			return false;
@@ -592,8 +593,14 @@ bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 			}
 			success = false;
 		}
-		if(!success && cfg->stop_on_first_err){
+		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
 			return false;
+		}
+	}
+	for(; i < argc; ++i){
+		if(!cfg->on_arg || !cfg->on_arg(cfg->data, argc, argv, i)){
+			fprintf(stderr, "Failed to parse positional argument %i \"%s\"\n", i, argv[i]);
+			success = false;
 		}
 	}
 	return success;

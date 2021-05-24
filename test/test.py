@@ -43,6 +43,7 @@ for test_name, test_spec in test_cfg.items():
 		tested += 1
 
 print(str(passed) + "/" + str(tested) + " tests passed.")
-print("\033[1;32mtest.py suite passed all tests!\033[0m")
+if passed == tested:
+	print("\033[1;32mtest.py suite passed all tests!\033[0m")
 sys.exit(passed != tested)
 

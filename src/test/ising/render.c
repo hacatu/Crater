@@ -113,7 +113,7 @@ int main(int argc, char **argv){
 			.on_opt = cr8r_opt_parse_ull, .on_missing = generate_random_seed},
 		CR8R_OPT_END()
 	};
-	if(!cr8r_opt_parse(options, &((cr8r_opt_cfg){.stop_on_first_err=true}), argc, argv)){
+	if(!cr8r_opt_parse(options, &((cr8r_opt_cfg){.flags=CR8R_OPTS_FATAL_ERRS}), argc, argv)){
 		exit(1);
 	}
 	

@@ -12,6 +12,7 @@
 ///
 
 #include <stdbool.h>
+#include <inttypes.h>
 
 /// Description of a command line option
 /// A list of these, terminated with a certain sentinel value, must be passed to { @link cr8r_opt_parse }.
@@ -81,8 +82,11 @@ struct cr8r_opt {
 typedef struct{
 	/// Custom data for on_arg if needed
 	void *data;
-	/// Whether option parsing should fail and return false after the first error or after all errors
-	bool stop_on_first_err;
+	/// Flags to control option parsing
+	/// Can be zero or more of the following or'd together:
+	/// CR8R_OPTS_FATAL_ERRS: if set, option parsing will stop after the first error instead of trying to find all errors before failing
+	/// CR8R_OPTS_ALLOW_STRAY_DASH: if set, a command line argument "-" is treated as a positional argument instead of an errors
+	uint64_t flags;
 	/// Callback to handle positional arguments.
 	/// Command line arguments beginning with "-" are either short option groups or long options.
 	/// An argument not beginning with "-" following one that does is considered an argument to the
@@ -222,4 +226,7 @@ bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt);
 
 #define CR8R_OPT_HELP(_opts, _description) ((cr8r_opt){.dest=(_opts), .short_name="h", .long_name="help", .description=(_description), .on_opt=cr8r_opt_print_help, .on_missing=cr8r_opt_missing_optional})
 #define CR8R_OPT_END() ((cr8r_opt){.short_name=NULL, .long_name=NULL})
+
+#define CR8R_OPTS_FATAL_ERRS 1ull
+#define CR8R_OPTS_ALLOW_STRAY_DASH 2ull
 
