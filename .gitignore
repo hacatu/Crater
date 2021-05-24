@@ -33,6 +33,7 @@ compile_flags.txt
 # Logs and databases #
 ######################
 *.log
+!test/*.log
 *.sql
 *.sqlite
 # OS generated files #

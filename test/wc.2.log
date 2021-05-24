@@ -1,0 +1,18 @@
+Basic line, word, and byte counting utility
+Written by hacatu
+
+Usage:
+	`wc [<options>] <files>`: print counts for each file and total count.
+	`wc [<options>] --files0-from=<file> [<files>]`: read list of null terminated filenames from <file>, and optionally additional files.
+Counts are printed in the order: lines, words, characters, bytes, maximum line length.
+If no count options are given, line, word, and byte counts are printed.
+If no files are given, standard input is read instead.  To read standard input as well as other files, "-" can be given as a filename.
+
+	-h/--help: display this help information and exit
+	-l/--lines: 	print line counts, where lines are separated by utf8 line separators, namely u000A, u000B, u000C, u000D, u000D followed by u000A, u0085, u2028, or u2029
+	-w/--words: 	print word counts, where a word is defined as a maximal run of non-whitespace characters, as determined by iswspace
+	-m/--chars: 	print character counts, counting multibyte utf8 characters, invalid utf8 bytes, and embedded null bytes as one character each
+	-c/--bytes: 	print byte counts
+	-L/--max-line-length: 	print length of longest line in bytes
+	-f/--files0-from: 	read list of null terminated filenames from the given argument, or stdin if "-" is given
+	-v/--version: 	print version and exit

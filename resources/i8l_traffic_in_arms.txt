@@ -1,0 +1,1286 @@
+Code of Federal Regulations [EXERPTS]
+ 
+International Traffic in Arms Regulations
+ 
+Title 22 -- Foreign Relations;
+ 
+Chapter I -- Department of State
+ 
+Subchapter M -- International Traffic in Arms Regulations
+ 
+ 
+[Revised as of April 1, 1992]
+ 
+Part 120
+ 
+Purpose, Background and Definitions
+ 
+Sec. 120.1 General.
+ 
+(a) Purpose. Section 38 of the Arms Export Control Act (22 U.S.C. 2778)
+authorizes the President to control the export and import of defense
+articles and defense services. It is the purpose of this subchapter to
+implement this authority. The statutory authority of the President to
+promulgate regulations with respect to exports of defense articles and
+defense services was delegated to the Secretary of State by Executive
+Order 11958, as amended (42 FR 4311). By virtue of delegations of
+authority by the Secretary of State, these regulations are primarily
+administered by the Director of the Office of Munitions Control, Bureau of
+Politico-Military Affairs, Department of State (35 FR 5422).
+ 
+(b) Eligibility. Licenses or other approvals (other than approvals
+obtained pursuant to Sec. 123.9 of this subchapter) may be granted only to
+U.S. persons (as defined in Sec. 120.23) and foreign governmental entities
+in the United States. Foreign persons (as defined in Sec. 120.11) other
+than governments are not eligible. U.S. persons who have been convicted of
+violating the U.S. criminal statutes enumerated in Sec. 120.24, or who
+have been debarred pursuant to part 127 of this subchapter, are also
+generally ineligible (see Sec. 127.6(c) of this subchapter). Applications
+for licenses or requests for other approvals will generally be considered
+only if the applicant has registered with the Office of Munitions Control
+pursuant to part 122 of this subchapter. All applications and requests for
+approval must be signed by a responsible official who is a U.S. person and
+who has been empowered by the registrant to sign such documents.
+ 
+SOURCE: [49 FR 47684, Dec. 6, 1984; 50 FR 12787, Apr. 1, 1985, as amended
+at 53 FR 11496, Apr. 7, 1988; 54 FR 42497, Oct. 17, 1989]
+ 
+AUTHORITY: Sec. 38, Arms Export Control Act, 90 Stat. 744 (22 U.S.C.
+2778); E.O. 11958, 42 FR 4311; 22 U.S.C. 2658.
+ 
+Sec. 120.2 Designation of defense articles and defense services.
+ 
+The Arms Export Control Act also provides (22 U.S.C. 2778(a) and 2794(7))
+that the President shall designate which articles shall be deemed to be
+defense articles and defense services for purposes of this subchapter. The
+items so designated constitute the United States Munitions List, and are
+specified in part 121 of this subchapter. Such designations are made by
+the Department of State with the concurrence of the Department of Defense.
+ 
+Sec. 120.3 Policy on designating defense articles and services.
+ 
+Designations of defense articles and defense services are based primarily
+on whether an article or service is deemed to be inherently military in
+character. Whether it has a predominantly military application is taken
+into account. The fact that an article or service may be used for both
+military and civilian purposes does not in and of itself determine whether
+it is subject to the export controls of this subchapter. (Narrow
+exceptions to this general policy exist with respect to exports of certain
+spare parts and components in Categories V(d); VIII (e) and (g); XI(e);
+XII(c); and XVI(b).) The intended use of the article or service after its
+export (i.e., for a military or civilian purpose) is also not relevant in
+determining whether the export is subject to the controls of this
+subchapter.
+ 
+Sec. 120.4 Relation to Department of Commerce regulations.
+ 
+If an article or service is placed on the United States Munitions List,
+its export is regulated exclusively by the Department of State. Exports
+which are not subject to the controls of this subchapter are generally
+under the regulatory jurisdiction of the Department of Commerce pursuant
+to the Export Administration Act of 1979, as amended (50 U.S.C. App. 2401
+through 2420) and the implementing Export Administration Regulations (15
+CFR parts 368 through 399).
+ 
+Sec. 120.5 Commodity jurisdiction procedure.
+ 
+The Office of Munitions Control will provide, upon written request, a
+determination on whether a particular article is included on the United
+States Munitions List. Such requests should be accompained by five copies
+of the letter requesting a determination and any brochures or other
+documentation or specifications relating to the article. A "commodity
+jurisdiction" procedure is used if a doubt exists within the U.S.
+Government on whether an article is on the Munitions List. The procedure
+entails consultations among the Departments of State, Commerce and
+Defense.
+ 
+Sec. 120.6 General.
+ 
+The definitions contained in this part (listed alphabetically) apply to
+the use of the defined terms throughout this subchapter unless a different
+meaning is specified. See also Sec.Sec. 130.2 through 130.8 for
+definitions applicable to Part 130.
+ 
+Sec. 120.7 Defense articles.
+ 
+Defense article means any item designated in Sec. 121.1. This term
+includes models, mockups, and other such items which reveal technical data
+directly relating to items designated in Sec. 121.1.
+ 
+Sec. 120.8 Defense services.
+ 
+Defense service means:
+ 
+(a) The furnishing of assistance, including training, to foreign persons
+in the design, engineering, development, production, processing,
+manufacture, use, operation, overhaul, repair, maintenance, modification,
+or reconstruction of defense articles, whether in the United States or
+abroad; or
+ 
+(b) The furnishing to foreign persons of any technical data, whether in
+the United States or abroad. ...
+ 
+Sec. 120.10 Export.
+ 
+Export means, for purposes of this subchapter:
+ 
+(a) Sending or taking defense articles out of the United States in any
+manner; or ...
+ 
+(c) Sending or taking technical data outside of the United States in any
+manner except by mere travel outside of the United States by a person
+whose personal knowledge includes technical data; or
+ 
+(d) Disclosing or transferring technical data to a foreign person, whether
+in the United States or abroad; or
+ 
+(e) The performance of a defense service on behalf of, or for the benefit
+of, a foreign person, whether in the United States or abroad. ...
+ 
+Sec. 120.11 Foreign person.
+ 
+Foreign person means any person (Sec. 120.16) who is not a citizen or
+national of the United States unless that person has been lawfully
+admitted for permanent residence in the United States under the
+Immigration and Naturalization Act (8 U.S.C. 1101, section 101(a)20, 60
+Stat. 163) (i.e., individuals referred to as "immigrant aliens" under
+previous laws and regulations). It includes foreign corporations (i.e.,
+corporations that are not incorporated in the United States),
+international organizations, foreign governments, and any agency or
+subdivision of foreign governments (e.g., diplomatic missions). ...
+ 
+Sec. 120.13 License.
+ 
+License means a document bearing the word "license" which when issued by
+the Director, Office of Munitions Control, or his authorized designee,
+permits the export or intransit shipment of a specific defense article,
+defense service, or technical data.
+ 
+Sec. 120.14 Manufacturing license agreement.
+ 
+An agreement (e.g., contract) whereby a U.S. person grants a foreign
+person an authorization or a license to manufacture defense articles
+abroad and which involves or contemplates (a) the export of technical data
+(as defined in Sec. 120.21) or defense articles or the performance of
+defense services, or (b) the use by the foreign person of technical data
+or defense articles previously exported by the U.S. person.
+ 
+Sec. 120.15 Office of Munitions Control.
+ 
+Office of Munitions Control means the Office of Munitions Control, Bureau
+of Politico-Military Affairs, Department of State, Washington, D.C. 20520.
+ 
+Sec. 120.16 Person.
+ 
+Person means a natural person as well as a corporation, business
+association, partnership, society, trust, or any other entity,
+organization or group, including governmental entities. If a provision in
+this subchapter does not refer exclusively to a foreign person (Sec.
+120.11) or U.S. person (Sec. 120.23), then it refers to both.
+ 
+...
+ 
+Sec. 120.18 Public domain.
+ 
+Public domain means information which is published and which is generally
+accessible or available to the public:
+ 
+(a) Through sales at newsstands and bookstores;
+ 
+(b) Through subscriptions which are available without restriction to any
+individual who desires to obtain or purchase the published information;
+ 
+(c) Through second class mailing privileges granted by the U.S.
+Government; or,
+ 
+(d) At libraries open to the public.
+ 
+Sec. 120.19 Significant military equipment.
+ 
+(a) Significant military equipment means articles, as identified in
+paragraph (b) of this section, for which special export controls are
+warranted because of their capacity for substantial military utility or
+capability.
+ 
+(b) Articles designated as significant military equipment under the
+criterion specified in paragraph (a) of this section include all
+classified articles and the articles enumerated in Sec. 121.1 in
+Categories I (a) and (c) (in quantity); II (a) and (b); III(a) (excluding
+ammunition for firearms in Category (I)) and (d); IV (a), (b), (d), (e),
+(f) and (g); V (a) (in quantity) and (b); VI (a), (b) ... and (e); VII
+(a), (b), (c), (e), (f) and (g); VIII (a), (b)(1), (c), (d), (g), (h), and
+(i). GEMS as defined in (i), and inertial systems as defined in (j); XI
+(a)(1), (b)(1), (c); XII (a) and (b); XIV (a), (b), (c) and (d); XVI;
+XVII; and XX (a) and (b).
+ 
+(c) Items in Sec. 121.1 which are preceded by an asterisk are "significant
+military equipment."
+ 
+(d) Section 47(6) of the Arms Export Control Act (22 U.S.C. 2794(6) note)
+provides a definition of "major defense equipment" and refers to certain
+significant combat equipment on the U.S. Munitions List. The terms
+"significant military equipment" and "significant combat equipment" are
+considered to be equivalent for purposes of that section of the Arms
+Export Control Act and this subchapter.
+ 
+Sec. 120.20 Technical assistance agreement.
+ 
+An agreement (e.g., contract) for the performance of defense services or
+the disclosure of technical data, as opposed to an agreement granting a
+right or license to manufacture defense articles.
+ 
+Sec. 120.21 Technical data.
+ 
+Technical data means, for purposes of this subchapter:
+ 
+(a) Classified information relating to defense articles and defense
+services;
+ 
+(b) Information covered by an invention secrecy order;
+ 
+(c) Information, in any form, which is directly related to the design,
+engineering, development, production, processing, manufacture, use,
+operation, overhaul, repair, maintenance, modification, or reconstruction
+of defense articles. This includes, for example, information in the form
+of blueprints, drawings, photographs, plans, instructions, computer
+software and documentation. This also includes information which advances
+the state of the art of articles on the U.S. Munitions List. This
+definition does not include information concerning general scientific,
+mathematical or engineering principles commonly taught in academia. It
+also does not include basic marketing information on function or purpose
+or general system descriptions of defense articles. ...
+ 
+Sec. 120.24 U.S. criminal statutes.
+ 
+For purposes of this subchapter, the phrase U.S. criminal statutes means:
+ 
+(a) Section 38 of the Arms Export Control Act (22 U.S.C. 2778);
+ 
+(b) Section 11 of the Export Administration Act of 1979 (50 U.S.C. App.
+2410);
+ 
+(c) Sections 793, 794, or 798 of Title 18, United States Code (relating to
+espionage involving defense or classified information);
+ 
+(d) Section 16 of the Trading with the Enemy Act (50 U.S.C. App. 16);
+ 
+(e) Section 206 of the International Emergency Economic Powers Act
+(relating to foreign assets controls; 50 U.S.C. 1705); ...
+ 
+(l) Section 371 of Title 18, United States Code (when it involves
+conspiracy to violate any of the above statutes).
+ 
+...
+ 
+Part 121
+ 
+The United States Munitions List Enumeration of Articles
+ 
+Sec. 121.1 General. The United States Munitions List.
+ 
+(a) The following articles, services and related technical data are
+designated as defense articles and defense services pursuant to sections
+38 and 47(7) of the Arms Export Control Act (22 U.S.C. 2778 and 2794(7)).
+Changes in designations will be published in the Federal Register.
+Information and clarifications on whether specific items are defense
+articles and services under this subchapter may appear periodically in the
+Defense Trade News published by the Center for Defense Trade.
+ 
+(b) Significant Military Equipment. An asterisk precedes certain defense
+articles in the following list. The asterisk means that the article is
+deemed to be "significant military equipment" to the extent specified in
+Sec. 120.19. The asterisk is placed as a convenience to help identify such
+articles. ...
+ 
+Category XI--Military [and Space] Electronics
+ 
+(a) Electronic equipment not included in Category XII of the U.S.
+Munitions List which is specifically designed, modified or configured for
+military application. This equipment includes but is not limited to: ...
+ 
+(6) Computers specifically designed or developed for military application
+and any computer specifically modified for use with any defense article in
+any category of the U.S. Munitions List.
+ 
+(7) Any experimental or developmental electronic equipment specifically
+designed or modified for military application or specifically designed or
+modified for use with a military system.
+ 
+*(b) Electronic systems or equipment specifically designed, modified, or
+configured for intelligence, security, or military purposes for use in
+search, reconnaissance, collection, monitoring, direction-finding,
+display, analysis and production of information from the electromagnetic
+spectrum and electronic systems or equipment designed or modified to
+counteract electronic surveillance or monitoring. A system meeting this
+definition is controlled under this subchapter even in instances where any
+individual pieces of equipment constituting the system may be subject to
+the controls of another U.S. Government agency. Such systems or equipment
+described above include, but are not limited to, those:
+ 
+(1) Designed or modified to use cryptographic techniques to generate the
+spreading code for spread spectrum or hopping code for frequency agility.
+This does not include fixed code techniques for spread spectrum.
+ 
+(2) Designed or modified using burst techniques (e.g., time compression
+techniques) for intelligence, security or military purposes.
+ 
+(3) Designed or modified for the purpose of information security to
+suppress the compromising emanations of information-bearing signals. This
+covers TEMPEST suppression technology and equipment meeting or designed to
+meet government TEMPEST standards. This definition is not intended to
+include equipment designed to meet Federal Communications Commission (FCC)
+commercial electro-magnetic interference standards or equipment designed
+for health and safety. ...
+ 
+(e) Technical data (as defined in Sec. 120.21) and defense services (as
+defined in Sec. 120.8) directly related to the defense articles enumerated
+in paragraphs (a) through (d) of this category. (See Sec. 125.4 for
+exemptions.) Technical data directly related to the manufacture or
+production of any defense articles enumerated elsewhere in this category
+that are designated as Significant Military Equipment (SME) shall itself
+be designated as SME. ...
+ 
+Category XIII--Auxiliary Military Equipment ...
+ 
+(b) Information Security Systems and equipment, cryptographic devices,
+software, and components specifically designed or modified therefore,
+including:
+ 
+(1) Cryptographic (including key management) systems, equipment,
+assemblies, modules, integrated circuits, components or software with the
+capability of maintaining secrecy or confidentiality of information or
+information systems, except cryptographic equipment and software as
+follows:
+ 
+(i) Restricted to decryption functions specifically designed to allow the
+execution of copy protected software, provided the decryption functions
+are not user-accessible.
+ 
+(ii) Specially designed, developed or modified for use in machines for
+banking or money transactions, and restricted to use only in such
+transactions. Machines for banking or money transactions include automatic
+teller machines, self-service statement printers, point of sale terminals
+or equipment for the encryption of interbanking transactions.
+ 
+(iii) Employing only analog techniques to provide the cryptographic
+processing that ensures information security in the following
+applications:
+ 
+a. Fixed (defined below) band scrambling not exceeding 8 bands and in
+which the transpositions change not more frequently than once every
+second;
+ 
+b. Fixed (defined below) band scrambling exceeding 8 bands and in which
+the transpositions change not more frequently than once every ten seconds;
+ 
+c. Fixed (defined below) frequency inversion and in which the
+transpositions change not more frequently than once every second;
+ 
+d. Facsimile equipment;
+    ...
+ 
+(iv) Personalized smart cards using cryptography restricted for use only
+in equipment or systems exempted from the controls of the USML.
+ 
+(v) Limited to access control, such as automatic teller machines,
+self-service statement printers or point of sale terminals, which protects
+password or personal identification numbers (PIN) or similar data to
+prevent unauthorized access to facilities but does not allow for
+encryption of files or text, except as directly related to the password of
+PIN protection.
+ 
+(vi) Limited to data authentication which calculates a Message
+Authentication Code (MAC) or similar result to ensure no alteration of
+text has taken place, or to authenticate users, but does not allow for
+encryption of data, text or other media other than that needed for the
+authentication.
+ 
+(vii) Restricted to fixed data compression or coding techniques.
+ 
+(viii) Limited to receiving for radio broadcast, pay television or similar
+restricted audience television of the consumer type, without digital
+encryption and where digital decryption is limited to the video, audio or
+management functions.
+ 
+(ix) Software designed or modified to protect against malicious computer
+damage, e.g., viruses.
+ 
+(2) Cryptographic (including key management) systems, equipment,
+assemblies, modules, integrated circuits, components or software which
+have the capability of generating spreading or hopping codes for spread
+spectrum systems or equipment.
+ 
+(3) Cryptanalytic systems, equipment, assemblies, modules, integrated
+circuits, components or software.
+ 
+(4) Systems, equipment, assemblies, modules, integrated circuits,
+components or software providing certified or certifiable multi-level
+security or user isolation exceeding class B2 of the Trusted Computer
+System Evaluation Criteria (TCSEC) and software to certify such systems,
+equipment or software.
+ 
+(5) Ancillary equipment specifically designed or modified for paragraphs
+(b) (1), (2), (3), (4) and (5) of this category; ...
+ 
+Category XVII--Classified Articles, Technical Data and Defense Services
+Not Otherwise Enumerated
+ 
+*(a) All articles, technical data (as defined in Sec. 120.21) and defense
+services (as defined in Sec. 120.8) relating thereto which are classified
+in the interests of national security and which are not otherwise
+enumerated in the U.S. Munitions List. ...
+ 
+Category XXI--Miscellaneous Articles
+ 
+(a) Any article not specifically enumerated in the other categories of the
+U.S. Munitions List which has substantial military applicability and which
+has been specifically designed or modified for military purposes. The
+decision on whether any article may be included in this category shall be
+made by the Director of the Office of Defense Trade Controls.
+ 
+(b) Technical data (as defined in Sec. 120.21) and defense services (as
+defined in Sec. 120.8) directly related to the defense articles enumerated
+in paragraphs (a) of this category. ...
+ 
+Sec. 121.2 Interpretations of the United States Munitions List.
+ 
+The following interpretations (listed alphabetically) explain and amplify
+the terms used in Sec. 121.1. These interpretations have the same force as
+if they were a part of the United States Munitions List category to which
+they refer. ...
+ 
+Sec. 121.8 End-items, components, accessories, attachments, parts,
+firmware, software and systems.
+ 
+(a) An "end-item" is an assembled article ready for its intended use. Only
+ammunition, fuel or another energy source is required to place it in an
+operating state.
+ 
+(b) A "component" is an item which is useful only when used in conjunction
+with an end-item. A major component includes any assembled element which
+forms a portion of an end-item without which the end-item is inoperable.
+(Example: airframes, tail sections, transmissions, tank treads, hulls,
+etc.) A minor component includes any assembled element of a major
+component.
+ 
+(c) "Accessories" and "attachments" are associated equipment for any
+component, end-item or system, and which are not necessary for their
+operation, but which enhance their usefulness or effectiveness. (Examples:
+riflescopes, special paints, etc.)
+ 
+(d) A "part" is any single unassembled element of a major or a minor
+component, accessory, or attachment which is not normally subject to
+disassembly without the destruction or the impairment of design use.
+(Examples: rivets, wire, bolts, etc.)
+ 
+(e) Firmware and any related unique support tools (such as computers,
+linkers, editors, test case generators, diagnostic checkers, library of
+functions and system test diagnostics) specifically designed for equipment
+or systems covered under any category of the United States Munitions List
+are considered as part of the end-item or component. "Firmware" includes
+but is not limited to circuits into which software has been programmed.
+ 
+(f) "Software" includes but is not limited to the system functional
+design, logic flow, algorithms, application programs, operating systems
+and support software for design, implementation, test, operation,
+diagnosis and repair. A person who intends to export software only should,
+unless it is specifically enumerated in Sec. 121.1, apply for a technical
+data license pursuant to part 125 of this subchapter.
+ 
+(g) A "system" is a combination of end-items, components, parts,
+accessories, attachments, firmware or software, specifically designed,
+modified or adapted to operate together to perform a specialized military
+function. ...
+ 
+Part 122
+ 
+Registration of Manufacturers and Exporters
+ 
+Sec. 122.1 Registration requirements.
+ 
+(a) General. Any person who engages in the United States in the business
+of either manufacturing or exporting defense articles or furnishing
+defense services is required to register with the Office of Munitions
+Control. Manufacturers who do not engage in exporting must nevertheless
+register.
+ 
+(b) Exemptions. Registration is not required for: ...
+ 
+(2) Persons whose pertinent business activity is confined to the
+production of unclassified technical data only. ...
+ 
+(4) Persons who engage only in the fabrication of articles for
+experimental or scientific purposes, including research and development.
+ 
+(c) Purpose. Registration is primarily a means to provide the U.S.
+Government with necessary information on who is involved in certain
+manufacturing and exporting activities. Registration does not confer any
+export rights or privileges. It is generally a precondition to the
+issuance of any license or other approval under this subchapter.
+ 
+Sec. 122.2 Submission of registration statement.
+ 
+(a) General. The Department of State Form DSP-9 (Registration Statement)
+and the transmittal letter required by paragraph (b) of this subsection
+must be submitted by an intended registrant with a payment by check or
+money order payable to the Department of State of one of the fees
+prescribed in Sec. 122.3(a) of this subchapter. The Registration Statement
+and transmittal letter must be signed by a senior officer who has been
+empowered by the intended registrant to sign such documents. The intended
+registrant shall also submit documentation that demonstrates that it is
+incorporated or otherwise authorized to do business in the United States.
+The Office of Munitions Control will return to sender any Registration
+Statement that is incomplete, or that is not accompanied by the required
+letter or payment of the proper registration fee. ...
+ 
+Sec. 122.5 Maintenance of records by registrants.
+ 
+(a) A person who is required to register must maintain records concerning
+the manufacture, acquisition and disposition of defense articles and the
+provision of defense services by the registrant. All such records must be
+maintained for a period of 6 years. The Director, Office of Munitions
+Control, may prescribe a longer or shorter period in individual cases.
+ 
+(b) Records maintained under this section shall be available at all times
+for inspection and copying by the Director, Office of Munitions Control or
+a person designated by the Director (the Director of the Diplomatic
+Security Service or a person designated by the Director of the Diplomatic
+Security Service or another designee), or the Commissioner of the U.S.
+Customs Service or a person designated by the Commissioner.
+ 
+ 
+Part 123
+ 
+Licenses for the Export of Defense Articles
+ 
+Sec. 123.1 Requirement for export licenses.
+ 
+(a) Any person who intends to export a defense article must obtain a
+license from the Office of Munitions Control prior to the export unless
+the export qualifies for an exemption under the provisions of this
+subchapter.
+ 
+(b) As a condition to the issuance of a license or other approval, the
+Office of Munitions Control may require all pertinent documentary
+information regarding the proposed transaction.
+ 
+(c) An application for a license under this part for the permanent export
+of defense articles sold commercially must be accompanied by a copy of a
+purchaser order, letter of intent or other appropriate documentation. In
+cases involving the U.S. Foreign Military Sales program, three copies of
+the relevant Department of Defense Form 1513 are required, unless the
+procedures of Sec. 126.4(c) or Sec. 126.6 are followed. . . .
+ 
+Sec. 123.2 Imports.
+ 
+No defense article may be imported into the United States unless (a) it
+was previously exported temporarily under a license issued by the Office
+of Munitions Control; or (b) it constitutes a temporary import/intransit
+shipment licensed under Sec. 123.3; or (c) its import is authorized by the
+Department of the Treasury (see 27 CFR parts 47, 178 and 179).
+ 
+...
+ 
+Sec. 123.9 Country of ultimate destination.
+ 
+(a) The country designated as the country of ultimate destination on an
+application for an export license, or on a shipper's export declaration
+where an exemption is claimed under this subchapter, must be the country
+of ultimate end-use. The written approval of the Department of State must
+be obtained before reselling, diverting, transferring, transshipping, or
+disposing of a defense article in any country other than the country of
+ultimate destination as stated on the export license, or on the shipper's
+export declaration in cases where an exemption is claimed under this
+subchapter. Exporters must ascertain the specific end-user and end-use
+prior to submitting an application to the Office of Munitions Control or
+claiming an exemption under this subchapter. End-use must be confirmed and
+should not be assumed.
+ 
+...
+ 
+Sec. 123.10 Non-transfer and use assurances and Congressional
+notification.
+ 
+(a) An application for a license (Form DSP-5) to export significant
+military equipment defined in Sec. 120.19 must be accompanied by a
+nontransfer and use certificate (Form DSP-83) at the time of submission to
+the Office of Munitions Control. This form is to be executed by the
+foreign consignee and foreign end-user. The certificate stipulates that,
+except as specifically authorized by prior written approval of the
+Department of State, the foreign consignee and foreign end-user will not
+reexport, resell or otherwise dispose of the significant military
+equipment enumerated in the application outside the country named as the
+location of the foreign end-use.
+ 
+...
+ 
+Part 124
+ 
+Manufacturing License Agreements, Technical Assistance Agreements, and
+Other Defense Services
+ 
+Sec. 124.1 Manufacturing license agreements and technical assistance
+agreements.
+ 
+(a) General. The approval of the Office of Munitions Control must be
+obtained before the defense services described in Sec. 120.8(a) of this
+subchapter may be furnished. In order to obtain such approval, the U.S.
+person must submit a proposed agreement with the foreign person concerned
+to the Office of Munitions Control. Such agreements are generally
+characterized as either "Manufacturing license agreements" or "technical
+assistance agreements" as defined in Sec. 120.14 and Sec. 120.20, and may
+not enter into force without the prior written approval of the Office of
+Munitions Control. Once approved, the defense services described in the
+agreements may generally be provided without further licensing in
+accordance with Sec. 124.3 and Sec. 125.4(b)(2). The requirements of this
+section apply whether or not technical data is to be disclosed or used in
+the performance of the defense services described in Sec. 120.8(a) (e.g.,
+all the information relied upon by the U.S. person in performing the
+defense service is in the public domain or is otherwise exempt from the
+licensing requirements of this subchapter pursuant to Sec. 125.4). This
+requirement also applies to the training of foreign military forces, both
+regular and irregular, in the use of defense articles. Technical
+assistance agreements must be submitted in such cases. (In exceptional
+cases, the Office of Munitions Control, upon written request, will
+consider approving the provision of defense services described in Sec.
+120.8(a) by granting a license under part 125. Also, see Sec. 126.8 for
+the requirements for prior approval of proposals relating to significant
+military equipment.)
+ 
+(b) Amendments. Proposed amendments, including extensions, to agreements
+subject to the requirements of this part must also be submitted for
+approval. The amendments may also not enter into force until approved by
+the Office of Munitions Control. Amendments which only alter delivery or
+performance schedules, or other minor administrative amendments which do
+not affect in any manner the duration of the agreement or the clauses or
+information which must be included in such agreements because of the
+requirements of this part, do not have to be submitted for approval. One
+copy of all such minor amendments must be submitted to the Office of
+Munitions Control within thirty days after they are concluded.
+ 
+...
+ 
+Sec. 124.3 Exports of technical data in furtherance of an agreement.
+ 
+(a) Unclassified technical data. District directors of customs or postal
+authorities may permit the export without a license of unclassified
+technical data if the export is in furtherance of a manufacturing license
+or technical assistance agreement which has been approved in writing by
+the Office of Munitions Control. The export is not authorized without a
+license if it exceeds the scope or limitations of the relevant agreement.
+The U.S. party to the agreement must certify that the export does not
+exceed the scope of the agreement and any limitations imposed pursuant to
+this part. The approval of the Office of Munitions Control must be
+obtained for the export of any unclassified technical data which may
+exceed the terms of the agreement.
+ 
+...
+ 
+Sec. 124.13 Procurement by United States persons in foreign countries
+(offshore procurement).
+ 
+Notwithstanding the other provisions in part 124, the Office of Munitions
+Control may authorize by means of a license (DSP-5) the export of
+unclassified technical data to foreign persons for offshore procurement of
+defense articles, provided that:
+ 
+(a) The contract or purchase order for offshore procurement limits
+delivery of the defense articles to be produced only to the person in the
+United States or to an agency of the U.S. Government; and
+ 
+(b) The technical data of U.S. origin to be used in the foreign
+manufacture does not disclose the details of the design, development,
+production or manufacture of defense articles; and
+ 
+(c) The contract or purchase order between the person in the United States
+and the foreign person:
+ 
+(1) Limits the use of the technical data to the manufacture of the defense
+articles required by the contract or purchase order only; and
+ 
+(2) Prohibits the disclosure of the data to any other person except duly
+qualified subcontractors within the same country; and
+ 
+(3) Prohibits the acquisition of any rights in the data by any foreign
+person; and
+ 
+(4) Provides that any subcontracts between foreign persons in the approved
+country for manufacture of equipment for delivery pursuant to the contract
+or purchase order contain all the limitations of this paragraph (c); and
+ 
+(5) Requires the foreign person, including subcontractors, to destroy or
+return to the person in the United States all of the technical data
+exported pursuant to the contract or purchase order upon fulfillment of
+their terms; and
+ 
+(6) Requires delivery of the defense articles manufactured abroad only to
+the person in the United States or to an agency of the U.S. Government;
+and
+ 
+(d) The person in the United States provides the Office of Munitions
+Control with a copy of each contract, purchase order or subcontract for
+offshore procurement at the time it is accepted. Each such contract,
+purchase order or subcontract must clearly identify the article to be
+produced and must identify the license number or exemption under which the
+technical data was exported; and
+ 
+(e) Licenses issued pursuant to this section must be renewed upon their
+expiration if offshore procurement is to extend beyond the period of
+validity of the license.
+ 
+If the technical data involved in an offshore procurement arrangement is
+otherwise exempt from the licensing requirements pursuant to Sec. 126.4 or
+Sec. 126.5, the DSP-5 referred to in the first sentence of this section is
+not required. However, the exporter must comply with the other
+requirements of this section.
+ 
+Sec. 124.14 Exports to warehouses or distribution points outside the
+United States.
+ 
+(a) General. Agreements (e.g., contracts) between U.S. persons and foreign
+persons for the warehousing and distribution of defense articles must be
+approved by the Office of Munitions Control before they enter into force.
+Such agreements will be limited to unclassified defense articles and must
+contain conditions for special distribution, end-use and reporting.
+Licenses for exports pursuant to such ageements must be obtained prior to
+exports of the defense articles (see Sec. 123.7).
+ 
+(b) Required information. Proposed warehousing and distribution agreements
+(and amendments thereto) shall be submitted to the Office of Munitions
+Control for approval. The following information must be included in all
+such agreements:
+ 
+(1) A precise description of the defense articles involved. This shall
+include when applicable the military nomenclature, the Federal stock
+number, nameplate data, and any control numbers under which the defense
+articles were developed or procured by the U.S. Government.
+ 
+(2) A detailed statement of the terms and conditions under which the
+defense articles will be exported and distributed;
+ 
+(3) The duration of the proposed agreement;
+ 
+(4) Specific identification of the country or countries that comprise the
+distribution territory. Distribution must be specifically limited to the
+governments of such countries or to private entities seeking to procure
+defense articles pursuant to a contract with a government within the
+distribution territory. Consequently, any deviation from this condition
+must be fully explained and justified. A nontransfer and use certificate
+(DSP-83) will be required to the same extent required in licensing
+agreements under Sec. 124.10(b).
+ 
+(c) Required statements. The following statements must be included in all
+warehousing and distribution agreements:
+ 
+(1) "This agreement shall not enter into force, and may not be amended or
+extended, without the prior written approval of the Department of State of
+U.S. Government."
+ 
+(2) "This agreement is subject to all United Sates laws and regulations
+related to exports and to all administrative acts of the United States
+Government pursuant to such laws and regulations.
+ 
+(3) "The parties to this agreement agree that the obligations contained in
+this agreement shall not affect the performance of any obligations created
+by prior contracts or subcontracts which the parties may have individually
+or collectively with the U.S. Government."
+ 
+(4) "No liability will be incurred by or attributed to the U.S. Government
+in connection with any possible infringement of privately owned patent or
+proprietary rights, either domestic or foreign by reason of the U.S.
+Goverment's approval of this agreement."
+ 
+(5) "No export, sale, transfer, or other disposition of the defense
+articles covered by this agreement is authorized to any country outside
+the distribution territory without the prior written approval of the
+Office of Munitions Control of the U.S. Department of State."
+ 
+(6) "The parties to this agreement agree that an annual report of sales or
+other transfers pursuant to this agreement of the licensed articles, by
+quantity, type, U.S. dollar value, and purchaser or recipient shall be
+provided by (applicant or licensee) to the Department of State." This
+clause must specify which party is obligated to provide the annual report.
+Such reports may be submitted either directly by the licensee or
+indirectly through the licensor, and may cover calendar or fiscal years.
+Reports shall be deemed proprietary information by the Department of State
+and will not be disclosed to unauthorized persons. (See Sec. 126.10(b)).
+ 
+(7) "(Licensee) agrees to incorporate the following statement as an
+integral provision of a contract, invoice or other appropriate document
+whenever the articles covered by this agreement are sold or otherwise
+transferred:
+ 
+These commodities are authorized for export by the U.S. Government only to
+(country of ultimate destination or approved sales territory). They may
+not be resold, diverted, transferred, transshipped, or otherwise be
+disposed of in any other country, either in their original form or after
+being incorporated through an intermediate process into other end-items,
+without the prior written approval of the U.S. Department of State."
+ 
+(8) "All provisions in this agreement which refer to the United States
+Government and the Department of State will remain binding on the parties
+after the termination of the agreement."
+ 
+(d) Special clauses for agreements relating to significant military
+equipment. With respect to agreements for the warehousing and distribution
+of significant military equipment, the following additional provisions
+must be included in the agreement:
+ 
+(1) A completed nontransfer and use certificate (DSP-83) must be executed
+by the foreign end-user and submitted to the U.S. Department of State
+before any transfer may take place.
+ 
+(2) The prior written approval of the U.S. Department of State must be
+obtained before entering into a commitment for the transfer of the
+licensed article by sale or otherwise to any person or government outside
+the approved distribution territory.
+ 
+(e) Transmittal letters. Requests for approval of warehousing and
+distribution agreements with foreign persons must be made by letter. The
+original letter and seven copies of the letter and seven copies of the
+proposed agreement shall be submitted to the Office of Munitions Control.
+The letter shall contain:
+ 
+(1) A statement giving the applicant's Munitions Control registration
+number.
+ 
+(2) A statement identifying the foreign party to the agreement.
+ 
+(3) A statement identifying the defense articles to be distributed under
+the agreement.
+ 
+(4) A statement identifying any U.S. Government contract under which the
+equipment may have been generated, improved, developed or supplied to the
+U.S. Government, and whether the equipment was derived from any bid or
+other proposal to the U.S. Government.
+ 
+(5) A statement that no classified defense articles or classified
+technical data are involved.
+ 
+(6) A statement identifying any patent application which discloses any of
+the subject matter of the equipment or related technical data covered by
+an invention secrecy order issued by the U.S. Patent and Trademark Office.
+ 
+(f) Additional clause. Unless the articles covered by the agreement are in
+fact intended to be distributed to private persons or entities (e.g.,
+sporting firearms for commercial resale, cryptographic devices and
+software for financial and business applications), the following clause
+must be included in all warehousing and distribution agreements: "Sales or
+other transfers of the licensed article shall be limited to governments of
+the countries in the distribution territory and to private entities
+seeking to procure the licensed article pursuant to a contract with a
+government within the distribution territory, unless the prior written
+approval of the U.S. Department of State is obtained."
+ 
+ 
+PART 125
+ 
+LICENSES FOR THE EXPORT OF TECHNICAL DATA AND CLASSIFIED DEFENSE ARTICLES
+ 
+Sec. 125.1 Exports subject to this part.
+ 
+(a) The export controls of this part apply to the export of technical data
+and the export of classified defense articles. Information which is in the
+"public domain" (see Sec. 120.18) is not subject to the controls of this
+subchapter.
+ 
+(b) A license for the export of technical data and the exemptions in Sec.
+125.4 may not be used for foreign production purposes or for technical
+assistance unless the approval of the Department of State has been
+obtained. Such approval is generally provided only pursuant to the
+procedures specified in part 124 of this subchapter.
+ 
+(c) Technical data authorized for export may not be diverted or
+transferred from the country of ultimate end-use (as designated in the
+license or approval for export) or disclosed to a national of another
+country without the prior written approval of the Department of State.
+ 
+(d) The export controls of this part apply to the exports referred to in
+paragraph (a) of this section regardless of whether the person who intends
+to export the technical data produces or manufactures defense articles if
+the technical data is determined by the Office of Munitions Control to be
+subject to the controls of this subchapter.
+ 
+(e) The provisions of this subchapter do not apply to technical data
+related to articles in Category VI(e) and Category XVI. The export of such
+data is controlled by the Department of Energy and the Nuclear Regulatory
+Commission pursuant to the Atomic Energy Act of 1954, as amended, and the
+Nuclear Non-Proliferation Act of 1978.
+ 
+Sec. 125.2 Exports of unclassified technical data.
+ 
+(a) General. A license issued by the Department of State is required for
+the export of unclassified technical data unless the export is exempt from
+the licensing requirements of this subchapter.
+ 
+(b) Patents. A license issued by the Department of State is required for
+the export of technical data whenever the data exceeds that which is used
+to support a domestic filing of a patent application or to support a
+foreign filing of a patent application whenever no domestic application
+has been filed. The export of technical data to support the filing and
+processing of patent applications in foreign countries is subject to
+regulations issued by the U.S. Patent and Trademark Office pursuant to 35
+U.S.C. 184.
+ 
+(c) Disclosures. Unless otherwise expressly exempted in this subchapter, a
+license is required for the oral, visual or documentary disclosure of
+technical data to foreign nationals in connection with visits by U.S.
+persons to foreign countries, visits by foreign persons to the United
+States, or otherwise. A license is required regardless of the manner in
+which the technical data is transmitted (e.g., in person, by telephone,
+correspondence, electronic means, telex, etc.). A license is required for
+such disclosures in connection with visits by U.S. persons to foreign
+diplomatic missions and consular offices.
+ 
+...
+ 
+Sec. 125.4 Exemptions of general applicability.
+ 
+(a) The following exemptions apply to exports of technical data for which
+no license or other approval is needed from the Office of Munitions
+Control. These exemptions, except for paragraph (b)(13) of this section,
+do not apply to exports to proscribed destinations under Sec. 126.1.
+Transmission of classified information must comply with the requirements
+of the Department of Defense Industrial Security Manual and the exporter
+must certify to the transmittal authority that the technical data does not
+exceed the technical limitation of the authorized export. A person who
+determines that an export is not subject to this subchapter should review
+the Department of Commerce regulations to ensure that the export is not
+subject to its export jurisdiction.
+ 
+(b) The following exports are exempt from the licensing requirements of
+this subchapter:
+ 
+...
+ 
+(2) Technical data, including classified information, in furtherance of a
+manufacturing license or technical assistance agreement approved by the
+Department of State under part 124 of this subchapter and which meet the
+requirements of Sec. 124.3;
+ 
+...
+ 
+(4) Copies of technical data, including classified information, previously
+authorized for export to the same recipient. Revised copies of such
+technical data are also exempt if they pertain to the identical defense
+article, and if the revisions are solely editorial and do not add to the
+content of technology previously exported or authorized for export to the
+same recipient;
+ 
+(5) Technical data in the form of basic operations, maintenance, and
+training information relating to a defense article lawfully exported or
+authorized for export to the same recipient. This exemption applies only
+to exports by the original exporter. Intermediate or depot-level repair
+and maintenance information may be exported only under a license or
+agreement approved specifically for that purpose;
+ 
+...
+ 
+(7) Technical data, including classified information, being returned to
+the original source of import;
+ 
+...
+ 
+(9) Technical data, including classified information, sent by a U.S.
+corporation to a U.S. person employed by that corporation overseas or to a
+U.S. Government agency. This exemption is subject to the limitations of
+Sec. 125.1(b) and may be used only if (i) the technical data is to be used
+overseas solely by U.S. persons and (ii) if the U.S. person overseas is an
+employee of the U.S. Government or is directly employed by the U.S.
+corporation and not by a foreign subsidiary;
+ 
+(10) Disclosures of technical data in the U.S. by U.S. institution of
+higher learning to foreign persons who are their bona fide and full time
+regular employees. This exemption is available only if (i) the employee's
+permanent abode throughout the period of employment is in the United
+States; (ii) the employee is not a national of a country to which exports
+are prohibited pursuant to Sec. 126.1; and (iii) the institution informs
+the individual in writing that the technical data may not be transferred
+to other foreign persons without the prior written approval of the Office
+of Munitions Control; ...
+ 
+(12) Technical data which is specifically exempt under part 126 of this
+subchapter; or
+ 
+(13) Technical data approved for public release (i.e., unlimited
+distribution) by the cognizant U.S. Government department or agency. This
+exemption is applicable to information approved by the cognizant U.S.
+Government department or agency for public release in any form (e.g.,
+publications, speeches, conference papers, movies, etc.). It does not
+require that the information be published in order to qualify for the
+exemption. ...
+ 
+Sec. 125.6 Certification requirements.
+ 
+To claim an exemption for the export of technical data under the
+provisions of Sec. 125.4 and Sec. 125.5, an exporter must certify that the
+proposed export is covered by a relevant paragraph of that section. This
+certification is not required if the technical data is only disclosed
+orally or visually. The certification referred to in this section consists
+of marking the package or letter containing the technical data: "22 CFR
+125. (identify subsection) applicable" and identifying the specific
+paragraph under which the exemption is claimed. In the case of
+unclassified technical data, district directors of customs may require
+that the certification be made on a shipper's export declaration.
+ 
+Sec. 125.7 Exports of unclassified technical data.
+ 
+(a) General. Unless an export is exempt from the licensing requirements of
+this subchapter, an application for the permanent export of unclassified
+technical data must be made to the Office of Munitions Control on Form
+DSP-5. If the technical data is to be returned to the United States, Form
+DSP-73 should be used instead. In the case of a visit, sufficient details
+of the proposed discussions must be transmitted for an adequate appraisal
+of the data. Seven copies of the data or the details of the discussions
+must be provided. Only one copy must be provided if a renewal of the
+license is requested.
+ 
+(b) Patents. Requests for the filing of patent applications in a foreign
+country and requests for the filing of amendments, modifications or
+supplements to such patents must be directed to the U.S. Patent and
+Trademark Office in accordance with 37 CFR part 5. If an applicant
+complies with the regulations of that office, the approval of the Office
+of Munitions Control is required only in the circumstance described in
+Sec. 125.2(b). In such cases, an application must be submitted in
+accordance with the provisions of paragraph (a) of this section.
+ 
+...
+ 
+Sec. 125.9 Filing of licenses for exports of unclassified technical data.
+ 
+Licenses for the export of unclassified technical data must be deposited
+with the appropriate district director of customs or postmaster at the
+time of shipment or mailing. The district director of customs or
+postmaster will endorse and transmit the licenses to the Office of
+Munitions Control in accordance with the instructions contained on the
+reverse side of the license. If a license for the export of unclassified
+technical data is used but not endorsed by U.S. Customs or a postmaster
+for whatever reason, the person exporting the data must self-endorse the
+license and return it promptly to the Office of Munitions Control.
+ 
+...
+ 
+PART 126
+ 
+Sec. 126.1 Prohibited exports and sales to certain countries.
+ 
+(a) General. It is the policy of the United States to deny licenses and
+other approvals with respect to defense articles and defense services
+destined for or originating in certain countries or areas. This policy
+also applies to exports to and imports from these countries or areas. This
+policy applies to Albania, Bulgaria, Cambodia, Cuba, Estonia, Latvia,
+Lithuania, North Korea, Outer Mongolia, Romania, the Soviet Union and
+Vietnam. This policy also applies to countries or areas with respect to
+which the United States maintains an arms embargo (e.g., Angola) or
+whenever an export would not otherwise be in furtherance of world peace
+and the security and foreign policy of the United States. The exemptions
+provided in the regulations in this subchapter, except Sec. 123.17 and
+Sec. 125.4(b)(13) of this subchapter, do not apply with respect to exports
+to or originating in any of such proscribed countries or areas.
+ 
+(b) Shipments. A defense article licensed for export under this subchapter
+may not be shipped on a vessel, aircraft or other means of conveyance
+which is owned or operated by, or leased to or from, any of the proscribed
+countries or areas.
+ 
+...
+ 
+(d) Terrorism. Exports to countries that have repeatedly provided support
+for acts of international terrorism are contrary to the foreign policy of
+the United States and are thus subject to the policy specified in
+paragraph (a) of this section and the requirements of section 40 of the
+Arms Export Control Act (22 U.S.C. 2780). The countries in this category
+are Cuba, Iran, Iraq, Libya, Syria, and North Korea. These are the same
+countries identified pursuant to section 6(j) of the Export Administration
+Act, as amended (50 U.S.C. App. 2405(j)).
+ 
+(e) Proposed Sales. No sale or transfer and no proposal to sell or
+transfer any defense articles, defense services or technical data subject
+to this subchapter may be made to any country referred to in this section
+(including the embassies or consulates of such a country), or to any
+person acting on its behalf, whether in the United States or abroad,
+without first obtaining a license or other written approval from the
+Office of Munitions Control. (See Sec. 120.10(f) of this subchapter), in
+accordance with paragraph (a) of this section, it is the policy of the
+Department of State to deny licenses and approvals in such cases. Any
+person who knows or has reason to know of such a proposed or actual sale,
+or transfer, of such articles, services or data must inform the Office of
+Munitions Control.
+ 
+Sec. 126.2 Temporary suspension or modification of this subchapter.
+ 
+The Director, Office of Munitions Control, may order the temporary
+suspension or modification of any or all of the regulations of this
+subchapter in the interest of the security and foreign policy of the
+United States.
+ 
+...
+ 
+Sec. 126.5 Canadian exemptions.
+ 
+(a) General. District directors of customs and postmasters may permit the
+export without a license of any unclassified defense article or any
+unclassified technical data to Canada for end-use in Canada or return to
+the United States, with the exception of the articles or technical data
+listed in paragraph (b) of this section.
+ 
+...
+ 
+Sec. 126.7 Denial, revocation, suspension, or amendment of licenses and
+other approvals.
+ 
+(a) Policy. Licenses or approvals shall be denied or revoked whenever
+required by any statute of the United States (see Sec. 127.6 and Sec.
+127.10 of this subchapter). Any application for an export license or other
+approval under this subchapter may be disapproved, and any license or
+other approval or exemption granted under this subchapter may be revoked,
+suspended, or amended without prior notice whenever:
+ 
+(1) The Department of State deems such action to be in furtherance of
+world peace, the national security or the foreign policy of the United
+States, or is otherwise advisable; or
+ 
+(2) The Department of State believes that 22 U.S.C. 2778, any regulation
+contained in this subchapter, or the terms of any U.S. government export
+authorization (including the terms of a manufacturing license or technical
+assistance agreement, or export authorization granted pursuant to the
+Export Administration Act, as amended) has been violated by any party to
+the export or other person having significant interest in the transaction;
+or . . . .
+ 
+Sec. 126.9 Advisory opinions.
+ 
+A U.S. person desiring information as to whether the Office of Munitions
+Control would be likely to grant a license or other approval for the
+export of particular defense articles or defense services to a particular
+country may use the Office of Munitions Control's informal "Advisory
+Opinions" procedure. These opinions are advisory only. They are not
+binding on the Department of State and are revocable. A request for an
+advisory opinion must be by letter. It must outline in detail the
+equipment, its usage, the security classification, if any, of the articles
+or related technical data, and the country or countries involved. An
+original and seven copies of the letter must be provided along with seven
+copies of suitable descriptive information concerning the defense article
+or defense service. If a request for an advisory opinion involves more
+than one country, the letter should address only those countries in the
+same geographic area.
+ 
+Sec. 126.10 Disclosure of information to the public.
+ 
+(a) General. Subchapter R of this title of CFR contains regulations on the
+availability to the public of information and records of the Department of
+State. The provisions of Subchapter R apply to such disclosures by the
+Office of Munitions Control.
+ 
+(b) Determinations required by law. Section 38 of the Arms Export Control
+Act (22 U.S.C. 2778) provides that certain information required by the
+Department of State in connection with the licensing process may generally
+not be disclosed to the public unless certain determinations relating to
+the national interest are made in accordance with the procedures specified
+by that provision. Any determinations required by section 38(e) shall be
+made by the Under Secretary for Security Assistance, Science, and
+Technology.
+ 
+(c) Information required under part 130. Part 130 of this subchapter
+contains specific provisions on the disclosure of information described in
+that part.
+ 
+Sec. 126.12 Continuation in force.
+ 
+All determinations, authorizations, licenses, approvals of contracts and
+agreements and other action issued, authorized, undertaken, or entered
+into by the Department of State pursuant to section 414 of the Mutual
+Security Act of 1954, as amended, or under the previous provisions of this
+subchapter, continue in full force and effect until or unless modified,
+revoked or superseded by the Department of State.
+ 
+...
+ 
+PART 127
+ 
+VIOLATIONS AND PENALTIES
+ 
+Sec. 127.1 Violations in general.
+ 
+(a) It is unlawful (1) to export or attempt to export from the United
+States any defense article or technical data or to furnish any defense
+service for which a license or written approval is required by this
+subchapter without first obtaining the required license or written
+approval from the Office of Munitions Control (2) to import or attempt to
+import any defense article whenever a license is required by this
+subchapter without first obtaining the required license or written
+approval from the Department of State; or (3) to violate any of the terms
+or conditions of licenses or approvals granted pursuant to this
+subchapter.
+ 
+...
+ 
+(d) No person may willfully cause, or aid, abet, counsel, demand, induce,
+procure or permit the commission of any act prohibited by, or the omission
+of any act required by 22 U.S.C. 2778, 22 U.S.C. 2779, or any regulation,
+license, approval, or order issued thereunder.
+ 
+....
+ 
+Sec. 127.3 Penalties for violations.
+ 
+Any person who willfully:
+ 
+(a) Violates any provision of section 38 or section 39 of the Arms Export
+Control Act (22 U.S.C. 2778 and 2779), or any undertaking specifically
+required by part 124 of this subchapter; or
+ 
+(b) In a registration, license application or report required by section
+38 or section 39 of the Arms Export Control Act (22 U.S.C. 2778 and 2779)
+or by any rule or regulation issued under either section, makes any untrue
+statement of a material fact or omits a material fact required to be
+stated therein or necessary to make the statements therein not misleading,
+shall, upon conviction, be subject to fine or imprisonment, or both, as
+prescribed by 22 U.S.C. 2778(c).
+ 
+Sec. 127.4 Authority of U.S. Customs Service officers.
+ 
+(a) U.S. Customs Service officers may take appropriate action to ensure
+observance of this subchapter as to the export or the attempted export of
+any defense article or technical data, including the inspection of loading
+or unloading of any vessel, vehicle, or aircraft. This applies whether the
+export is authorized by license or by written approval issued under this
+subchapter.
+ 
+(b) Upon the presentation to a customs officer of a license or written
+approval authorizing the export of any defense article, the customs
+officer may require the production of other relevant documents and
+information relating to the proposed export. This includes an invoice,
+order, packing list, shipping document, correspondence, instructions, and
+the documents otherwise required by the U.S. Customs Service.
+ 
+Sec. 127.5 Seizure and forfeiture in attempts at illegal exports.
+ 
+(a) An attempt to export from the United States any defense articles in
+violation of the provisions of this subchapter constitutes an offense
+punishable under section 401 of Title 22 of the United States Code.
+Whenever it is known or there is probable cause to believe that any
+defense article is intended to be or is being or has been exported or
+removed from the United States in violation of law, such article and any
+vessel, vehicle or aircraft involved in such attempt is subject to
+seizure, forfeiture and disposition as provided in section 401 of Title 22
+of the United States Code.
+ 
+...
+ 
+Sec. 127.9 Civil penalty.
+ 
+(a) The Assistant Secretary for Politico-Military Affairs, Department of
+State is authorized to impose a civil penalty in an amount not to exceed
+that authorized by 50 U.S.C. App. 2410(c) for each violation of 22 U.S.C.
+2778, or any regulation, order, license or approval issued thereunder.
+This civil penalty may be either in addition to, or in lieu of, any other
+liability or penalty which may be imposed.
+ 
+(b) The Office of Munitions Control may make (1) the payment of a civil
+penalty under this section or (2) the completion of any administrative
+action pursuant to part 127 or 128 of this subchapter a prior condition
+for the issuance, restoration, or continuing validity of any export
+license or other approval.
+ 
+...

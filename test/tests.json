@@ -25,6 +25,15 @@
 	},
 	"wordcount": {
 		"log_diff_tests": [["../../resources/frankenstein.txt"]]
+	},
+	"wc": {
+		"log_diff_tests": [
+			["-f=../../resources/wc.files0", "-wl"],
+			["--files0-from=../../resources/wc.files0", "-mc", "--max-line-length"],
+			["--help"],
+			["--files0-from", "../../resources/wc.files0"],
+			["-f", "../../resources/wc.files0"],
+			["--fake-option", "-?"]]
 	}
 }
 
