@@ -4,7 +4,7 @@
 -Wformat=2
 -Werror
 -Wno-unused-parameter
--std=c99
+-std=c2x
 -ggdb3
 -DDEBUG
 -fno-strict-aliasing

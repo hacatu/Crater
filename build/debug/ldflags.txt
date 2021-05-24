@@ -3,6 +3,7 @@
 -lm
 -lSDL2
 -fuse-ld=gold
+-std=c2x
 -ggdb3
 -fno-strict-aliasing
 -fno-eliminate-unused-debug-types
