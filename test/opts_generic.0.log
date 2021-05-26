@@ -1,0 +1,22 @@
+Crater generic option macro test
+Written by hacatu
+
+	-h/--help: display this help information and exit
+	--ull: 	unsigned long long
+	--ll: 	long long
+	--ul: 	unsigned long
+	-l/--l: 	long
+	-u/--u: 	unsigned
+	-i/--i: 	int
+	--us: 	unsigned short
+	-s/--s: 	short
+	--uc: 	unsigned char
+	--sc: 	signed char
+	-c: 	char
+	-f/--f: 	float
+	-d/--d: 	double
+	--ld: 	long double
+	--cstr: 	null terminated string
+	-b/--b: 	_Bool
+	--i128: 	__int128
+	--u128: 	unsigned __int128

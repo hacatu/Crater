@@ -159,6 +159,10 @@ it to your system libraries by doing `sudo cp build/debug/lib/libcrater.a /usr/l
 linked with simply `-lcrater`.
 
 ## Tests
+
+To run tests, use `make tests`.  To run tests and generate a coverage report, use
+`make coverage`, which will put the report in `$(BUILD_ROOT)/cov`.
+What tests are run is determined by a couple files in the `test` folder.
 `test/test.py` uses `test/tests.json` to determine what tests to run.  This json
 configuration looks like `{<name>: {<test_kind>: [<arg_list>]}}` where
 - `<name>` is the name of the test executable in `$(BUILD_ROOT)/bin/test`

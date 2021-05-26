@@ -11,6 +11,9 @@
 	"prime_power_triples": {
 		"no_red_tests": [[]]
 	},
+	"pythagorean_triples": {
+		"no_red_tests": [[]]
+	},
 	"rand_test": {
 		"no_red_tests": [[]]
 	},
@@ -34,6 +37,19 @@
 			["--files0-from", "../../resources/wc.files0"],
 			["-f", "../../resources/wc.files0"],
 			["--fake-option", "-?"]]
+	},
+	"opts_generic": {
+		"log_diff_tests": [
+			["-h"],
+			["--ull=1000", "--ll", "145", "--ul", "423", "-l", "556", "-u=72", "-i=-42", "--us=640", "-s=502", "--uc=0xFF", "--sc=-127", "-c=w", "-f=1.44", "-d=3.14", "--ld=99.9", "-b=yes"],
+			["--i128=123456789012345678901234567890", "--u128=123456789012345678901234567890", "this_argument_is_ignored"],
+			["-c=127", "--uc=x", "--sc=q", "--cstr=this argument is not ignored", "-b=false", "--i128=-0x1fF"]]
+	},
+	"hupify": {
+		"no_red_tests": [[]]
+	},
+	"heap_primes": {
+		"no_red_tests": [[]]
 	}
 }
 

@@ -280,14 +280,14 @@ static inline unsigned __int128 strtou128(const char *str, char **end, int base,
 		}else{
 			base = 10;
 		}
-	}else if(base == 16 && !strncasecmp("0x", str + 1, 1)){
+	}else if(base == 16 && !strncasecmp("0x", str, 2)){
 		str += 2;
 	}
 	int cur_digit = get_digit_base(*str, base);
 	if(cur_digit == -1){
 		return 0;
 	}
-	unsigned __int128 res = 0;
+	unsigned __int128 res = cur_digit;
 	// res*base <= -i128_min <-- res <= -i128_min/base
 	// res*base > -i128_min <-- res >= (-i128_min + base)/base <-> res > -i128_min/base
 	unsigned __int128 MAX = (is_signed ? (unsigned __int128)-i128_min : u128_max)/(unsigned __int128)base;
@@ -332,6 +332,35 @@ bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt){
 	errno = 0;
 	*(unsigned __int128*)self->dest = strtou128(opt, &end, 0, false);
 	return errno != ERANGE && end != opt && !*end;
+}
+
+char *cr8r_sprint_i128(char buf[static 41], __int128 i){
+	char *it = buf + 41;
+	*--it = '\0';
+	if(!i){
+		*--it = '0';
+	}else if(i < 0){
+		for(;i; i /= 10){
+			*--it = '0' - i%10;
+		}
+		*--it = '-';
+	}else{
+		for(;i; i /= 10){
+			*--it = '0' + i%10;
+		}
+	}
+	return it;
+}
+
+char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i){
+	char *it = buf + 40;
+	*--it = '\0';
+	if(!i){
+		*--it = '0';
+	}else for(;i; i /= 10){
+		*--it = '0' + i%10;
+	}
+	return it;
 }
 
 static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *long_opts, cr8r_hashtbl_t *short_opts){

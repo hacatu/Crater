@@ -163,8 +163,20 @@ bool cr8r_opt_parse_u(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_i(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_us(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_s(cr8r_opt *self, char *opt);
+
+/// Note that parse_uc will read single digit numbers as characters
+/// This can be sidestepped by writing them as +1, using a different
+/// type, or using a custom function
 bool cr8r_opt_parse_uc(cr8r_opt *self, char *opt);
+
+/// Note that parse_sc will read single digit numbers as characters
+/// This can be sidestepped by writing them as +1, using a different
+/// type, or using a custom function
 bool cr8r_opt_parse_sc(cr8r_opt *self, char *opt);
+
+/// Note that parse_c will read single digit numbers as characters
+/// This can be sidestepped by writing them as +1, using a different
+/// type, or using a custom function
 bool cr8r_opt_parse_c(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_f(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_d(cr8r_opt *self, char *opt);
@@ -173,6 +185,24 @@ bool cr8r_opt_parse_cstr(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_b(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_i128(cr8r_opt *self, char *opt);
 bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt);
+
+/// Print a signed 128 bit integer into a buffer
+/// log_10(2**127) is between 38 and 39 so the
+/// decimal representation will have at most 39 digits,
+/// plus the sign and null terminator.
+/// @param [out] buf: buffer to hold the result, must be able to hold at least 41 chars
+/// @param [in] i: number to print
+/// @return pointer to beginning of result (will be 0-39 bytes into buf)
+char *cr8r_sprint_i128(char buf[static 41], __int128 i);
+
+/// Print a signed 128 bit integer into a buffer
+/// log_10(2**128-1) is between 38 and 39 so the
+/// decimal representation will have at most 39 digits,
+/// plus the null terminator.
+/// @param [out] buf: buffer to hold the result, must be able to hold at least 40 chars
+/// @param [in] i: number to print
+/// @return pointer to beginning of result (will be 0-39 bytes into buf)
+char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 
 #define CR8R_OPT_ARGMODE_NONE 0
 #define CR8R_OPT_ARGMODE_REQUIRED 1
@@ -206,7 +236,9 @@ bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt);
 /// Represents a description for an optional scalar option
 /// @param [in,out] dest: a pointer to a scalar type (char, _Bool,
 /// signed/unsigned char/short/int/long/long long, float/double/long double)
-/// where the result of parsing the argument to this option should be stored
+/// where the result of parsing the argument to this option should be stored.
+/// Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't
+/// compatible with this macro.
 /// @param [in] _short_name: short name for the option.  Must be a single (possibly multibyte) character besides ' ', '-', or '='
 /// @param [in] _long_name: long name for the option.  May not contain ' ' or '='.  At least one of _long_name and _short_name must be nonnull
 /// @param [in] _description: description of the option to print in help text.
@@ -217,7 +249,9 @@ bool cr8r_opt_parse_u128(cr8r_opt *self, char *opt);
 /// Represents a description for a required scalar option
 /// @param [in,out] dest: a pointer to a scalar type (char, _Bool,
 /// signed/unsigned char/short/int/long/long long, float/double/long double)
-/// where the result of parsing the argument to this option should be stored
+/// where the result of parsing the argument to this option should be stored.
+/// Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't
+/// compatible with this macro.
 /// @param [in] _short_name: short name for the option.  Must be a single (possibly multibyte) character besides ' ', '-', or '='
 /// @param [in] _long_name: long name for the option.  May not contain ' ' or '='.  At least one of _long_name and _short_name must be nonnull
 /// @param [in] _description: description of the option to print in help text.
