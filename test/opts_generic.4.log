@@ -1,0 +1,9 @@
+Invalid argument to option --uc
+Invalid argument to option --sc
+Invalid argument to option -c
+Invalid argument to option -b
+Invalid argument to option -b
+Invalid argument to option --i128
+Unrecognized option --nothing
+Option -c missing required argument (are you missing a ' '/'='?)
+Invalid short option name ('-', '=', ' ', '\n', or a bad multibyte character)

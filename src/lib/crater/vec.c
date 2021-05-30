@@ -43,6 +43,10 @@ void *cr8r_default_resize(cr8r_base_ft *base, void *p, uint64_t cap){
 	return p ? realloc(p, cap*base->size) : malloc(cap*base->size);
 }
 
+void *cr8r_default_resize_pass(cr8r_base_ft *base, void *p, uint64_t cap){
+	return NULL;
+}
+
 int cr8r_default_cmp(const cr8r_base_ft *base, const void *a, const void *b){
 	return memcmp(a, b, base->size);
 }

@@ -274,8 +274,13 @@ static inline unsigned __int128 strtou128(const char *str, char **end, int base,
 				str += 2;
 				base = 16;
 			}else{
-				++str;
 				base = 8;
+				if(!*++str){
+					if(end){
+						*end = (char*)str;
+					}
+					return 0;
+				}
 			}
 		}else{
 			base = 10;
@@ -290,7 +295,7 @@ static inline unsigned __int128 strtou128(const char *str, char **end, int base,
 	unsigned __int128 res = cur_digit;
 	// res*base <= -i128_min <-- res <= -i128_min/base
 	// res*base > -i128_min <-- res >= (-i128_min + base)/base <-> res > -i128_min/base
-	unsigned __int128 MAX = (is_signed ? (unsigned __int128)-i128_min : u128_max)/(unsigned __int128)base;
+	unsigned __int128 MAX = (is_signed ? (unsigned __int128)-i128_min : u128_max);
 	unsigned __int128 safe_ceil = MAX/(unsigned __int128)base;
 	while(1){
 		cur_digit = get_digit_base(*++str, base);

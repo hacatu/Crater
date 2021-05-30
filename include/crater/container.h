@@ -42,6 +42,14 @@ uint64_t cr8r_default_new_size(cr8r_base_ft*, uint64_t cap);
 /// @return a pointer to the resized buffer, or NULL on failure or if cap is 0
 void *cr8r_default_resize(cr8r_base_ft*, void *p, uint64_t cap);
 
+/// "Default" do-nothing ft->resize implementation (for vectors)
+///
+/// Always returns NULL, indicating the buffer could not be resized.
+/// This is convenient if you want to wrap a stack/static/thread local
+/// array as a vector, since such an array cannot be resized.
+/// @return NULL
+void *cr8r_default_resize_pass(cr8r_base_ft*, void *p, uint64_t cap);
+
 /// "Default" ft->cmp implementation
 ///
 /// Calls memcmp(a, b, ft->base.size)
