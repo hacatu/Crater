@@ -376,6 +376,68 @@ int64_t cr8r_vec_indexs(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 /// @return -1 if a is lexicographically before b, +1 visa versa, or 0 if they are equal
 int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft*);
 
+/// Pick a pivot for { @link cr8r_vec_partition } using the median of 3 approach
+///
+/// This is an O(1) pivot selection algorithm that can cause quicksort/quickselect
+/// to perform badly (O(n**2)) in pathological cases, but most of the time works
+/// very well (O(n*log(n)) and faster than { @link cr8r_vec_pivot_mm } in practice
+/// most of the time).
+/// Picks the median of the first, middle (rounded down), and last elements.
+/// In the event of ties, which valid element is chosen is not specified,
+/// but is consistent for the same elements.
+/// @param [in] self: vector to pick a pivot for (a subrange of), is not modified
+/// @param [in] a, b: inclusive, exclusive indices of the subrange to pick a pivot for
+/// @return a pointer to the selected pivot, or NULL if a and b are not valid subrange
+/// indices for the given vector.
+void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b);
+
+/// Pick a pivot for { @link cr8r_vec_partition } using the median of medians approach
+///
+/// This is an O(n) pivot selection algorithm that ensures quicksort/quickselect
+/// will always run in O(n*log(n)) time.  However, because the entire subrange is
+/// processed, this will often end up slower than { @link cr8r_vec_pivot_m3 }.
+/// The reason median of medians ensures quicksort/quickselect will finish in
+/// O(n*log(n)) time is because it will select a pivot whose index is within a certain
+/// ratio of the median (eg if the subrange has k elements then the pivot selected will
+/// be one of the central a*k elements for some small fixed coefficient).
+/// The median of medians algorithm used does not allocate extra space, but
+/// the order of the given subrange is not preserved.
+/// Picks the median of the first, middle (rounded down), and last elements.
+/// In the event of ties, which valid element is chosen is not specified,
+/// but is consistent for the same elements.
+/// @param [in, out] self: vector to pick a pivot for (a subrange of), will be
+/// reordered in place, but only within the given subrange
+/// @param [in] a, b: inclusive, exclusive indices of the subrange to pick a pivot for
+/// @return a pointer to the selected pivot, or NULL if a and b are not valid subrange
+/// indices for the given vector.  because the target subrange is reordered so the algorithm
+/// can run in place, the pivot will always end up at index a, but this should not be
+/// relied on.
+void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b);
+
+/// Partition a subrange of a vector into elements < a pivot and elements >= a pivot
+///
+/// The given subrange is rearranged so that all elements before the pivot
+/// are < the pivot and all elements >= the pivot are after the pivot, and a pointer
+/// to the pivot is returned
+/// @param [in,out] self: vector to partition a subrange of in place
+/// @param [in] a, b: inclusive, exclusive bounds of subrange (ie, consider elements [a, b))
+/// @param [in] piv: a pointer to the pivot
+/// @return pointer to the pivot, which was placed after all elements < itself but before
+/// all other elements >= itself
+void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv);
+
+/// Find the ith element of a subrange of a vector without completely sorting it
+///
+/// The given subrange is partitioned in place, but the quickselect algorithm
+/// is used rather than sorting so the expected running time is linear.  Using
+/// median of medians would guarantee linear time, but median of 3 is good enough
+/// most of the time.
+/// @param [in,out] self: vector to find ith element of.  May be reoredered.
+/// @param [in] a, b: inclusive, exclusive bounds of subrange
+/// @param [in] i: index to find.  For example, 0 finds the smallest element, 1 the
+/// second smallest, and so on.
+void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t i);
+
 /// Callback for { @link cr8r_vec_foldr } to sum up elements in vector
 ///
 /// The first argument is treated as a uint64_t, NOT a pointer to uint64_t.
@@ -389,5 +451,13 @@ void *cr8r_default_acc_sum_u64(void*, const void*);
 /// is modified in place.
 void *cr8r_default_acc_sumpowmod_u64(void*, const void*);
 
+/// Function table for vectors of uint64_t's
+///
+/// Trivial copy/swap and { @link cr8r_default_cmp_u64 } are used,
+/// plus the default allocation scheme { @link cr8r_default_new_size } and
+/// { @link cr8r_default_resize }.
 extern cr8r_vec_ft cr8r_vecft_u64;
+
+/// Threshold below which quicksort and quickselect will switch to using insertion sort
+#define CR8R_VEC_ISORT_BOUND 16
 

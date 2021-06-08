@@ -437,6 +437,189 @@ int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft *ft){
 	}
 }
 
+// Insertion sort the range of elements [a, a + stride, a + 2*stride, ..., b).
+// Note that b is exlusive.
+static inline void cr8r_vec_range_sort_i(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t stride){
+	void *start = self->buf + a*ft->base.size;
+	void *end = self->buf + b*ft->base.size;
+	uint64_t offset = stride*ft->base.size;
+	for(void *it = start + offset; it < end; it += offset){
+		for(void *jt = it; jt > start && ft->cmp(&ft->base, jt - offset, jt) > 0; jt -= offset){
+			ft->swap(&ft->base, jt - offset, jt);
+		}
+	}
+}
+
+void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
+	if(a >= b || b > self->len){
+		return NULL;
+	}
+	// the traditional median of medians algorithm works by viewing an array in chunks of 5 elements,
+	// creating a new array made up of the medians of these chunks, and recursing.
+	// since each chunk has 5 elements, its median can be found in constant time by sorting.
+	// the lengths of the arrays at each step form a geometric series, which has a finite sum,
+	// in particular, for 5 element chunks the total length of all arrays processed when recursing is 5/4 times
+	// the length of the original array.
+	//
+	// instead of allocating any new array to hold the medians of chunks, we can sort each chunk in place in the
+	// big array and then do a couple tricks.  First, we swap the middle and middle elements of each chunk,
+	// so that the medians are all at the fronts.  Then, we can work on the array of medians in place
+	// by treating the first elements of all the chunks as a strided array.  We start with an array of elements
+	// grouped into chunks of 5, then we have an array with stride 5 of medians of chunks, then we have
+	// an array with stride 25 of medians of medians of chunks, and so on.
+	// look carefully at how incomplete chunks are dealt with: we simply find the median of <5 elements if the last
+	// chunk is incomplete. 
+	for(uint64_t chunk_size = 5, chunk_stride = 1; chunk_stride < b - a; chunk_stride = chunk_size, chunk_size *= 5){
+		for(uint64_t i = a; i < b; i += chunk_size){
+			uint64_t curr_size = i + chunk_size > b ? b - i : chunk_size;
+			uint64_t curr_len = (curr_size + chunk_stride - 1)/chunk_stride;
+			if(curr_len == 1){
+				break;
+			}
+			cr8r_vec_range_sort_i(self, ft, i, curr_size, chunk_stride);
+			if(curr_len == 2){
+				break;
+			}
+			ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + (i + (curr_len - 1)/2*chunk_stride)*ft->base.size);
+		}
+	}
+	// at the end, the first element is the median of medians
+	return self->buf + a*ft->base.size;
+}
+
+void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
+	if(a >= b || b > self->len){
+		return NULL;
+	}
+	void *fst = self->buf + a*ft->base.size;
+	void *lst = self->buf + (b - 1)*ft->base.size;
+	void *mid = self->buf + (a + b - 1)/2*ft->base.size;
+	int ord = ft->cmp(&ft->base, fst, mid);
+	int sorted;
+	if(!ord){
+		return mid;
+	}else if((sorted = ord*ft->cmp(&ft->base, mid, lst))){
+		if(sorted > 0){
+			return mid;
+		}else if(ft->cmp(&ft->base, lst, fst)*ord >= 0){
+			return lst;
+		}else{
+			return fst;
+		}
+	}else{
+		return mid;
+	}
+}
+
+void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv){
+	if(a >= b || b > self->len){
+		return NULL;
+	}
+	void *fst = self->buf + a*ft->base.size;
+	void *lst = self->buf + (b - 1)*ft->base.size;
+	if(piv < fst || piv > lst){
+		return NULL;
+	}
+	if(piv != lst){
+		ft->swap(&ft->base, piv, lst);
+	}
+	// now, lst points to the pivot
+	void *it = fst - ft->base.size;
+	void *jt = lst;
+	// initially, *it is one before the start of the subrange, so that after
+	// adding 1 to it, all elements preceding it (ie no elements) will be
+	// known to be < pivot.
+	// on the other hand, *jt points to the pivot so all elements beginning
+	// at *jt are trivially >= the pivot (since *jt points to the last element
+	// initially and the last element holds the pivot)
+	while(1){
+		do{
+			it += ft->base.size;
+		}while(ft->cmp(&ft->base, it, lst) < 0);
+		// now, *it >= pivot but the elements preceding *it are < pivot
+		if(it == jt){
+			break;
+		}
+		do{
+			// currently, *jt and subsequent elements are all >= pivot
+			jt -= ft->base.size;
+			if(it == jt){
+				break;
+			}
+		}while(ft->cmp(&ft->base, jt, lst) >= 0);
+		ft->swap(&ft->base, it, jt);
+	}
+	// *jt and subsequent elements are >= pivot, so partitioning
+	// is complete and *jt is the first element >= pivot
+	if(jt != lst){
+		// we need to ensure the pivot is placed at the beginning of the
+		// >= pivot region, so we have a (possibly empty) < pivot region,
+		// the pivot, and a (possibly empty) >= pivot region
+		ft->swap(&ft->base, jt, lst);
+	}
+	return jt;
+}
+
+// Partially sort a subrange of the given vector to find an element near the max or min.
+// If i < 0, find the (b + i)th element by partially sorting the -i largest elements
+// descending in the beginning of the subrange and returning a pointer to the -i largest.
+// If i >= 0, find the ith element by partially sorting the i+1 smallest elements ascending
+// in the beginning of the subrange and returning a pointer to the i+1 smallest.
+static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, int64_t i){
+	// TODO: when i == 0 or -1, this reduces to finding the min/max
+	int ord = 1;
+	if(i < 0){
+		ord = -1;
+		i = -i - 1;
+	}
+	void *start = self->buf + a*ft->base.size;
+	void *res = start + i*ft->base.size;
+	void *end = self->buf + b*ft->base.size;
+	if(res >= end){
+		return NULL;// error
+	}
+	for(void *it = start + ft->base.size; it <= res; it += ft->base.size){
+		for(void *jt = it; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) < 0; jt -= ft->base.size){
+			ft->swap(&ft->base, jt - ft->base.size, jt);
+		}
+	}
+	for(void *it = res + ft->base.size; it < end; it += ft->base.size){
+		if(ord*ft->cmp(&ft->base, res, it) <= 0){
+			continue;
+		}
+		ft->swap(&ft->base, res, it);
+		for(void *jt = res; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) < 0; jt -= ft->base.size){
+			ft->swap(&ft->base, jt - ft->base.size, jt);
+		}
+	}
+	return res;
+}
+
+void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t i){
+	while(1){
+		if(i >= b - a){
+			return NULL;
+		}else if(i < CR8R_VEC_ISORT_BOUND){
+			return cr8r_vec_sort_end(self, ft, a, b, i);
+		}else if(b - i <= CR8R_VEC_ISORT_BOUND){
+			return cr8r_vec_sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
+		}
+		void *piv = cr8r_vec_pivot_m3(self, ft, a, b);
+		piv = cr8r_vec_partition(self, ft, a, b, piv);
+		if(!piv){
+			return NULL;
+		}
+		uint64_t j = (piv - self->buf)/ft->base.size - a;
+		if(i < j){
+			b = j;
+		}else if(i > j){
+			a = j + 1;
+		}else{
+			return piv;
+		}
+	}
+}
+
 uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n){
 	uint64_t res = 1;
 	while(e){
