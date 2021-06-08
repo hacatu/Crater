@@ -88,6 +88,9 @@ uint64_t cr8r_default_hash_cstr(const cr8r_base_ft*, const void*);
 /// "Default" ft->cmp implementation for uint64_t
 int cr8r_default_cmp_u64(const cr8r_base_ft*, const void*, const void*);
 
+/// "Default" ft->cmp implementation for int64_t
+int cr8r_default_cmp_i64(const cr8r_base_ft*, const void*, const void*);
+
 /// "Default" ft->cmp implementation for null terminated strings
 int cr8r_default_cmp_cstr(const cr8r_base_ft*, const void*, const void*);
 

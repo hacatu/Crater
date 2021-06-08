@@ -50,6 +50,16 @@ int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b)
 	return 1;
 }
 
+int cr8r_default_cmp_i64(const cr8r_base_ft *ft, const void *_a, const void *_b){
+	int64_t a = *(const int64_t*)_a, b = *(const int64_t*)_b;
+	if(a < b){
+		return -1;
+	}else if(a == b){
+		return 0;
+	}
+	return 1;
+}
+
 int cr8r_default_cmp_cstr(const cr8r_base_ft *ft, const void *_a, const void *_b){
 	return strcmp(*(const char**)_a, *(const char**)_b);
 }
@@ -79,6 +89,14 @@ cr8r_hashtbl_ft cr8r_htft_cstr_u64 = {
 	.hash = cr8r_default_hash_cstr,
 	.cmp = cr8r_default_cmp_cstr,
 	.load_factor = .5
+};
+
+cr8r_hashtbl_ft cr8r_htft_u64_u64 = {
+	.base.data = NULL,
+	.base.size = 2*sizeof(uint64_t),
+	.hash = cr8r_default_hash_u64,
+	.cmp = cr8r_default_cmp_u64,
+	.load_factor = .7
 };
 
 bool cr8r_hash_ft_init(cr8r_hashtbl_ft *ft,
