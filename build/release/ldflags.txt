@@ -1,0 +1,11 @@
+-Llib
+-lcrater
+-lm
+-lSDL2
+-fuse-ld=gold
+-O2
+-flto
+-std=c2x
+-fno-strict-aliasing
+-pthread
+

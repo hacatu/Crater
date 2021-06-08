@@ -20,6 +20,10 @@ test:
 coverage:
 	$(MAKE) -C $(BUILD_ROOT) coverage
 
+.PHONY: install
+install:
+	$(MAKE) -C $(BUILD_ROOT) install
+
 .PHONY: clean
 clean:
 	@for a in $$(ls build); do\
