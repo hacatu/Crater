@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -90,6 +91,13 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae19151b47a533be8fb62ee9b816d4007"><td class="memItemLeft" align="right" valign="top"><a id="ae19151b47a533be8fb62ee9b816d4007"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ae19151b47a533be8fb62ee9b816d4007">CR8R_VEC_ISORT_BOUND</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:ae19151b47a533be8fb62ee9b816d4007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold below which quicksort and quickselect will switch to using insertion sort. <br /></td></tr>
+<tr class="separator:ae19151b47a533be8fb62ee9b816d4007"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -205,6 +213,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_
 <tr class="memitem:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">cr8r_vec_cmp</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *a, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *b, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lexicographically compare two vectors.  <a href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">More...</a><br /></td></tr>
 <tr class="separator:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">cr8r_vec_pivot_m3</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b)</td></tr>
+<tr class="memdesc:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of 3 approach.  <a href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">More...</a><br /></td></tr>
+<tr class="separator:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc07e0ee90e62db8b33df75defd93386"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">cr8r_vec_pivot_mm</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b)</td></tr>
+<tr class="memdesc:abc07e0ee90e62db8b33df75defd93386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of medians approach.  <a href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">More...</a><br /></td></tr>
+<tr class="separator:abc07e0ee90e62db8b33df75defd93386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531123a6b232606975a0b6cf09c4d356"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b, void *piv)</td></tr>
+<tr class="memdesc:a531123a6b232606975a0b6cf09c4d356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition a subrange of a vector into elements &lt; a pivot and elements &gt;= a pivot.  <a href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">More...</a><br /></td></tr>
+<tr class="separator:a531123a6b232606975a0b6cf09c4d356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a87b69c24ebd36bbfc701c8eef3646fbc">cr8r_vec_ith</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b, uint64_t i)</td></tr>
+<tr class="memdesc:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the ith element of a subrange of a vector without completely sorting it.  <a href="vec_8h.html#a87b69c24ebd36bbfc701c8eef3646fbc">More...</a><br /></td></tr>
+<tr class="separator:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1184bc298656ebf85ea805949148bead"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a1184bc298656ebf85ea805949148bead">cr8r_default_acc_sum_u64</a> (void *, const void *)</td></tr>
 <tr class="memdesc:a1184bc298656ebf85ea805949148bead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up elements in vector.  <a href="vec_8h.html#a1184bc298656ebf85ea805949148bead">More...</a><br /></td></tr>
 <tr class="separator:a1184bc298656ebf85ea805949148bead"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,8 +234,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ab7772f368e5b8af85b466188fbf941e3"><td class="memItemLeft" align="right" valign="top"><a id="ab7772f368e5b8af85b466188fbf941e3"></a>
-<a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_vecft_u64</b></td></tr>
+<tr class="memitem:ab7772f368e5b8af85b466188fbf941e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">cr8r_vecft_u64</a></td></tr>
+<tr class="memdesc:ab7772f368e5b8af85b466188fbf941e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vectors of uint64_t's.  <a href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">More...</a><br /></td></tr>
 <tr class="separator:ab7772f368e5b8af85b466188fbf941e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -1742,6 +1762,219 @@ DESCRIPTION</h1>
 
 </div>
 </div>
+<a id="a3500aa2b7b329a69c5a5fea6eeb8057d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3500aa2b7b329a69c5a5fea6eeb8057d">&#9670;&nbsp;</a></span>cr8r_vec_pivot_m3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_vec_pivot_m3 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of 3 approach. </p>
+<p>This is an O(1) pivot selection algorithm that can cause quicksort/quickselect to perform badly (O(n**2)) in pathological cases, but most of the time works very well (O(n*log(n)) and faster than <a class="el" href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">cr8r_vec_pivot_mm</a> in practice most of the time). Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>vector to pick a pivot for (a subrange of), is not modified </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive indices of the subrange to pick a pivot for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the selected pivot, or NULL if a and b are not valid subrange indices for the given vector. </dd></dl>
+
+</div>
+</div>
+<a id="abc07e0ee90e62db8b33df75defd93386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc07e0ee90e62db8b33df75defd93386">&#9670;&nbsp;</a></span>cr8r_vec_pivot_mm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_vec_pivot_mm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of medians approach. </p>
+<p>This is an O(n) pivot selection algorithm that ensures quicksort/quickselect will always run in O(n*log(n)) time. However, because the entire subrange is processed, this will often end up slower than <a class="el" href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">cr8r_vec_pivot_m3</a>. The reason median of medians ensures quicksort/quickselect will finish in O(n*log(n)) time is because it will select a pivot whose index is within a certain ratio of the median (eg if the subrange has k elements then the pivot selected will be one of the central a*k elements for some small fixed coefficient). The median of medians algorithm used does not allocate extra space, but the order of the given subrange is not preserved. Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to pick a pivot for (a subrange of), will be reordered in place, but only within the given subrange </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive indices of the subrange to pick a pivot for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the selected pivot, or NULL if a and b are not valid subrange indices for the given vector. because the target subrange is reordered so the algorithm can run in place, the pivot will always end up at index a, but this should not be relied on. </dd></dl>
+
+</div>
+</div>
+<a id="a531123a6b232606975a0b6cf09c4d356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531123a6b232606975a0b6cf09c4d356">&#9670;&nbsp;</a></span>cr8r_vec_partition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_vec_partition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>piv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Partition a subrange of a vector into elements &lt; a pivot and elements &gt;= a pivot. </p>
+<p>The given subrange is rearranged so that all elements before the pivot are &lt; the pivot and all elements &gt;= the pivot are after the pivot, and a pointer to the pivot is returned </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to partition a subrange of in place </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive bounds of subrange (ie, consider elements [a, b)) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">piv</td><td>a pointer to the pivot </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the pivot, which was placed after all elements &lt; itself but before all other elements &gt;= itself </dd></dl>
+
+</div>
+</div>
+<a id="a87b69c24ebd36bbfc701c8eef3646fbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b69c24ebd36bbfc701c8eef3646fbc">&#9670;&nbsp;</a></span>cr8r_vec_ith()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* cr8r_vec_ith </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the ith element of a subrange of a vector without completely sorting it. </p>
+<p>The given subrange is partitioned in place, but the quickselect algorithm is used rather than sorting so the expected running time is linear. Using median of medians would guarantee linear time, but median of 3 is good enough most of the time. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to find ith element of. May be reoredered. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive bounds of subrange </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>index to find. For example, 0 finds the smallest element, 1 the second smallest, and so on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1184bc298656ebf85ea805949148bead"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1184bc298656ebf85ea805949148bead">&#9670;&nbsp;</a></span>cr8r_default_acc_sum_u64()</h2>
 
@@ -1801,6 +2034,24 @@ DESCRIPTION</h1>
 
 <p>Callback for <a class="el" href="vec_8h.html#a39842910c332246a6b58d89b7ce8aa52">cr8r_vec_foldr</a> to sum up powers of elements in a vector mod a number. </p>
 <p>The first argument MUST be a pointer to three consecutive uint64_t's: the accumulator, the exponent, and the modulus, respectively. The same pointer is returned: the accumulator is modified in place. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ab7772f368e5b8af85b466188fbf941e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7772f368e5b8af85b466188fbf941e3">&#9670;&nbsp;</a></span>cr8r_vecft_u64</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> cr8r_vecft_u64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function table for vectors of uint64_t's. </p>
+<p>Trivial copy/swap and <a class="el" href="container_8h.html#a90ff4cc5be3eba687bcfac84f6b05c5e">cr8r_default_cmp_u64</a> are used, plus the default allocation scheme <a class="el" href="container_8h.html#afe863262f21f39d2d95940863e10d883">cr8r_default_new_size</a> and <a class="el" href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a>. </p>
 
 </div>
 </div>
