@@ -134,9 +134,47 @@ void cr8r_default_free_sla(cr8r_base_ft*, void*);
 /// pointer to some null terminated character sequence.
 void cr8r_default_free(cr8r_base_ft*, void*);
 
+/// ft->copy implementation for null terminated strings
+///
+/// Wraps strdup.
+void cr8r_default_copy_cstr(cr8r_base_ft*, void*, const void*);
+
 /// Raise b to the power of e modulo n using binary exponentiation
 uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 
 /// Cast a flexible length array member to a given type using union hackery sorcery
 #define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)
+
+/// Convert a pointer to an intrusive data structure to a pointer to the
+/// outer structure containing it, based on the type of the outer structure.
+/// @param [in] ptr: pointer to the intrusive data structure
+/// @param [in] T: type of the outer structure (NOT a pointer to its type)
+/// @param [in] memb: the name of the intrusive data structure member within the outer structure
+/// @return pointer to the outer structure
+#define CR8R_OUTER(ptr, T, memb) ((T*)((void*)ptr - offsetof(T, memb)))
+
+/// Convert a pointer to an intrusive data structure to a pointer to the
+/// outer structure containing it, based on a function table.
+/// @param [in] ptr: pointer to the intrusive data structure
+/// @param [in] ft: function table pointer with ft->base.size equal to
+/// the offset of the intrusive data structure within the outer data structure
+/// @return pointer to the outer structure
+#define CR8R_OUTER_S(ptr, ft) (((void*)ptr - ft->base.size))
+
+/// Convert a pointer to an outer data structure to a pointer to the
+/// intrusive data structure within it, based on the type of the outer structure.
+/// @param [in] ptr: pointer to the outer data structure
+/// @param [in] T: type of the outer structure (NOT a pointer to its type)
+/// @param [in] memb: the name of the intrusive data structure member within the outer structure
+/// @return pointer to the intrusive data structure
+#define CR8R_INNER(ptr, T, memb) (((void*)ptr + offsetof(T, memb)))
+
+/// Convert a pointer to an outer data structure to a pointer to the
+/// intrusive data structure within it, based on a function table.
+/// @param [in] ptr: pointer to the outer data structure
+/// @param [in] ft: function table pointer with ft->base.size equal to
+/// the offset of the intrusive data structure within the outer data structure
+/// @return pointer to the intrusive data structure
+#define CR8R_INNER_S(ptr, ft) (((void*)ptr + ft->base.size))
+
 
