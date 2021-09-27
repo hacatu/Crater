@@ -86,6 +86,7 @@ typedef struct{
 	/// Can be zero or more of the following or'd together:
 	/// CR8R_OPTS_FATAL_ERRS: if set, option parsing will stop after the first error instead of trying to find all errors before failing
 	/// CR8R_OPTS_ALLOW_STRAY_DASH: if set, a command line argument "-" is treated as a positional argument instead of an errors
+	/// CR8R_OPTS_CB_ON_DD: if set, the callback is called on the argument processing terminator "--".  Note it is always called on subsequent "--".
 	uint64_t flags;
 	/// Callback to handle positional arguments.
 	/// Command line arguments beginning with "-" are either short option groups or long options.
@@ -103,6 +104,12 @@ bool cr8r_opt_missing_optional(cr8r_opt *self);
 /// Should NOT be called or used directly except by { @link CR8R_OPT_HELP }.
 /// Requires self->dest to point to the options list.
 bool cr8r_opt_print_help(cr8r_opt *self, char *opt);
+
+/// Implementation of on_opt that sets *(int*)self->dest to 0
+bool cr8r_opt_set_enum_0(cr8r_opt *self, char *opt);
+
+/// Implementation of on_opt that sets *(int*)self->dest to 1
+bool cr8r_opt_set_enum_1(cr8r_opt *self, char *opt);
 
 /// "Default" implementation of on_arg that returns true and ignores a positional argument
 /// See { @link cr8r_opt_cfg }.
@@ -234,7 +241,7 @@ char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 	unsigned __int128: cr8r_opt_parse_u128),
 
 /// Represents a description for an optional scalar option
-/// @param [in,out] dest: a pointer to a scalar type (char, _Bool,
+/// @param [in,out] _dest: a pointer to a scalar type (char, _Bool,
 /// signed/unsigned char/short/int/long/long long, float/double/long double)
 /// where the result of parsing the argument to this option should be stored.
 /// Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't
@@ -243,11 +250,11 @@ char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 /// @param [in] _long_name: long name for the option.  May not contain ' ' or '='.  At least one of _long_name and _short_name must be nonnull
 /// @param [in] _description: description of the option to print in help text.
 #define CR8R_OPT_GENERIC_OPTIONAL(_dest, _short_name, _long_name, _description) ((cr8r_opt){\
-	_CR8R_OPT_GENERIC_OPTFIELDS((_dest),( _short_name), (_long_name), (_description))\
+	_CR8R_OPT_GENERIC_OPTFIELDS((_dest),(_short_name), (_long_name), (_description))\
 	.on_missing = cr8r_opt_missing_optional,})
 
 /// Represents a description for a required scalar option
-/// @param [in,out] dest: a pointer to a scalar type (char, _Bool,
+/// @param [in,out] _dest: a pointer to a scalar type (char, _Bool,
 /// signed/unsigned char/short/int/long/long long, float/double/long double)
 /// where the result of parsing the argument to this option should be stored.
 /// Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't
@@ -258,9 +265,23 @@ char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 #define CR8R_OPT_GENERIC_REQUIRED(_dest, _short_name, _long_name, _description) ((cr8r_opt){\
 	_CR8R_OPT_GENERIC_OPTFIELDS((_dest), (_short_name), (_long_name), (_description))})
 
+/// Represents a description for an option which takes no argument and sets *_dest to a fixed int value
+///
+/// @param [out] _dext: a pointer to an int (or enum) which should be modified
+/// @param [in] _num: the value *_dest should be set to if this option is found.  currently, this must be 0 or 1.
+#define CR8R_OPT_ENUM_CASE(_dest, _num, _short_name, _long_name, _description) ((cr8r_opt){\
+	.dest=(_dest), .arg_mode=CR8R_OPT_ARGMODE_NONE, .short_name=(_short_name), .long_name=(_long_name), .description=(_description), .on_opt=cr8r_opt_set_enum_##_num, .on_missing=cr8r_opt_missing_optional})
+
+/// Represents a description for a default help option (short name "h", long name "help")
+///
+/// The help option also prints all other options and their descriptions
+/// @param [in] _opts: the array of option descriptions containing this option description, to print help for
 #define CR8R_OPT_HELP(_opts, _description) ((cr8r_opt){.dest=(_opts), .short_name="h", .long_name="help", .description=(_description), .on_opt=cr8r_opt_print_help, .on_missing=cr8r_opt_missing_optional})
+
+/// Required sentinel for option description list
 #define CR8R_OPT_END() ((cr8r_opt){.short_name=NULL, .long_name=NULL})
 
 #define CR8R_OPTS_FATAL_ERRS 1ull
 #define CR8R_OPTS_ALLOW_STRAY_DASH 2ull
+#define CR8R_OPTS_CB_ON_DD 4ull
 

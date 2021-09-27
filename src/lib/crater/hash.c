@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE  200809L
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
@@ -71,6 +72,10 @@ int cr8r_default_replace(cr8r_base_ft *ft, void *_a, void *_b){
 
 void cr8r_default_free(cr8r_base_ft *ft, void *_p){
 	free(*(void**)_p);
+}
+
+void cr8r_default_copy_cstr(cr8r_base_ft *ft, void *dest, const void *src){
+	*(char**)dest = strdup(*(const char**)src);
 }
 
 cr8r_hashtbl_ft cr8r_htft_u64_void = {

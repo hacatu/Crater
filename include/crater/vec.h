@@ -458,6 +458,15 @@ void *cr8r_default_acc_sumpowmod_u64(void*, const void*);
 /// { @link cr8r_default_resize }.
 extern cr8r_vec_ft cr8r_vecft_u64;
 
+/// Function table for vectors of strings
+///
+/// Strings are null-terminated and "owned" by the vector.
+/// Trivial swap, strdup copy, { @link cr8r_default_cmp_cstr },
+/// and { @link cr8r_default_free }.
+/// The default allocation scheme of { @link cr8r_default_new_size } and
+/// { @link cr8r_default_resize } is used for the vector itself.
+extern cr8r_vec_ft cr8r_vecft_cstr;
+
 /// Threshold below which quicksort and quickselect will switch to using insertion sort
 #define CR8R_VEC_ISORT_BOUND 16
 

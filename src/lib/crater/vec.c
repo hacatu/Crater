@@ -655,3 +655,16 @@ cr8r_vec_ft cr8r_vecft_u64 = {
 	.swap = cr8r_default_swap
 };
 
+cr8r_vec_ft cr8r_vecft_cstr = {
+	.base = {
+		.data = NULL,
+		.size = sizeof(char*)
+	},
+	.new_size = cr8r_default_new_size,
+	.resize = cr8r_default_resize,
+	.del = cr8r_default_free,
+	.copy = cr8r_default_copy_cstr,
+	.cmp = cr8r_default_cmp_cstr,
+	.swap = cr8r_default_swap
+};
+

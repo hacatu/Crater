@@ -216,11 +216,13 @@ inline static void *cr8r_hash_next(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *
 				return self->table_b + b*ft->base.size;
 			}
 		}
-	}else
-	SEARCH_A: if(cur){
-		a = (cur - self->table_a)/ft->base.size;
-		if(a++ >= self->len_a){
-			return NULL;
+	}else{
+		SEARCH_A:
+		if(cur){
+			a = (cur - self->table_a)/ft->base.size;
+			if(a++ >= self->len_a){
+				return NULL;
+			}
 		}
 	}
 	for(; a < self->len_a; ++a){

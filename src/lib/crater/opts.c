@@ -38,6 +38,17 @@ bool cr8r_opt_ignore_arg(void *data, int argc, char **argv, int i){
 	return true;
 }
 
+bool cr8r_opt_set_enum_0(cr8r_opt *self, char *opt){
+	*(int*)self->dest = 0;
+	return true;
+}
+
+/// Implementation of on_opt that sets *(int*)self->dest to 1
+bool cr8r_opt_set_enum_1(cr8r_opt *self, char *opt){
+	*(int*)self->dest = 1;
+	return true;
+}
+
 bool cr8r_opt_parse_ull(cr8r_opt *self, char *opt){
 	char *end = opt;
 	errno = 0;
@@ -577,6 +588,12 @@ bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 			++i;
 		}else if(argv[i][1] == '-'){
 			if(!argv[i][2]){//encountered "--"; done
+				if(cfg->flags & CR8R_OPTS_CB_ON_DD){
+					if(!cfg->on_arg || !cfg->on_arg(cfg->data, argc, argv, i)){
+						fprintf(stderr, "Failed to parse positional argument %i \"--\"\n", i);
+						success = false;
+					}
+				}
 				break;
 			}//otherwise we have a "--long_name" option
 			success &= parse_long_opt(&long_opts, opts, cfg, argc, argv, &i);
