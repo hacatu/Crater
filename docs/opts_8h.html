@@ -107,11 +107,15 @@ Macros</h2></td></tr>
 <tr class="memitem:a390e2e9c382f2099af1f292cf674387a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a390e2e9c382f2099af1f292cf674387a">CR8R_OPT_GENERIC_REQUIRED</a>(_dest,  _short_name,  _long_name,  _description)</td></tr>
 <tr class="memdesc:a390e2e9c382f2099af1f292cf674387a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a description for a required scalar option.  <a href="opts_8h.html#a390e2e9c382f2099af1f292cf674387a">More...</a><br /></td></tr>
 <tr class="separator:a390e2e9c382f2099af1f292cf674387a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c44c9471bafd1885fd96c7e98353242"><td class="memItemLeft" align="right" valign="top"><a id="a7c44c9471bafd1885fd96c7e98353242"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPT_HELP</b>(_opts,  _description)&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.dest=(_opts), .short_name=&quot;h&quot;, .long_name=&quot;help&quot;, .description=(_description), .on_opt=<a class="el" href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">cr8r_opt_print_help</a>, .on_missing=<a class="el" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a>})</td></tr>
+<tr class="memitem:aa9c67509a9f21efb881e6a0816e850ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#aa9c67509a9f21efb881e6a0816e850ac">CR8R_OPT_ENUM_CASE</a>(_dest,  _num,  _short_name,  _long_name,  _description)</td></tr>
+<tr class="memdesc:aa9c67509a9f21efb881e6a0816e850ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a description for an option which takes no argument and sets *_dest to a fixed int value.  <a href="opts_8h.html#aa9c67509a9f21efb881e6a0816e850ac">More...</a><br /></td></tr>
+<tr class="separator:aa9c67509a9f21efb881e6a0816e850ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c44c9471bafd1885fd96c7e98353242"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">CR8R_OPT_HELP</a>(_opts,  _description)&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.dest=(_opts), .short_name=&quot;h&quot;, .long_name=&quot;help&quot;, .description=(_description), .on_opt=<a class="el" href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">cr8r_opt_print_help</a>, .on_missing=<a class="el" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a>})</td></tr>
+<tr class="memdesc:a7c44c9471bafd1885fd96c7e98353242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a description for a default help option (short name "h", long name "help")  <a href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">More...</a><br /></td></tr>
 <tr class="separator:a7c44c9471bafd1885fd96c7e98353242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9577e6c81889291632b4492da5b13ecc"><td class="memItemLeft" align="right" valign="top"><a id="a9577e6c81889291632b4492da5b13ecc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPT_END</b>()&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.short_name=NULL, .long_name=NULL})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a9577e6c81889291632b4492da5b13ecc">CR8R_OPT_END</a>()&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.short_name=NULL, .long_name=NULL})</td></tr>
+<tr class="memdesc:a9577e6c81889291632b4492da5b13ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required sentinel for option description list. <br /></td></tr>
 <tr class="separator:a9577e6c81889291632b4492da5b13ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab45db6b83cb8143f2d7ba76f81d622c6"><td class="memItemLeft" align="right" valign="top"><a id="ab45db6b83cb8143f2d7ba76f81d622c6"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPTS_FATAL_ERRS</b>&#160;&#160;&#160;1ull</td></tr>
@@ -119,6 +123,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a5953a6599ec7766fbbbcde3a27b07670"><td class="memItemLeft" align="right" valign="top"><a id="a5953a6599ec7766fbbbcde3a27b07670"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPTS_ALLOW_STRAY_DASH</b>&#160;&#160;&#160;2ull</td></tr>
 <tr class="separator:a5953a6599ec7766fbbbcde3a27b07670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a369c1e1879dc053f8d8204ebd0503232"><td class="memItemLeft" align="right" valign="top"><a id="a369c1e1879dc053f8d8204ebd0503232"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_OPTS_CB_ON_DD</b>&#160;&#160;&#160;4ull</td></tr>
+<tr class="separator:a369c1e1879dc053f8d8204ebd0503232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -133,8 +140,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts
 <tr class="memdesc:a89194c1a8e2ef26f7d51fb20cb2a4bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Default" implementation of on_missing that returns true to indicate it is ok for the option to be missing <a class="el" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a> is a convenient way to create simple optional arguments. <br /></td></tr>
 <tr class="separator:a89194c1a8e2ef26f7d51fb20cb2a4bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2acca15fe895eb1d4738251d104f5baa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">cr8r_opt_print_help</a> (<a class="el" href="structcr8r__opt.html">cr8r_opt</a> *self, char *opt)</td></tr>
-<tr class="memdesc:a2acca15fe895eb1d4738251d104f5baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Default" implementation of on_opt that prints help and exits Should NOT be called or used directly except by <a class="el" href="">CR8R_OPT_HELP</a>.  <a href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">More...</a><br /></td></tr>
+<tr class="memdesc:a2acca15fe895eb1d4738251d104f5baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Default" implementation of on_opt that prints help and exits Should NOT be called or used directly except by <a class="el" href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">CR8R_OPT_HELP</a>.  <a href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">More...</a><br /></td></tr>
 <tr class="separator:a2acca15fe895eb1d4738251d104f5baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c28af674fdf0a4f98bec891519dd631"><td class="memItemLeft" align="right" valign="top"><a id="a9c28af674fdf0a4f98bec891519dd631"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a9c28af674fdf0a4f98bec891519dd631">cr8r_opt_set_enum_0</a> (<a class="el" href="structcr8r__opt.html">cr8r_opt</a> *self, char *opt)</td></tr>
+<tr class="memdesc:a9c28af674fdf0a4f98bec891519dd631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of on_opt that sets *(int*)self-&gt;dest to 0. <br /></td></tr>
+<tr class="separator:a9c28af674fdf0a4f98bec891519dd631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a602a201f9f399c1a36b98751ac9307e1"><td class="memItemLeft" align="right" valign="top"><a id="a602a201f9f399c1a36b98751ac9307e1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#a602a201f9f399c1a36b98751ac9307e1">cr8r_opt_set_enum_1</a> (<a class="el" href="structcr8r__opt.html">cr8r_opt</a> *self, char *opt)</td></tr>
+<tr class="memdesc:a602a201f9f399c1a36b98751ac9307e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of on_opt that sets *(int*)self-&gt;dest to 1. <br /></td></tr>
+<tr class="separator:a602a201f9f399c1a36b98751ac9307e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadb4f11a264b84e2bf063bce55ab49a3"><td class="memItemLeft" align="right" valign="top"><a id="aadb4f11a264b84e2bf063bce55ab49a3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opts_8h.html#aadb4f11a264b84e2bf063bce55ab49a3">cr8r_opt_ignore_arg</a> (void *data, int argc, char **argv, int i)</td></tr>
 <tr class="memdesc:aadb4f11a264b84e2bf063bce55ab49a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Default" implementation of on_arg that returns true and ignores a positional argument See <a class="el" href="structcr8r__opt__cfg.html">cr8r_opt_cfg</a>. <br /></td></tr>
@@ -280,7 +295,7 @@ DESCRIPTION</h1>
 <div class="line">    __int128: cr8r_opt_parse_i128,                                             \</div>
 <div class="line">    <span class="keywordtype">unsigned</span> __int128: cr8r_opt_parse_u128),</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00211">211</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00218">218</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -322,13 +337,13 @@ DESCRIPTION</h1>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ((<a class="code" href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a>){\</div>
-<div class="line">    _CR8R_OPT_GENERIC_OPTFIELDS((_dest),( _short_name), (_long_name), (_description))\</div>
+<div class="line">    _CR8R_OPT_GENERIC_OPTFIELDS((_dest),(_short_name), (_long_name), (_description))\</div>
 <div class="line">    .on_missing = <a class="code" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a>,})</div>
 </div><!-- fragment -->
 <p>Represents a description for an optional scalar option. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">dest</td><td>a pointer to a scalar type (char, _Bool, signed/unsigned char/short/int/long/long long, float/double/long double) where the result of parsing the argument to this option should be stored. Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't compatible with this macro. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_dest</td><td>a pointer to a scalar type (char, _Bool, signed/unsigned char/short/int/long/long long, float/double/long double) where the result of parsing the argument to this option should be stored. Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't compatible with this macro. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_short_name</td><td>short name for the option. Must be a single (possibly multibyte) character besides ' ', '-', or '=' </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_long_name</td><td>long name for the option. May not contain ' ' or '='. At least one of _long_name and _short_name must be nonnull </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_description</td><td>description of the option to print in help text. </td></tr>
@@ -336,7 +351,7 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00245">245</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00252">252</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -383,7 +398,7 @@ DESCRIPTION</h1>
 <p>Represents a description for a required scalar option. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">dest</td><td>a pointer to a scalar type (char, _Bool, signed/unsigned char/short/int/long/long long, float/double/long double) where the result of parsing the argument to this option should be stored. Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't compatible with this macro. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_dest</td><td>a pointer to a scalar type (char, _Bool, signed/unsigned char/short/int/long/long long, float/double/long double) where the result of parsing the argument to this option should be stored. Note that _Imaginary and _Complex types currently require a custom on_opt callback and aren't compatible with this macro. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_short_name</td><td>short name for the option. Must be a single (possibly multibyte) character besides ' ', '-', or '=' </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_long_name</td><td>long name for the option. May not contain ' ' or '='. At least one of _long_name and _short_name must be nonnull </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_description</td><td>description of the option to print in help text. </td></tr>
@@ -391,7 +406,104 @@ DESCRIPTION</h1>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00258">258</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00265">265</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+
+</div>
+</div>
+<a id="aa9c67509a9f21efb881e6a0816e850ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9c67509a9f21efb881e6a0816e850ac">&#9670;&nbsp;</a></span>CR8R_OPT_ENUM_CASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_OPT_ENUM_CASE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_dest, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_num, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_short_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_long_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_description&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    ((<a class="code" href="opts_8h.html#a5ad35d0fa8d4ca0c36a23abffe11399e">cr8r_opt</a>){\</div>
+<div class="line">    .dest=(_dest), .arg_mode=CR8R_OPT_ARGMODE_NONE, .short_name=(_short_name), .long_name=(_long_name), .description=(_description), .on_opt=cr8r_opt_set_enum_##_num, .on_missing=<a class="code" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a>})</div>
+</div><!-- fragment -->
+<p>Represents a description for an option which takes no argument and sets *_dest to a fixed int value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">_dext</td><td>a pointer to an int (or enum) which should be modified </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_num</td><td>the value *_dest should be set to if this option is found. currently, this must be 0 or 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00272">272</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+
+</div>
+</div>
+<a id="a7c44c9471bafd1885fd96c7e98353242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c44c9471bafd1885fd96c7e98353242">&#9670;&nbsp;</a></span>CR8R_OPT_HELP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_OPT_HELP</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_opts, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_description&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((<a class="el" href="structcr8r__opt.html">cr8r_opt</a>){.dest=(_opts), .short_name=&quot;h&quot;, .long_name=&quot;help&quot;, .description=(_description), .on_opt=<a class="el" href="opts_8h.html#a2acca15fe895eb1d4738251d104f5baa">cr8r_opt_print_help</a>, .on_missing=<a class="el" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a>})</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a description for a default help option (short name "h", long name "help") </p>
+<p>The help option also prints all other options and their descriptions </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_opts</td><td>the array of option descriptions containing this option description, to print help for </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00279">279</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +554,7 @@ DESCRIPTION</h1>
       </table>
 </div><div class="memdoc">
 
-<p>"Default" implementation of on_opt that prints help and exits Should NOT be called or used directly except by <a class="el" href="">CR8R_OPT_HELP</a>. </p>
+<p>"Default" implementation of on_opt that prints help and exits Should NOT be called or used directly except by <a class="el" href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">CR8R_OPT_HELP</a>. </p>
 <p>Requires self-&gt;dest to point to the options list. </p>
 
 </div>

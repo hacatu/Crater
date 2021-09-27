@@ -237,6 +237,9 @@ Variables</h2></td></tr>
 <tr class="memitem:ab7772f368e5b8af85b466188fbf941e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">cr8r_vecft_u64</a></td></tr>
 <tr class="memdesc:ab7772f368e5b8af85b466188fbf941e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vectors of uint64_t's.  <a href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">More...</a><br /></td></tr>
 <tr class="separator:ab7772f368e5b8af85b466188fbf941e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af026cd1e578946255a90070d80d4b507"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#af026cd1e578946255a90070d80d4b507">cr8r_vecft_cstr</a></td></tr>
+<tr class="memdesc:af026cd1e578946255a90070d80d4b507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vectors of strings.  <a href="vec_8h.html#af026cd1e578946255a90070d80d4b507">More...</a><br /></td></tr>
+<tr class="separator:af026cd1e578946255a90070d80d4b507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
@@ -2052,6 +2055,23 @@ DESCRIPTION</h1>
 
 <p>Function table for vectors of uint64_t's. </p>
 <p>Trivial copy/swap and <a class="el" href="container_8h.html#a90ff4cc5be3eba687bcfac84f6b05c5e">cr8r_default_cmp_u64</a> are used, plus the default allocation scheme <a class="el" href="container_8h.html#afe863262f21f39d2d95940863e10d883">cr8r_default_new_size</a> and <a class="el" href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a>. </p>
+
+</div>
+</div>
+<a id="af026cd1e578946255a90070d80d4b507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af026cd1e578946255a90070d80d4b507">&#9670;&nbsp;</a></span>cr8r_vecft_cstr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> cr8r_vecft_cstr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function table for vectors of strings. </p>
+<p>Strings are null-terminated and "owned" by the vector. Trivial swap, strdup copy, <a class="el" href="container_8h.html#ae0e18a2a1ac7dea3ced1b4dc320ef11b">cr8r_default_cmp_cstr</a>, and <a class="el" href="container_8h.html#a3dc2070a9246a4e03ef6571f40e5c0ce">cr8r_default_free</a>. The default allocation scheme of <a class="el" href="container_8h.html#afe863262f21f39d2d95940863e10d883">cr8r_default_new_size</a> and <a class="el" href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a> is used for the vector itself. </p>
 
 </div>
 </div>

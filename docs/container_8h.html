@@ -90,6 +90,18 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">CR8R_FLA_CAST</a>(T,  p)&#160;&#160;&#160;(((union{__typeof__(p) data; T a;})(p)).a)</td></tr>
 <tr class="memdesc:a200f4c65e946ac05c4f3af2cb4052688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a flexible length array member to a given type using union hackery sorcery. <br /></td></tr>
 <tr class="separator:a200f4c65e946ac05c4f3af2cb4052688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa79128caa105eb0990a2ee8227001846"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#aa79128caa105eb0990a2ee8227001846">CR8R_OUTER</a>(ptr,  T,  memb)&#160;&#160;&#160;((T*)((void*)ptr - offsetof(T, memb)))</td></tr>
+<tr class="memdesc:aa79128caa105eb0990a2ee8227001846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on the type of the outer structure.  <a href="container_8h.html#aa79128caa105eb0990a2ee8227001846">More...</a><br /></td></tr>
+<tr class="separator:aa79128caa105eb0990a2ee8227001846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">CR8R_OUTER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)ptr - ft-&gt;base.size))</td></tr>
+<tr class="memdesc:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on a function table.  <a href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">More...</a><br /></td></tr>
+<tr class="separator:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6371349b1d0a713fb6c5b5528cd14f55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">CR8R_INNER</a>(ptr,  T,  memb)&#160;&#160;&#160;(((void*)ptr + offsetof(T, memb)))</td></tr>
+<tr class="memdesc:a6371349b1d0a713fb6c5b5528cd14f55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on the type of the outer structure.  <a href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">More...</a><br /></td></tr>
+<tr class="separator:a6371349b1d0a713fb6c5b5528cd14f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">CR8R_INNER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)ptr + ft-&gt;base.size))</td></tr>
+<tr class="memdesc:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on a function table.  <a href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">More...</a><br /></td></tr>
+<tr class="separator:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -144,6 +156,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conta
 <tr class="memitem:a3dc2070a9246a4e03ef6571f40e5c0ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a3dc2070a9246a4e03ef6571f40e5c0ce">cr8r_default_free</a> (<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, void *)</td></tr>
 <tr class="memdesc:a3dc2070a9246a4e03ef6571f40e5c0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">ft-&gt;del implementation (for hash tables or vectors)  <a href="container_8h.html#a3dc2070a9246a4e03ef6571f40e5c0ce">More...</a><br /></td></tr>
 <tr class="separator:a3dc2070a9246a4e03ef6571f40e5c0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee2ab5471f326b55c5d7e5f17fdbe0a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#aee2ab5471f326b55c5d7e5f17fdbe0a0">cr8r_default_copy_cstr</a> (<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, void *, const void *)</td></tr>
+<tr class="memdesc:aee2ab5471f326b55c5d7e5f17fdbe0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ft-&gt;copy implementation for null terminated strings  <a href="container_8h.html#aee2ab5471f326b55c5d7e5f17fdbe0a0">More...</a><br /></td></tr>
+<tr class="separator:aee2ab5471f326b55c5d7e5f17fdbe0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7fa73a600bfb34e19cdba45aa1b0941"><td class="memItemLeft" align="right" valign="top"><a id="ae7fa73a600bfb34e19cdba45aa1b0941"></a>
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#ae7fa73a600bfb34e19cdba45aa1b0941">cr8r_powmod</a> (uint64_t b, uint64_t e, uint64_t n)</td></tr>
 <tr class="memdesc:ae7fa73a600bfb34e19cdba45aa1b0941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise b to the power of e modulo n using binary exponentiation. <br /></td></tr>
@@ -160,7 +175,182 @@ DESCRIPTION</h1>
 <p>Base function table for Crater containers </p>
 
 <p class="definition">Definition in file <a class="el" href="container_8h_source.html">container.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aa79128caa105eb0990a2ee8227001846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa79128caa105eb0990a2ee8227001846">&#9670;&nbsp;</a></span>CR8R_OUTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_OUTER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">T, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">memb&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((T*)((void*)ptr - offsetof(T, memb)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on the type of the outer structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to the intrusive data structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">T</td><td>type of the outer structure (NOT a pointer to its type) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">memb</td><td>the name of the intrusive data structure member within the outer structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the outer structure </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00154">154</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
+<a id="a2f3571b1ff2e05aacbab97baa0c3de4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3571b1ff2e05aacbab97baa0c3de4d">&#9670;&nbsp;</a></span>CR8R_OUTER_S</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_OUTER_S</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ft&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)ptr - ft-&gt;base.size))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on a function table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to the intrusive data structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>function table pointer with ft-&gt;base.size equal to the offset of the intrusive data structure within the outer data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the outer structure </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00162">162</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
+<a id="a6371349b1d0a713fb6c5b5528cd14f55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6371349b1d0a713fb6c5b5528cd14f55">&#9670;&nbsp;</a></span>CR8R_INNER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_INNER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">T, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">memb&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)ptr + offsetof(T, memb)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on the type of the outer structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to the outer data structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">T</td><td>type of the outer structure (NOT a pointer to its type) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">memb</td><td>the name of the intrusive data structure member within the outer structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the intrusive data structure </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00170">170</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
+<a id="a9c8918a1392d8b4a87a9e71b5ba99685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8918a1392d8b4a87a9e71b5ba99685">&#9670;&nbsp;</a></span>CR8R_INNER_S</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CR8R_INNER_S</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ft&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)ptr + ft-&gt;base.size))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on a function table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to the outer data structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>function table pointer with ft-&gt;base.size equal to the offset of the intrusive data structure within the outer data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the intrusive data structure </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00178">178</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="afe863262f21f39d2d95940863e10d883"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe863262f21f39d2d95940863e10d883">&#9670;&nbsp;</a></span>cr8r_default_new_size()</h2>
 
@@ -605,6 +795,43 @@ DESCRIPTION</h1>
 
 <p>ft-&gt;del implementation (for hash tables or vectors) </p>
 <p>Wraps free(). Keep in mind that the second argument is a pointer to an element and is dereferenced before being freed. For example, malloc'd C strings are stored as single pointers, so a vector of C strings is really a vector of pointers, and a pointer to an element of such a vector is a pointer to a pointer to some null terminated character sequence. </p>
+
+</div>
+</div>
+<a id="aee2ab5471f326b55c5d7e5f17fdbe0a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee2ab5471f326b55c5d7e5f17fdbe0a0">&#9670;&nbsp;</a></span>cr8r_default_copy_cstr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_default_copy_cstr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ft-&gt;copy implementation for null terminated strings </p>
+<p>Wraps strdup. </p>
 
 </div>
 </div>

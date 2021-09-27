@@ -84,24 +84,66 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A point and associated data in 3D space.  <a href="structcr8r__kd__i64x3__pt.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A KD tree storing points on a sphere in 3D.  <a href="structcr8r__kd__s2i64.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__s2i64__ball.html">cr8r_kd_s2i64_ball</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__c3i64__quad.html">cr8r_kd_c3i64_quad</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__c3i64__ball.html">cr8r_kd_c3i64_ball</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a583ca9ae1f928faa664c436d9b2dc7c0"><td class="memItemLeft" align="right" valign="top"><a id="a583ca9ae1f928faa664c436d9b2dc7c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_kd_s2i64_ify</b> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft)</td></tr>
+<tr class="memitem:a17f462b756817f5ed822242d6e4f97be"><td class="memItemLeft" align="right" valign="top"><a id="a17f462b756817f5ed822242d6e4f97be"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_kd_i64x3_sqdist</b> (const int64_t a[static 3], const int64_t b[static 3])</td></tr>
+<tr class="separator:a17f462b756817f5ed822242d6e4f97be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a583ca9ae1f928faa664c436d9b2dc7c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a583ca9ae1f928faa664c436d9b2dc7c0">cr8r_kd_s2i64_ify</a> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft)</td></tr>
+<tr class="memdesc:a583ca9ae1f928faa664c436d9b2dc7c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Organize the points in a spherical KD tree into the proper structure.  <a href="kd__tree_8h.html#a583ca9ae1f928faa664c436d9b2dc7c0">More...</a><br /></td></tr>
 <tr class="separator:a583ca9ae1f928faa664c436d9b2dc7c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2666e32dbef980fb7b880205927747"><td class="memItemLeft" align="right" valign="top"><a id="abe2666e32dbef980fb7b880205927747"></a>
-<a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_kd_s2i64_nearest</b> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, const int64_t point[3])</td></tr>
+<tr class="memitem:abe2666e32dbef980fb7b880205927747"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#abe2666e32dbef980fb7b880205927747">cr8r_kd_s2i64_nearest</a> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, const int64_t point[3])</td></tr>
+<tr class="memdesc:abe2666e32dbef980fb7b880205927747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the point in a cubic KD tree nearest to a given point.  <a href="kd__tree_8h.html#abe2666e32dbef980fb7b880205927747">More...</a><br /></td></tr>
 <tr class="separator:abe2666e32dbef980fb7b880205927747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8d31cc5e908261e831435e8d4f0063d"><td class="memItemLeft" align="right" valign="top"><a id="ac8d31cc5e908261e831435e8d4f0063d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_kd_s2i64_forall_quad</b> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, const int64_t min_bound[3], const int64_t max_bound[3], void *data, void(*f)(void *data, const void *point))</td></tr>
-<tr class="separator:ac8d31cc5e908261e831435e8d4f0063d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bbeea54b12180f7fea4247354a70258"><td class="memItemLeft" align="right" valign="top"><a id="a7bbeea54b12180f7fea4247354a70258"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_kd_s2i64_forall_ball</b> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, const int64_t point[3], int64_t sqdist, void *data, void(*f)(void *data, const void *point))</td></tr>
-<tr class="separator:a7bbeea54b12180f7fea4247354a70258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af729fc5d00f37fe43e2c0a72ed78e2b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#af729fc5d00f37fe43e2c0a72ed78e2b6">cr8r_kd_s2i64_intersect_quad_quad</a> (int64_t r2, <a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a> query, <a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a> window)</td></tr>
+<tr class="memdesc:af729fc5d00f37fe43e2c0a72ed78e2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a "rectangular" region on the surface of a spherical KD tree intersects with a given cuboid.  <a href="kd__tree_8h.html#af729fc5d00f37fe43e2c0a72ed78e2b6">More...</a><br /></td></tr>
+<tr class="separator:af729fc5d00f37fe43e2c0a72ed78e2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60bfd2df0c24d19ac8e78a05ec9c180d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a60bfd2df0c24d19ac8e78a05ec9c180d">cr8r_kd_s2i64_forall_quad</a> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, <a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a> query, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:a60bfd2df0c24d19ac8e78a05ec9c180d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a spherical KD tree within some "rectangular" region.  <a href="kd__tree_8h.html#a60bfd2df0c24d19ac8e78a05ec9c180d">More...</a><br /></td></tr>
+<tr class="separator:a60bfd2df0c24d19ac8e78a05ec9c180d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783a453ce3d885132e6b013ea0990995"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a783a453ce3d885132e6b013ea0990995">cr8r_kd_s2i64_intersect_ball_quad</a> (int64_t r2, <a class="el" href="structcr8r__kd__s2i64__ball.html">cr8r_kd_s2i64_ball</a> query, <a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a> window)</td></tr>
+<tr class="memdesc:a783a453ce3d885132e6b013ea0990995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a "rectangular" region on the surface of a spherical KD tree intersects with a given ball.  <a href="kd__tree_8h.html#a783a453ce3d885132e6b013ea0990995">More...</a><br /></td></tr>
+<tr class="separator:a783a453ce3d885132e6b013ea0990995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfed8941e945ac829a7dda7f48f5d672"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#adfed8941e945ac829a7dda7f48f5d672">cr8r_kd_s2i64_forall_ball</a> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, <a class="el" href="structcr8r__kd__s2i64__ball.html">cr8r_kd_s2i64_ball</a> query, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:adfed8941e945ac829a7dda7f48f5d672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a spherical KD tree within some distance of a given point.  <a href="kd__tree_8h.html#adfed8941e945ac829a7dda7f48f5d672">More...</a><br /></td></tr>
+<tr class="separator:adfed8941e945ac829a7dda7f48f5d672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d028157ed3495308c3d876d2cc7c81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ae7d028157ed3495308c3d876d2cc7c81">cr8r_kd_s2i64_forall</a> (<a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:ae7d028157ed3495308c3d876d2cc7c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a spherical KD tree.  <a href="kd__tree_8h.html#ae7d028157ed3495308c3d876d2cc7c81">More...</a><br /></td></tr>
+<tr class="separator:ae7d028157ed3495308c3d876d2cc7c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d78b7918658b8d5084463cd46d5a3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ab6d78b7918658b8d5084463cd46d5a3a">cr8r_kd_c3i64_ify</a> (<a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft)</td></tr>
+<tr class="memdesc:ab6d78b7918658b8d5084463cd46d5a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Organize the points in a cuboid KD tree into the proper structure.  <a href="kd__tree_8h.html#ab6d78b7918658b8d5084463cd46d5a3a">More...</a><br /></td></tr>
+<tr class="separator:ab6d78b7918658b8d5084463cd46d5a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a22c9450d779b011b1edcc4c06df27c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a2a22c9450d779b011b1edcc4c06df27c">cr8r_kd_c3i64_nearest</a> (<a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, const int64_t point[3])</td></tr>
+<tr class="memdesc:a2a22c9450d779b011b1edcc4c06df27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the point in a cuboid KD tree nearest to a given point.  <a href="kd__tree_8h.html#a2a22c9450d779b011b1edcc4c06df27c">More...</a><br /></td></tr>
+<tr class="separator:a2a22c9450d779b011b1edcc4c06df27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7420eb9d64810def2028d1a3565f71c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ae7420eb9d64810def2028d1a3565f71c">cr8r_kd_c3i64_forall_quad</a> (<a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, <a class="el" href="structcr8r__kd__c3i64__quad.html">cr8r_kd_c3i64_quad</a> query, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:ae7420eb9d64810def2028d1a3565f71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a cuboid KD tree within some cuboid region.  <a href="kd__tree_8h.html#ae7420eb9d64810def2028d1a3565f71c">More...</a><br /></td></tr>
+<tr class="separator:ae7420eb9d64810def2028d1a3565f71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a0d218e8bf96b0acc375e9d3886788d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a0a0d218e8bf96b0acc375e9d3886788d">cr8r_kd_c3i64_intersect_ball_quad</a> (<a class="el" href="structcr8r__kd__c3i64__ball.html">cr8r_kd_c3i64_ball</a> query, <a class="el" href="structcr8r__kd__c3i64__quad.html">cr8r_kd_c3i64_quad</a> window)</td></tr>
+<tr class="memdesc:a0a0d218e8bf96b0acc375e9d3886788d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a cuboid region in a cuboid KD tree intersects with a given ball.  <a href="kd__tree_8h.html#a0a0d218e8bf96b0acc375e9d3886788d">More...</a><br /></td></tr>
+<tr class="separator:a0a0d218e8bf96b0acc375e9d3886788d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d89a3e28454f2b71562465d1ee39f2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a6d89a3e28454f2b71562465d1ee39f2b">cr8r_kd_c3i64_forall_ball</a> (<a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, <a class="el" href="structcr8r__kd__c3i64__ball.html">cr8r_kd_c3i64_ball</a> query, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:a6d89a3e28454f2b71562465d1ee39f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a cuboid KD tree within some distance of a given point.  <a href="kd__tree_8h.html#a6d89a3e28454f2b71562465d1ee39f2b">More...</a><br /></td></tr>
+<tr class="separator:a6d89a3e28454f2b71562465d1ee39f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1896a7388303c4385dcd32f7501594"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a6c1896a7388303c4385dcd32f7501594">cr8r_kd_c3i64_forall</a> (<a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, void *data, void(*f)(void *data, const void *point))</td></tr>
+<tr class="memdesc:a6c1896a7388303c4385dcd32f7501594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on all points in a cuboid KD tree.  <a href="kd__tree_8h.html#a6c1896a7388303c4385dcd32f7501594">More...</a><br /></td></tr>
+<tr class="separator:a6c1896a7388303c4385dcd32f7501594"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
@@ -114,7 +156,594 @@ DESCRIPTION</h1>
 <p>KD trees are a way to store spatially organized data (tagged points on a sphere, tagged points in a 2D rectangle, tagged points in a 3D cuboid, etc). </p>
 
 <p class="definition">Definition in file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a583ca9ae1f928faa664c436d9b2dc7c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a583ca9ae1f928faa664c436d9b2dc7c0">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_ify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_s2i64_ify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Organize the points in a spherical KD tree into the proper structure. </p>
+<p>This should be called after using <a class="el" href="vec_8h.html#a136fc6242ac747df5f8bfa71bfd7e70d">cr8r_vec_pushr</a> or similar methods to populate the underlying vector self-&gt;points with the points. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>the KD tree to organize. points and radius should already be set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>function table. ft-&gt;cmp is set internally (in a copy) to a buildin comparator for the x/y dimension or the z dimension, so the ft-&gt;cmp of the function table does not matter. The size should be set to offsetof(cr8r_kd_i64x3_pt, data) + sizeof(the_data). The copy and swap functions should be set to cr8r_default_copy and swap. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abe2666e32dbef980fb7b880205927747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2666e32dbef980fb7b880205927747">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_nearest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a>* cr8r_kd_s2i64_nearest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int64_t&#160;</td>
+          <td class="paramname"><em>point</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the point in a cubic KD tree nearest to a given point. </p>
+<p>WARNING: Currently there is a branch cut on the positive x half of the xz plane so queries with a small y component can return the wrong result if the points are not symmetric under reflection across the xz plane </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>the query point, passed as an int64_t[3] rather than a <a class="el" href="structcr8r__kd__i64x3__pt.html" title="A point and associated data in 3D space.">cr8r_kd_i64x3_pt</a> because only the location of the query point and not any associated data is relevant </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to a <a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a> representing the nearest point and associated data, or NULL if the tree is empty. Note that the size of the associated data is defined in ft. </dd></dl>
+
+</div>
+</div>
+<a id="af729fc5d00f37fe43e2c0a72ed78e2b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af729fc5d00f37fe43e2c0a72ed78e2b6">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_intersect_quad_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cr8r_kd_s2i64_intersect_quad_quad </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>r2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a>&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test if a "rectangular" region on the surface of a spherical KD tree intersects with a given cuboid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">r2</td><td>the radius of the spherical KD tree on which the rectangle region lives. Note that the center of said sphere is always the origin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">query</td><td>the cuboid. NOTE: the coordinates of query are coordinates in space and generally should not be on the surface of the sphere </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">window</td><td>the "rectangular" region on the surface of the sphere. The coordinates of window SHOULD be points on the surface of the sphere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>2 if window is entirely contained in query, 1 if window intersects query but is not entirely contained, or 0 if window and query are disjoint. </dd></dl>
+
+</div>
+</div>
+<a id="a60bfd2df0c24d19ac8e78a05ec9c180d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60bfd2df0c24d19ac8e78a05ec9c180d">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_forall_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_s2i64_forall_quad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a spherical KD tree within some "rectangular" region. </p>
+<p>The "rectangular" region is the region between two given points in terms of azimuthal angle and polar angle (though the checks are actually implemented in terms of sign-aware x to y ratio and z coordinate). The region includes its boundaries (ie is a closed region). WARNING: If the branch cut touches the right edge or interior of the region, this function probably won't work </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">min_bound</td><td>the "top left" point of the query region, inclusive. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_bount</td><td>the "bottom right" point of the query region, INCLUSIVE </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>scratch data for the callback function. Any input, state, or output, should be contained here. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>the callback to call on all points in the region </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a783a453ce3d885132e6b013ea0990995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783a453ce3d885132e6b013ea0990995">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_intersect_ball_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cr8r_kd_s2i64_intersect_ball_quad </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>r2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__ball.html">cr8r_kd_s2i64_ball</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__quad.html">cr8r_kd_s2i64_quad</a>&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test if a "rectangular" region on the surface of a spherical KD tree intersects with a given ball. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">r2</td><td>the radius of the spherical KD tree on which the rectangle region lives. Note that the center of said sphere is always the origin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">query</td><td>the ball region, whose center should generally not be the origin since that case can be handled more easily by just comparing radii </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">window</td><td>the "rectangular" region on the surface of the sphere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>2 if window is entirely contained in query, 1 if window intersects query but is not entirely contained, or 0 if window and query are disjoint. </dd></dl>
+
+</div>
+</div>
+<a id="adfed8941e945ac829a7dda7f48f5d672"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfed8941e945ac829a7dda7f48f5d672">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_forall_ball()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_s2i64_forall_ball </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64__ball.html">cr8r_kd_s2i64_ball</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a spherical KD tree within some distance of a given point. </p>
+<p>Very similar to <a class="el" href="kd__tree_8h.html#a60bfd2df0c24d19ac8e78a05ec9c180d">cr8r_kd_s2i64_forall_quad</a> but with a "circular" query region rather than a "rectangular" one. This has the same asymptotic complexity but is a more complicated search in practice because the kd tree splits up the points in an inherently rectangular manner. This function exemplifies the main reason why we store the points as x, y, z coordinates rather than azimuthal and polar angles: for angles the distance formula is D**2 = 2*r**2*(1 - sin(theta)*sin(theta')*cos(phi-phi') - cos(phi)*cos(phi')), while for rectangular coordinates it is simply D**2 = dx**2 + dy**2 = dz**2. In general, formulae using rectangular coordinates are simpler and converting from angles to rectangular coordinates requires trig. On the other hand, recovering the angles from the rectangular coordinates requires inverse trig, but we can often get around this somehow (using ratios, areas, cross/dot product, etc). The square distance is used to avoid a square root and to keep numbers in the integers. This is the squared euclidean distance between the points in R^3, that is, dx**2 + dy**2 + dz**2. </p>
+
+</div>
+</div>
+<a id="ae7d028157ed3495308c3d876d2cc7c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d028157ed3495308c3d876d2cc7c81">&#9670;&nbsp;</a></span>cr8r_kd_s2i64_forall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_s2i64_forall </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__s2i64.html">cr8r_kd_s2i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a spherical KD tree. </p>
+<p>Very similar to <a class="el" href="kd__tree_8h.html#a60bfd2df0c24d19ac8e78a05ec9c180d">cr8r_kd_s2i64_forall_quad</a> except this function visits ALL points unconditionally. </p>
+
+</div>
+</div>
+<a id="ab6d78b7918658b8d5084463cd46d5a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d78b7918658b8d5084463cd46d5a3a">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_ify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_c3i64_ify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Organize the points in a cuboid KD tree into the proper structure. </p>
+<p>This should be called after using <a class="el" href="vec_8h.html#a136fc6242ac747df5f8bfa71bfd7e70d">cr8r_vec_pushr</a> or similar methods to populate the underlying vector self-&gt;points with the points. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>the KD tree to organize. points and bounds should already be set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>function table. ft-&gt;cmp is set internally (in a copy) to a buildin comparator for the x, y, or z dimension, so the ft-&gt;cmp of the function table does not matter. The size should be set to offsetof(cr8r_kd_i64x3_pt, data) + sizeof(the_data). The copy and swap functions should be set to cr8r_default_copy and swap. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2a22c9450d779b011b1edcc4c06df27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a22c9450d779b011b1edcc4c06df27c">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_nearest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a>* cr8r_kd_c3i64_nearest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int64_t&#160;</td>
+          <td class="paramname"><em>point</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the point in a cuboid KD tree nearest to a given point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>the query point, passed as an int64_t[3] rather than a <a class="el" href="structcr8r__kd__i64x3__pt.html" title="A point and associated data in 3D space.">cr8r_kd_i64x3_pt</a> because only the location of the query point and not any associated data is relevant </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to a <a class="el" href="structcr8r__kd__i64x3__pt.html">cr8r_kd_i64x3_pt</a> representing the nearest point and associated data, or NULL if the tree is empty. Note that the size of the associated data is defined in ft. </dd></dl>
+
+</div>
+</div>
+<a id="ae7420eb9d64810def2028d1a3565f71c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7420eb9d64810def2028d1a3565f71c">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_forall_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_c3i64_forall_quad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64__quad.html">cr8r_kd_c3i64_quad</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a cuboid KD tree within some cuboid region. </p>
+<p>The region includes its boundaries (ie is a closed region). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">min_bound</td><td>the "top left back" point of the query region, inclusive. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_bount</td><td>the "bottom right front" point of the query region, INCLUSIVE </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>scratch data for the callback function. Any input, state, or output, should be contained here. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>the callback to call on all points in the region </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0a0d218e8bf96b0acc375e9d3886788d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a0d218e8bf96b0acc375e9d3886788d">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_intersect_ball_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cr8r_kd_c3i64_intersect_ball_quad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64__ball.html">cr8r_kd_c3i64_ball</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64__quad.html">cr8r_kd_c3i64_quad</a>&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test if a cuboid region in a cuboid KD tree intersects with a given ball. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">query</td><td>the ball region (in space) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">window</td><td>the window region (in the KD tree) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>2 if window is entirely contained in query, 1 if window intersects with query but is not entirely contained, or 0 if window and query do not intersect </dd></dl>
+
+</div>
+</div>
+<a id="a6d89a3e28454f2b71562465d1ee39f2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d89a3e28454f2b71562465d1ee39f2b">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_forall_ball()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_c3i64_forall_ball </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64__ball.html">cr8r_kd_c3i64_ball</a>&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a cuboid KD tree within some distance of a given point. </p>
+<p>Very similar to <a class="el" href="kd__tree_8h.html#ae7420eb9d64810def2028d1a3565f71c">cr8r_kd_c3i64_forall_quad</a> but with a spherical query region rather than a cuboid one. The square distance is used to avoid a square root and to keep numbers in the integers. This is the squared euclidean distance between the points in R^3, that is, dx**2 + dy**2 + dz**2. </p>
+
+</div>
+</div>
+<a id="a6c1896a7388303c4385dcd32f7501594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1896a7388303c4385dcd32f7501594">&#9670;&nbsp;</a></span>cr8r_kd_c3i64_forall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cr8r_kd_c3i64_forall </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__c3i64.html">cr8r_kd_c3i64</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *data, const void *point)&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call a function on all points in a cuboid KD tree. </p>
+<p>Very similar to <a class="el" href="kd__tree_8h.html#ae7420eb9d64810def2028d1a3565f71c">cr8r_kd_c3i64_forall_quad</a> except this function visits ALL points unconditionally. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

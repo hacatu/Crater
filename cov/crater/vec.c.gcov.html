@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-06-08 08:42:35</td>
+            <td class="headerValue">2021-09-27 22:16:30</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">43</td>
@@ -122,8 +122,8 @@
 <a name="60"><span class="lineNum">      60 </span>            :         }</a>
 <a name="61"><span class="lineNum">      61 </span><span class="lineCov">  160549000 : }</span></a>
 <a name="62"><span class="lineNum">      62 </span>            : </a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         21 : bool cr8r_vec_init(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         21 :         void *tmp = ft-&gt;resize(&amp;ft-&gt;base, NULL, cap);</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         20 : bool cr8r_vec_init(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         20 :         void *tmp = ft-&gt;resize(&amp;ft-&gt;base, NULL, cap);</span></a>
 <a name="65"><span class="lineNum">      65 </span><span class="lineCov">         21 :         if(!tmp){</span></a>
 <a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :                 return false;</span></a>
 <a name="67"><span class="lineNum">      67 </span>            :         }</a>
@@ -259,8 +259,8 @@
 <a name="197"><span class="lineNum">     197 </span>            :         }</a>
 <a name="198"><span class="lineNum">     198 </span><span class="lineCov">       1000 : }</span></a>
 <a name="199"><span class="lineNum">     199 </span>            : </a>
-<a name="200"><span class="lineNum">     200 </span><span class="lineCov">      74874 : bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){</span></a>
-<a name="201"><span class="lineNum">     201 </span><span class="lineCov">      74874 :         if(self-&gt;len == self-&gt;cap){</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">      74993 : bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){</span></a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineCov">      74993 :         if(self-&gt;len == self-&gt;cap){</span></a>
 <a name="202"><span class="lineNum">     202 </span><span class="lineCov">         12 :                 uint64_t new_cap = ft-&gt;new_size(&amp;ft-&gt;base, self-&gt;cap);</span></a>
 <a name="203"><span class="lineNum">     203 </span><span class="lineCov">         12 :                 void *tmp = ft-&gt;resize(&amp;ft-&gt;base, self-&gt;buf, new_cap);</span></a>
 <a name="204"><span class="lineNum">     204 </span><span class="lineCov">         12 :                 if(!tmp){</span></a>
@@ -269,8 +269,8 @@
 <a name="207"><span class="lineNum">     207 </span><span class="lineCov">         12 :                 self-&gt;buf = tmp;</span></a>
 <a name="208"><span class="lineNum">     208 </span><span class="lineCov">         12 :                 self-&gt;cap = new_cap;</span></a>
 <a name="209"><span class="lineNum">     209 </span>            :         }</a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">      74874 :         memcpy(self-&gt;buf + self-&gt;len++*ft-&gt;base.size, e, ft-&gt;base.size);</span></a>
-<a name="211"><span class="lineNum">     211 </span><span class="lineCov">      74874 :         return true;</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">      74993 :         memcpy(self-&gt;buf + self-&gt;len++*ft-&gt;base.size, e, ft-&gt;base.size);</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineCov">      74993 :         return true;</span></a>
 <a name="212"><span class="lineNum">     212 </span>            : }</a>
 <a name="213"><span class="lineNum">     213 </span>            : </a>
 <a name="214"><span class="lineNum">     214 </span><span class="lineCov">   10010000 : bool cr8r_vec_popr(cr8r_vec *self, cr8r_vec_ft *ft, void *o){</span></a>
@@ -717,6 +717,19 @@
 <a name="655"><span class="lineNum">     655 </span>            :         .swap = cr8r_default_swap</a>
 <a name="656"><span class="lineNum">     656 </span>            : };</a>
 <a name="657"><span class="lineNum">     657 </span>            : </a>
+<a name="658"><span class="lineNum">     658 </span>            : cr8r_vec_ft cr8r_vecft_cstr = {</a>
+<a name="659"><span class="lineNum">     659 </span>            :         .base = {</a>
+<a name="660"><span class="lineNum">     660 </span>            :                 .data = NULL,</a>
+<a name="661"><span class="lineNum">     661 </span>            :                 .size = sizeof(char*)</a>
+<a name="662"><span class="lineNum">     662 </span>            :         },</a>
+<a name="663"><span class="lineNum">     663 </span>            :         .new_size = cr8r_default_new_size,</a>
+<a name="664"><span class="lineNum">     664 </span>            :         .resize = cr8r_default_resize,</a>
+<a name="665"><span class="lineNum">     665 </span>            :         .del = cr8r_default_free,</a>
+<a name="666"><span class="lineNum">     666 </span>            :         .copy = cr8r_default_copy_cstr,</a>
+<a name="667"><span class="lineNum">     667 </span>            :         .cmp = cr8r_default_cmp_cstr,</a>
+<a name="668"><span class="lineNum">     668 </span>            :         .swap = cr8r_default_swap</a>
+<a name="669"><span class="lineNum">     669 </span>            : };</a>
+<a name="670"><span class="lineNum">     670 </span>            : </a>
 </pre>
       </td>
     </tr>
