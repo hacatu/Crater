@@ -23,12 +23,44 @@ All containers can be parameterized by specifying callback functions in a "funct
 	- Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)
 	- Use incremental resizing (have two tables internally while resizing and amortize moving entries over
 	 insert/remove operations).  Entries are stored directly in the hash table using quadratic probing on collisions.
-- Vectors
+- Vectors (/heaps)
 	- Self resizing array with standard constant time operations
 	- Allocator and growth rate are configurable (can specify function to compute new size)
 	- Include pushl/popl (linear time left access) and `O(nlog(n))` sorting (using heapsort)
-	- Support using vectors as heaps (min and max with configurable comparison function)
+	- Support using vectors as heaps (min and max with configurable comparison function,
+	 implemented as an implicit binary heap)
 	- Include operations for sorted vectors (find element index in sorted list, etc)
+	- Support finding ith element without sorting in linear time with quickselect, partitioning, etc.
+	 Implicit, immutable KD trees can be implemented on top of this, but inserting/removing elements
+	 is much, much more complicated than implicitly stored heaps so it isn't supported without rebuilding
+	 the KD tree.
+- Pairing heaps (intrusive)
+	- Like all heaps, pairing heaps allow efficiently finding the smallest (or largest) of their elements.
+	- Support merging two heaps together in constant time.
+	- Have very good asymptotic time complexities, and tend to perform better than heap variants that have
+	 lower time complexities (ie Fibonacci heaps).
+	- Implicit binary heaps are the most popular because they have no pointer overhead and have much less
+	 indirection and fragmentation compared to other heap variants, even those with better theoretical
+	 performance.  Implicit binary heaps are available as functionality for vectors, see above.
+	- Pairing heaps have more indirection because they are pointer based data structures.
+	- Pairing heaps in Crater are implemented using intrusive data structures, as opposed to using
+	 structs with flexible length char arrays to store the generic data.  This means any struct you wish
+	 to use as a pairing heap must include a `cr8r_pheap_node` struct within it, ideally as its last member.
+	- The reason pairing heaps are implemented in this way is because they are intended to be mixed into
+	 another data structure like a hash table or avl tree.  This is used when implementing priority queues
+	 in Dijkstra's algorithm for example, since the heap is needed to efficiently find the next smallest element,
+	 but another data structure is needed to find the elements by name, position in space, or some other identifier.
+	- Pairing heaps can also be preferable to binary heaps when merging is common, which happens in many graph
+	 algorithms such as connected components
+	- `find-min` in `O(1)`
+	- `delete-min` in `O(log(n))`
+	- `insert` in `O(1)` (`O(log(n))` for binary heaps)
+	- `decreased-key` in `o(log(n))` (`O(log(n))` for binary heaps)
+	- notice the `o` vs `O`; `o` is a stronger bound, but keep in mind this is amortized and pairing heaps
+	 are not as strongly structured as say avl trees so there will be some fluctuation
+	- `increased-key` in `O(log(n))`
+	- `merge` in `O(1)` (`O(n)` for binary heaps)
+	- `heapify` in `O(n)`
 - Circularly linked lists
 	- Exist
 	- Not currently tested
@@ -62,7 +94,7 @@ All containers can be parameterized by specifying callback functions in a "funct
 	- Default help option to print help and descriptions is provided, and some options for argument parsing behavior are available (whether all/only
 	 one error is reported as well as basic support for positional arguments)
 
-Pairing heaps, k-d trees, and possibly red black trees and double linked lists are planned, as well as more support for jumping in the prng part of
+KD trees and possibly red black trees and double linked lists are planned, as well as more support for jumping in the prng part of
 the library and expansion of command line argument handling.
 
 Each container type has an associated function table type.

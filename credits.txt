@@ -1,2 +1,11 @@
 website/crater.png is from [Mozilla's emoji set](https://github.com/mozilla/fxemoji), under CC BY 4.0
-resources/frankenstein.txt is from project gutenberg, a site providing books whose copyright has expired and are public domain
+
+resources/{aenead,don_quijote,frankenstein}.txt are from project gutenberg, a site providing books
+whose copyright has expired and are public domain
+
+resources/i8l_traffic_in_arms.txt is from epic.org, but this document is public domain by the US government
+
+resources/p083_{example,matrix}.txt are from project euler
+
+resources/New_Brunswick_roads is from here doi:10.7910/DVN/CUWWYJ
+
