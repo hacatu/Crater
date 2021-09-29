@@ -90,16 +90,16 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">CR8R_FLA_CAST</a>(T,  p)&#160;&#160;&#160;(((union{__typeof__(p) data; T a;})(p)).a)</td></tr>
 <tr class="memdesc:a200f4c65e946ac05c4f3af2cb4052688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a flexible length array member to a given type using union hackery sorcery. <br /></td></tr>
 <tr class="separator:a200f4c65e946ac05c4f3af2cb4052688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa79128caa105eb0990a2ee8227001846"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#aa79128caa105eb0990a2ee8227001846">CR8R_OUTER</a>(ptr,  T,  memb)&#160;&#160;&#160;((T*)((void*)ptr - offsetof(T, memb)))</td></tr>
+<tr class="memitem:aa79128caa105eb0990a2ee8227001846"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#aa79128caa105eb0990a2ee8227001846">CR8R_OUTER</a>(ptr,  T,  memb)&#160;&#160;&#160;((T*)((void*)(ptr) - offsetof(T, memb)))</td></tr>
 <tr class="memdesc:aa79128caa105eb0990a2ee8227001846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on the type of the outer structure.  <a href="container_8h.html#aa79128caa105eb0990a2ee8227001846">More...</a><br /></td></tr>
 <tr class="separator:aa79128caa105eb0990a2ee8227001846"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">CR8R_OUTER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)ptr - ft-&gt;base.size))</td></tr>
+<tr class="memitem:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">CR8R_OUTER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)(ptr) - (ft)-&gt;base.size))</td></tr>
 <tr class="memdesc:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an intrusive data structure to a pointer to the outer structure containing it, based on a function table.  <a href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">More...</a><br /></td></tr>
 <tr class="separator:a2f3571b1ff2e05aacbab97baa0c3de4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6371349b1d0a713fb6c5b5528cd14f55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">CR8R_INNER</a>(ptr,  T,  memb)&#160;&#160;&#160;(((void*)ptr + offsetof(T, memb)))</td></tr>
+<tr class="memitem:a6371349b1d0a713fb6c5b5528cd14f55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">CR8R_INNER</a>(ptr,  T,  memb)&#160;&#160;&#160;(((void*)(ptr) + offsetof(T, memb)))</td></tr>
 <tr class="memdesc:a6371349b1d0a713fb6c5b5528cd14f55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on the type of the outer structure.  <a href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">More...</a><br /></td></tr>
 <tr class="separator:a6371349b1d0a713fb6c5b5528cd14f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">CR8R_INNER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)ptr + ft-&gt;base.size))</td></tr>
+<tr class="memitem:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">CR8R_INNER_S</a>(ptr,  ft)&#160;&#160;&#160;(((void*)(ptr) + (ft)-&gt;base.size))</td></tr>
 <tr class="memdesc:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer to an outer data structure to a pointer to the intrusive data structure within it, based on a function table.  <a href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">More...</a><br /></td></tr>
 <tr class="separator:a9c8918a1392d8b4a87a9e71b5ba99685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -203,7 +203,7 @@ DESCRIPTION</h1>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((T*)((void*)ptr - offsetof(T, memb)))</td>
+          <td></td><td>&#160;&#160;&#160;((T*)((void*)(ptr) - offsetof(T, memb)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -244,7 +244,7 @@ DESCRIPTION</h1>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(((void*)ptr - ft-&gt;base.size))</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)(ptr) - (ft)-&gt;base.size))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -290,7 +290,7 @@ DESCRIPTION</h1>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(((void*)ptr + offsetof(T, memb)))</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)(ptr) + offsetof(T, memb)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -331,7 +331,7 @@ DESCRIPTION</h1>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(((void*)ptr + ft-&gt;base.size))</td>
+          <td></td><td>&#160;&#160;&#160;(((void*)(ptr) + (ft)-&gt;base.size))</td>
         </tr>
       </table>
 </div><div class="memdoc">
