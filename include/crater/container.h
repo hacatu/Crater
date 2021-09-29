@@ -151,7 +151,7 @@ uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 /// @param [in] T: type of the outer structure (NOT a pointer to its type)
 /// @param [in] memb: the name of the intrusive data structure member within the outer structure
 /// @return pointer to the outer structure
-#define CR8R_OUTER(ptr, T, memb) ((T*)((void*)ptr - offsetof(T, memb)))
+#define CR8R_OUTER(ptr, T, memb) ((T*)((void*)(ptr) - offsetof(T, memb)))
 
 /// Convert a pointer to an intrusive data structure to a pointer to the
 /// outer structure containing it, based on a function table.
@@ -159,7 +159,7 @@ uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 /// @param [in] ft: function table pointer with ft->base.size equal to
 /// the offset of the intrusive data structure within the outer data structure
 /// @return pointer to the outer structure
-#define CR8R_OUTER_S(ptr, ft) (((void*)ptr - ft->base.size))
+#define CR8R_OUTER_S(ptr, ft) (((void*)(ptr) - (ft)->base.size))
 
 /// Convert a pointer to an outer data structure to a pointer to the
 /// intrusive data structure within it, based on the type of the outer structure.
@@ -167,7 +167,7 @@ uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 /// @param [in] T: type of the outer structure (NOT a pointer to its type)
 /// @param [in] memb: the name of the intrusive data structure member within the outer structure
 /// @return pointer to the intrusive data structure
-#define CR8R_INNER(ptr, T, memb) (((void*)ptr + offsetof(T, memb)))
+#define CR8R_INNER(ptr, T, memb) (((void*)(ptr) + offsetof(T, memb)))
 
 /// Convert a pointer to an outer data structure to a pointer to the
 /// intrusive data structure within it, based on a function table.
@@ -175,6 +175,6 @@ uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 /// @param [in] ft: function table pointer with ft->base.size equal to
 /// the offset of the intrusive data structure within the outer data structure
 /// @return pointer to the intrusive data structure
-#define CR8R_INNER_S(ptr, ft) (((void*)ptr + ft->base.size))
+#define CR8R_INNER_S(ptr, ft) (((void*)(ptr) + (ft)->base.size))
 
 

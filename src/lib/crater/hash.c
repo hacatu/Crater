@@ -180,12 +180,17 @@ inline static int cr8r_hash_ix_start(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft
 		free(new_table);
 		return 0;
 	}
-	uint64_t new_cap = new_len*(long double)ft->load_factor;
+	uint64_t new_cap = new_len*(double)ft->load_factor;
 	//we currently have full entries and can fit new_cap before resizing.  This means we must move full/(new_cap - full)
 	//entries on average per insertion.  Because full == cap + 1, new_cap == new_len*load_factor, cap == len_a*load_factor,
 	//and new_len == len_a*growth_factor, full/(new_cap - full) ~~ cap/(new_cap - cap) ~~ len_a/(new_len - len_a)
 	//~~ len_a/(len_a*growth_factor - len_a) ~~ 1/(growth_factor - 1).  I picked the largest prime number before each power
 	//of 2 so full/(new_cap - full) is very close to 1.  It is always less than 2 so I might just use 2 instead of r
+	#ifdef DEBUG
+	if(self->table_b){
+		abort();
+	}
+	#endif
 	self->table_b = self->table_a;
 	self->table_a = new_table;
 	self->flags_b = self->flags_a;
@@ -193,7 +198,7 @@ inline static int cr8r_hash_ix_start(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft
 	self->len_b = self->len_a;
 	self->len_a = new_len;
 	self->cap = new_cap;
-	self->r = ceill(self->full/((long double)new_cap - self->full));
+	self->r = ceill((self->full + 1.)/(new_cap - self->full - 1.));
 	self->i = 0;
 	return 1;
 }

@@ -56,6 +56,9 @@
 	},
 	"pandigital_primes": {
 		"no_red_tests": [[]]
+	},
+	"dijkstra": {
+		"no_red_tests": [["../../resources/p083_matrix.txt"]]
 	}
 }
 

@@ -4,7 +4,7 @@
 #include <crater/pheap.h>
 
 void *cr8r_pheap_new(void *key, cr8r_pheap_ft *ft, cr8r_pheap_node *first_child, cr8r_pheap_node *sibling, cr8r_pheap_node *parent){
-	void *res = ft->alloc(&ft->base);
+	void *res = ft->alloc ? ft->alloc(&ft->base) : NULL;
 	if(res){
 		memcpy(res, key, ft->base.size);
 		memcpy(res + ft->base.size, &(cr8r_pheap_node){.first_child = first_child, .sibling = sibling, .parent = parent}, sizeof(cr8r_pheap_node));
@@ -72,7 +72,7 @@ static cr8r_pheap_node *cr8r_pheap_merge_binary(cr8r_pheap_node **n, size_t dept
 
 /// helper function for pheap_pop.  Uses mergesort to combine a pheap_node's children
 /// linked list into one pairing heap.
-static cr8r_pheap_node *pheap_merge_exponential(cr8r_pheap_node **n, cr8r_pheap_ft *ft){
+static cr8r_pheap_node *cr8r_pheap_merge_exponential(cr8r_pheap_node **n, cr8r_pheap_ft *ft){
 	cr8r_pheap_node *a = cr8r_pheap_merge_binary(n, 0, ft);
 	for(size_t depth = 0; *n; ++depth){
 		a = cr8r_pheap_meld(a, cr8r_pheap_merge_binary(n, depth, ft), ft);
@@ -80,12 +80,12 @@ static cr8r_pheap_node *pheap_merge_exponential(cr8r_pheap_node **n, cr8r_pheap_
 	return a;
 }
 
-cr8r_pheap_node *pheap_pop(cr8r_pheap_node **r, cr8r_pheap_ft *ft){
+cr8r_pheap_node *cr8r_pheap_pop(cr8r_pheap_node **r, cr8r_pheap_ft *ft){
 	if(!*r){
 		return NULL;
 	}
 	cr8r_pheap_node *ret = *r;
-	*r = pheap_merge_exponential(&(*r)->first_child, ft);
+	*r = cr8r_pheap_merge_exponential(&(*r)->first_child, ft);
 	return ret;
 }
 
@@ -110,6 +110,9 @@ cr8r_pheap_node *cr8r_pheap_decreased_key(cr8r_pheap_node *n, cr8r_pheap_ft *ft)
 }
 
 void cr8r_pheap_delete(cr8r_pheap_node *r, cr8r_pheap_ft *ft){
+	if(!ft->free){
+		return;
+	}
 	for(cr8r_pheap_node *t; r;){
 		while(r->sibling){
 			cr8r_pheap_delete(r->sibling->first_child, ft);
