@@ -7,5 +7,6 @@ resources/i8l_traffic_in_arms.txt is from epic.org, but this document is public 
 
 resources/p083_{example,matrix}.txt are from project euler
 
-resources/New_Brunswick_roads is from here doi:10.7910/DVN/CUWWYJ
+resources/rutgers_roads.csv is filtered from the openstreetmap data using src/test/streetmap/convert.py, ie
+wget -O resources/rutgers.osm "https://overpass-api.de/api/map?bbox=-74.4894,40.4634,-74.4187,40.5330"
 

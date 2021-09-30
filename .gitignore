@@ -53,4 +53,5 @@ __pycache__/
 *.gcda
 *.gcno
 *.info
+*.osm
 

@@ -183,12 +183,19 @@ work properly.  Simply running the make commands in VSCode's bash terminal is
 recommended because the `Makefile Tools` extension does not handle ANSI escape
 sequences so its output is hard to read.
 
+## Installing
+`make BUILD_ROOT=build/release` followed by `sudo make BUILD_ROOT=build/release install`
+will install the headers to `/usr/include/crater/` and libraries to `/usr/lib/crater/`.
+NOTE: Installing debug builds or any build variant besides release is not really recommended,
+these variants should be stored in and linked from their respective directories within `build/`.
+NOTE: Do not run `sudo make BUILD_ROOT=build/release install` unless you have run `make BUILD_ROOT=build/release`
+immediately beforehand.  If you do, you will get files owned by root in `build/release`.
+
 ## Linking
 Once the library has been built, it can be linked with C programs by adding the flags `-Lbuild/debug/lib -lcrater`
-or `-L$(BUILD_ROOT)/lib -lcrater` to use a different variant build.  If you're feeling dangerous, you can install
-it to your system libraries by doing `sudo cp build/debug/lib/libcrater.a /usr/lib/` or
-`sudo cp $(BUILD_ROOT)/lib/libcrater.a /usr/lib`.  Then the `-L` flag can be omitted and the library can be
-linked with simply `-lcrater`.
+or `-L$(BUILD_ROOT)/lib -lcrater` to use a different variant build.
+If crater is installed, `-L` is not needed, but keep in mind that `-L` directories are searched before system
+directories so this can be used to link to the debug variant even if crater is installed.
 
 ## Tests
 
