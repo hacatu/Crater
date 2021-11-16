@@ -42,7 +42,7 @@ void cr8r_heap_sift_down(cr8r_vec *self, cr8r_vec_ft *ft, void *e, int ord){
 	}
 }
 
-bool cr8r_heap_push(cr8r_vec *self, cr8r_vec_ft *ft, void *e, int ord){
+bool cr8r_heap_push(cr8r_vec *self, cr8r_vec_ft *ft, const void *e, int ord){
 	if(!cr8r_vec_pushr(self, ft, e)){
 		return false;
 	}

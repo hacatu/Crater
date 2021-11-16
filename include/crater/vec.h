@@ -10,6 +10,7 @@
 /// @section DESCRIPTION
 /// Simple, featureful generic vector
 
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
@@ -62,24 +63,29 @@ struct cr8r_vec_ft{
 	void (*swap)(cr8r_base_ft*, void *a, void *b);
 };
 
+typedef bool (*cr8r_vec_pred)(const cr8r_vec_ft*, const void *ent, void *data);
+typedef void (*cr8r_vec_mapper)(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *o, const void *e, void *data);
+typedef void *(*cr8r_vec_accumulator)(const cr8r_vec_ft*, void *acc, const void *e);
 
 /// Convenience function to initialize a { @link cr8r_vec_ft }
 ///
 /// Using standard structure initializer syntax with designated initializers may be simpler.
-/// However, this function provides basic checking (it checks the required functions aren't NULL).
+/// However, this function automatically sets some functions to defaults if they are NULL.
 /// @param [in] data: pointer to user defined data to associate with the function table.
 /// generally NULL is sufficient.  see { @link cr8r_base_ft } for a more in-depth explaination
 /// @param [in] size: size of a single element in bytes
-/// @param [in] new_size: called to determine the capacity to grow to given the previous capacity (both in number of elements)
+/// @param [in] new_size: called to determine the capacity to grow to given the previous capacity (both in number of elements).
+/// Defaults to { @link cr8r_default_new_size } which doubles the current size if it is nonzero or sets it to 8 otherwise.
 /// @param [in] resize: memory management function.  Should "free" the buffer if cap is 0 (and do nothing if the current buffer is NULL).
 /// Should allocate a new buffer if the current buffer is NULL and cap is not 0.  Otherwise, should resize the buffer to the requested size,
-/// possibly copying it to a new address.  See { @link cr8r_default_resize } for a basic generic implementation.
+/// possibly copying it to a new address.  Defaults to { @link cr8r_default_resize } which is a good basic generic implementation.
 /// @param [in] del: called on any element before deleting it.  can be NULL if no action is required.
 /// @param [in] copy: copy an element.  can be NULL if memcpy is sufficient.
-/// @param [in] cmp: comparison function.  must not be NULL to call search and sort functions.
-/// @param [in] swap: swap two element.  only required for a few functions (namely { @link cr8r_vec_shuffle }).  { @link cr8r_default_swap }
-/// is a good generic choice.
-/// @return 1 on success, 0 on failure (if resize is NULL)
+/// @param [in] cmp: comparison function.  must not be NULL to call search and sort functions.  If NULL, no default will be provided,
+/// but { @link cr8r_default_cmp } can be used if memcmp is sufficient.
+/// @param [in] swap: swap two element.  only required for a few functions (namely { @link cr8r_vec_shuffle }).
+/// Defaults to { @link cr8r_default_swap }.
+/// @return 1 on success, 0 on failure (if inputs are invalid, but currently all inputs are valid)
 bool cr8r_vec_ft_init(cr8r_vec_ft*,
 	void *data, uint64_t size,
 	uint64_t (*new_size)(cr8r_base_ft*, uint64_t cap),
@@ -106,6 +112,7 @@ void cr8r_vec_delete(cr8r_vec*, cr8r_vec_ft*);
 
 /// Create a copy of a vector
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// Copies entries with ft->copy if applicable.
 /// The copy's capacity is only its length.
 /// @param [out] dest: the vector to copy TO
@@ -115,6 +122,7 @@ bool cr8r_vec_copy(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*);
 
 /// Create a copy of a slice of a vector
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// Copies the range [ a : b ) from src to dest.
 /// Copies entries with ft->copy if applicable.
 /// The copy's capacity is only its length (b - a).
@@ -176,6 +184,7 @@ void *cr8r_vec_getx(cr8r_vec*, const cr8r_vec_ft*, int64_t i);
 uint64_t cr8r_vec_len(cr8r_vec*);
 
 
+
 /// Add an element to the right hand end of a vector
 ///
 /// Vectors are arranged with increasing indicies at increasing memory addresses, so this is an O(1) operation
@@ -209,21 +218,25 @@ bool cr8r_vec_popl(cr8r_vec*, cr8r_vec_ft*, void *o);
 ///
 /// ft->del is called on elements that fail the predicate, if applicable
 /// @param [in] pred: predicate to check elements with
+/// @param [in] data: reentrant data to pass to the predicate
 /// @return 1 on success, 0 on failure (memory allocation, shouldn't happen unless ft->resize can fail to shrink)
-bool cr8r_vec_filter(cr8r_vec*, cr8r_vec_ft*, bool (*pred)(const void*));
+bool cr8r_vec_filter(cr8r_vec*, cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
 /// Create a new vector as a subsequence matching a predicate
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// Iterate over the elements of a vector and copy them into a new vector if they match the predicate.
 /// ft->copy function is called if applicable.
 /// @param [out] dest: vector to fill with filtered subsequence, should have a cap of 0 or valid buffer
 /// @param [in] src: vector to copy filtered sequence from
 /// @param [in] pred: predicate to check elements with
+/// @param [in] data: reentrant data to pass to the predicate
 /// @return 1 on success, 0 on failure (allocation failure)
-bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*, bool (*pred)(const void*));
+bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
 /// Create a new vector by applying a transformation function to each element
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// This creates a new vector, whose element type and entire function table may be different.
 /// The transformation funtion also must perform any relevant work that ft->copy would have to,
 /// since the output element type is not necessarily the same as the input element type.
@@ -233,20 +246,24 @@ bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft*, bool (
 /// @param [in] dest_ft: function table for dest vector { @link cr8r_vec_ft }
 /// @param [in] f: transformation function.  The first argument, o, is a pointer to the element in the destination vector to output to,
 /// and the second argument, e, is a pointer to the element in the source vector to read from
+/// @param [in] data: reentrant data to pass to the transformation function
 /// @return 1 on success, 0 on failure (allocation failure)
-bool cr8r_vec_map(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *src_ft, cr8r_vec_ft *dest_ft, void (*f)(void *o, const void *e));
+bool cr8r_vec_map(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *src_ft, cr8r_vec_ft *dest_ft, cr8r_vec_mapper f, void *data);
 
 /// Execute a function on every permutation of a vector
 ///
 /// The vector is actually permuted in place using Heap's algorithm, and ends at the "last" permutation
 /// without being restored.
-/// @param [in] f: callback function.  given the entire permuted vector and function table.
+/// @param [in] f: callback function
+/// @param [in, out] data: reentrant data to pass to the callback, can provide input, output, and persistant state
+/// without needing to hijack ft->base.data or similar
 /// @return 1 on success, 0 on failure (if an array of self->len uint64_t's cannot be allocated)
-int cr8r_vec_forEachPermutation(cr8r_vec*, cr8r_vec_ft*, void (*f)(const cr8r_vec*, const cr8r_vec_ft*));
+int cr8r_vec_forEachPermutation(cr8r_vec*, cr8r_vec_ft*, void (*f)(const cr8r_vec*, const cr8r_vec_ft*, void *data), void *data);
 
 
 /// Create a new vector by concatenating copies of two given vectors
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// First, ensures the dest buffer has enough capacity for both src vectors, extending if necessary, then copy the vectors one after
 /// the other.  ft->copy is called if applicable
 /// @param [out] dest: vector in which to store result, should have a cap of 0 or valid buffer
@@ -269,7 +286,7 @@ bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft*);
 /// Returns false immediately if any element does not satisfy the predicate.
 /// @param [in] pred: predicate function, called on each element in the vector
 /// @return 1 if the predicate function returns 1 on all elements, 0 (as soon as it doesn't) otherwise
-bool cr8r_vec_all(const cr8r_vec*, const cr8r_vec_ft*, bool (*pred)(const void*));
+bool cr8r_vec_all(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
 /// Test if a predicate holds for any element in a vector
 ///
@@ -278,12 +295,12 @@ bool cr8r_vec_all(const cr8r_vec*, const cr8r_vec_ft*, bool (*pred)(const void*)
 /// with the negation of the predicate.
 /// @param [in] pred: predicate function, called on each element in the vector
 /// @return 1 (as soon as) the predicate function returns 1 on any element, 0 if it returns 0 on all of them
-bool cr8r_vec_any(const cr8r_vec*, const cr8r_vec_ft*, bool (*pred)(const void*));
+bool cr8r_vec_any(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
 /// Check if a vector contains a given element
 ///
 /// This is O(n) because it does not assume a sorted vector and simply does a linear search.
-/// See { @link HC_VEC_containss } for a binary search version that does require a sorted vector.
+/// See { @link cr8r_vec_containss } for a binary search version that does require a sorted vector.
 /// @param [in] e: element to search for (using ft->cmp)
 /// @return 1 if the vector contains the element, 0 otherwise
 bool cr8r_vec_contains(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
@@ -291,11 +308,18 @@ bool cr8r_vec_contains(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 /// Get the first index of an element in a vector
 ///
 /// This is O(n) because it does not assume a sorted vector and simply does a linear search.
-/// See { @link HC_VEC_indexs } for a binary search version that does require a sorted vector.
+/// See { @link cr8r_vec_indexs } for a binary search version that does require a sorted vector.
 /// Returns -1 on failure.
 /// @param [in] e: element to search for (using ft->cmp)
 /// @return the index of the element if it is in the vector, or -1 otherwise
 int64_t cr8r_vec_index(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
+
+
+/// Find the extremal (minimum or maximum) element of a vector
+///
+/// @param [in] ord: 1 for minimum or -1 for maximum
+/// @return a pointer to the extremal element, or NULL if the vector is empty
+void *cr8r_vec_exm(cr8r_vec*, const cr8r_vec_ft*, int ord);
 
 
 /// Perform a right fold on a vector
@@ -313,7 +337,7 @@ int64_t cr8r_vec_index(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 /// where the accumulator value is an integer or something else that fits within a pointer, the pointer can be used as a casted
 /// integer or whatnot instead of as a pointer.
 /// @return the final accumulator value
-void *cr8r_vec_foldr(const cr8r_vec*, const cr8r_vec_ft*, void *init, void *(*f)(void *acc, const void *e));
+void *cr8r_vec_foldr(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_accumulator f, void *init);
 
 /// Perform a left fold on a vector
 ///
@@ -322,7 +346,7 @@ void *cr8r_vec_foldr(const cr8r_vec*, const cr8r_vec_ft*, void *init, void *(*f)
 /// @param [in] init: starting value for the accumulator
 /// @param [in] f: accumulation function
 /// @return the final accumulator value
-void *cr8r_vec_foldl(const cr8r_vec*, const cr8r_vec_ft*, void *init, void *(*f)(void *acc, const void *e));
+void *cr8r_vec_foldl(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_accumulator f, void *init);
 
 
 /// Sort a vector in-place according to ft->cmp
@@ -426,6 +450,20 @@ void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b)
 /// all other elements >= itself
 void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv);
 
+/// Partition a subrange of a vector into elements <, ==, and > a pivot
+///
+/// The given subrange is rearranged so that all elements < the pivot occur first,
+/// followed by all elements == the pivot (including the pivot), then finally all elements
+/// > the pivot.  A pointer to the ending position of the pivot is returned.
+/// Notice in particular that if piv is the ith element in sorted order, calling this function
+/// will actually place that element (or an == one) at the ith index, with the subrange
+/// arranged into a <, ==, and > block as just described
+/// @param [in,out] self: vector to partition a subrange of in place
+/// @param [in] a, b: inclusive, exclusive bounds of subrange (ie, consider elements [a, b))
+/// @param [in] piv: a pointer to the pivot (usually obtained from { @link cr8r_vec_ith })
+/// @return pointer to the pivot, which was moved to somewhere in the == block
+void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv);
+
 /// Find the ith element of a subrange of a vector without completely sorting it
 ///
 /// The given subrange is partitioned in place, but the quickselect algorithm
@@ -440,16 +478,16 @@ void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint
 
 /// Callback for { @link cr8r_vec_foldr } to sum up elements in vector
 ///
-/// The first argument is treated as a uint64_t, NOT a pointer to uint64_t.
+/// The acc argument is treated as a uint64_t, NOT a pointer to uint64_t.
 /// Thus the call can be (uint64_t)cr8r_vec_foldr(self, ft, (void*)0, cr8r_default_acc_sum_u64).
-void *cr8r_default_acc_sum_u64(void*, const void*);
+void *cr8r_default_acc_sum_u64(const cr8r_vec_ft*, void *acc, const void *ent);
 
 /// Callback for { @link cr8r_vec_foldr } to sum up powers of elements in a vector mod a number
 ///
-/// The first argument MUST be a pointer to three consecutive uint64_t's: the accumulator,
+/// The acc argument MUST be a pointer to three consecutive uint64_t's: the accumulator,
 /// the exponent, and the modulus, respectively.  The same pointer is returned: the accumulator
 /// is modified in place.
-void *cr8r_default_acc_sumpowmod_u64(void*, const void*);
+void *cr8r_default_acc_sumpowmod_u64(const cr8r_vec_ft*, void *acc, const void *ent);
 
 /// Function table for vectors of uint64_t's
 ///
@@ -466,6 +504,13 @@ extern cr8r_vec_ft cr8r_vecft_u64;
 /// The default allocation scheme of { @link cr8r_default_new_size } and
 /// { @link cr8r_default_resize } is used for the vector itself.
 extern cr8r_vec_ft cr8r_vecft_cstr;
+
+/// Function table for vectors of uint8_t's, which can be used as smart strings
+///
+/// Trivial copy/swap and { @link cr8r_default_cmp_u8 } are used,
+/// plus the default allocation scheme { @link cr8r_default_new_size } and
+/// { @link cr8r_default_resize }.
+extern cr8r_vec_ft cr8r_vecft_u8;
 
 /// Threshold below which quicksort and quickselect will switch to using insertion sort
 #define CR8R_VEC_ISORT_BOUND 16

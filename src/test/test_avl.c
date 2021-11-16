@@ -8,7 +8,7 @@
 
 cr8r_avl_ft avlft_u64sla;
 
-void processRemoveSequence(const cr8r_vec *rseq, const cr8r_vec_ft *rseq_ft){
+void processRemoveSequence(const cr8r_vec *rseq, const cr8r_vec_ft *rseq_ft, void *_data){
 	cr8r_vec *iseq = rseq_ft->base.data;
 	cr8r_avl_node *r = NULL, *it;
 	for(uint64_t i = 0; i < iseq->len; ++i){
@@ -24,7 +24,7 @@ void processRemoveSequence(const cr8r_vec *rseq, const cr8r_vec_ft *rseq_ft){
 	assert(!r);
 }
 
-void processInsertSequence(const cr8r_vec *iseq, const cr8r_vec_ft *iseq_ft){
+void processInsertSequence(const cr8r_vec *iseq, const cr8r_vec_ft *iseq_ft, void *_data){
 	/*fprintf(stderr, "\e[1;34m(");
 	for(uint64_t i = 0; i < iseq->len; ++i){
 		fprintf(stderr, i == iseq->len - 1 ? "%"PRIu64")\e[0m\n" : "%"PRIu64",", *(uint64_t*)cr8r_vec_get((cr8r_vec*)iseq, iseq_ft, i));
@@ -36,7 +36,7 @@ void processInsertSequence(const cr8r_vec *iseq, const cr8r_vec_ft *iseq_ft){
 	for(uint64_t i = 0; i < 7; ++i){
 		cr8r_vec_pushr(rseq, &rseq_ft, &i);
 	}
-	cr8r_vec_forEachPermutation(rseq, &rseq_ft, processRemoveSequence);
+	cr8r_vec_forEachPermutation(rseq, &rseq_ft, processRemoveSequence, NULL);
 }
 
 int main(){
@@ -60,7 +60,7 @@ int main(){
 	for(uint64_t i = 0; i < 7; ++i){
 		cr8r_vec_pushr(&iseq, &ft, &i);
 	}
-	cr8r_vec_forEachPermutation(&iseq, &ft, processInsertSequence);
+	cr8r_vec_forEachPermutation(&iseq, &ft, processInsertSequence, NULL);
 	cr8r_sla_delete(&sla);
 	cr8r_vec_delete(&iseq, &ft);
 	cr8r_vec_delete(&rseq, &ft);

@@ -25,6 +25,12 @@ typedef struct{
 	uint64_t size;
 } cr8r_base_ft;
 
+/// Enum to allow a callee/visitor to control the behavior of a tree traversal
+typedef enum{
+	CR8R_WALK_CONTINUE = 0,
+	CR8R_WALK_SKIP_CHILDREN = 1,
+	CR8R_WALK_STOP = 2
+} cr8r_walk_decision;
 
 /// "Default" ft->new_size implementation (for vectors)
 ///
@@ -87,6 +93,9 @@ uint64_t cr8r_default_hash_cstr(const cr8r_base_ft*, const void*);
 
 /// "Default" ft->cmp implementation for uint64_t
 int cr8r_default_cmp_u64(const cr8r_base_ft*, const void*, const void*);
+
+/// "Default" ft->cmp implementation for uint8_t
+int cr8r_default_cmp_u8(const cr8r_base_ft*, const void*, const void*);
 
 /// "Default" ft->cmp implementation for int64_t
 int cr8r_default_cmp_i64(const cr8r_base_ft*, const void*, const void*);

@@ -47,7 +47,7 @@ void cr8r_heap_sift_down(cr8r_vec*, cr8r_vec_ft*, void *e, int ord);
 /// @param [in] e: pointer to the element to insert, which is COPIED into the heap
 /// @param [in] ord: 1 to use a max heap (use ft->cmp directly), -1 to use a min heap (invert ft->cmp)
 /// @return 1 on success, 0 on failure (allocation failure)
-bool cr8r_heap_push(cr8r_vec*, cr8r_vec_ft*, void *e, int ord);
+bool cr8r_heap_push(cr8r_vec*, cr8r_vec_ft*, const void *e, int ord);
 
 /// Remove the top (typically max) element from the heap (has no relevant ordering guarantee)
 ///

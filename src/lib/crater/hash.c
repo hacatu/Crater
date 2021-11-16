@@ -61,6 +61,16 @@ int cr8r_default_cmp_i64(const cr8r_base_ft *ft, const void *_a, const void *_b)
 	return 1;
 }
 
+int cr8r_default_cmp_u8(const cr8r_base_ft *ft, const void *_a, const void *_b){
+	uint8_t a = *(const uint8_t*)_a, b = *(const uint8_t*)_b;
+	if(a < b){
+		return -1;
+	}else if(a == b){
+		return 0;
+	}
+	return 1;
+}
+
 int cr8r_default_cmp_cstr(const cr8r_base_ft *ft, const void *_a, const void *_b){
 	return strcmp(*(const char**)_a, *(const char**)_b);
 }
