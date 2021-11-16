@@ -96,7 +96,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00039">39</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00040">40</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="aba1882e8cec26b4cd269b24309160030"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba1882e8cec26b4cd269b24309160030">&#9670;&nbsp;</a></span>resize</h2>
@@ -113,7 +113,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>resize the backing array to a new size, possibly copying it to a new buffer. </p>
 <p>Must return NULL and "free" buf if the new cap is 0, must "free" NULL (by doing nothing), and must be able to allocate a new buffer if the current buffer is NULL. <a class="el" href="">cr8r_vec_default_resize</a> wraps realloc and free to do this. If it is not possible to safely move elements, then this function should probably not be allowed to move the allocated buffer (in the manner realloc does) and should fail instead so that external logic can manage copying to a new vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00049">49</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00050">50</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -132,7 +132,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>delete an element of the vector. </p>
 <p>This only needs to clean up data owned by the element, not the element itself because it lives in the buffer. Can also be used to scramble memory if desired. Useful for strings, file descriptors, etc. Can be NULL if no operation is needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00053">53</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00054">54</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -151,7 +151,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>copy an element of the vector. </p>
 <p>Can be NULL if memcpy is sufficient, otherwise this function must perform the role of memcpy plus whatever else it needs to do. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00056">56</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00057">57</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +170,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>compare two elements of the vector. </p>
 <p><a class="el" href="">cr8r_vec_default_cmp</a> is a suitable default if needed. should return &lt;0 if a &lt; b, 0 if a == b, and &gt;0 if a &gt; b. should not return INT_MIN. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00059">59</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00060">60</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -189,7 +189,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>swap two elements. </p>
 <p>The default <a class="el" href="">cr8r_vec_default_swap</a> simply swaps the two elements using memcpy and a temporary buffer. more optimized versions can be used if relevant. Should work even if a == b, when it should do nothing. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00062">62</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00063">63</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>

@@ -92,9 +92,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af63adc3e5ea5dc2c9f4d901f022514ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af63adc3e5ea5dc2c9f4d901f022514ba">cr8r_heap_sift_down</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *e, int ord)</td></tr>
 <tr class="memdesc:af63adc3e5ea5dc2c9f4d901f022514ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move an element down the heap as necessary to restore the heap invariant.  <a href="heap_8h.html#af63adc3e5ea5dc2c9f4d901f022514ba">More...</a><br /></td></tr>
 <tr class="separator:af63adc3e5ea5dc2c9f4d901f022514ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb3fa7e39d11cab53694432fb7216212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#acb3fa7e39d11cab53694432fb7216212">cr8r_heap_push</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *e, int ord)</td></tr>
-<tr class="memdesc:acb3fa7e39d11cab53694432fb7216212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new element to the heap.  <a href="heap_8h.html#acb3fa7e39d11cab53694432fb7216212">More...</a><br /></td></tr>
-<tr class="separator:acb3fa7e39d11cab53694432fb7216212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af15c7d0fc04f2a5fa021819554f01b91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af15c7d0fc04f2a5fa021819554f01b91">cr8r_heap_push</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, const void *e, int ord)</td></tr>
+<tr class="memdesc:af15c7d0fc04f2a5fa021819554f01b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new element to the heap.  <a href="heap_8h.html#af15c7d0fc04f2a5fa021819554f01b91">More...</a><br /></td></tr>
+<tr class="separator:af15c7d0fc04f2a5fa021819554f01b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d223095bcb771a091f94bbf525dc2d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a3d223095bcb771a091f94bbf525dc2d9">cr8r_heap_pop</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *o, int ord)</td></tr>
 <tr class="memdesc:a3d223095bcb771a091f94bbf525dc2d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the top (typically max) element from the heap (has no relevant ordering guarantee)  <a href="heap_8h.html#a3d223095bcb771a091f94bbf525dc2d9">More...</a><br /></td></tr>
 <tr class="separator:a3d223095bcb771a091f94bbf525dc2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,8 +282,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="acb3fa7e39d11cab53694432fb7216212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb3fa7e39d11cab53694432fb7216212">&#9670;&nbsp;</a></span>cr8r_heap_push()</h2>
+<a id="af15c7d0fc04f2a5fa021819554f01b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af15c7d0fc04f2a5fa021819554f01b91">&#9670;&nbsp;</a></span>cr8r_heap_push()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -303,7 +303,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>e</em>, </td>
         </tr>
         <tr>
