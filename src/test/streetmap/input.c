@@ -114,9 +114,11 @@ static bool read_file(const char *path, graph *out){
 	char *line = NULL;
 	size_t line_cap = 0;
 	ssize_t line_len;
+	uint64_t line_num = 0;
 	while((line_len = getline(&line, &line_cap, f)) != -1){
+		++line_num;
 		if(line[line_len - 1] == '\n'){
-			line[--line_len] = '\0';
+			line[--line_len] = ' ';
 		}
 		uint64_t col = 0;
 		const char *cols[6] = {};
@@ -136,7 +138,7 @@ static bool read_file(const char *path, graph *out){
 			}
 			way_data data = {.id=edge.way, .name=strdup(cols[5])};
 			cr8r_hash_insert(&out->edges, &way_ft, &data, NULL);
-		}else if(!strcmp(cols[1], "node")){
+		}else if(!strcmp(cols[0], "node")){
 			street_node node = {
 				.id=strtoull(cols[1], NULL, 10),
 				.lat=strtod(cols[2], NULL),
@@ -146,6 +148,7 @@ static bool read_file(const char *path, graph *out){
 			cr8r_hash_insert(&out->nodes, &node_ft, &node, NULL);
 		}
 	}
+	printf("Read %"PRIu64" lines; found %"PRIu64" nodes and %"PRIu64" edges\n", line_num, out->nodes.full, out->edges.full);
 	cr8r_sla_init(&neighbor_sla, sizeof(street_neighbor), 2*out->edges.full);
 	for(street_edge *it = cr8r_hash_next(&out->edges, &edge_ft, NULL); it; it = cr8r_hash_next(&out->edges, &edge_ft, it)){
 		street_node *u = cr8r_hash_get(&out->nodes, &node_ft, &(street_node){.id=it->u});

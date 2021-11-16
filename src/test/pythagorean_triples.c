@@ -35,12 +35,13 @@ int fillFareyEven(cr8r_vec *self, uint64_t n){
 	return 1;
 }
 
-bool m_divides_500(const void *_mn){
+bool m_divides_x(const cr8r_vec_ft *ft, const void *_mn, void *_data){
 	const uint64_t *mn = *(const u64_2*)_mn;
-	return 500%mn[0] == 0 && mn[1] <= 500/mn[0] - mn[0];
+	uint64_t x = (uint64_t)_data;
+	return x%mn[0] == 0 && mn[1] <= x/mn[0] - mn[0];
 }
 
-void mn2abc(void *_abc, const void *_mn){
+void mn2abc(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *_abc, const void *_mn, void *_data){
 	uint64_t *abc = *(u64_3*)_abc;
 	const uint64_t *mn = *(const u64_2*)_mn;
 	abc[0] = (mn[0] - mn[1])*(mn[0] + mn[1]);
@@ -48,10 +49,10 @@ void mn2abc(void *_abc, const void *_mn){
 	abc[2] = mn[0]*mn[0] + mn[1]*mn[1];
 }
 
-bool perim_divides_1000(const void *_abc){
+bool perim_divides_x(const cr8r_vec_ft *ft, const void *_abc, void *_data){
 	const uint64_t *abc = *(const u64_3*)_abc;
 	uint64_t p = abc[0] + abc[1] + abc[2];
-	return 1000%p == 0;
+	return (uint64_t)_data%p == 0;
 }
 
 int main(){
@@ -75,11 +76,6 @@ int main(){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector!\e[0m\n");
 		exit(1);
 	}
-	if(!cr8r_vec_init(&vec_abcs, &vecft_u64_3, 21)){
-		cr8r_vec_delete(&vec_mns, &vecft_u64_2);
-		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector!\e[0m\n");
-		exit(1);
-	}
 	fprintf(stderr, "\e[1;34mGenerating Farey sequence terms <= 21 with even components...\e[0m\n");
 	if(!fillFareyEven(&vec_mns, 21)){
 		cr8r_vec_delete(&vec_mns, &vecft_u64_2);
@@ -91,16 +87,16 @@ int main(){
 	// the efficient solution is to filter by whether or not m*(m + n) divides 500 as we generate the Farey sequence,
 	// but by storing candidate solutions and using a weaker filter we can get some mileage out of the vector class.
 	// default_resize calls realloc which probably can't fail to shrink so we ignore the result
-	cr8r_vec_filter(&vec_mns, &vecft_u64_2, m_divides_500);
+	cr8r_vec_filter(&vec_mns, &vecft_u64_2, m_divides_x, (void*)500);
 	fprintf(stderr, "\e[1;34m%"PRIu64" lead to candidate triples\e[0m\n", vec_mns.len);
-	if(!cr8r_vec_map(&vec_abcs, &vec_mns, &vecft_u64_2, &vecft_u64_3, mn2abc)){
+	if(!cr8r_vec_map(&vec_abcs, &vec_mns, &vecft_u64_2, &vecft_u64_3, mn2abc, NULL)){
 		cr8r_vec_delete(&vec_mns, &vecft_u64_2);
 		cr8r_vec_delete(&vec_abcs, &vecft_u64_3);
 		fprintf(stderr, "\e[1;31mERROR: Could not expand map output vector!\e[0m\n");
 		exit(1);
 	}
 	cr8r_vec_delete(&vec_mns, &vecft_u64_2);
-	cr8r_vec_filter(&vec_abcs, &vecft_u64_3, perim_divides_1000);
+	cr8r_vec_filter(&vec_abcs, &vecft_u64_3, perim_divides_x, (void*)1000);
 	uint64_t *abc = cr8r_vec_getx(&vec_abcs, &vecft_u64_3, -1);
 	uint64_t k = 1000/(abc[0] + abc[1] + abc[2]);
 	uint64_t prod = abc[0]*k*abc[1]*k*abc[2]*k;

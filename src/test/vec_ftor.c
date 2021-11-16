@@ -42,26 +42,26 @@ int main(){
 	if(g){
 		fprintf(stderr, "\e[1;31mERROR: Popped wrong value from beginning of scrambled vector\e[0m\n");
 	}
-	g = (uint64_t)cr8r_vec_foldl(&nums_shuf, &cr8r_vecft_u64, (void*)0, cr8r_default_acc_sum_u64);
+	g = (uint64_t)cr8r_vec_foldl(&nums_shuf, &cr8r_vecft_u64, cr8r_default_acc_sum_u64, (void*)0);
 	uint64_t sum = p*(p - 1)/2;
 	if(g != sum){
 		fprintf(stderr, "\e[1;31mERROR: Wrong foldl linear checksum for scrambled vector\e[0m\n");
 	}
-	g = (uint64_t)cr8r_vec_foldr(&nums_shuf, &cr8r_vecft_u64, (void*)0, cr8r_default_acc_sum_u64);
+	g = (uint64_t)cr8r_vec_foldr(&nums_shuf, &cr8r_vecft_u64, cr8r_default_acc_sum_u64, (void*)0);
 	if(g != sum){
 		fprintf(stderr, "\e[1;31mERROR: Wrong foldr linear checksum for scrambled vector\e[0m\n");
 	}
-	g = (uint64_t)cr8r_vec_foldl(&nums_asc, &cr8r_vecft_u64, (void*)0, cr8r_default_acc_sum_u64);
+	g = (uint64_t)cr8r_vec_foldl(&nums_asc, &cr8r_vecft_u64, cr8r_default_acc_sum_u64, (void*)0);
 	if(g != sum){
-		fprintf(stderr, "\e[1;31mWrong foldl linear checksum for sorted vector\e[0m\n");
+		fprintf(stderr, "\e[1;31mERROR: Wrong foldl linear checksum for sorted vector\e[0m\n");
 	}
-	g = (uint64_t)cr8r_vec_foldr(&nums_asc, &cr8r_vecft_u64, (void*)0, cr8r_default_acc_sum_u64);
+	g = (uint64_t)cr8r_vec_foldr(&nums_asc, &cr8r_vecft_u64, cr8r_default_acc_sum_u64, (void*)0);
 	if(g != sum){
 		fprintf(stderr, "\e[1;31mERROR: Wrong foldr linear checksum for sorted vector\e[0m\n");
 	}
 	uint64_t sum2 = p*(p - 1)*(2*p - 1)/6;
 	uint64_t acc[3] = {0, 2, sum2 + 1};
-	cr8r_vec_foldr(&nums_shuf, &cr8r_vecft_u64, acc, cr8r_default_acc_sumpowmod_u64);
+	cr8r_vec_foldr(&nums_shuf, &cr8r_vecft_u64, cr8r_default_acc_sumpowmod_u64, acc);
 	if(acc[0] != sum2){
 		fprintf(stderr, "\e[1;31mERROR: Wrong foldr quadratic checksum for scrambled vector\e[0m\n");
 	}

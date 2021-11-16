@@ -59,6 +59,18 @@
 	},
 	"dijkstra": {
 		"no_red_tests": [["../../resources/p083_matrix.txt"]]
+	},
+	"guess_passcode": {
+		"no_red_tests": [[]]
+	},
+	"vec_oom": {
+		"no_red_tests": [[]]
+	},
+	"digit_power_sum": {
+		"no_red_tests": [[]]
+	},
+	"digit_factorial_sum": {
+		"no_red_tests": [[]]
 	}
 }
 

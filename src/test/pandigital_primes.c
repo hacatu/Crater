@@ -55,7 +55,7 @@ bool is_prime_dmr(uint64_t n){
 	return 1;
 }
 
-void process_digitperm(const cr8r_vec *_self, const cr8r_vec_ft *ft){
+void process_digitperm(const cr8r_vec *_self, const cr8r_vec_ft *ft, void *_data){
 	uint64_t n = 0;
 	cr8r_vec *self = (cr8r_vec*)_self;
 	self->len = 7;
@@ -99,15 +99,15 @@ bool gen_digitperms(cr8r_hashtbl_t *self){
 		.resize = cr8r_default_resize_pass,
 		.cmp = cr8r_default_cmp_u64,
 		.swap = cr8r_default_swap};
-	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm);
+	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm, NULL);
 	for(uint64_t i = 0; i < 7; ++i){
 		_digitperm[i] = 7 - i;
 	}
-	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm);
+	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm, NULL);
 	for(uint64_t i = 0; i < 7; ++i){
 		_digitperm[i] = 6 - i ?: 7;
 	}
-	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm);
+	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm, NULL);
 	return true;
 }
 

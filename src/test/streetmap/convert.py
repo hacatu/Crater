@@ -136,6 +136,7 @@ for way_id, nds in ways.items():
 			edges[(u, v)] = (way_id, dist)
 			x_id = v_id
 			dist = 0
+		nodes[v_id][3] -= 1
 	v_id = nds[-1]
 	lat2, lon2 = nodes[v_id][:2]
 	dist += geodist(lat1, lon1, lat2, lon2)
@@ -149,7 +150,7 @@ del ways
 with open("resources/rutgers_roads.csv", "w") as f:
 	print("type,id,lat/u,lon/v,-/dist,name", file=f)
 	for node_id, (lat, lon, name, refs) in nodes.items():
-		if refs > 1:
+		if refs >= 1:
 			print("node,{},{},{},,{}".format(node_id, lat, lon, name), file=f)
 	for (u_id, v_id), (way_id, dist) in edges.items():
 		print("edge,{},{},{},{},{}".format(way_id, u_id, v_id, dist, way_names.get(way_id, "")), file=f)

@@ -7,7 +7,7 @@
 
 #include <crater/vec.h>
 
-bool is_pal10(const void *_n){
+bool is_pal10(const cr8r_vec_ft *ft, const void *_n, void *_data){
 	uint64_t n = *(const uint64_t*)_n;
 	uint64_t fwd = n, rev = 0;
 	for(; n; n /= 10){
@@ -16,12 +16,12 @@ bool is_pal10(const void *_n){
 	return fwd == rev;
 }
 
-bool is_even_popcount(const void *_n){
+bool is_even_popcount(const cr8r_vec_ft *ft, const void *_n, void *_data){
 	uint64_t n = *(const uint64_t*)_n;
 	return !(__builtin_popcountll(n)&1);
 }
 
-bool is_odd_popcount(const void *_n){
+bool is_odd_popcount(const cr8r_vec_ft *ft, const void *_n, void *_data){
 	uint64_t n = *(const uint64_t*)_n;
 	return __builtin_popcountll(n)&1;
 }
@@ -45,7 +45,7 @@ void *worker(void *_job){
 		}
 		cr8r_vec_pushr(task.in, &cr8r_vecft_u64, &pal2);
 	}
-	if(!cr8r_vec_filtered(task.out, task.in, &cr8r_vecft_u64, is_pal10)){
+	if(!cr8r_vec_filtered(task.out, task.in, &cr8r_vecft_u64, is_pal10, NULL)){
 		return NULL;
 	}
 	cr8r_vec_delete(task.in, &cr8r_vecft_u64);
@@ -72,7 +72,7 @@ int main(){
 		}
 		cr8r_vec_pushr(&pals_2_odd, &cr8r_vecft_u64, &pal2);
 	}
-	if(!cr8r_vec_filtered(&pals_both_odd, &pals_2_odd, &cr8r_vecft_u64, is_pal10)){
+	if(!cr8r_vec_filtered(&pals_both_odd, &pals_2_odd, &cr8r_vecft_u64, is_pal10, NULL)){
 		fprintf(stderr, "\e[1;31mERROR: Could not allocate vector!\e[0m\n");
 		exit(1);
 	}
@@ -84,14 +84,14 @@ int main(){
 		exit(1);
 	}
 	if(
-		!cr8r_vec_all(&pals_both_even, &cr8r_vecft_u64, is_even_popcount) ||
-		cr8r_vec_any(&pals_both_even, &cr8r_vecft_u64, is_odd_popcount)
+		!cr8r_vec_all(&pals_both_even, &cr8r_vecft_u64, is_even_popcount, NULL) ||
+		cr8r_vec_any(&pals_both_even, &cr8r_vecft_u64, is_odd_popcount, NULL)
 	){
 		fprintf(stderr, "\e[1;31mERROR: Even base 2 length palindrome has odd popcount\e[0m\n");
 	}
 	if(
-		cr8r_vec_all(&pals_both_odd, &cr8r_vecft_u64, is_even_popcount) ||
-		!cr8r_vec_any(&pals_both_odd, &cr8r_vecft_u64, is_odd_popcount)
+		cr8r_vec_all(&pals_both_odd, &cr8r_vecft_u64, is_even_popcount, NULL) ||
+		!cr8r_vec_any(&pals_both_odd, &cr8r_vecft_u64, is_odd_popcount, NULL)
 	){
 		fprintf(stderr, "\e[1;31mERROR: All odd base 2 length palindrome have even popcounts\e[0m\n");
 	}
