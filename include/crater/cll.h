@@ -3,14 +3,13 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
-/// This Source Code Form is subject to the terms of the Mozilla Public
-/// License, v. 2.0. If a copy of the MPL was not distributed with this
-/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
 /// Simple generic singly linked list
 /// Remember that this is all fun and games, but a vector will
 /// generally be much faster for just about everything.
+///
+/// This Source Code Form is subject to the terms of the Mozilla Public
+/// License, v. 2.0. If a copy of the MPL was not distributed with this
+/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <stddef.h>
 #include <stdint.h>
@@ -39,6 +38,7 @@ struct cr8r_cll_node{
 /// Remember that function tables must be initialized manually.  In particular,
 /// the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set.
 typedef struct{
+	/// Base function table values (data and size)
 	cr8r_base_ft base;
 	/// allocate a new node.  should allocate offsetof(cr8r_cll_node, data) + data->size bytes.
 	/// the slab allocator in this library is a good option for this.
@@ -52,7 +52,7 @@ typedef struct{
 	/// copy an element of the vector.  Can be NULL if memcpy is sufficient, otherwise this function must perform the role of memcpy
 	/// plus whatever else it needs to do.
 	void (*copy)(cr8r_base_ft*, void *dest, const void *src);
-	/// compare two elements of the vector.  { @link cr8r_vec_default_cmp } is a suitable default if needed.
+	/// compare two elements of the vector.  { @link cr8r_default_cmp } is a suitable default if needed.
 	/// should return <0 if a < b, 0 if a == b, and >0 if a > b.  should not return INT_MIN.
 	int (*cmp)(const cr8r_base_ft*, const void *a, const void *b);
 } cr8r_cll_ft;
@@ -209,7 +209,6 @@ cr8r_cll_node *cr8r_cll_combine(cr8r_cll_node *a, cr8r_cll_node *b, cr8r_cll_ft*
 /// Test if a predicate holds for all elements in a list
 ///
 /// Returns false immediately if any element does not satisfy the predicate.
-/// @param [in] self: list to test
 /// @param [in] pred: predicate function, called on each element in the list
 /// @return 1 if the predicate function returns 1 on all elements, 0 (as soon as it doesn't) otherwise
 bool cr8r_cll_all(const cr8r_cll_node*, cr8r_cll_ft*, bool (*pred)(const void*));

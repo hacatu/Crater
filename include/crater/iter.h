@@ -3,13 +3,12 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
+/// Detailed, structured interfaces for iterating over arbitrary data structures in a generic
+/// way.  This file is highly experimental!
+///
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
-/// Detailed, structured interfaces for iterating over arbitrary data structures in a generic
-/// way.  This file is highly experimental!
 
 #include <stdlib.h>
 #include <stdbool.h>

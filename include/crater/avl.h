@@ -3,13 +3,12 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
+/// A featureful generic avl tree implementation.  Useful for storing ordered
+/// mappings.
+///
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
-/// A featureful generic avl tree implementation.  Useful for storing ordered
-/// mappings.
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -30,7 +29,11 @@
 typedef struct cr8r_avl_node cr8r_avl_node;
 struct cr8r_avl_node{
 	/// Pointers to other nodes (can be NULL)
-	cr8r_avl_node *left, *right, *parent;
+	cr8r_avl_node *left;
+	/// Pointers to other nodes (can be NULL)
+	cr8r_avl_node *right;
+	/// Pointers to other nodes (can be NULL)
+	cr8r_avl_node *parent;
 	/// avl balance value; the height of the right subtree minus the height of the left subtree.  Magnitude cannot exceed 1,
 	/// providing the avl balance guarantee
 	signed char balance;
@@ -43,6 +46,7 @@ struct cr8r_avl_node{
 /// This struct specifies the size of the elements in an avl nodes in bytes,
 /// as well as how to perform necessary operations (compare, free, etc).
 typedef struct{
+	/// Base function table values (data and size)
 	cr8r_base_ft base;
 	/// Function to compare elements.  Should only depend on "key" data within the elements.
 	/// Should return <0 if the first operand is "smaller", 0 if the two operands are "equal", or >0 if the second operand is "smaller".
@@ -60,6 +64,12 @@ typedef struct{
 	void (*free)(cr8r_base_ft*, void*);
 } cr8r_avl_ft;
 
+/// Constants to test map like data structure insertion against where applicable
+typedef enum{
+	CR8R_AVL_FAILED = 0,
+	CR8R_AVL_INSERTED = 1,
+	CR8R_AVL_UPDATED = 2
+} cr8r_map_insert_result;
 
 /// Convenience function to initialize a { @link cr8r_avl_ft }
 ///
@@ -201,7 +211,7 @@ cr8r_avl_node *cr8r_avl_next(cr8r_avl_node *n);
 /// Find the node in the tree with the greatest key
 ///
 /// Simply follows the right links repeatedly.
-/// @param [in] r: the root of the tree
+/// @param [in] n: the root of the tree
 /// @return a pointer to the node with the greatest key in the tree
 cr8r_avl_node *cr8r_avl_last(cr8r_avl_node *n);
 
@@ -303,7 +313,6 @@ cr8r_avl_node *cr8r_avl_heappop_node(cr8r_avl_node **r, cr8r_avl_ft*);
 /// @param [in, out] r: root of the tree to reorder, reordering is in place and does not change the root
 void cr8r_avl_reorder(cr8r_avl_node *r, cr8r_avl_ft*);
 
+/// Get a pointer to the data field of an avl node and cast to a given type
 #define CR8R_AVL_DATA(T, n) CR8R_FLA_CAST(T, (char*)((cr8r_avl_node*)(n))->data)
-#define CR8R_AVL_INSERTED 1
-#define CR8R_AVL_UPDATED 2
 

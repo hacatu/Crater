@@ -3,11 +3,6 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
-/// This Source Code Form is subject to the terms of the Mozilla Public
-/// License, v. 2.0. If a copy of the MPL was not distributed with this
-/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
 /// Simple slab allocator.  Allows for efficient allocation of objects of a fixed size
 
 /// Slab allocator
@@ -16,6 +11,10 @@
 /// Maintains an array of "slabs", buffers of many fixed size elements.
 /// The unallocated elements are linked together so that unallocated elements can
 /// be found and returned and allocated elements can be deallocated trivially.
+///
+/// This Source Code Form is subject to the terms of the Mozilla Public
+/// License, v. 2.0. If a copy of the MPL was not distributed with this
+/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <inttypes.h>
 #include <stdbool.h>

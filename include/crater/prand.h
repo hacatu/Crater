@@ -3,11 +3,6 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
-/// This Source Code Form is subject to the terms of the Mozilla Public
-/// License, v. 2.0. If a copy of the MPL was not distributed with this
-/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
 /// Comprehensive pseudorandom number generation interfaces.
 ///
 /// PRNGs in general function by having an internal state (8-2496
@@ -92,6 +87,10 @@
 /// purporses than others.  Generally this comes at the cost of speed.
 /// Only "system", the wrapper around Linux's getrandom syscall,
 /// should be considered secure.
+///
+/// This Source Code Form is subject to the terms of the Mozilla Public
+/// License, v. 2.0. If a copy of the MPL was not distributed with this
+/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <inttypes.h>
 #include <stdbool.h>

@@ -3,12 +3,15 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
+/// Base function table for Crater containers
 /// @section LICENSE
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 /// @section DESCRIPTION
-/// Base function table for Crater containers
+/// Crater is a collection of generic data structures for C, including vectors,
+/// avl trees, heaps (binary, pairing, and minmax), kd trees, linked lists,
+/// hash tables, slab allocators, random number generators, and option parsing
 
 #include <inttypes.h>
 

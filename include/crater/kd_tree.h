@@ -3,14 +3,13 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
-/// This Source Code Form is subject to the terms of the Mozilla Public
-/// License, v. 2.0. If a copy of the MPL was not distributed with this
-/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
 /// KD trees are a way to store spatially organized data (tagged points
 /// on a sphere, tagged points in a 2D rectangle, tagged points in
 /// a 3D cuboid, etc).
+///
+/// This Source Code Form is subject to the terms of the Mozilla Public
+/// License, v. 2.0. If a copy of the MPL was not distributed with this
+/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "crater/container.h"
 #include <stddef.h>
@@ -29,9 +28,9 @@
 /// Implicit binary trees are maximally balanced and do not have the space or time overheads
 /// of child pointers, so they are the better choice when adding/removing points is rare enough
 /// that performing linear time re-treeifying is acceptable.
-typedef struct _cr8r_kd_ft cr8r_kd_ft;
+typedef struct cr8r_kd_ft cr8r_kd_ft;
 /// Function table for kd tree, see { @link cr8r_kd_ft }
-struct _cr8r_kd_ft{
+struct cr8r_kd_ft{
 	/// Subtable for vector ft
 	///
 	/// Since kd trees are stored as vectors, a vector ft is included in the kd ft
@@ -104,13 +103,13 @@ typedef struct{
 typedef cr8r_walk_decision (*cr8r_kdvisitor)(cr8r_kd_ft *ft, const void *win, void *ent, void *data);
 
 /// Initialize a i64x3 bounds object with a given "bottom left" and "top right" point
-bool cr8r_kdwin_init_s2i64(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]);
+bool cr8r_kdwin_init_s2i64(cr8r_kdwin_s2i64*, const int64_t bl[3], const int64_t tr[3]);
 
 /// Initialize a i64x3 bounds object with a given "bottom left" and "top right" point
-bool cr8r_kdwin_init_c3i64(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]);
+bool cr8r_kdwin_init_c3i64(cr8r_kdwin_s2i64*, const int64_t bl[3], const int64_t tr[3]);
 
 /// Initialize a i64x3 bounds object with the "bottom left" and "top right" points bounding a list of points
-bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, const cr8r_kd_ft *ft);
+bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64*, const cr8r_vec *ents, const cr8r_kd_ft *ft);
 
 /// Rearrange a vector of points into a kd tree
 ///
@@ -118,20 +117,20 @@ bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, con
 /// being to the "left" in the first dimension and all points to the right being to the "right" in the
 /// first dimension.  Then within the left/right subarray (subtree), the middle point is the median in the
 /// second dimension and so on.
-/// @param [in] _ft: (uint64_t)_ft->super.base.data is interpreted as the depth of the current subarray, and
+/// @param [in] ft: (uint64_t)ft->super.base.data is interpreted as the depth of the current subarray, and
 /// so should be zero when calling this function generally on the whole vector
 /// @param [in] a, b: the start (inclusive) and end (exclusive) indices of the subarray to process.
 /// Should be 0, self->len to treeify the entire vector.
-bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b);
+bool cr8r_kd_ify(cr8r_vec*, cr8r_kd_ft *ft, uint64_t a, uint64_t b);
 
 /// Perform a preorder traversal of the points in a kd tree and call a visitor callback on each
 ///
-/// @param [in] ft: (uint64_t)_ft->super.base.data is interpreted as the depth of the current subarray, and
+/// @param [in] ft: (uint64_t)ft->super.base.data is interpreted as the depth of the current subarray, and
 /// so should be zero when calling this function generally on the whole vector
 /// @param [in] bounds: the bounds of the tree
 /// @param [in] visitor: function to call at each entry in the tree
 /// @param [in, out] data: passed to visitor to facillitate input/output
-void cr8r_kd_walk(cr8r_vec *self, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvisitor visitor, void *data);
+void cr8r_kd_walk(cr8r_vec*, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvisitor visitor, void *data);
 
 /// Find the k closest points to a given point
 ///
@@ -144,14 +143,14 @@ void cr8r_kd_walk(cr8r_vec *self, const cr8r_kd_ft *ft, const void *bounds, cr8r
 /// @param [in] k: the number of points to find
 /// @param [out] out: vector where the k closest points will be stored, in no specified order (the current
 /// implementation unsurprisingly places them in a minmax heap order)
-void cr8r_kd_k_closest(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
+void cr8r_kd_k_closest(cr8r_vec*, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
 
 /// Find the k closest points to a given point
 ///
 /// This function is designed to enable testing { @link cr8r_kd_k_closest }.  That function prunes its search area if the max
 /// distance of any of the k closest points so far is less than the min distance of the bounding box of the subtree rooted ata
 /// a node, then that node and its subtree can be skipped.  This function does not do that and just compares all points.
-void cr8r_kd_k_closest_naive(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
+void cr8r_kd_k_closest_naive(cr8r_vec*, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
 
 /// kdft implementation for spherical kd trees in 3 dimensions with i64 coordinates
 extern cr8r_kd_ft cr8r_kdft_s2i64;

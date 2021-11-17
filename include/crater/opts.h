@@ -3,13 +3,11 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
+/// Command line options parsing utilities
+///
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
-/// Command line options parsing utilities
-///
 
 #include <stdbool.h>
 #include <inttypes.h>
@@ -211,9 +209,19 @@ char *cr8r_sprint_i128(char buf[static 41], __int128 i);
 /// @return pointer to beginning of result (will be 0-39 bytes into buf)
 char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 
-#define CR8R_OPT_ARGMODE_NONE 0
-#define CR8R_OPT_ARGMODE_REQUIRED 1
-#define CR8R_OPT_ARGMODE_OPTIONAL 2
+/// Constants to set how required an option is
+typedef enum{
+	CR8R_OPT_ARGMODE_NONE = 0,
+	CR8R_OPT_ARGMODE_REQUIRED = 1,
+	CR8R_OPT_ARGMODE_OPTIONAL = 2
+} cr8r_opt_argmode;
+
+/// Flag constants to modify option parsing behavior
+typedef enum{
+	CR8R_OPTS_FATAL_ERRS = 1ull,
+	CR8R_OPTS_ALLOW_STRAY_DASH = 2ull,
+	CR8R_OPTS_CB_ON_DD = 4ull
+} cr8r_opts_flags;
 
 #define _CR8R_OPT_GENERIC_OPTFIELDS(_dest, _short_name, _long_name, _description) 	.dest = (_dest),\
 	.arg_mode = CR8R_OPT_ARGMODE_REQUIRED,                                     \
@@ -267,8 +275,11 @@ char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 
 /// Represents a description for an option which takes no argument and sets *_dest to a fixed int value
 ///
-/// @param [out] _dext: a pointer to an int (or enum) which should be modified
+/// @param [out] _dest: a pointer to an int (or enum) which should be modified
 /// @param [in] _num: the value *_dest should be set to if this option is found.  currently, this must be 0 or 1.
+/// @param [in] _short_name: short name for the option.  Must be a single (possibly multibyte) character besides ' ', '-', or '='
+/// @param [in] _long_name: long name for the option.  May not contain ' ' or '='.  At least one of _long_name and _short_name must be nonnull
+/// @param [in] _description: description of the option to print in help text.
 #define CR8R_OPT_ENUM_CASE(_dest, _num, _short_name, _long_name, _description) ((cr8r_opt){\
 	.dest=(_dest), .arg_mode=CR8R_OPT_ARGMODE_NONE, .short_name=(_short_name), .long_name=(_long_name), .description=(_description), .on_opt=cr8r_opt_set_enum_##_num, .on_missing=cr8r_opt_missing_optional})
 
@@ -276,12 +287,9 @@ char *cr8r_sprint_u128(char buf[static 40], unsigned __int128 i);
 ///
 /// The help option also prints all other options and their descriptions
 /// @param [in] _opts: the array of option descriptions containing this option description, to print help for
+/// @param [in] _description: description of the option to print in help text.
 #define CR8R_OPT_HELP(_opts, _description) ((cr8r_opt){.dest=(_opts), .short_name="h", .long_name="help", .description=(_description), .on_opt=cr8r_opt_print_help, .on_missing=cr8r_opt_missing_optional})
 
 /// Required sentinel for option description list
 #define CR8R_OPT_END() ((cr8r_opt){.short_name=NULL, .long_name=NULL})
-
-#define CR8R_OPTS_FATAL_ERRS 1ull
-#define CR8R_OPTS_ALLOW_STRAY_DASH 2ull
-#define CR8R_OPTS_CB_ON_DD 4ull
 

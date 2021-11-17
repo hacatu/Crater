@@ -114,15 +114,15 @@ Project directories:
 - `include/crater`: Contains header files.  Can be copied into system include directory
  without worry of clashes.
 - `src/bin`: Any file `<name>.c` in this directory is compiled into a binary
- `$(BUILD_ROOT)/bin/<name>`.  Any directory `<name>` in this directory is compiled
- into a binary `$(BUILD_ROOT)/bin/<name>`.
+ `<BUILD_ROOT>/bin/<name>`.  Any directory `<name>` in this directory is compiled
+ into a binary `<BUILD_ROOT>/bin/<name>`.
 - `src/lib`: Any file `<name>.c` in this directory is compiled into a static library
- `$(BUILD_ROOT)/lib/lib<name>.a`.  Any directory `<name>` in this directory is compiled
- into a static library `$(BUILD_ROOT)/lib/lib<name>.a`.
+ `<BUILD_ROOT>/lib/lib<name>.a`.  Any directory `<name>` in this directory is compiled
+ into a static library `<BUILD_ROOT>/lib/lib<name>.a`.
 - `src/test`: Any file `<name>.c` in this directory is compiled into a binary
- `$(BUILD_ROOT)/bin/test/<name>`.  Any directory `<name>` in this directory is compiled
- into a binary `$(BUILD_ROOT)/bin/test/<name>`.
-- `$(BUILD_ROOT)`: all output files are put in the `$(BUILD_ROOT)`
+ `<BUILD_ROOT>/bin/test/<name>`.  Any directory `<name>` in this directory is compiled
+ into a binary `<BUILD_ROOT>/bin/test/<name>`.
+- `<BUILD_ROOT>`: all output files are put in the `<BUILD_ROOT>`
  directory, which is `build/debug` by default, but can be changed to use a different
  build root.  Each build root represents a variant build.  The build root directory
  should contain:
@@ -133,14 +133,14 @@ Project directories:
 	- `makedeps_cflags.txt`: Flags to pass to the C compiler to emit Makefile
 	 dependency information.  `-MM -MQ $@ -MG -MP $^ -MF` will be added to this.
 	 This should not need to be changed for new variant builds.
-- `$(BUILD_ROOT)/bin`: Output folder for compiled binaries.
-- `$(BUILD_ROOT)/lib`: Output folder for compiled static librares.
-- `$(BUILD_ROOT)/bin/test`: Output folder for compiled test binaries.
-- `$(BUILD_ROOT)/notes`: Output folder for coverage information.  Not flat internally:
+- `<BUILD_ROOT>/bin`: Output folder for compiled binaries.
+- `<BUILD_ROOT>/lib`: Output folder for compiled static librares.
+- `<BUILD_ROOT>/bin/test`: Output folder for compiled test binaries.
+- `<BUILD_ROOT>/notes`: Output folder for coverage information.  Not flat internally:
  many files will be placed in subfolders.
-- `$(BUILD_ROOT)/obj`: Output folder for intermediate object files.  Not flat 
+- `<BUILD_ROOT>/obj`: Output folder for intermediate object files.  Not flat 
  internally, many files will be placed in subfolders.
-- `$(BUILD_ROOT)/log`: Output folder for test output.
+- `<BUILD_ROOT>/log`: Output folder for test output.
 - `test`: Contains `test.py`, `tests.json`, and expected output for applicable tests.
 - `resources`: Contains non-code resources for tests (and binaries and libraries) to
  read.
@@ -150,7 +150,7 @@ Project directories:
 This library uses variant makefiles for each build type.  To build the debug variant, simply run `make`
 in the project root directory.  The resulting files will be in `build/debug/lib` and `build/debug/bin`.
 
-To build a different variant, change the `$(BUILD_ROOT)` variable from `build/debug` to `build/release`
+To build a different variant, change the `<BUILD_ROOT>` variable from `build/debug` to `build/release`
 or some other value, for instance `make BUILD_ROOT="build/release"`.  You can check what variants exist
 by looking at the subdirectories of `build`, and you can create your own by copying and modifying `build/debug`.
 
@@ -164,7 +164,7 @@ Finally, `make docs` generates the documentation in the `docs` directory.  Like 
 tied to a build variant and even if you specify one the same thing will happen.
 
 Only Linux is properly supported.  To build, only `gcc`/`clang`, `ar`, and `make` are strictly required.  `gold` is specified as the linker by default.  Tests require `python 3` and `SDL2`, coverage requires `lcov`, and documentation requires `doxygen`.
-If you do not have `gold`, you can remove the line `-fuse-ld=gold` in `$(BUILD_ROOT)/ldflags.txt`.
+If you do not have `gold`, you can remove the line `-fuse-ld=gold` in `<BUILD_ROOT>/ldflags.txt`.
 
 `-fno-strict-aliasing` is important to keep because the elements in most containers are stored in flexible length
 `char` arrays, and strict aliasing has to be disabled to allow a two way conversion between `char*` and `T*`.
@@ -193,18 +193,18 @@ immediately beforehand.  If you do, you will get files owned by root in `build/r
 
 ## Linking
 Once the library has been built, it can be linked with C programs by adding the flags `-Lbuild/debug/lib -lcrater`
-or `-L$(BUILD_ROOT)/lib -lcrater` to use a different variant build.
+or `-L<BUILD_ROOT>/lib -lcrater` to use a different variant build.
 If crater is installed, `-L` is not needed, but keep in mind that `-L` directories are searched before system
 directories so this can be used to link to the debug variant even if crater is installed.
 
 ## Tests
 
 To run tests, use `make tests`.  To run tests and generate a coverage report, use
-`make coverage`, which will put the report in `$(BUILD_ROOT)/cov`.
+`make coverage`, which will put the report in `<BUILD_ROOT>/cov`.
 What tests are run is determined by a couple files in the `test` folder.
 `test/test.py` uses `test/tests.json` to determine what tests to run.  This json
 configuration looks like `{<name>: {<test_kind>: [<arg_list>]}}` where
-- `<name>` is the name of the test executable in `$(BUILD_ROOT)/bin/test`
+- `<name>` is the name of the test executable in `<BUILD_ROOT>/bin/test`
 - `<test_kind>` specifies how to validate the results of the tests in the associated
  array, for example:
 	- `no_red_tests`: tests in `test_cfg[<name>]["no_red_tests"]` are considered to
@@ -213,7 +213,7 @@ configuration looks like `{<name>: {<test_kind>: [<arg_list>]}}` where
 	- `log_diff_tests`: test `i` in the list `test_cfg[<name>]["log_diff_tests"]` is
 	 considered to pass if its output matches with the file `test/<name>.i.log`.
 - `<arg_list>` is a list of command line arguments to pass to the test executable.
- Paths should be relative to `$(BUILD_ROOT)`.
+ Paths should be relative to `<BUILD_ROOT>`.
 
 The configuration for the tests for `<name>` is a json object whose keys are
 `<test_kind>` values and whose values are lists of `<arg_lists>`.  For each
@@ -223,7 +223,7 @@ The configuration for the tests for `<name>` is a json object whose keys are
 Notice `{"no_red_tests": [[]]}` is the basic way to run the test executable for
 `<name>` once with no arguments and check it does not output any red text.
 
-`test/test.py` is automatically invoked by `make test` with `$(BUILD_ROOT)` as the
+`test/test.py` is automatically invoked by `make test` with `<BUILD_ROOT>` as the
 working directory.  If you wish to invoke it manually, make sure to switch directories
 first.
 

@@ -3,16 +3,15 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
-/// This Source Code Form is subject to the terms of the Mozilla Public
-/// License, v. 2.0. If a copy of the MPL was not distributed with this
-/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
 /// A fast hash table using quadratic probing and an incremental split table
 /// for growing.  If the table needs to be extended, a second internal table
 /// will be created. All new entries will be placed in the second table,
 /// and all hash table operations will move one entry from the old table
 /// to the new table, to amortize the cost.
+///
+/// This Source Code Form is subject to the terms of the Mozilla Public
+/// License, v. 2.0. If a copy of the MPL was not distributed with this
+/// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <stddef.h>
 #include <inttypes.h>
@@ -35,7 +34,7 @@ typedef struct{
 	/// Total number of elements that can be stored before expanding the table.
 	/// Recomputed only when the table actually expands.  In particular, inserting
 	/// multiple elements with different load factors in the function table will not
-	/// cause a re-hash ({ @link cr8r_hashtbl_ft::load_factor}, { @link hash_insert}).
+	/// cause a re-hash ({ @link cr8r_hashtbl_ft::load_factor}, { @link cr8r_hash_insert }).
 	uint64_t cap;
 	/// Length of buffer for main internal table (in elements not bytes).
 	uint64_t len_a;
@@ -56,6 +55,7 @@ typedef struct{
 /// This struct specifies the size of the elements in a hash table in bytes and maximum load factor,
 /// as well as how to perform necessary operations (hash, compare).
 typedef struct{
+	/// Base function table values (data and size)
 	cr8r_base_ft base;
 	/// Function to hash an element.  Should only depend on "key" data within the element.
 	uint64_t (*hash)(const cr8r_base_ft*, const void*);
@@ -67,7 +67,7 @@ typedef struct{
 	/// and the function should avoid returning INT_MIN
 	int (*cmp)(const cr8r_base_ft*, const void*, const void*);
 	/// Function to combine two elements.  Should only depend on "value" data within the elements.
-	/// Specifying this function can be used to define behavior when { @link hash_append} is called and an element
+	/// Specifying this function can be used to define behavior when { @link cr8r_hash_append} is called and an element
 	/// with the given key already exists, such as adding the int values in any key->int map to create a counter.
 	int (*add)(cr8r_base_ft*, void*, void*);
 	/// Function to be called to delete elements.  Not required.
@@ -84,7 +84,7 @@ typedef struct{
 } cr8r_hashtbl_ft;
 
 
-/// Convenience function to initialize a { @link cr8r_hash_ft }
+/// Convenience function to initialize a { @link cr8r_hashtbl_ft }
 ///
 /// Using standard structure initializer syntax with designated initializers may be simpler.
 /// However, this function provides basic checking (it checks the required functions aren't NULL).
@@ -244,7 +244,9 @@ extern cr8r_hashtbl_ft cr8r_htft_u64_u64;
 
 /// entry type for cstr -> uint64_t mapping
 typedef struct{
+	/// key
 	const char* str;
+	/// value
 	uint64_t n;
 } cr8r_htent_cstr_u64;
 

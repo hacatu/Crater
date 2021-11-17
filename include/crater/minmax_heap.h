@@ -3,12 +3,11 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
+/// Functions to use a { @link cr8r_vec } as a minmax heap.
+///
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
-/// Functions to use a { @link cr8r_vec } as a minmax heap.
 
 #include <stddef.h>
 #include <inttypes.h>
@@ -72,6 +71,7 @@ bool cr8r_mmheap_pop_max(cr8r_vec*, cr8r_vec_ft*, void *o);
 /// Note that if you have a pointer e to an element of a heap vec with ft ft,
 /// you can get its index i as i = (e - vec->base)/ft->base.size
 /// @param [out] o: pointer to COPY the heap element to before removing it, cannot be NULL
+/// @param [in] i: index to pop
 /// @return 1 on success, 0 on failure (empty heap)
 bool cr8r_mmheap_pop_idx(cr8r_vec*, cr8r_vec_ft*, void *o, uint64_t i);
 

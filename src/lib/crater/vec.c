@@ -535,7 +535,7 @@ void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b)
 	return self->buf + a*ft->base.size;
 }
 
-void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
+void *cr8r_vec_pivot_m3(const cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
 	if(a >= b || b > self->len){
 		return NULL;
 	}

@@ -3,12 +3,11 @@
 /// @file
 /// @author hacatu
 /// @version 0.3.0
-/// @section LICENSE
+/// Simple, featureful generic vector
+///
 /// This Source Code Form is subject to the terms of the Mozilla Public
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-/// @section DESCRIPTION
-/// Simple, featureful generic vector
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -38,13 +37,14 @@ typedef struct{
 /// the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set.
 typedef struct cr8r_vec_ft cr8r_vec_ft;
 struct cr8r_vec_ft{
+	/// Base function table values (data and size)
 	cr8r_base_ft base;
 	/// determines the capacity to grow to if the vector is full but needs to have additional elements added
-	/// { @link cr8r_vec_default_new_size } is a good choice generally.
+	/// { @link cr8r_default_new_size } is a good choice generally.
 	uint64_t (*new_size)(cr8r_base_ft*, uint64_t cap);
 	/// resize the backing array to a new size, possibly copying it to a new buffer.
 	/// Must return NULL and "free" buf if the new cap is 0, must "free" NULL (by doing nothing), and must be able to
-	/// allocate a new buffer if the current buffer is NULL.  { @link cr8r_vec_default_resize } wraps realloc and free to do this.
+	/// allocate a new buffer if the current buffer is NULL.  { @link cr8r_default_resize } wraps realloc and free to do this.
 	/// If it is not possible to safely move elements, then this function should probably not be allowed to move the allocated buffer
 	/// (in the manner realloc does) and should fail instead so that external logic can manage copying to a new vector.
 	void *(*resize)(cr8r_base_ft*, void *p, uint64_t cap);
@@ -55,16 +55,27 @@ struct cr8r_vec_ft{
 	/// copy an element of the vector.  Can be NULL if memcpy is sufficient, otherwise this function must perform the role of memcpy
 	/// plus whatever else it needs to do.
 	void (*copy)(cr8r_base_ft*, void *dest, const void *src);
-	/// compare two elements of the vector.  { @link cr8r_vec_default_cmp } is a suitable default if needed.
+	/// compare two elements of the vector.  { @link cr8r_default_cmp } is a suitable default if needed.
 	/// should return <0 if a < b, 0 if a == b, and >0 if a > b.  should not return INT_MIN.
 	int (*cmp)(const cr8r_base_ft*, const void *a, const void *b);
-	/// swap two elements.  The default { @link cr8r_vec_default_swap } simply swaps the two elements using memcpy and a temporary buffer.
+	/// swap two elements.  The default { @link cr8r_default_swap } simply swaps the two elements using memcpy and a temporary buffer.
 	/// more optimized versions can be used if relevant.  Should work even if a == b, when it should do nothing.
 	void (*swap)(cr8r_base_ft*, void *a, void *b);
 };
 
+/// Callback type for predicates on vector elements
+///
+/// These callbacks are provided with the vec_ft, the ent, and the data pointer passed to the caller
 typedef bool (*cr8r_vec_pred)(const cr8r_vec_ft*, const void *ent, void *data);
+
+/// Callback type for functions mapping from one vector element type to another
+///
+/// These callbacks are provided with the src_ft, dest_ft, dest ent pointer, src ent pointer, and data pointer passed to the caller
 typedef void (*cr8r_vec_mapper)(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *o, const void *e, void *data);
+
+/// Callback type for accumulator functions on vectors ({ @link cr8r_vec_foldl })
+///
+/// These callbacks are provided with the vec_ft, pointer to the accumulator, and pointer to the ent
 typedef void *(*cr8r_vec_accumulator)(const cr8r_vec_ft*, void *acc, const void *e);
 
 /// Convenience function to initialize a { @link cr8r_vec_ft }
@@ -285,6 +296,7 @@ bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft*);
 ///
 /// Returns false immediately if any element does not satisfy the predicate.
 /// @param [in] pred: predicate function, called on each element in the vector
+/// @param [in,out] data: reentrant data to pass to pred
 /// @return 1 if the predicate function returns 1 on all elements, 0 (as soon as it doesn't) otherwise
 bool cr8r_vec_all(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
@@ -294,6 +306,7 @@ bool cr8r_vec_all(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_pred pred, void 
 /// Note that this is completely equivalent to the negation of { @link cr8r_vec_all }
 /// with the negation of the predicate.
 /// @param [in] pred: predicate function, called on each element in the vector
+/// @param [in,out] data: reentrant data to pass to pred
 /// @return 1 (as soon as) the predicate function returns 1 on any element, 0 if it returns 0 on all of them
 bool cr8r_vec_any(const cr8r_vec*, const cr8r_vec_ft*, cr8r_vec_pred pred, void *data);
 
@@ -409,11 +422,11 @@ int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft*);
 /// Picks the median of the first, middle (rounded down), and last elements.
 /// In the event of ties, which valid element is chosen is not specified,
 /// but is consistent for the same elements.
-/// @param [in] self: vector to pick a pivot for (a subrange of), is not modified
+/// The vector is not modified
 /// @param [in] a, b: inclusive, exclusive indices of the subrange to pick a pivot for
 /// @return a pointer to the selected pivot, or NULL if a and b are not valid subrange
 /// indices for the given vector.
-void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b);
+void *cr8r_vec_pivot_m3(const cr8r_vec*, cr8r_vec_ft*, uint64_t a, uint64_t b);
 
 /// Pick a pivot for { @link cr8r_vec_partition } using the median of medians approach
 ///
@@ -429,26 +442,26 @@ void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b)
 /// Picks the median of the first, middle (rounded down), and last elements.
 /// In the event of ties, which valid element is chosen is not specified,
 /// but is consistent for the same elements.
-/// @param [in, out] self: vector to pick a pivot for (a subrange of), will be
+/// The vector to pick a pivot for (a subrange of), will be
 /// reordered in place, but only within the given subrange
 /// @param [in] a, b: inclusive, exclusive indices of the subrange to pick a pivot for
 /// @return a pointer to the selected pivot, or NULL if a and b are not valid subrange
 /// indices for the given vector.  because the target subrange is reordered so the algorithm
 /// can run in place, the pivot will always end up at index a, but this should not be
 /// relied on.
-void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b);
+void *cr8r_vec_pivot_mm(cr8r_vec*, cr8r_vec_ft*, uint64_t a, uint64_t b);
 
 /// Partition a subrange of a vector into elements < a pivot and elements >= a pivot
 ///
 /// The given subrange is rearranged so that all elements before the pivot
 /// are < the pivot and all elements >= the pivot are after the pivot, and a pointer
 /// to the pivot is returned
-/// @param [in,out] self: vector to partition a subrange of in place
+/// the vector has its relevant subrange reordered in place
 /// @param [in] a, b: inclusive, exclusive bounds of subrange (ie, consider elements [a, b))
 /// @param [in] piv: a pointer to the pivot
 /// @return pointer to the pivot, which was placed after all elements < itself but before
 /// all other elements >= itself
-void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv);
+void *cr8r_vec_partition(cr8r_vec*, cr8r_vec_ft*, uint64_t a, uint64_t b, void *piv);
 
 /// Partition a subrange of a vector into elements <, ==, and > a pivot
 ///
@@ -458,11 +471,11 @@ void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b
 /// Notice in particular that if piv is the ith element in sorted order, calling this function
 /// will actually place that element (or an == one) at the ith index, with the subrange
 /// arranged into a <, ==, and > block as just described
-/// @param [in,out] self: vector to partition a subrange of in place
+/// the vector has its relevant subrange reordered in place
 /// @param [in] a, b: inclusive, exclusive bounds of subrange (ie, consider elements [a, b))
 /// @param [in] piv: a pointer to the pivot (usually obtained from { @link cr8r_vec_ith })
 /// @return pointer to the pivot, which was moved to somewhere in the == block
-void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *piv);
+void *cr8r_vec_partition_with_median(cr8r_vec*, cr8r_vec_ft*, uint64_t a, uint64_t b, void *piv);
 
 /// Find the ith element of a subrange of a vector without completely sorting it
 ///
@@ -470,11 +483,11 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 /// is used rather than sorting so the expected running time is linear.  Using
 /// median of medians would guarantee linear time, but median of 3 is good enough
 /// most of the time.
-/// @param [in,out] self: vector to find ith element of.  May be reoredered.
+/// The vector to find ith element of may be reoredered.
 /// @param [in] a, b: inclusive, exclusive bounds of subrange
 /// @param [in] i: index to find.  For example, 0 finds the smallest element, 1 the
 /// second smallest, and so on.
-void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t i);
+void *cr8r_vec_ith(cr8r_vec*, cr8r_vec_ft*, uint64_t a, uint64_t b, uint64_t i);
 
 /// Callback for { @link cr8r_vec_foldr } to sum up elements in vector
 ///
