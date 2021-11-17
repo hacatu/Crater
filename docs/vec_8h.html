@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/vec.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('vec_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -76,12 +111,12 @@ $(function() {
 <div class="title">vec.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="container_8h_source.html">crater/container.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="prand_8h_source.html">crater/prand.h</a>&gt;</code><br />
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.3.0 Simple, featureful generic vector</dd></dl>
+<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 </div>
 <p><a href="vec_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -91,6 +126,7 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector Take care if manipulating these fields directly, this should only be done if the functions in this file are not sufficient.  <a href="structcr8r__vec.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vector.  <a href="structcr8r__vec__ft.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -102,17 +138,14 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ad6ad2c8ac3e2aa3305c661e8b6ce1d5a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ad6ad2c8ac3e2aa3305c661e8b6ce1d5a">cr8r_vec_ft</a></td></tr>
-<tr class="memdesc:ad6ad2c8ac3e2aa3305c661e8b6ce1d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vector.  <a href="vec_8h.html#ad6ad2c8ac3e2aa3305c661e8b6ce1d5a">More...</a><br /></td></tr>
-<tr class="separator:ad6ad2c8ac3e2aa3305c661e8b6ce1d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a904e79eacb27da124a159e60072cf285"><td class="memItemLeft" align="right" valign="top"><a id="a904e79eacb27da124a159e60072cf285"></a>
-typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_vec_pred</b>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, const void *ent, void *data)</td></tr>
+<tr class="memitem:a904e79eacb27da124a159e60072cf285"><td class="memItemLeft" align="right" valign="top">typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, const void *ent, void *data)</td></tr>
+<tr class="memdesc:a904e79eacb27da124a159e60072cf285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for predicates on vector elements.  <a href="vec_8h.html#a904e79eacb27da124a159e60072cf285">More...</a><br /></td></tr>
 <tr class="separator:a904e79eacb27da124a159e60072cf285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d44e1ee8740a1c6f03a15a9c64ce768"><td class="memItemLeft" align="right" valign="top"><a id="a6d44e1ee8740a1c6f03a15a9c64ce768"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_vec_mapper</b>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, void *o, const void *e, void *data)</td></tr>
+<tr class="memitem:a6d44e1ee8740a1c6f03a15a9c64ce768"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a6d44e1ee8740a1c6f03a15a9c64ce768">cr8r_vec_mapper</a>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, void *o, const void *e, void *data)</td></tr>
+<tr class="memdesc:a6d44e1ee8740a1c6f03a15a9c64ce768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for functions mapping from one vector element type to another.  <a href="vec_8h.html#a6d44e1ee8740a1c6f03a15a9c64ce768">More...</a><br /></td></tr>
 <tr class="separator:a6d44e1ee8740a1c6f03a15a9c64ce768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be8fd88d43867adc92c5de2a2e05cb7"><td class="memItemLeft" align="right" valign="top"><a id="a8be8fd88d43867adc92c5de2a2e05cb7"></a>
-typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_vec_accumulator</b>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *acc, const void *e)</td></tr>
+<tr class="memitem:a8be8fd88d43867adc92c5de2a2e05cb7"><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">cr8r_vec_accumulator</a>) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *acc, const void *e)</td></tr>
+<tr class="memdesc:a8be8fd88d43867adc92c5de2a2e05cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for accumulator functions on vectors (<a class="el" href="vec_8h.html#af519fece878d20ddc1c33daa4813aec9">cr8r_vec_foldl</a>)  <a href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">More...</a><br /></td></tr>
 <tr class="separator:a8be8fd88d43867adc92c5de2a2e05cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -165,13 +198,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ad1e46add615e3db6087de21050005522"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ad1e46add615e3db6087de21050005522">cr8r_vec_popl</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *o)</td></tr>
 <tr class="memdesc:ad1e46add615e3db6087de21050005522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an element from the left hand end of a vector.  <a href="vec_8h.html#ad1e46add615e3db6087de21050005522">More...</a><br /></td></tr>
 <tr class="separator:ad1e46add615e3db6087de21050005522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a375928e0d906305237207ce0426b2486"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a375928e0d906305237207ce0426b2486">cr8r_vec_filter</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_pred pred, void *data)</td></tr>
+<tr class="memitem:a375928e0d906305237207ce0426b2486"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a375928e0d906305237207ce0426b2486">cr8r_vec_filter</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a> pred, void *data)</td></tr>
 <tr class="memdesc:a375928e0d906305237207ce0426b2486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter a vector in-place.  <a href="vec_8h.html#a375928e0d906305237207ce0426b2486">More...</a><br /></td></tr>
 <tr class="separator:a375928e0d906305237207ce0426b2486"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a561c4ce5c4e2255ed4eeaa1bb3581ff6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a561c4ce5c4e2255ed4eeaa1bb3581ff6">cr8r_vec_filtered</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_pred pred, void *data)</td></tr>
+<tr class="memitem:a561c4ce5c4e2255ed4eeaa1bb3581ff6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a561c4ce5c4e2255ed4eeaa1bb3581ff6">cr8r_vec_filtered</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a> pred, void *data)</td></tr>
 <tr class="memdesc:a561c4ce5c4e2255ed4eeaa1bb3581ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vector as a subsequence matching a predicate.  <a href="vec_8h.html#a561c4ce5c4e2255ed4eeaa1bb3581ff6">More...</a><br /></td></tr>
 <tr class="separator:a561c4ce5c4e2255ed4eeaa1bb3581ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d099a5ea84cb4085c5ec194a59ec52f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a7d099a5ea84cb4085c5ec194a59ec52f">cr8r_vec_map</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, cr8r_vec_mapper f, void *data)</td></tr>
+<tr class="memitem:a7d099a5ea84cb4085c5ec194a59ec52f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a7d099a5ea84cb4085c5ec194a59ec52f">cr8r_vec_map</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *dest, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *src, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, <a class="el" href="vec_8h.html#a6d44e1ee8740a1c6f03a15a9c64ce768">cr8r_vec_mapper</a> f, void *data)</td></tr>
 <tr class="memdesc:a7d099a5ea84cb4085c5ec194a59ec52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vector by applying a transformation function to each element.  <a href="vec_8h.html#a7d099a5ea84cb4085c5ec194a59ec52f">More...</a><br /></td></tr>
 <tr class="separator:a7d099a5ea84cb4085c5ec194a59ec52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e787957cf8bb14c7a6d60061af07173"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a7e787957cf8bb14c7a6d60061af07173">cr8r_vec_forEachPermutation</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void(*f)(const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *data), void *data)</td></tr>
@@ -183,10 +216,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a5d51bc905d119424b59a57b6973041f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a5d51bc905d119424b59a57b6973041f5">cr8r_vec_augment</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *other, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:a5d51bc905d119424b59a57b6973041f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a copy of another vector to a given vector.  <a href="vec_8h.html#a5d51bc905d119424b59a57b6973041f5">More...</a><br /></td></tr>
 <tr class="separator:a5d51bc905d119424b59a57b6973041f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa09f92dfd14711cb40908e76b826389a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">cr8r_vec_all</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_pred pred, void *data)</td></tr>
+<tr class="memitem:aa09f92dfd14711cb40908e76b826389a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">cr8r_vec_all</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a> pred, void *data)</td></tr>
 <tr class="memdesc:aa09f92dfd14711cb40908e76b826389a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a predicate holds for all elements in a vector.  <a href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">More...</a><br /></td></tr>
 <tr class="separator:aa09f92dfd14711cb40908e76b826389a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a051014ce44ee03d1f38e9bec0be0dfb3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a051014ce44ee03d1f38e9bec0be0dfb3">cr8r_vec_any</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_pred pred, void *data)</td></tr>
+<tr class="memitem:a051014ce44ee03d1f38e9bec0be0dfb3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a051014ce44ee03d1f38e9bec0be0dfb3">cr8r_vec_any</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a> pred, void *data)</td></tr>
 <tr class="memdesc:a051014ce44ee03d1f38e9bec0be0dfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a predicate holds for any element in a vector.  <a href="vec_8h.html#a051014ce44ee03d1f38e9bec0be0dfb3">More...</a><br /></td></tr>
 <tr class="separator:a051014ce44ee03d1f38e9bec0be0dfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c46fe63b3e84780b58260594e79a30a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a6c46fe63b3e84780b58260594e79a30a">cr8r_vec_contains</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, const void *e)</td></tr>
@@ -198,10 +231,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a132b16ba4b1de994c74a4ef8762a0224"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a132b16ba4b1de994c74a4ef8762a0224">cr8r_vec_exm</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, int ord)</td></tr>
 <tr class="memdesc:a132b16ba4b1de994c74a4ef8762a0224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the extremal (minimum or maximum) element of a vector.  <a href="vec_8h.html#a132b16ba4b1de994c74a4ef8762a0224">More...</a><br /></td></tr>
 <tr class="separator:a132b16ba4b1de994c74a4ef8762a0224"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac300459e0111780316db62fc1aa54d4c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ac300459e0111780316db62fc1aa54d4c">cr8r_vec_foldr</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_accumulator f, void *init)</td></tr>
+<tr class="memitem:ac300459e0111780316db62fc1aa54d4c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ac300459e0111780316db62fc1aa54d4c">cr8r_vec_foldr</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">cr8r_vec_accumulator</a> f, void *init)</td></tr>
 <tr class="memdesc:ac300459e0111780316db62fc1aa54d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a right fold on a vector.  <a href="vec_8h.html#ac300459e0111780316db62fc1aa54d4c">More...</a><br /></td></tr>
 <tr class="separator:ac300459e0111780316db62fc1aa54d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af519fece878d20ddc1c33daa4813aec9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#af519fece878d20ddc1c33daa4813aec9">cr8r_vec_foldl</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, cr8r_vec_accumulator f, void *init)</td></tr>
+<tr class="memitem:af519fece878d20ddc1c33daa4813aec9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#af519fece878d20ddc1c33daa4813aec9">cr8r_vec_foldl</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">cr8r_vec_accumulator</a> f, void *init)</td></tr>
 <tr class="memdesc:af519fece878d20ddc1c33daa4813aec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a left fold on a vector.  <a href="vec_8h.html#af519fece878d20ddc1c33daa4813aec9">More...</a><br /></td></tr>
 <tr class="separator:af519fece878d20ddc1c33daa4813aec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bcbace693b2aa77a48b55291d74ad4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a9bcbace693b2aa77a48b55291d74ad4f">cr8r_vec_sort</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
@@ -226,21 +259,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_
 <tr class="memitem:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">cr8r_vec_cmp</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *a, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *b, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lexicographically compare two vectors.  <a href="vec_8h.html#ab4b70ed397697cecf35ff74c2f8a0b7d">More...</a><br /></td></tr>
 <tr class="separator:ab4b70ed397697cecf35ff74c2f8a0b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">cr8r_vec_pivot_m3</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b)</td></tr>
-<tr class="memdesc:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of 3 approach.  <a href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">More...</a><br /></td></tr>
-<tr class="separator:a3500aa2b7b329a69c5a5fea6eeb8057d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc07e0ee90e62db8b33df75defd93386"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">cr8r_vec_pivot_mm</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b)</td></tr>
-<tr class="memdesc:abc07e0ee90e62db8b33df75defd93386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of medians approach.  <a href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">More...</a><br /></td></tr>
-<tr class="separator:abc07e0ee90e62db8b33df75defd93386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a531123a6b232606975a0b6cf09c4d356"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b, void *piv)</td></tr>
-<tr class="memdesc:a531123a6b232606975a0b6cf09c4d356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition a subrange of a vector into elements &lt; a pivot and elements &gt;= a pivot.  <a href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">More...</a><br /></td></tr>
-<tr class="separator:a531123a6b232606975a0b6cf09c4d356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeee0365993099c1cdf21bb3b8369771e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aeee0365993099c1cdf21bb3b8369771e">cr8r_vec_partition_with_median</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b, void *piv)</td></tr>
-<tr class="memdesc:aeee0365993099c1cdf21bb3b8369771e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition a subrange of a vector into elements &lt;, ==, and &gt; a pivot.  <a href="vec_8h.html#aeee0365993099c1cdf21bb3b8369771e">More...</a><br /></td></tr>
-<tr class="separator:aeee0365993099c1cdf21bb3b8369771e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a87b69c24ebd36bbfc701c8eef3646fbc">cr8r_vec_ith</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t a, uint64_t b, uint64_t i)</td></tr>
-<tr class="memdesc:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the ith element of a subrange of a vector without completely sorting it.  <a href="vec_8h.html#a87b69c24ebd36bbfc701c8eef3646fbc">More...</a><br /></td></tr>
-<tr class="separator:a87b69c24ebd36bbfc701c8eef3646fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31eb8c7f28d1a6f930ef725634050d57"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a31eb8c7f28d1a6f930ef725634050d57">cr8r_vec_pivot_m3</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t a, uint64_t b)</td></tr>
+<tr class="memdesc:a31eb8c7f28d1a6f930ef725634050d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">cr8r_vec_partition</a> using the median of 3 approach.  <a href="vec_8h.html#a31eb8c7f28d1a6f930ef725634050d57">More...</a><br /></td></tr>
+<tr class="separator:a31eb8c7f28d1a6f930ef725634050d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cb20ca700c0e4d90dc5c649b4844f5c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a4cb20ca700c0e4d90dc5c649b4844f5c">cr8r_vec_pivot_mm</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t a, uint64_t b)</td></tr>
+<tr class="memdesc:a4cb20ca700c0e4d90dc5c649b4844f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a pivot for <a class="el" href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">cr8r_vec_partition</a> using the median of medians approach.  <a href="vec_8h.html#a4cb20ca700c0e4d90dc5c649b4844f5c">More...</a><br /></td></tr>
+<tr class="separator:a4cb20ca700c0e4d90dc5c649b4844f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1aab02695f085893fbfbe7f5ad7b476"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">cr8r_vec_partition</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t a, uint64_t b, void *piv)</td></tr>
+<tr class="memdesc:ac1aab02695f085893fbfbe7f5ad7b476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition a subrange of a vector into elements &lt; a pivot and elements &gt;= a pivot.  <a href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">More...</a><br /></td></tr>
+<tr class="separator:ac1aab02695f085893fbfbe7f5ad7b476"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91efeb6db8a8931cb0ae2598ebf1125"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#ad91efeb6db8a8931cb0ae2598ebf1125">cr8r_vec_partition_with_median</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t a, uint64_t b, void *piv)</td></tr>
+<tr class="memdesc:ad91efeb6db8a8931cb0ae2598ebf1125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition a subrange of a vector into elements &lt;, ==, and &gt; a pivot.  <a href="vec_8h.html#ad91efeb6db8a8931cb0ae2598ebf1125">More...</a><br /></td></tr>
+<tr class="separator:ad91efeb6db8a8931cb0ae2598ebf1125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e0c1ec199b4f22f35722da8e379707"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#af5e0c1ec199b4f22f35722da8e379707">cr8r_vec_ith</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, uint64_t a, uint64_t b, uint64_t i)</td></tr>
+<tr class="memdesc:af5e0c1ec199b4f22f35722da8e379707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the ith element of a subrange of a vector without completely sorting it.  <a href="vec_8h.html#af5e0c1ec199b4f22f35722da8e379707">More...</a><br /></td></tr>
+<tr class="separator:af5e0c1ec199b4f22f35722da8e379707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b302c782e6b375225feb30bbc371cfd"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a9b302c782e6b375225feb30bbc371cfd">cr8r_default_acc_sum_u64</a> (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *acc, const void *ent)</td></tr>
 <tr class="memdesc:a9b302c782e6b375225feb30bbc371cfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for <a class="el" href="vec_8h.html#ac300459e0111780316db62fc1aa54d4c">cr8r_vec_foldr</a> to sum up elements in vector.  <a href="vec_8h.html#a9b302c782e6b375225feb30bbc371cfd">More...</a><br /></td></tr>
 <tr class="separator:a9b302c782e6b375225feb30bbc371cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,34 +293,61 @@ Variables</h2></td></tr>
 <tr class="memdesc:a6ac67a3386892ea9daaa3974da649297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for vectors of uint8_t's, which can be used as smart strings.  <a href="vec_8h.html#a6ac67a3386892ea9daaa3974da649297">More...</a><br /></td></tr>
 <tr class="separator:a6ac67a3386892ea9daaa3974da649297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.3.0 </dd></dl>
-<h1><a class="anchor" id="LICENSE"></a>
-LICENSE</h1>
-<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
-<h1><a class="anchor" id="DESCRIPTION"></a>
-DESCRIPTION</h1>
-<p>Simple, featureful generic vector </p>
-
-<p class="definition">Definition in file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="ad6ad2c8ac3e2aa3305c661e8b6ce1d5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6ad2c8ac3e2aa3305c661e8b6ce1d5a">&#9670;&nbsp;</a></span>cr8r_vec_ft</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a904e79eacb27da124a159e60072cf285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a904e79eacb27da124a159e60072cf285">&#9670;&nbsp;</a></span>cr8r_vec_pred</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a></td>
+          <td class="memname">typedef bool(* cr8r_vec_pred) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, const void *ent, void *data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function table for vector. </p>
-<p>Imagine this struct as the class of the vector. This struct specifies the size of the elements in a vector in bytes, as well as how to perform necessary operations (compare, copy, etc). Remember that function tables must be initialized manually. In particular, the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set. </p>
+<p>Callback type for predicates on vector elements. </p>
+<p>These callbacks are provided with the vec_ft, the ent, and the data pointer passed to the caller </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00039">39</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00069">69</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d44e1ee8740a1c6f03a15a9c64ce768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d44e1ee8740a1c6f03a15a9c64ce768">&#9670;&nbsp;</a></span>cr8r_vec_mapper</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* cr8r_vec_mapper) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *src_ft, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *dest_ft, void *o, const void *e, void *data)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback type for functions mapping from one vector element type to another. </p>
+<p>These callbacks are provided with the src_ft, dest_ft, dest ent pointer, src ent pointer, and data pointer passed to the caller </p>
+
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00074">74</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8be8fd88d43867adc92c5de2a2e05cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8be8fd88d43867adc92c5de2a2e05cb7">&#9670;&nbsp;</a></span>cr8r_vec_accumulator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void*(* cr8r_vec_accumulator) (const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, void *acc, const void *e)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback type for accumulator functions on vectors (<a class="el" href="vec_8h.html#af519fece878d20ddc1c33daa4813aec9">cr8r_vec_foldl</a>) </p>
+<p>These callbacks are provided with the vec_ft, pointer to the accumulator, and pointer to the ent </p>
+
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00079">79</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -995,7 +1055,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_pred&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a>&#160;</td>
           <td class="paramname"><em>pred</em>, </td>
         </tr>
         <tr>
@@ -1051,7 +1111,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_pred&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a>&#160;</td>
           <td class="paramname"><em>pred</em>, </td>
         </tr>
         <tr>
@@ -1115,7 +1175,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_mapper&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a6d44e1ee8740a1c6f03a15a9c64ce768">cr8r_vec_mapper</a>&#160;</td>
           <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
@@ -1313,7 +1373,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_pred&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a>&#160;</td>
           <td class="paramname"><em>pred</em>, </td>
         </tr>
         <tr>
@@ -1334,6 +1394,7 @@ DESCRIPTION</h1>
 <p>Returns false immediately if any element does not satisfy the predicate. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pred</td><td>predicate function, called on each element in the vector </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>reentrant data to pass to pred </td></tr>
   </table>
   </dd>
 </dl>
@@ -1362,7 +1423,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_pred&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a>&#160;</td>
           <td class="paramname"><em>pred</em>, </td>
         </tr>
         <tr>
@@ -1383,6 +1444,7 @@ DESCRIPTION</h1>
 <p>Returns true immediately if any element satisfies the predicate. Note that this is completely equivalent to the negation of <a class="el" href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">cr8r_vec_all</a> with the negation of the predicate. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pred</td><td>predicate function, called on each element in the vector </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>reentrant data to pass to pred </td></tr>
   </table>
   </dd>
 </dl>
@@ -1540,7 +1602,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_accumulator&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">cr8r_vec_accumulator</a>&#160;</td>
           <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
@@ -1590,7 +1652,7 @@ DESCRIPTION</h1>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cr8r_vec_accumulator&#160;</td>
+          <td class="paramtype"><a class="el" href="vec_8h.html#a8be8fd88d43867adc92c5de2a2e05cb7">cr8r_vec_accumulator</a>&#160;</td>
           <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
@@ -1867,8 +1929,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a3500aa2b7b329a69c5a5fea6eeb8057d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3500aa2b7b329a69c5a5fea6eeb8057d">&#9670;&nbsp;</a></span>cr8r_vec_pivot_m3()</h2>
+<a id="a31eb8c7f28d1a6f930ef725634050d57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31eb8c7f28d1a6f930ef725634050d57">&#9670;&nbsp;</a></span>cr8r_vec_pivot_m3()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1876,14 +1938,14 @@ DESCRIPTION</h1>
         <tr>
           <td class="memname">void* cr8r_vec_pivot_m3 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramtype">const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1905,10 +1967,9 @@ DESCRIPTION</h1>
       </table>
 </div><div class="memdoc">
 
-<p>Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of 3 approach. </p>
-<p>This is an O(1) pivot selection algorithm that can cause quicksort/quickselect to perform badly (O(n**2)) in pathological cases, but most of the time works very well (O(n*log(n)) and faster than <a class="el" href="vec_8h.html#abc07e0ee90e62db8b33df75defd93386">cr8r_vec_pivot_mm</a> in practice most of the time). Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Pick a pivot for <a class="el" href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">cr8r_vec_partition</a> using the median of 3 approach. </p>
+<p>This is an O(1) pivot selection algorithm that can cause quicksort/quickselect to perform badly (O(n**2)) in pathological cases, but most of the time works very well (O(n*log(n)) and faster than <a class="el" href="vec_8h.html#a4cb20ca700c0e4d90dc5c649b4844f5c">cr8r_vec_pivot_mm</a> in practice most of the time). Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. The vector is not modified </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>vector to pick a pivot for (a subrange of), is not modified </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive indices of the subrange to pick a pivot for </td></tr>
   </table>
   </dd>
@@ -1917,8 +1978,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="abc07e0ee90e62db8b33df75defd93386"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc07e0ee90e62db8b33df75defd93386">&#9670;&nbsp;</a></span>cr8r_vec_pivot_mm()</h2>
+<a id="a4cb20ca700c0e4d90dc5c649b4844f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cb20ca700c0e4d90dc5c649b4844f5c">&#9670;&nbsp;</a></span>cr8r_vec_pivot_mm()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1927,13 +1988,13 @@ DESCRIPTION</h1>
           <td class="memname">void* cr8r_vec_pivot_mm </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1955,10 +2016,9 @@ DESCRIPTION</h1>
       </table>
 </div><div class="memdoc">
 
-<p>Pick a pivot for <a class="el" href="vec_8h.html#a531123a6b232606975a0b6cf09c4d356">cr8r_vec_partition</a> using the median of medians approach. </p>
-<p>This is an O(n) pivot selection algorithm that ensures quicksort/quickselect will always run in O(n*log(n)) time. However, because the entire subrange is processed, this will often end up slower than <a class="el" href="vec_8h.html#a3500aa2b7b329a69c5a5fea6eeb8057d">cr8r_vec_pivot_m3</a>. The reason median of medians ensures quicksort/quickselect will finish in O(n*log(n)) time is because it will select a pivot whose index is within a certain ratio of the median (eg if the subrange has k elements then the pivot selected will be one of the central a*k elements for some small fixed coefficient). The median of medians algorithm used does not allocate extra space, but the order of the given subrange is not preserved. Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Pick a pivot for <a class="el" href="vec_8h.html#ac1aab02695f085893fbfbe7f5ad7b476">cr8r_vec_partition</a> using the median of medians approach. </p>
+<p>This is an O(n) pivot selection algorithm that ensures quicksort/quickselect will always run in O(n*log(n)) time. However, because the entire subrange is processed, this will often end up slower than <a class="el" href="vec_8h.html#a31eb8c7f28d1a6f930ef725634050d57">cr8r_vec_pivot_m3</a>. The reason median of medians ensures quicksort/quickselect will finish in O(n*log(n)) time is because it will select a pivot whose index is within a certain ratio of the median (eg if the subrange has k elements then the pivot selected will be one of the central a*k elements for some small fixed coefficient). The median of medians algorithm used does not allocate extra space, but the order of the given subrange is not preserved. Picks the median of the first, middle (rounded down), and last elements. In the event of ties, which valid element is chosen is not specified, but is consistent for the same elements. The vector to pick a pivot for (a subrange of), will be reordered in place, but only within the given subrange </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to pick a pivot for (a subrange of), will be reordered in place, but only within the given subrange </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive indices of the subrange to pick a pivot for </td></tr>
   </table>
   </dd>
@@ -1967,8 +2027,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a531123a6b232606975a0b6cf09c4d356"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a531123a6b232606975a0b6cf09c4d356">&#9670;&nbsp;</a></span>cr8r_vec_partition()</h2>
+<a id="ac1aab02695f085893fbfbe7f5ad7b476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1aab02695f085893fbfbe7f5ad7b476">&#9670;&nbsp;</a></span>cr8r_vec_partition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1977,13 +2037,13 @@ DESCRIPTION</h1>
           <td class="memname">void* cr8r_vec_partition </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2012,9 +2072,8 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Partition a subrange of a vector into elements &lt; a pivot and elements &gt;= a pivot. </p>
-<p>The given subrange is rearranged so that all elements before the pivot are &lt; the pivot and all elements &gt;= the pivot are after the pivot, and a pointer to the pivot is returned </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The given subrange is rearranged so that all elements before the pivot are &lt; the pivot and all elements &gt;= the pivot are after the pivot, and a pointer to the pivot is returned the vector has its relevant subrange reordered in place </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to partition a subrange of in place </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive bounds of subrange (ie, consider elements [a, b)) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">piv</td><td>a pointer to the pivot </td></tr>
   </table>
@@ -2024,8 +2083,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="aeee0365993099c1cdf21bb3b8369771e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeee0365993099c1cdf21bb3b8369771e">&#9670;&nbsp;</a></span>cr8r_vec_partition_with_median()</h2>
+<a id="ad91efeb6db8a8931cb0ae2598ebf1125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91efeb6db8a8931cb0ae2598ebf1125">&#9670;&nbsp;</a></span>cr8r_vec_partition_with_median()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2034,13 +2093,13 @@ DESCRIPTION</h1>
           <td class="memname">void* cr8r_vec_partition_with_median </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2072,11 +2131,10 @@ DESCRIPTION</h1>
 <p>The given subrange is rearranged so that all elements &lt; the pivot occur first, followed by all elements == the pivot (including the pivot), then finally all elements </p><blockquote class="doxtable">
 <p>the pivot. A pointer to the ending position of the pivot is returned. </p>
 </blockquote>
-<p>Notice in particular that if piv is the ith element in sorted order, calling this function will actually place that element (or an == one) at the ith index, with the subrange arranged into a &lt;, ==, and &gt; block as just described </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Notice in particular that if piv is the ith element in sorted order, calling this function will actually place that element (or an == one) at the ith index, with the subrange arranged into a &lt;, ==, and &gt; block as just described the vector has its relevant subrange reordered in place </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to partition a subrange of in place </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive bounds of subrange (ie, consider elements [a, b)) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">piv</td><td>a pointer to the pivot (usually obtained from <a class="el" href="vec_8h.html#a87b69c24ebd36bbfc701c8eef3646fbc">cr8r_vec_ith</a>) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">piv</td><td>a pointer to the pivot (usually obtained from <a class="el" href="vec_8h.html#af5e0c1ec199b4f22f35722da8e379707">cr8r_vec_ith</a>) </td></tr>
   </table>
   </dd>
 </dl>
@@ -2084,8 +2142,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a87b69c24ebd36bbfc701c8eef3646fbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87b69c24ebd36bbfc701c8eef3646fbc">&#9670;&nbsp;</a></span>cr8r_vec_ith()</h2>
+<a id="af5e0c1ec199b4f22f35722da8e379707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e0c1ec199b4f22f35722da8e379707">&#9670;&nbsp;</a></span>cr8r_vec_ith()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2094,13 +2152,13 @@ DESCRIPTION</h1>
           <td class="memname">void* cr8r_vec_ith </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2129,9 +2187,8 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Find the ith element of a subrange of a vector without completely sorting it. </p>
-<p>The given subrange is partitioned in place, but the quickselect algorithm is used rather than sorting so the expected running time is linear. Using median of medians would guarantee linear time, but median of 3 is good enough most of the time. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The given subrange is partitioned in place, but the quickselect algorithm is used rather than sorting so the expected running time is linear. Using median of medians would guarantee linear time, but median of 3 is good enough most of the time. The vector to find ith element of may be reoredered. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">self</td><td>vector to find ith element of. May be reoredered. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>inclusive, exclusive bounds of subrange </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>index to find. For example, 0 finds the smallest element, 1 the second smallest, and so on. </td></tr>
   </table>
@@ -2267,11 +2324,14 @@ DESCRIPTION</h1>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="vec_8h.html">vec.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

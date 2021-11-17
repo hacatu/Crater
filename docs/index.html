@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Crater Container Library: Main Page</title>
+<title>Crater Container Library: Crater Container Library</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -47,6 +70,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,17 +100,312 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Crater Container Library Documentation</div>  </div>
+<div class="title">Crater Container Library </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a href="https://github.com/hacatu/Crater/actions/workflows/cov_and_docs.yml"><object type="image/svg+xml" data="https://github.com/hacatu/Crater/actions/workflows/cov_and_docs.yml/badge.svg" style="pointer-events: none;">GitHub CI</object></a> <a href="https://hacatu.github.io/Crater/docs"><img src="https://img.shields.io/badge/-documentation-gray" alt="Documentation" class="inline"/></a> <a href="https://hacatu.github.io/Crater/cov"><object type="image/svg+xml" data="https://hacatu.github.io/Crater/coverage.svg" style="pointer-events: none;">Coverage</object></a></p>
+<p>Crater provides simple, fast generic collections in plain C and some other general purpose utilities. All containers can be parameterized by specifying callback functions in a "function table".</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Features</h2>
+<ul>
+<li>AVL trees<ul>
+<li>Ordered map/dictionary like interface with <code>O(log(n))</code> worst case time for insertion, removal, and lookup</li>
+<li>Amortized <code>O(1)</code> time to find next element in inorder/postorder traversal</li>
+<li>Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)</li>
+<li>Node allocator is configurable (see slab allocator)</li>
+<li>Include operations on nodes (remove and insert existing nodes rather than entries to decrease allocations)</li>
+<li>Support finding lowest upper bound/highest lower bound node</li>
+<li>Existing AVL trees can be reordered according to a different sorting function or as a heap</li>
+<li>Can be used as ordered sets (by having the entry type only consist of information that the comparison function considers, ie just a "key" with no "value")</li>
+</ul>
+</li>
+<li>Hash tables<ul>
+<li>Unordered map/dictionary like interface with <code>O(1)</code> average case time for insertion, removal, and lookup</li>
+<li>Amortized <code>O(1)</code> time to find next element in iteration (order of iteration is unspecified)</li>
+<li>Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)</li>
+<li>Use incremental resizing (have two tables internally while resizing and amortize moving entries over insert/remove operations). Entries are stored directly in the hash table using quadratic probing on collisions.</li>
+</ul>
+</li>
+<li>Vectors (/heaps)<ul>
+<li>Self resizing array with standard constant time operations</li>
+<li>Allocator and growth rate are configurable (can specify function to compute new size)</li>
+<li>Include pushl/popl (linear time left access) and <code>O(nlog(n))</code> sorting (using heapsort)</li>
+<li>Support using vectors as heaps (min and max with configurable comparison function, implemented as an implicit binary heap)</li>
+<li>Include operations for sorted vectors (find element index in sorted list, etc)</li>
+<li>Support finding ith element without sorting in linear time with quickselect, partitioning, etc. Implicit, immutable KD trees can be implemented on top of this, but inserting/removing elements is much, much more complicated than implicitly stored heaps so it isn't supported without rebuilding the KD tree.</li>
+</ul>
+</li>
+<li>Pairing heaps (intrusive)<ul>
+<li>Like all heaps, pairing heaps allow efficiently finding the smallest (or largest) of their elements.</li>
+<li>Support merging two heaps together in constant time.</li>
+<li>Have very good asymptotic time complexities, and tend to perform better than heap variants that have lower time complexities (ie Fibonacci heaps).</li>
+<li>Implicit binary heaps are the most popular because they have no pointer overhead and have much less indirection and fragmentation compared to other heap variants, even those with better theoretical performance. Implicit binary heaps are available as functionality for vectors, see above.</li>
+<li>Pairing heaps have more indirection because they are pointer based data structures.</li>
+<li>Pairing heaps in Crater are implemented using intrusive data structures, as opposed to using structs with flexible length char arrays to store the generic data. This means any struct you wish to use as a pairing heap must include a <code><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a></code> struct within it, ideally as its last member.</li>
+<li>The reason pairing heaps are implemented in this way is because they are intended to be mixed into another data structure like a hash table or avl tree. This is used when implementing priority queues in Dijkstra's algorithm for example, since the heap is needed to efficiently find the next smallest element, but another data structure is needed to find the elements by name, position in space, or some other identifier.</li>
+<li>Pairing heaps can also be preferable to binary heaps when merging is common, which happens in many graph algorithms such as connected components</li>
+<li><code>find-min</code> in <code>O(1)</code></li>
+<li><code>delete-min</code> in <code>O(log(n))</code></li>
+<li><code>insert</code> in <code>O(1)</code> (<code>O(log(n))</code> for binary heaps)</li>
+<li><code>decreased-key</code> in <code>o(log(n))</code> (<code>O(log(n))</code> for binary heaps)</li>
+<li>notice the <code>o</code> vs <code>O</code>; <code>o</code> is a stronger bound, but keep in mind this is amortized and pairing heaps are not as strongly structured as say avl trees so there will be some fluctuation</li>
+<li><code>increased-key</code> in <code>O(log(n))</code></li>
+<li><code>merge</code> in <code>O(1)</code> (<code>O(n)</code> for binary heaps)</li>
+<li><code>heapify</code> in <code>O(n)</code></li>
+</ul>
+</li>
+<li>Circularly linked lists<ul>
+<li>Exist</li>
+<li>Not currently tested</li>
+</ul>
+</li>
+<li>Slab allocator<ul>
+<li>Group together many fixed size allocations so that allocating nodes in linked structures can be handled more efficiently than malloc</li>
+<li>Can grow internal storage (exponentially) without invalidating already allocated nodes</li>
+</ul>
+</li>
+<li>Pseudorandom Number Generators<ul>
+<li>Linear Congruential Generator, Lagged Fibonacci Subtract with Carry, Lagged Fibonacci Multiplication, Mersenne Twister, Xoroshiro256**, SplitMix64, and Linux <code>/dev/random</code></li>
+<li>Can generate random <code>uint32_t</code>s, <code>uint64_t</code>s, uniform <code>uint64_t</code>s in a range, random bytes into a buffer, and random <code>double</code>s on <code>[0,1)</code> directly</li>
+<li>Some prng types support jumping to facillitate setting up multiple independent streams. All will eventually be supported. See prng documentation for details</li>
+<li>These are all well tested prngs with good characteristics (and some drawbacks), and we run a few tests to confirm they work correctly: byte distribution, byte correlation, and ising model</li>
+</ul>
+</li>
+<li>Command line argument parsing<ul>
+<li>Flexible system allows optional and required options</li>
+<li>Options may have required, optional, or no argument</li>
+<li>Options may have short and long names</li>
+<li>Type generic macro can be used to easily configure options for any scalar type by only specifying destination pointer, short name, long name, description, and whether or not the option is required</li>
+<li>Options can specify <code>on_missing</code> behavior to generate a random value if an optional argument is missing, or do anything else in the event of a missing option</li>
+<li>Required arguments are characterized by having <code>on_missing</code> be a null function pointer</li>
+<li>Inspired by argparse, but with support for <code>on_missing</code> and any type</li>
+<li>Namely, <code>char</code>, <code>_Bool</code>, signed and unsigned versions of <code>char</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code>, and <code>__int128</code>, plus <code>float</code>, <code>double</code>, and <code>long double</code> are supported by <code>CR8R_OPT_GENERIC_OPTIONAL</code> and <code>CR8R_OPT_GENERIC_REQUIRED</code>. <code>_Complex *</code> and <code>_Imaginary *</code> are not currently supported by the type generic macros, but these and any aggregate types can be implemented with a custom <code>on_opt</code> callback. A custom callback can also be used to perform a narrower range check, like forcing a number to be 0-100</li>
+<li>Default help option to print help and descriptions is provided, and some options for argument parsing behavior are available (whether all/only one error is reported as well as basic support for positional arguments)</li>
+</ul>
+</li>
+</ul>
+<p>KD trees and possibly red black trees and double linked lists are planned, as well as more support for jumping in the prng part of the library and expansion of command line argument handling.</p>
+<p>Each container type has an associated function table type. For example, the AVL tree ft has <code>alloc</code>, <code>free</code>, <code>cmp</code>, and <code>add</code> callbacks, to allocate nodes, free nodes, compare elements, and combine two elements (to parameterized behavior for inserting existing elements in order to create a counter or something more advanced) respectively.</p>
+<p>Some convenient default callbacks are also included.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Building</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Overview/Linux</h2>
+<p>Project directories:</p>
+<ul>
+<li><code>include/crater</code>: Contains header files. Can be copied into system include directory without worry of clashes.</li>
+<li><code>src/bin</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/&lt;name&gt;</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/&lt;name&gt;</code>.</li>
+<li><code>src/lib</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a static library <code>&lt;BUILD_ROOT&gt;/lib/lib&lt;name&gt;.a</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a static library <code>&lt;BUILD_ROOT&gt;/lib/lib&lt;name&gt;.a</code>.</li>
+<li><code>src/test</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/test/&lt;name&gt;</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/test/&lt;name&gt;</code>.</li>
+<li><code>&lt;BUILD_ROOT&gt;</code>: all output files are put in the <code>&lt;BUILD_ROOT&gt;</code> directory, which is <code>build/debug</code> by default, but can be changed to use a different build root. Each build root represents a variant build. The build root directory should contain:<ul>
+<li><code>Makefile</code>: Invoked by the top level makefile to build the selected variant. A good way to create a new variant is to copy this file and edit it.</li>
+<li><code>cflags.txt</code>: Compilation flags for this variant build.</li>
+<li><code>ldflags.txt</code>: Linking flags for this variant build.</li>
+<li><code>makedeps_cflags.txt</code>: Flags to pass to the C compiler to emit Makefile dependency information. <code>-MM -MQ $@ -MG -MP $^ -MF</code> will be added to this. This should not need to be changed for new variant builds.</li>
+</ul>
+</li>
+<li><code>&lt;BUILD_ROOT&gt;/bin</code>: Output folder for compiled binaries.</li>
+<li><code>&lt;BUILD_ROOT&gt;/lib</code>: Output folder for compiled static librares.</li>
+<li><code>&lt;BUILD_ROOT&gt;/bin/test</code>: Output folder for compiled test binaries.</li>
+<li><code>&lt;BUILD_ROOT&gt;/notes</code>: Output folder for coverage information. Not flat internally: many files will be placed in subfolders.</li>
+<li><code>&lt;BUILD_ROOT&gt;/obj</code>: Output folder for intermediate object files. Not flat internally, many files will be placed in subfolders.</li>
+<li><code>&lt;BUILD_ROOT&gt;/log</code>: Output folder for test output.</li>
+<li><code>test</code>: Contains <code>test.py</code>, <code>tests.json</code>, and expected output for applicable tests.</li>
+<li><code>resources</code>: Contains non-code resources for tests (and binaries and libraries) to read.</li>
+<li><code>website</code>: Contains the manually created parts of the website. Lcov and Doxygen then generate the coverage report and documentation pages.</li>
+</ul>
+<p>This library uses variant makefiles for each build type. To build the debug variant, simply run <code>make</code> in the project root directory. The resulting files will be in <code>build/debug/lib</code> and <code>build/debug/bin</code>.</p>
+<p>To build a different variant, change the <code>&lt;BUILD_ROOT&gt;</code> variable from <code>build/debug</code> to <code>build/release</code> or some other value, for instance <code>make BUILD_ROOT="build/release"</code>. You can check what variants exist by looking at the subdirectories of <code>build</code>, and you can create your own by copying and modifying <code>build/debug</code>.</p>
+<p>To run tests, simply run <code>make test</code> (or <code>make BUILD_ROOT=build/release test</code>). For build variants where coverage testing should be done, <code>make coverage</code> is better since both will re-run all tests every time.</p>
+<p><code>make clean</code> should remove all output files in all variant build directories, as well as all generated documentation.</p>
+<p>Finally, <code>make docs</code> generates the documentation in the <code>docs</code> directory. Like <code>make clean</code>, this is not tied to a build variant and even if you specify one the same thing will happen.</p>
+<p>Only Linux is properly supported. To build, only <code>gcc</code>/<code>clang</code>, <code>ar</code>, and <code>make</code> are strictly required. <code>gold</code> is specified as the linker by default. Tests require <code>python 3</code> and <code>SDL2</code>, coverage requires <code>lcov</code>, and documentation requires <code>doxygen</code>. If you do not have <code>gold</code>, you can remove the line <code>-fuse-ld=gold</code> in <code>&lt;BUILD_ROOT&gt;/ldflags.txt</code>.</p>
+<p><code>-fno-strict-aliasing</code> is important to keep because the elements in most containers are stored in flexible length <code>char</code> arrays, and strict aliasing has to be disabled to allow a two way conversion between <code>char*</code> and <code>T*</code>.</p>
+<p>To use clang instead of gcc, <code>make CC=clang LD=clang test</code> can be used. You may wish to edit <code>build/debug/ldflags.txt</code> to not use gold since it causes some link warnings in clang.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Windows</h2>
+<p>Try installing the Windows subsystem for Linux or setting Crater up in VSCode. VSCodium on Linux is able to build and manage Crater pretty well, using the <code>clangd</code> and <code>Makefile Tools</code> extensions. You will need to create a copy of <code>build/debug/cflags.txt</code> in the project root called <code>compile_flags.txt</code> but with the <code>-I../../include</code> line changed to <code>-Iinclude</code>, this should make <code>clangd</code> work properly. Simply running the make commands in VSCode's bash terminal is recommended because the <code>Makefile Tools</code> extension does not handle ANSI escape sequences so its output is hard to read.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Installing</h1>
+<p><code>make BUILD_ROOT=build/release</code> followed by <code>sudo make BUILD_ROOT=build/release install</code> will install the headers to <code>/usr/include/crater/</code> and libraries to <code>/usr/lib/crater/</code>. NOTE: Installing debug builds or any build variant besides release is not really recommended, these variants should be stored in and linked from their respective directories within <code>build/</code>. NOTE: Do not run <code>sudo make BUILD_ROOT=build/release install</code> unless you have run <code>make BUILD_ROOT=build/release</code> immediately beforehand. If you do, you will get files owned by root in <code>build/release</code>.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Linking</h1>
+<p>Once the library has been built, it can be linked with C programs by adding the flags <code>-Lbuild/debug/lib -lcrater</code> or <code>-L&lt;BUILD_ROOT&gt;/lib -lcrater</code> to use a different variant build. If crater is installed, <code>-L</code> is not needed, but keep in mind that <code>-L</code> directories are searched before system directories so this can be used to link to the debug variant even if crater is installed.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Tests</h1>
+<p>To run tests, use <code>make tests</code>. To run tests and generate a coverage report, use <code>make coverage</code>, which will put the report in <code>&lt;BUILD_ROOT&gt;/cov</code>. What tests are run is determined by a couple files in the <code>test</code> folder. <code>test/test.py</code> uses <code>test/tests.json</code> to determine what tests to run. This json configuration looks like <code>{&lt;name&gt;: {&lt;test_kind&gt;: [&lt;arg_list&gt;]}}</code> where</p><ul>
+<li><code>&lt;name&gt;</code> is the name of the test executable in <code>&lt;BUILD_ROOT&gt;/bin/test</code></li>
+<li><code>&lt;test_kind&gt;</code> specifies how to validate the results of the tests in the associated array, for example:<ul>
+<li><code>no_red_tests</code>: tests in <code>test_cfg[&lt;name&gt;]["no_red_tests"]</code> are considered to pass as long as they do not output red text (the ansi control sequence <code>\\033[1;31m</code>)</li>
+<li><code>log_diff_tests</code>: test <code>i</code> in the list <code>test_cfg[&lt;name&gt;]["log_diff_tests"]</code> is considered to pass if its output matches with the file <code>test/&lt;name&gt;.i.log</code>.</li>
+</ul>
+</li>
+<li><code>&lt;arg_list&gt;</code> is a list of command line arguments to pass to the test executable. Paths should be relative to <code>&lt;BUILD_ROOT&gt;</code>.</li>
+</ul>
+<p>The configuration for the tests for <code>&lt;name&gt;</code> is a json object whose keys are <code>&lt;test_kind&gt;</code> values and whose values are lists of <code>&lt;arg_lists&gt;</code>. For each <code>&lt;name&gt;</code>, for each <code>&lt;test_kind&gt;</code>, the test executable for <code>&lt;name&gt;</code> is run with each <code>&lt;arg_list&gt;</code> and validated according to that test kind.</p>
+<p>Notice <code>{"no_red_tests": [[]]}</code> is the basic way to run the test executable for <code>&lt;name&gt;</code> once with no arguments and check it does not output any red text.</p>
+<p><code>test/test.py</code> is automatically invoked by <code>make test</code> with <code>&lt;BUILD_ROOT&gt;</code> as the working directory. If you wish to invoke it manually, make sure to switch directories first.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Examples</h1>
+<p>Look in src/test for more examples!</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Command Line Arguments (from src/test/ising/render.c)</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="opts_8h.html">crater/opts.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="prand_8h.html">crater/prand.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line">...</div>
+<div class="line"> </div>
+<div class="line">bool generate_random_seed(<a class="code" href="structcr8r__opt.html">cr8r_opt</a> *<span class="keyword">self</span>){</div>
+<div class="line">    <a class="code" href="structcr8r__prng.html">cr8r_prng</a> *sys_rng = <a class="code" href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a>();</div>
+<div class="line">    <span class="keywordflow">if</span>(!sys_rng){</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;\e[1;31mERROR: Could not initialize sys rng!\e[0m\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code" href="prand_8h.html#afbef6761d11dd124732c47d034e3e3bd">cr8r_prng_get_bytes</a>(sys_rng, <span class="keyword">sizeof</span>(uint64_t), self-&gt;dest);</div>
+<div class="line">    fprintf(stderr, <span class="stringliteral">&quot;\e[1;33mseed=%&quot;</span>PRIx64<span class="stringliteral">&quot;\e[0m\n&quot;</span>, *(uint64_t*)self-&gt;dest);</div>
+<div class="line">    free(sys_rng);</div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv){</div>
+<div class="line">    uint64_t n = 400;</div>
+<div class="line">    <span class="keywordtype">double</span> B = 10;</div>
+<div class="line">    uint64_t seed;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="structcr8r__opt.html">cr8r_opt</a> options[] = {</div>
+<div class="line">        <a class="code" href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">CR8R_OPT_HELP</a>(options, <span class="stringliteral">&quot;Crater Ising model test/demo\n&quot;</span></div>
+<div class="line">            <span class="stringliteral">&quot;Written by hacatu\n\n&quot;</span></div>
+<div class="line">            <span class="stringliteral">&quot;Usage:\n&quot;</span></div>
+<div class="line">            <span class="stringliteral">&quot;\t`ising`: run automated tests (no gui)\n&quot;</span></div>
+<div class="line">            <span class="stringliteral">&quot;\t`ising &lt;options&gt;` run SDL2 demo\n\n&quot;</span>),</div>
+<div class="line">        <a class="code" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a>(&amp;n, <span class="stringliteral">&quot;n&quot;</span>, <span class="stringliteral">&quot;side&quot;</span>, <span class="stringliteral">&quot;lattice side length (default 400, must be positive)&quot;</span>),</div>
+<div class="line">        <a class="code" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a>(&amp;B, <span class="stringliteral">&quot;B&quot;</span>, <span class="stringliteral">&quot;beta&quot;</span>, <span class="stringliteral">&quot;inverse temperature (default 10, must be positive)&quot;</span>),</div>
+<div class="line">        {.dest = &amp;seed, .arg_mode = CR8R_OPT_ARGMODE_REQUIRED,</div>
+<div class="line">            .short_name = <span class="stringliteral">&quot;s&quot;</span>, .long_name = <span class="stringliteral">&quot;seed&quot;</span>,</div>
+<div class="line">            .description = <span class="stringliteral">&quot;seed for prng (64 bit number), if not specified, a random seed is used and logged&quot;</span>,</div>
+<div class="line">            .on_opt = cr8r_opt_parse_ull, .on_missing = generate_random_seed},</div>
+<div class="line">        <a class="code" href="opts_8h.html#a9577e6c81889291632b4492da5b13ecc">CR8R_OPT_END</a>()</div>
+<div class="line">    };</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>(options, &amp;((<a class="code" href="structcr8r__opt__cfg.html">cr8r_opt_cfg</a>){.stop_on_first_err=<span class="keyword">true</span>}), argc, argv)){</div>
+<div class="line">        exit(1);</div>
+<div class="line">    }</div>
+<div class="line">    ...</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Test All Insert/Remove Sequences for size 7 AVL Trees</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="avl_8h.html">crater/avl.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="sla_8h.html">crater/sla.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">crater/vec.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="structcr8r__avl__ft.html">cr8r_avl_ft</a> avlft_u64sla;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> processRemoveSequence(<span class="keyword">const</span> <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *rseq, <span class="keyword">const</span> <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *rseq_ft){</div>
+<div class="line">    <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *iseq = rseq_ft-&gt;<a class="code" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">base</a>.<a class="code" href="structcr8r__base__ft.html#ad7f38c650caf20a02b4a7277f59f0429">data</a>;</div>
+<div class="line">    <a class="code" href="structcr8r__avl__node.html">cr8r_avl_node</a> *r = NULL, *it;</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; i &lt; iseq-&gt;<a class="code" href="structcr8r__vec.html#abcc9a48b44fafa1b74f06ba77b32f64f">len</a>; ++i){</div>
+<div class="line">        assert(<a class="code" href="avl_8h.html#a8a6b0ce9af0fbac11aabfb72a4fd7e88">cr8r_avl_insert</a>(&amp;r, <a class="code" href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">cr8r_vec_get</a>(iseq, rseq_ft, i), &amp;avlft_u64sla));</div>
+<div class="line">    }</div>
+<div class="line">    it = <a class="code" href="avl_8h.html#aebafa6b9b40c87971610e91889b5cdb5">cr8r_avl_first</a>(r);</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; it; ++i, it = <a class="code" href="avl_8h.html#a8a4ce6adaedb8065007151720d017a37">cr8r_avl_next</a>(it)){</div>
+<div class="line">        assert(i == *(uint64_t*)(it-&gt;data));</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; i &lt; rseq-&gt;<a class="code" href="structcr8r__vec.html#abcc9a48b44fafa1b74f06ba77b32f64f">len</a>; ++i){</div>
+<div class="line">        assert(<a class="code" href="avl_8h.html#a6c4d1346b8e273264cdb96429f6cc759">cr8r_avl_remove</a>(&amp;r, <a class="code" href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">cr8r_vec_get</a>((<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*)rseq, rseq_ft, i), &amp;avlft_u64sla));</div>
+<div class="line">    }</div>
+<div class="line">    assert(!r);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> processInsertSequence(<span class="keyword">const</span> <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *iseq, <span class="keyword">const</span> <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *iseq_ft){</div>
+<div class="line">    fprintf(stderr, <span class="stringliteral">&quot;\e[1;34m(&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; i &lt; iseq-&gt;<a class="code" href="structcr8r__vec.html#abcc9a48b44fafa1b74f06ba77b32f64f">len</a>; ++i){</div>
+<div class="line">        fprintf(stderr, i == iseq-&gt;<a class="code" href="structcr8r__vec.html#abcc9a48b44fafa1b74f06ba77b32f64f">len</a> - 1 ? <span class="stringliteral">&quot;%&quot;</span>PRIu64<span class="stringliteral">&quot;)\e[0m\n&quot;</span> : <span class="stringliteral">&quot;%&quot;</span>PRIu64<span class="stringliteral">&quot;,&quot;</span>, *(uint64_t*)<a class="code" href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">cr8r_vec_get</a>((<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*)iseq, iseq_ft, i));</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *rseq = iseq_ft-&gt;<a class="code" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">base</a>.<a class="code" href="structcr8r__base__ft.html#ad7f38c650caf20a02b4a7277f59f0429">data</a>;</div>
+<div class="line">    <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> rseq_ft = *iseq_ft;</div>
+<div class="line">    rseq_ft.<a class="code" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">base</a>.<a class="code" href="structcr8r__base__ft.html#ad7f38c650caf20a02b4a7277f59f0429">data</a> = (<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*)iseq;</div>
+<div class="line">    <a class="code" href="vec_8h.html#ac836b7eb6db947abf22dd5e69694814f">cr8r_vec_clear</a>(rseq, &amp;rseq_ft);</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; i &lt; 7; ++i){</div>
+<div class="line">        <a class="code" href="vec_8h.html#a136fc6242ac747df5f8bfa71bfd7e70d">cr8r_vec_pushr</a>(rseq, &amp;rseq_ft, &amp;i);</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code" href="vec_8h.html#a7e787957cf8bb14c7a6d60061af07173">cr8r_vec_forEachPermutation</a>(rseq, &amp;rseq_ft, processRemoveSequence);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(){</div>
+<div class="line">    <a class="code" href="structcr8r__vec.html">cr8r_vec</a> iseq, rseq;</div>
+<div class="line">    <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> ft = <a class="code" href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">cr8r_vecft_u64</a>;</div>
+<div class="line">    ft.<a class="code" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">base</a>.<a class="code" href="structcr8r__base__ft.html#ad7f38c650caf20a02b4a7277f59f0429">data</a> = &amp;rseq;</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code" href="vec_8h.html#a5d8cd0da55cbed50ba9a46811a807582">cr8r_vec_init</a>(&amp;iseq, &amp;ft, 7)){</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;\e[1;31mERROR: Could not allocate vector.\e[0m\n&quot;</span>);</div>
+<div class="line">        exit(1);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code" href="vec_8h.html#a5d8cd0da55cbed50ba9a46811a807582">cr8r_vec_init</a>(&amp;rseq, &amp;ft, 7)){</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;\e[1;31mERROR: Could not allocate vector.\e[0m\n&quot;</span>);</div>
+<div class="line">        exit(1);</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code" href="structcr8r__sla.html">cr8r_sla</a> sla;</div>
+<div class="line">    <span class="keywordflow">if</span>(!<a class="code" href="avl_8h.html#afef37e961bb3fd70a7c0dca8c0b162cf">cr8r_avl_ft_initsla</a>(&amp;avlft_u64sla, &amp;sla, <span class="keyword">sizeof</span>(uint64_t), 7, <a class="code" href="container_8h.html#a90ff4cc5be3eba687bcfac84f6b05c5e">cr8r_default_cmp_u64</a>, NULL)){</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;\e[1;31mERROR: Could not reserve slab allocator.\e[0m\n&quot;</span>);</div>
+<div class="line">        exit(1);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">for</span>(uint64_t i = 0; i &lt; 7; ++i){</div>
+<div class="line">        <a class="code" href="vec_8h.html#a136fc6242ac747df5f8bfa71bfd7e70d">cr8r_vec_pushr</a>(&amp;iseq, &amp;ft, &amp;i);</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code" href="vec_8h.html#a7e787957cf8bb14c7a6d60061af07173">cr8r_vec_forEachPermutation</a>(&amp;iseq, &amp;ft, processInsertSequence);</div>
+<div class="line">    <a class="code" href="sla_8h.html#a98be28c3a5880fc372debd07c609f6ca">cr8r_sla_delete</a>(&amp;sla);</div>
+<div class="line">    <a class="code" href="vec_8h.html#aaddb6c45cb315fe0582c59c53427bb1a">cr8r_vec_delete</a>(&amp;iseq, &amp;ft);</div>
+<div class="line">    <a class="code" href="vec_8h.html#aaddb6c45cb315fe0582c59c53427bb1a">cr8r_vec_delete</a>(&amp;rseq, &amp;ft);</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="asla_8h_html"><div class="ttname"><a href="sla_8h.html">sla.h</a></div></div>
+<div class="ttc" id="aavl_8h_html_afef37e961bb3fd70a7c0dca8c0b162cf"><div class="ttname"><a href="avl_8h.html#afef37e961bb3fd70a7c0dca8c0b162cf">cr8r_avl_ft_initsla</a></div><div class="ttdeci">bool cr8r_avl_ft_initsla(cr8r_avl_ft *, cr8r_sla *sla, uint64_t size, uint64_t reserve, int(*cmp)(const cr8r_base_ft *, const void *, const void *), int(*add)(cr8r_base_ft *, void *, void *))</div><div class="ttdoc">Convenience function to initialize a cr8r_avl_ft and associated slab allocator.</div></div>
+<div class="ttc" id="astructcr8r__vec_html_abcc9a48b44fafa1b74f06ba77b32f64f"><div class="ttname"><a href="structcr8r__vec.html#abcc9a48b44fafa1b74f06ba77b32f64f">cr8r_vec::len</a></div><div class="ttdeci">uint64_t len</div><div class="ttdoc">number of elements in the vector.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00027">vec.h:27</a></div></div>
+<div class="ttc" id="astructcr8r__prng_html"><div class="ttname"><a href="structcr8r__prng.html">cr8r_prng</a></div><div class="ttdoc">A PseudoRandom Number Generator.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00105">prand.h:105</a></div></div>
+<div class="ttc" id="avec_8h_html_a5d8cd0da55cbed50ba9a46811a807582"><div class="ttname"><a href="vec_8h.html#a5d8cd0da55cbed50ba9a46811a807582">cr8r_vec_init</a></div><div class="ttdeci">bool cr8r_vec_init(cr8r_vec *, cr8r_vec_ft *, uint64_t cap)</div><div class="ttdoc">Initialize a vector with an empty buffer of a given capacity.</div></div>
+<div class="ttc" id="aprand_8h_html"><div class="ttname"><a href="prand_8h.html">prand.h</a></div></div>
+<div class="ttc" id="aavl_8h_html"><div class="ttname"><a href="avl_8h.html">avl.h</a></div></div>
+<div class="ttc" id="astructcr8r__avl__ft_html"><div class="ttname"><a href="structcr8r__avl__ft.html">cr8r_avl_ft</a></div><div class="ttdoc">Function table for avl tree.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00048">avl.h:48</a></div></div>
+<div class="ttc" id="aprand_8h_html_afbef6761d11dd124732c47d034e3e3bd"><div class="ttname"><a href="prand_8h.html#afbef6761d11dd124732c47d034e3e3bd">cr8r_prng_get_bytes</a></div><div class="ttdeci">void cr8r_prng_get_bytes(cr8r_prng *, uint64_t size, void *buf)</div><div class="ttdoc">Fill a buffer with random bytes from a prng.</div></div>
+<div class="ttc" id="avec_8h_html_a7e787957cf8bb14c7a6d60061af07173"><div class="ttname"><a href="vec_8h.html#a7e787957cf8bb14c7a6d60061af07173">cr8r_vec_forEachPermutation</a></div><div class="ttdeci">int cr8r_vec_forEachPermutation(cr8r_vec *, cr8r_vec_ft *, void(*f)(const cr8r_vec *, const cr8r_vec_ft *, void *data), void *data)</div><div class="ttdoc">Execute a function on every permutation of a vector.</div></div>
+<div class="ttc" id="aavl_8h_html_a8a4ce6adaedb8065007151720d017a37"><div class="ttname"><a href="avl_8h.html#a8a4ce6adaedb8065007151720d017a37">cr8r_avl_next</a></div><div class="ttdeci">cr8r_avl_node * cr8r_avl_next(cr8r_avl_node *n)</div><div class="ttdoc">Find the inorder successor of a node.</div></div>
+<div class="ttc" id="astructcr8r__opt_html"><div class="ttname"><a href="structcr8r__opt.html">cr8r_opt</a></div><div class="ttdoc">Description of a command line option A list of these, terminated with a certain sentinel value,...</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00020">opts.h:20</a></div></div>
+<div class="ttc" id="astructcr8r__vec__ft_html_a0ce4f07570c97f7e1f2a19fcee5cbded"><div class="ttname"><a href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">cr8r_vec_ft::base</a></div><div class="ttdeci">cr8r_base_ft base</div><div class="ttdoc">Base function table values (data and size)</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00041">vec.h:41</a></div></div>
+<div class="ttc" id="aopts_8h_html"><div class="ttname"><a href="opts_8h.html">opts.h</a></div></div>
+<div class="ttc" id="avec_8h_html_ac836b7eb6db947abf22dd5e69694814f"><div class="ttname"><a href="vec_8h.html#ac836b7eb6db947abf22dd5e69694814f">cr8r_vec_clear</a></div><div class="ttdeci">void cr8r_vec_clear(cr8r_vec *, cr8r_vec_ft *)</div><div class="ttdoc">Remove all elements from a vector.</div></div>
+<div class="ttc" id="avec_8h_html_ab7772f368e5b8af85b466188fbf941e3"><div class="ttname"><a href="vec_8h.html#ab7772f368e5b8af85b466188fbf941e3">cr8r_vecft_u64</a></div><div class="ttdeci">cr8r_vec_ft cr8r_vecft_u64</div><div class="ttdoc">Function table for vectors of uint64_t's.</div></div>
+<div class="ttc" id="aopts_8h_html_a6530d4fbb20297faedbabed171bf69de"><div class="ttname"><a href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a></div><div class="ttdeci">#define CR8R_OPT_GENERIC_OPTIONAL(_dest, _short_name, _long_name, _description)</div><div class="ttdoc">Represents a description for an optional scalar option.</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00260">opts.h:260</a></div></div>
+<div class="ttc" id="astructcr8r__sla_html"><div class="ttname"><a href="structcr8r__sla.html">cr8r_sla</a></div><div class="ttdoc">Slab allocator.</div><div class="ttdef"><b>Definition:</b> <a href="sla_8h_source.html#l00022">sla.h:22</a></div></div>
+<div class="ttc" id="aavl_8h_html_a8a6b0ce9af0fbac11aabfb72a4fd7e88"><div class="ttname"><a href="avl_8h.html#a8a6b0ce9af0fbac11aabfb72a4fd7e88">cr8r_avl_insert</a></div><div class="ttdeci">int cr8r_avl_insert(cr8r_avl_node **r, void *key, cr8r_avl_ft *)</div><div class="ttdoc">Create a new node in an avl tree with a given value.</div></div>
+<div class="ttc" id="aopts_8h_html_ac1886d25b769578409f5f62dd466a2e6"><div class="ttname"><a href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a></div><div class="ttdeci">bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv)</div><div class="ttdoc">Parse command line options and arguments.</div></div>
+<div class="ttc" id="astructcr8r__vec__ft_html"><div class="ttname"><a href="structcr8r__vec__ft.html">cr8r_vec_ft</a></div><div class="ttdoc">Function table for vector.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00039">vec.h:39</a></div></div>
+<div class="ttc" id="aavl_8h_html_a6c4d1346b8e273264cdb96429f6cc759"><div class="ttname"><a href="avl_8h.html#a6c4d1346b8e273264cdb96429f6cc759">cr8r_avl_remove</a></div><div class="ttdeci">int cr8r_avl_remove(cr8r_avl_node **r, void *key, cr8r_avl_ft *)</div><div class="ttdoc">Remove the node in an avl tree with a given value.</div></div>
+<div class="ttc" id="astructcr8r__avl__node_html"><div class="ttname"><a href="structcr8r__avl__node.html">cr8r_avl_node</a></div><div class="ttdoc">An avl tree node, also used to store an entire tree by synecdoche.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00030">avl.h:30</a></div></div>
+<div class="ttc" id="astructcr8r__vec_html"><div class="ttname"><a href="structcr8r__vec.html">cr8r_vec</a></div><div class="ttdoc">A vector Take care if manipulating these fields directly, this should only be done if the functions i...</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00023">vec.h:23</a></div></div>
+<div class="ttc" id="aavl_8h_html_aebafa6b9b40c87971610e91889b5cdb5"><div class="ttname"><a href="avl_8h.html#aebafa6b9b40c87971610e91889b5cdb5">cr8r_avl_first</a></div><div class="ttdeci">cr8r_avl_node * cr8r_avl_first(cr8r_avl_node *r)</div><div class="ttdoc">Find the node in the tree with the lowest key.</div></div>
+<div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div></div>
+<div class="ttc" id="avec_8h_html_aca7f424dd3f0a87649bf94995900b6c8"><div class="ttname"><a href="vec_8h.html#aca7f424dd3f0a87649bf94995900b6c8">cr8r_vec_get</a></div><div class="ttdeci">void * cr8r_vec_get(cr8r_vec *, const cr8r_vec_ft *, uint64_t i)</div><div class="ttdoc">Get the element at a given index.</div></div>
+<div class="ttc" id="aopts_8h_html_a9577e6c81889291632b4492da5b13ecc"><div class="ttname"><a href="opts_8h.html#a9577e6c81889291632b4492da5b13ecc">CR8R_OPT_END</a></div><div class="ttdeci">#define CR8R_OPT_END()</div><div class="ttdoc">Required sentinel for option description list.</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00294">opts.h:294</a></div></div>
+<div class="ttc" id="aopts_8h_html_a7c44c9471bafd1885fd96c7e98353242"><div class="ttname"><a href="opts_8h.html#a7c44c9471bafd1885fd96c7e98353242">CR8R_OPT_HELP</a></div><div class="ttdeci">#define CR8R_OPT_HELP(_opts, _description)</div><div class="ttdoc">Represents a description for a default help option (short name &quot;h&quot;, long name &quot;help&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00291">opts.h:291</a></div></div>
+<div class="ttc" id="aprand_8h_html_acae0db179a04990f3ec47a1e29e986f0"><div class="ttname"><a href="prand_8h.html#acae0db179a04990f3ec47a1e29e986f0">cr8r_prng_init_system</a></div><div class="ttdeci">cr8r_prng * cr8r_prng_init_system()</div><div class="ttdoc">Create a PRNG based on the system's prng device.</div></div>
+<div class="ttc" id="asla_8h_html_a98be28c3a5880fc372debd07c609f6ca"><div class="ttname"><a href="sla_8h.html#a98be28c3a5880fc372debd07c609f6ca">cr8r_sla_delete</a></div><div class="ttdeci">void cr8r_sla_delete(cr8r_sla *self)</div><div class="ttdoc">Delete a slab allocator.</div></div>
+<div class="ttc" id="astructcr8r__opt__cfg_html"><div class="ttname"><a href="structcr8r__opt__cfg.html">cr8r_opt_cfg</a></div><div class="ttdoc">General configuration settings for parsing options.</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00080">opts.h:80</a></div></div>
+<div class="ttc" id="astructcr8r__base__ft_html_ad7f38c650caf20a02b4a7277f59f0429"><div class="ttname"><a href="structcr8r__base__ft.html#ad7f38c650caf20a02b4a7277f59f0429">cr8r_base_ft::data</a></div><div class="ttdeci">void * data</div><div class="ttdoc">Custom &quot;class&quot; data which is passed to the callbacks in this table.</div><div class="ttdef"><b>Definition:</b> <a href="container_8h_source.html#l00026">container.h:26</a></div></div>
+<div class="ttc" id="avec_8h_html_aaddb6c45cb315fe0582c59c53427bb1a"><div class="ttname"><a href="vec_8h.html#aaddb6c45cb315fe0582c59c53427bb1a">cr8r_vec_delete</a></div><div class="ttdeci">void cr8r_vec_delete(cr8r_vec *, cr8r_vec_ft *)</div><div class="ttdoc">Delete all entries in a vector and free its buffer.</div></div>
+<div class="ttc" id="avec_8h_html_a136fc6242ac747df5f8bfa71bfd7e70d"><div class="ttname"><a href="vec_8h.html#a136fc6242ac747df5f8bfa71bfd7e70d">cr8r_vec_pushr</a></div><div class="ttdeci">bool cr8r_vec_pushr(cr8r_vec *, cr8r_vec_ft *, const void *e)</div><div class="ttdoc">Add an element to the right hand end of a vector.</div></div>
+<div class="ttc" id="acontainer_8h_html_a90ff4cc5be3eba687bcfac84f6b05c5e"><div class="ttname"><a href="container_8h.html#a90ff4cc5be3eba687bcfac84f6b05c5e">cr8r_default_cmp_u64</a></div><div class="ttdeci">int cr8r_default_cmp_u64(const cr8r_base_ft *, const void *, const void *)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;cmp implementation for uint64_t</div></div>
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

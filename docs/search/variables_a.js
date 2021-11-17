@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['min_5fsqdist_557',['min_sqdist',['../struct__cr8r__kd__ft.html#ab61c39e95b80399602051380cd4daaa2',1,'_cr8r_kd_ft']]]
+  ['min_5fsqdist_573',['min_sqdist',['../structcr8r__kd__ft.html#a8c5b2c833534b782c7e483948c308d53',1,'cr8r_kd_ft']]]
 ];

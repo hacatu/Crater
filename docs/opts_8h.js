@@ -1,0 +1,47 @@
+var opts_8h =
+[
+    [ "cr8r_opt", "structcr8r__opt.html", "structcr8r__opt" ],
+    [ "cr8r_opt_cfg", "structcr8r__opt__cfg.html", "structcr8r__opt__cfg" ],
+    [ "_CR8R_OPT_GENERIC_OPTFIELDS", "opts_8h.html#abfbac476656c70af460c38c8b79edcd1", null ],
+    [ "CR8R_OPT_GENERIC_OPTIONAL", "opts_8h.html#a6530d4fbb20297faedbabed171bf69de", null ],
+    [ "CR8R_OPT_GENERIC_REQUIRED", "opts_8h.html#a390e2e9c382f2099af1f292cf674387a", null ],
+    [ "CR8R_OPT_ENUM_CASE", "opts_8h.html#aa9c67509a9f21efb881e6a0816e850ac", null ],
+    [ "CR8R_OPT_HELP", "opts_8h.html#a7c44c9471bafd1885fd96c7e98353242", null ],
+    [ "CR8R_OPT_END", "opts_8h.html#a9577e6c81889291632b4492da5b13ecc", null ],
+    [ "cr8r_opt_argmode", "opts_8h.html#a23e6b6307eca3cb29a3daaeea69fedb3", [
+      [ "CR8R_OPT_ARGMODE_NONE", "opts_8h.html#a23e6b6307eca3cb29a3daaeea69fedb3a4784b0c80e800deb0b8a43d9e609bf51", null ],
+      [ "CR8R_OPT_ARGMODE_REQUIRED", "opts_8h.html#a23e6b6307eca3cb29a3daaeea69fedb3a7adc9c8bf31aeb7f0abf80e806d37e6f", null ],
+      [ "CR8R_OPT_ARGMODE_OPTIONAL", "opts_8h.html#a23e6b6307eca3cb29a3daaeea69fedb3aca0ded26a16014f87aab9dd101690217", null ]
+    ] ],
+    [ "cr8r_opts_flags", "opts_8h.html#ab85cc72919c87ddd077d6895d617b8c0", [
+      [ "CR8R_OPTS_FATAL_ERRS", "opts_8h.html#ab85cc72919c87ddd077d6895d617b8c0af510fbd4132ebb7c5a39332b269ee154", null ],
+      [ "CR8R_OPTS_ALLOW_STRAY_DASH", "opts_8h.html#ab85cc72919c87ddd077d6895d617b8c0ae21f377f8b397558232d06e9f44c22f7", null ],
+      [ "CR8R_OPTS_CB_ON_DD", "opts_8h.html#ab85cc72919c87ddd077d6895d617b8c0abfe4c1a0db112c3bd69f15e4d9ae054e", null ]
+    ] ],
+    [ "cr8r_opt_missing_optional", "opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce", null ],
+    [ "cr8r_opt_print_help", "opts_8h.html#a2acca15fe895eb1d4738251d104f5baa", null ],
+    [ "cr8r_opt_set_enum_0", "opts_8h.html#a9c28af674fdf0a4f98bec891519dd631", null ],
+    [ "cr8r_opt_set_enum_1", "opts_8h.html#a602a201f9f399c1a36b98751ac9307e1", null ],
+    [ "cr8r_opt_ignore_arg", "opts_8h.html#aadb4f11a264b84e2bf063bce55ab49a3", null ],
+    [ "cr8r_opt_parse", "opts_8h.html#ac1886d25b769578409f5f62dd466a2e6", null ],
+    [ "cr8r_opt_parse_ull", "opts_8h.html#abab4f712165d7d5a27f19ca88699d4ea", null ],
+    [ "cr8r_opt_parse_ll", "opts_8h.html#ac35cffc341faf0e0f2a3a47bf2abfc5f", null ],
+    [ "cr8r_opt_parse_ul", "opts_8h.html#a2b61cff5125553c427fe69052de953ee", null ],
+    [ "cr8r_opt_parse_l", "opts_8h.html#a00ecedbdab7ba5b0fe77c43cf6b0249b", null ],
+    [ "cr8r_opt_parse_u", "opts_8h.html#aa5199cdea7c20a12de21f68bb5f49289", null ],
+    [ "cr8r_opt_parse_i", "opts_8h.html#a6c1b22249f853e72f01d0dcecf520a51", null ],
+    [ "cr8r_opt_parse_us", "opts_8h.html#a4ef46418d0537c7e2273467af9f18cb5", null ],
+    [ "cr8r_opt_parse_s", "opts_8h.html#af35a2f7a72402626482468aec535d30b", null ],
+    [ "cr8r_opt_parse_uc", "opts_8h.html#a46d10aef51549373bd6474868794fdf1", null ],
+    [ "cr8r_opt_parse_sc", "opts_8h.html#aae412172f27bcc904993bc6f962963fd", null ],
+    [ "cr8r_opt_parse_c", "opts_8h.html#a7887c278c76c25031a2199ac23c8e738", null ],
+    [ "cr8r_opt_parse_f", "opts_8h.html#a80edcc7c2fb55574b43fbebdb597973d", null ],
+    [ "cr8r_opt_parse_d", "opts_8h.html#a4d2759f2e3ab68ebb788517c3439abd8", null ],
+    [ "cr8r_opt_parse_ld", "opts_8h.html#ac4eab31af7152fa2c929332d3699f7e6", null ],
+    [ "cr8r_opt_parse_cstr", "opts_8h.html#ad3080749f18b70acf6f4cb775803cd02", null ],
+    [ "cr8r_opt_parse_b", "opts_8h.html#a3de0f72bd391c0757f615fc1cc2ad465", null ],
+    [ "cr8r_opt_parse_i128", "opts_8h.html#a135e5dc4e20dcecb62ae43f673418aac", null ],
+    [ "cr8r_opt_parse_u128", "opts_8h.html#a81436a7080b5324b12166c2d1e970734", null ],
+    [ "cr8r_sprint_i128", "opts_8h.html#a96876444d41e5d6e32dbc99f10b55892", null ],
+    [ "cr8r_sprint_u128", "opts_8h.html#a2a0a06fc80a8c946e063877be360d121", null ]
+];

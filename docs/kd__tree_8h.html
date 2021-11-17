@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/kd_tree.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('kd__tree_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -75,18 +110,19 @@ $(function() {
 <div class="title">kd_tree.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="container_8h_source.html">crater/container.h</a>&quot;</code><br />
-<code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &lt;inttypes.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="vec_8h_source.html">crater/vec.h</a>&gt;</code><br />
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.3.0 KD trees are a way to store spatially organized data (tagged points on a sphere, tagged points in a 2D rectangle, tagged points in a 3D cuboid, etc).</dd></dl>
+<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 </div>
 <p><a href="kd__tree_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for kd tree, see <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a>.  <a href="struct__cr8r__kd__ft.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for kd tree, see <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a>.  <a href="structcr8r__kd__ft.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concrete bounds object for spherical and cuboid kd trees with 3 i64 coords.  <a href="structcr8r__kdwin__s2i64.html#details">More...</a><br /></td></tr>
@@ -94,82 +130,49 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa2c3f4156cdf990fb9600dbd1b780609"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a></td></tr>
-<tr class="memdesc:aa2c3f4156cdf990fb9600dbd1b780609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for kd tree.  <a href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">More...</a><br /></td></tr>
-<tr class="separator:aa2c3f4156cdf990fb9600dbd1b780609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61926b4ca12f0e8b867db398248b3ecf"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a>) (<a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft, const void *win, void *ent, void *data)</td></tr>
+<tr class="memitem:a61926b4ca12f0e8b867db398248b3ecf"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a>) (<a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *win, void *ent, void *data)</td></tr>
 <tr class="memdesc:a61926b4ca12f0e8b867db398248b3ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of a visitor callback for a kd tree traversal.  <a href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">More...</a><br /></td></tr>
 <tr class="separator:a61926b4ca12f0e8b867db398248b3ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7eccbb0ffda27605bc9934c98513d43f"><td class="memItemLeft" align="right" valign="top"><a id="a7eccbb0ffda27605bc9934c98513d43f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a7eccbb0ffda27605bc9934c98513d43f">cr8r_kdwin_init_s2i64</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *self, const int64_t bl[3], const int64_t tr[3])</td></tr>
-<tr class="memdesc:a7eccbb0ffda27605bc9934c98513d43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with a given "bottom left" and "top right" point. <br /></td></tr>
-<tr class="separator:a7eccbb0ffda27605bc9934c98513d43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ab6b881327e315e753fe6f66576a339"><td class="memItemLeft" align="right" valign="top"><a id="a5ab6b881327e315e753fe6f66576a339"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a5ab6b881327e315e753fe6f66576a339">cr8r_kdwin_init_c3i64</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *self, const int64_t bl[3], const int64_t tr[3])</td></tr>
-<tr class="memdesc:a5ab6b881327e315e753fe6f66576a339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with a given "bottom left" and "top right" point. <br /></td></tr>
-<tr class="separator:a5ab6b881327e315e753fe6f66576a339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a022865a7acb04f866647ccf915e7f0e8"><td class="memItemLeft" align="right" valign="top"><a id="a022865a7acb04f866647ccf915e7f0e8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a022865a7acb04f866647ccf915e7f0e8">cr8r_kdwin_bounding_i64x3</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *self, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *ents, const <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft)</td></tr>
-<tr class="memdesc:a022865a7acb04f866647ccf915e7f0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with the "bottom left" and "top right" points bounding a list of points. <br /></td></tr>
-<tr class="separator:a022865a7acb04f866647ccf915e7f0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88bc89263184b3678bd9b1c7c9d1d38f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a88bc89263184b3678bd9b1c7c9d1d38f">cr8r_kd_ify</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *_ft, uint64_t a, uint64_t b)</td></tr>
-<tr class="memdesc:a88bc89263184b3678bd9b1c7c9d1d38f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearrange a vector of points into a kd tree.  <a href="kd__tree_8h.html#a88bc89263184b3678bd9b1c7c9d1d38f">More...</a><br /></td></tr>
-<tr class="separator:a88bc89263184b3678bd9b1c7c9d1d38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36ae4ae628fc049c87b760c656bc5f30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a36ae4ae628fc049c87b760c656bc5f30">cr8r_kd_walk</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, const <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft, const void *bounds, <a class="el" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a> visitor, void *data)</td></tr>
-<tr class="memdesc:a36ae4ae628fc049c87b760c656bc5f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a preorder traversal of the points in a kd tree and call a visitor callback on each.  <a href="kd__tree_8h.html#a36ae4ae628fc049c87b760c656bc5f30">More...</a><br /></td></tr>
-<tr class="separator:a36ae4ae628fc049c87b760c656bc5f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab07467e002c629aebb97b2cbd7256147"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ab07467e002c629aebb97b2cbd7256147">cr8r_kd_k_closest</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
-<tr class="memdesc:ab07467e002c629aebb97b2cbd7256147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#ab07467e002c629aebb97b2cbd7256147">More...</a><br /></td></tr>
-<tr class="separator:ab07467e002c629aebb97b2cbd7256147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7f2c8093b56c1c21c985364f7041b22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ae7f2c8093b56c1c21c985364f7041b22">cr8r_kd_k_closest_naive</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
-<tr class="memdesc:ae7f2c8093b56c1c21c985364f7041b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#ae7f2c8093b56c1c21c985364f7041b22">More...</a><br /></td></tr>
-<tr class="separator:ae7f2c8093b56c1c21c985364f7041b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834c7f32aef9fcd279e1a3f7f27b33c3"><td class="memItemLeft" align="right" valign="top"><a id="a834c7f32aef9fcd279e1a3f7f27b33c3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a834c7f32aef9fcd279e1a3f7f27b33c3">cr8r_kdwin_init_s2i64</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *, const int64_t bl[3], const int64_t tr[3])</td></tr>
+<tr class="memdesc:a834c7f32aef9fcd279e1a3f7f27b33c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with a given "bottom left" and "top right" point. <br /></td></tr>
+<tr class="separator:a834c7f32aef9fcd279e1a3f7f27b33c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7cb60aa8b2c2a4cfd2690f6fd7479c"><td class="memItemLeft" align="right" valign="top"><a id="ada7cb60aa8b2c2a4cfd2690f6fd7479c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ada7cb60aa8b2c2a4cfd2690f6fd7479c">cr8r_kdwin_init_c3i64</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *, const int64_t bl[3], const int64_t tr[3])</td></tr>
+<tr class="memdesc:ada7cb60aa8b2c2a4cfd2690f6fd7479c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with a given "bottom left" and "top right" point. <br /></td></tr>
+<tr class="separator:ada7cb60aa8b2c2a4cfd2690f6fd7479c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2695e4484d4e4527dc2a489cce2a86"><td class="memItemLeft" align="right" valign="top"><a id="afa2695e4484d4e4527dc2a489cce2a86"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#afa2695e4484d4e4527dc2a489cce2a86">cr8r_kdwin_bounding_i64x3</a> (<a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *ents, const <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft)</td></tr>
+<tr class="memdesc:afa2695e4484d4e4527dc2a489cce2a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a i64x3 bounds object with the "bottom left" and "top right" points bounding a list of points. <br /></td></tr>
+<tr class="separator:afa2695e4484d4e4527dc2a489cce2a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c3fad9f55231b7bf3a1a81b262e808f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a4c3fad9f55231b7bf3a1a81b262e808f">cr8r_kd_ify</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, uint64_t a, uint64_t b)</td></tr>
+<tr class="memdesc:a4c3fad9f55231b7bf3a1a81b262e808f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearrange a vector of points into a kd tree.  <a href="kd__tree_8h.html#a4c3fad9f55231b7bf3a1a81b262e808f">More...</a><br /></td></tr>
+<tr class="separator:a4c3fad9f55231b7bf3a1a81b262e808f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae837168a16d777c5c9a66033512f7a2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">cr8r_kd_walk</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, <a class="el" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a> visitor, void *data)</td></tr>
+<tr class="memdesc:ae837168a16d777c5c9a66033512f7a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a preorder traversal of the points in a kd tree and call a visitor callback on each.  <a href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">More...</a><br /></td></tr>
+<tr class="separator:ae837168a16d777c5c9a66033512f7a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a724b67ccea7d3f84698da373751e098b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
+<tr class="memdesc:a724b67ccea7d3f84698da373751e098b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">More...</a><br /></td></tr>
+<tr class="separator:a724b67ccea7d3f84698da373751e098b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb17769c7119b44b15b18ca157f23a12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">cr8r_kd_k_closest_naive</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
+<tr class="memdesc:afb17769c7119b44b15b18ca157f23a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">More...</a><br /></td></tr>
+<tr class="separator:afb17769c7119b44b15b18ca157f23a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a6907c4ff552244e7fb007585406e6bc5"><td class="memItemLeft" align="right" valign="top"><a id="a6907c4ff552244e7fb007585406e6bc5"></a>
-<a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a></td></tr>
+<a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a></td></tr>
 <tr class="memdesc:a6907c4ff552244e7fb007585406e6bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">kdft implementation for spherical kd trees in 3 dimensions with i64 coordinates <br /></td></tr>
 <tr class="separator:a6907c4ff552244e7fb007585406e6bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92773a4739b7eeb2a548f46ffd64d447"><td class="memItemLeft" align="right" valign="top"><a id="a92773a4739b7eeb2a548f46ffd64d447"></a>
-<a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a92773a4739b7eeb2a548f46ffd64d447">cr8r_kdft_c3i64</a></td></tr>
+<a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a92773a4739b7eeb2a548f46ffd64d447">cr8r_kdft_c3i64</a></td></tr>
 <tr class="memdesc:a92773a4739b7eeb2a548f46ffd64d447"><td class="mdescLeft">&#160;</td><td class="mdescRight">kdft implementation for cuboid kd trees in 3 dimensions with i64 coordintates <br /></td></tr>
 <tr class="separator:a92773a4739b7eeb2a548f46ffd64d447"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.3.0 </dd></dl>
-<h1><a class="anchor" id="LICENSE"></a>
-LICENSE</h1>
-<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
-<h1><a class="anchor" id="DESCRIPTION"></a>
-DESCRIPTION</h1>
-<p>KD trees are a way to store spatially organized data (tagged points on a sphere, tagged points in a 2D rectangle, tagged points in a 3D cuboid, etc). </p>
-
-<p class="definition">Definition in file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="aa2c3f4156cdf990fb9600dbd1b780609"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2c3f4156cdf990fb9600dbd1b780609">&#9670;&nbsp;</a></span>cr8r_kd_ft</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a> <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function table for kd tree. </p>
-<p>A kd tree is stored as an implicit binary tree in a vector. The root of the tree is the element of the vector at the middle position, and the left and right subranges correstpond to subtrees with roots at their middles and so on. This means kd trees do NOT support efficient insertion/removal of points. For that, we would need to use a self balancing tree like a modified avl or red black tree. Implicit binary trees are maximally balanced and do not have the space or time overheads of child pointers, so they are the better choice when adding/removing points is rare enough that performing linear time re-treeifying is acceptable. </p>
-
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00032">32</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
-
-</div>
-</div>
+<h2 class="groupheader">Typedef Documentation</h2>
 <a id="a61926b4ca12f0e8b867db398248b3ecf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a61926b4ca12f0e8b867db398248b3ecf">&#9670;&nbsp;</a></span>cr8r_kdvisitor</h2>
 
@@ -177,7 +180,7 @@ DESCRIPTION</h1>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a>(* cr8r_kdvisitor) (<a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *ft, const void *win, void *ent, void *data)</td>
+          <td class="memname">typedef <a class="el" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a>(* cr8r_kdvisitor) (<a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *win, void *ent, void *data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -185,13 +188,13 @@ DESCRIPTION</h1>
 <p>Type of a visitor callback for a kd tree traversal. </p>
 <p>f(cr8r_kd_ft *ft, const void *win, void *ent, void *data) where the arguments are the kd tree function table, bounds of the subtree rooted at ent, current node, and reentrant data respectively </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00104">104</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00103">103</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a88bc89263184b3678bd9b1c7c9d1d38f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88bc89263184b3678bd9b1c7c9d1d38f">&#9670;&nbsp;</a></span>cr8r_kd_ify()</h2>
+<a id="a4c3fad9f55231b7bf3a1a81b262e808f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c3fad9f55231b7bf3a1a81b262e808f">&#9670;&nbsp;</a></span>cr8r_kd_ify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,13 +203,13 @@ DESCRIPTION</h1>
           <td class="memname">bool cr8r_kd_ify </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *&#160;</td>
-          <td class="paramname"><em>_ft</em>, </td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -231,7 +234,7 @@ DESCRIPTION</h1>
 <p>Rearrange a vector of points into a kd tree. </p>
 <p>The middle point in the array will be the median in the first dimension, with all points to the left being to the "left" in the first dimension and all points to the right being to the "right" in the first dimension. Then within the left/right subarray (subtree), the middle point is the median in the second dimension and so on. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_ft</td><td>(uint64_t)_ft-&gt;super.base.data is interpreted as the depth of the current subarray, and so should be zero when calling this function generally on the whole vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>(uint64_t)ft-&gt;super.base.data is interpreted as the depth of the current subarray, and so should be zero when calling this function generally on the whole vector </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a,b</td><td>the start (inclusive) and end (exclusive) indices of the subarray to process. Should be 0, self-&gt;len to treeify the entire vector. </td></tr>
   </table>
   </dd>
@@ -239,8 +242,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a36ae4ae628fc049c87b760c656bc5f30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36ae4ae628fc049c87b760c656bc5f30">&#9670;&nbsp;</a></span>cr8r_kd_walk()</h2>
+<a id="ae837168a16d777c5c9a66033512f7a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae837168a16d777c5c9a66033512f7a2a">&#9670;&nbsp;</a></span>cr8r_kd_walk()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,12 +252,12 @@ DESCRIPTION</h1>
           <td class="memname">void cr8r_kd_walk </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *&#160;</td>
           <td class="paramname"><em>ft</em>, </td>
         </tr>
         <tr>
@@ -286,7 +289,7 @@ DESCRIPTION</h1>
 <p>Perform a preorder traversal of the points in a kd tree and call a visitor callback on each. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>(uint64_t)_ft-&gt;super.base.data is interpreted as the depth of the current subarray, and so should be zero when calling this function generally on the whole vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>(uint64_t)ft-&gt;super.base.data is interpreted as the depth of the current subarray, and so should be zero when calling this function generally on the whole vector </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bounds</td><td>the bounds of the tree </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">visitor</td><td>function to call at each entry in the tree </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">data</td><td>passed to visitor to facillitate input/output </td></tr>
@@ -296,8 +299,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="ab07467e002c629aebb97b2cbd7256147"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab07467e002c629aebb97b2cbd7256147">&#9670;&nbsp;</a></span>cr8r_kd_k_closest()</h2>
+<a id="a724b67ccea7d3f84698da373751e098b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a724b67ccea7d3f84698da373751e098b">&#9670;&nbsp;</a></span>cr8r_kd_k_closest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,12 +309,12 @@ DESCRIPTION</h1>
           <td class="memname">void cr8r_kd_k_closest </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *&#160;</td>
           <td class="paramname"><em>ft</em>, </td>
         </tr>
         <tr>
@@ -360,8 +363,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="ae7f2c8093b56c1c21c985364f7041b22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7f2c8093b56c1c21c985364f7041b22">&#9670;&nbsp;</a></span>cr8r_kd_k_closest_naive()</h2>
+<a id="afb17769c7119b44b15b18ca157f23a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb17769c7119b44b15b18ca157f23a12">&#9670;&nbsp;</a></span>cr8r_kd_k_closest_naive()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -370,12 +373,12 @@ DESCRIPTION</h1>
           <td class="memname">void cr8r_kd_k_closest_naive </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">cr8r_kd_ft</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *&#160;</td>
           <td class="paramname"><em>ft</em>, </td>
         </tr>
         <tr>
@@ -411,16 +414,19 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Find the k closest points to a given point. </p>
-<p>This function is designed to enable testing <a class="el" href="kd__tree_8h.html#ab07467e002c629aebb97b2cbd7256147">cr8r_kd_k_closest</a>. That function prunes its search area if the max distance of any of the k closest points so far is less than the min distance of the bounding box of the subtree rooted ata a node, then that node and its subtree can be skipped. This function does not do that and just compares all points. </p>
+<p>This function is designed to enable testing <a class="el" href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a>. That function prunes its search area if the max distance of any of the k closest points so far is less than the min distance of the bounding box of the subtree rooted ata a node, then that node and its subtree can be skipped. This function does not do that and just compares all points. </p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="kd__tree_8h.html">kd_tree.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -14,9 +14,9 @@
 		<tbody>
 			<tr>
 				<td class="cur_subpage_link">☄️ Crater</td>
-				<td><a class="subpage_link" href="index.html">About</a></td>
-				<td><a class="subpage_link" href="docs/index.html">Docs</a></td>
-				<td><a class="cur_subpage_link" href="cov/index.html">Coverage</a></td>
+				<td><a class="subpage_link" href="/index.html">About</a></td>
+				<td><a class="subpage_link" href="/docs/index.html">Docs</a></td>
+				<td class="cur_subpage_link">Coverage</td>
 				<td><a class="subpage_link" href="https://github.com/hacatu/Crater">Source</a></td>
 			</tr>
 		</tbody>
@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-11-16 07:40:38</td>
+            <td class="headerValue">2021-11-17 05:19:33</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">44</td>
@@ -278,8 +278,8 @@
 <a name="203"><span class="lineNum">     203 </span>            :     }</a>
 <a name="204"><span class="lineNum">     204 </span><span class="lineCov">       1000 : }</span></a>
 <a name="205"><span class="lineNum">     205 </span>            : </a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">      83116 : bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">      83116 :     if(self-&gt;len == self-&gt;cap){</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">      83457 : bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">      83457 :     if(self-&gt;len == self-&gt;cap){</span></a>
 <a name="208"><span class="lineNum">     208 </span><span class="lineCov">         26 :         uint64_t new_cap = ft-&gt;new_size(&amp;ft-&gt;base, self-&gt;cap);</span></a>
 <a name="209"><span class="lineNum">     209 </span><span class="lineCov">         26 :         void *tmp = ft-&gt;resize(&amp;ft-&gt;base, self-&gt;buf, new_cap);</span></a>
 <a name="210"><span class="lineNum">     210 </span><span class="lineCov">         26 :         if(!tmp){</span></a>
@@ -288,8 +288,8 @@
 <a name="213"><span class="lineNum">     213 </span><span class="lineCov">         25 :         self-&gt;buf = tmp;</span></a>
 <a name="214"><span class="lineNum">     214 </span><span class="lineCov">         25 :         self-&gt;cap = new_cap;</span></a>
 <a name="215"><span class="lineNum">     215 </span>            :     }</a>
-<a name="216"><span class="lineNum">     216 </span><span class="lineCov">      83115 :     memcpy(self-&gt;buf + self-&gt;len++*ft-&gt;base.size, e, ft-&gt;base.size);</span></a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">      83115 :     return true;</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineCov">      83456 :     memcpy(self-&gt;buf + self-&gt;len++*ft-&gt;base.size, e, ft-&gt;base.size);</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">      83456 :     return true;</span></a>
 <a name="218"><span class="lineNum">     218 </span>            : }</a>
 <a name="219"><span class="lineNum">     219 </span>            : </a>
 <a name="220"><span class="lineNum">     220 </span><span class="lineCov">   10010000 : bool cr8r_vec_popr(cr8r_vec *self, cr8r_vec_ft *ft, void *o){</span></a>
@@ -375,9 +375,9 @@
 <a name="300"><span class="lineNum">     300 </span><span class="lineNoCov">          0 :         return false;</span></a>
 <a name="301"><span class="lineNum">     301 </span>            :     }</a>
 <a name="302"><span class="lineNum">     302 </span><span class="lineCov">          3 :     if(!ft-&gt;copy){</span></a>
-<a name="303"><span class="lineNum">     303 </span><span class="lineCov">       1136 :         for(void *e = src-&gt;buf; e &lt; src-&gt;buf + src-&gt;len*ft-&gt;base.size; e += ft-&gt;base.size){</span></a>
-<a name="304"><span class="lineNum">     304 </span><span class="lineCov">       1135 :             if(pred(ft, e, data)){</span></a>
-<a name="305"><span class="lineNum">     305 </span><span class="lineCov">         18 :                 cr8r_vec_pushr(dest, ft, e);</span></a>
+<a name="303"><span class="lineNum">     303 </span><span class="lineCov">       1483 :         for(void *e = src-&gt;buf; e &lt; src-&gt;buf + src-&gt;len*ft-&gt;base.size; e += ft-&gt;base.size){</span></a>
+<a name="304"><span class="lineNum">     304 </span><span class="lineCov">       1482 :             if(pred(ft, e, data)){</span></a>
+<a name="305"><span class="lineNum">     305 </span><span class="lineCov">         19 :                 cr8r_vec_pushr(dest, ft, e);</span></a>
 <a name="306"><span class="lineNum">     306 </span>            :             }</a>
 <a name="307"><span class="lineNum">     307 </span>            :         }</a>
 <a name="308"><span class="lineNum">     308 </span>            :     }else{</a>
@@ -610,7 +610,7 @@
 <a name="535"><span class="lineNum">     535 </span><span class="lineNoCov">          0 :     return self-&gt;buf + a*ft-&gt;base.size;</span></a>
 <a name="536"><span class="lineNum">     536 </span>            : }</a>
 <a name="537"><span class="lineNum">     537 </span>            : </a>
-<a name="538"><span class="lineNum">     538 </span><span class="lineNoCov">          0 : void *cr8r_vec_pivot_m3(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){</span></a>
+<a name="538"><span class="lineNum">     538 </span><span class="lineNoCov">          0 : void *cr8r_vec_pivot_m3(const cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){</span></a>
 <a name="539"><span class="lineNum">     539 </span><span class="lineNoCov">          0 :     if(a &gt;= b || b &gt; self-&gt;len){</span></a>
 <a name="540"><span class="lineNum">     540 </span><span class="lineNoCov">          0 :         return NULL;</span></a>
 <a name="541"><span class="lineNum">     541 </span>            :     }</a>

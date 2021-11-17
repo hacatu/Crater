@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/avl.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('avl_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,31 +100,29 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">avl.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="container_8h_source.html">crater/container.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="sla_8h_source.html">crater/sla.h</a>&gt;</code><br />
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.3.0 A featureful generic avl tree implementation. Useful for storing ordered mappings.</dd></dl>
+<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="avl_8h_source.html">avl.h</a>.</p>
 </div>
 <p><a href="avl_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An avl tree node, also used to store an entire tree by synecdoche.  <a href="structcr8r__avl__node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__avl__ft.html">cr8r_avl_ft</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function table for avl tree.  <a href="structcr8r__avl__ft.html#details">More...</a><br /></td></tr>
@@ -93,20 +131,18 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ad85d46aba1a8b7000eea7538fddf061b"><td class="memItemLeft" align="right" valign="top"><a id="ad85d46aba1a8b7000eea7538fddf061b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_AVL_DATA</b>(T,  n)&#160;&#160;&#160;<a class="el" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">CR8R_FLA_CAST</a>(T, (char*)((<a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a>*)(n))-&gt;data)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#ad85d46aba1a8b7000eea7538fddf061b">CR8R_AVL_DATA</a>(T,  n)&#160;&#160;&#160;<a class="el" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">CR8R_FLA_CAST</a>(T, (char*)((<a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a>*)(n))-&gt;data)</td></tr>
+<tr class="memdesc:ad85d46aba1a8b7000eea7538fddf061b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the data field of an avl node and cast to a given type. <br /></td></tr>
 <tr class="separator:ad85d46aba1a8b7000eea7538fddf061b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a645d7b4c6a9e198936cf3c98ed5432f4"><td class="memItemLeft" align="right" valign="top"><a id="a645d7b4c6a9e198936cf3c98ed5432f4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_AVL_INSERTED</b>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:a645d7b4c6a9e198936cf3c98ed5432f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66366346d09bc83e5db7960ca6f8bdfb"><td class="memItemLeft" align="right" valign="top"><a id="a66366346d09bc83e5db7960ca6f8bdfb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CR8R_AVL_UPDATED</b>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:a66366346d09bc83e5db7960ca6f8bdfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a80db4fd51c65dd1b362bb1930085c03e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#a80db4fd51c65dd1b362bb1930085c03e">cr8r_avl_node</a></td></tr>
-<tr class="memdesc:a80db4fd51c65dd1b362bb1930085c03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">An avl tree node, also used to store an entire tree by synecdoche.  <a href="avl_8h.html#a80db4fd51c65dd1b362bb1930085c03e">More...</a><br /></td></tr>
-<tr class="separator:a80db4fd51c65dd1b362bb1930085c03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae0a8d8e6399f0eaaaacaf33354ef2709"><td class="memItemLeft" align="right" valign="top"><a id="ae0a8d8e6399f0eaaaacaf33354ef2709"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avl_8h.html#ae0a8d8e6399f0eaaaacaf33354ef2709">cr8r_map_insert_result</a> { <b>CR8R_AVL_FAILED</b> = 0, 
+<b>CR8R_AVL_INSERTED</b> = 1, 
+<b>CR8R_AVL_UPDATED</b> = 2
+ }</td></tr>
+<tr class="memdesc:ae0a8d8e6399f0eaaaacaf33354ef2709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constants to test map like data structure insertion against where applicable. <br /></td></tr>
+<tr class="separator:ae0a8d8e6399f0eaaaacaf33354ef2709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -195,37 +231,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a3cbcbe1cb3032c126794fb3fb6f55a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorder the tree so that it is sorted according to a new ordering function.  <a href="avl_8h.html#a3cbcbe1cb3032c126794fb3fb6f55a45">More...</a><br /></td></tr>
 <tr class="separator:a3cbcbe1cb3032c126794fb3fb6f55a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.3.0 </dd></dl>
-<h1><a class="anchor" id="LICENSE"></a>
-LICENSE</h1>
-<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
-<h1><a class="anchor" id="DESCRIPTION"></a>
-DESCRIPTION</h1>
-<p>A featureful generic avl tree implementation. Useful for storing ordered mappings. </p>
-
-<p class="definition">Definition in file <a class="el" href="avl_8h_source.html">avl.h</a>.</p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a80db4fd51c65dd1b362bb1930085c03e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80db4fd51c65dd1b362bb1930085c03e">&#9670;&nbsp;</a></span>cr8r_avl_node</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a> <a class="el" href="structcr8r__avl__node.html">cr8r_avl_node</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>An avl tree node, also used to store an entire tree by synecdoche. </p>
-<p>The data field is a flexible length array in which any element type (uint64_t, custom struct, etc) can be stored. Since avl tree are often used as ordered maps, the thing stored in the data field is often referred to as the "element" of the node because it is an element of the ordered map represented by the tree. It is also often referred to as the "key" (especially in parameter names) or the "value". Properly, the "key" is whatever part of the element the comparison function cares about, and the "value" is the rest. There are a lot of advantages to this approach compared to the usual key, value pair approach, in particular that one struct can be used with many different key functions, such as selecting the x, y, or z coordinate of a point struct. Take care if manipulating these fields directly, this should only be done if the functions in this file are not sufficient </p>
-
-<p class="definition">Definition at line <a class="el" href="avl_8h_source.html#l00030">30</a> of file <a class="el" href="avl_8h_source.html">avl.h</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a0a6ee6807d2e7c6c19e76690358c3e82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a6ee6807d2e7c6c19e76690358c3e82">&#9670;&nbsp;</a></span>cr8r_avl_ft_init()</h2>
@@ -865,7 +870,7 @@ DESCRIPTION</h1>
 <p>Find the node in the tree with the greatest key. </p>
 <p>Simply follows the right links repeatedly. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td>the root of the tree </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>the root of the tree </td></tr>
   </table>
   </dd>
 </dl>
@@ -1341,11 +1346,14 @@ DESCRIPTION</h1>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="avl_8h.html">avl.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

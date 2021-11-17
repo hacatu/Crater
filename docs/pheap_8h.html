@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/pheap.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('pheap_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,85 +100,63 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">pheap.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="container_8h_source.html">crater/container.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="prand_8h_source.html">crater/prand.h</a>&gt;</code><br />
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.3.0 Intrusive pairing heap. This data structure is INTRUSIVE, whereas most data structures in Crater are polymorphic. These are both ways of implementing generic data structures. Polymorphic in this case simply means that the data structure is implemented as as structs which contain metadata and element data. For example, avl tree nodes contain child pointers, balance factor (metadata), and the <code>char data[]</code> field (element data, stored polymorphically as a flexible length array).</dd></dl>
+<p>Intrusive data structures on the other hand have all the metadata stored in a struct which is the same for any type of element data, and then specialization to different types is handled by creating structs containing this metadata struct. EG, for a pairing heap, any struct containing a metadata struct of the correct type can be used as a pairing heap.</p>
+<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="pheap_8h_source.html">pheap.h</a>.</p>
 </div>
 <p><a href="pheap_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__cr8r__pheap__node__s.html">_cr8r_pheap_node_s</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">function table for pairing heaps note that since this is an intrusive data structure, base.size is actually the OFFSET of the cr8r_pheap_node struct within the outer struct, and cmp, alloc, and free deal with outer struct pointers.  <a href="structcr8r__pheap__ft.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">function table for pairing heaps note that since this is an intrusive data structure, base.size is actually the OFFSET of the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct within the outer struct, and cmp, alloc, and free deal with outer struct pointers.  <a href="structcr8r__pheap__ft.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a248520997ec0c12ce7a86698410c9253"><td class="memItemLeft" align="right" valign="top"><a id="a248520997ec0c12ce7a86698410c9253"></a>
-typedef struct <a class="el" href="struct__cr8r__pheap__node__s.html">_cr8r_pheap_node_s</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cr8r_pheap_node</b></td></tr>
-<tr class="separator:a248520997ec0c12ce7a86698410c9253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1a103e01bf4dae0d92afdc9ef50ab3c6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a1a103e01bf4dae0d92afdc9ef50ab3c6">cr8r_pheap_new</a> (void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft, <a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *first_child, <a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *sibling, <a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *parent)</td></tr>
-<tr class="memdesc:a1a103e01bf4dae0d92afdc9ef50ab3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a new pairing heap node using ft-&gt;alloc and initialize it.  <a href="pheap_8h.html#a1a103e01bf4dae0d92afdc9ef50ab3c6">More...</a><br /></td></tr>
-<tr class="separator:a1a103e01bf4dae0d92afdc9ef50ab3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5dc3c0df492b6270c9beda2af2fe706"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#af5dc3c0df492b6270c9beda2af2fe706">cr8r_pheap_top</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *r, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:af5dc3c0df492b6270c9beda2af2fe706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the minimal data element of a pairing heap, or NULL if the heap is empty.  <a href="pheap_8h.html#af5dc3c0df492b6270c9beda2af2fe706">More...</a><br /></td></tr>
-<tr class="separator:af5dc3c0df492b6270c9beda2af2fe706"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6cf07970caaef54b86378df27a72ab3"><td class="memItemLeft" align="right" valign="top"><a id="ab6cf07970caaef54b86378df27a72ab3"></a>
-<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#ab6cf07970caaef54b86378df27a72ab3">cr8r_pheap_root</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *n)</td></tr>
-<tr class="memdesc:ab6cf07970caaef54b86378df27a72ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the root node given a pointer to any node in a heap. <br /></td></tr>
-<tr class="separator:ab6cf07970caaef54b86378df27a72ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb36e5c421a94c394c73fc6063271f7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#adb36e5c421a94c394c73fc6063271f7f">cr8r_pheap_meld</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *a, <a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *b, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:adb36e5c421a94c394c73fc6063271f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combine two pairing heaps, invalidating them The nodes of the existing heaps are reused and re-linked so no new allocations are done, but the original heaps are mutated.  <a href="pheap_8h.html#adb36e5c421a94c394c73fc6063271f7f">More...</a><br /></td></tr>
-<tr class="separator:adb36e5c421a94c394c73fc6063271f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a520ffe043f6113b89de35d445e02a1d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a520ffe043f6113b89de35d445e02a1d1">cr8r_pheap_push</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *r, void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:a520ffe043f6113b89de35d445e02a1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an item into a pairing heap Allocates and initializes a new node for the new item.  <a href="pheap_8h.html#a520ffe043f6113b89de35d445e02a1d1">More...</a><br /></td></tr>
-<tr class="separator:a520ffe043f6113b89de35d445e02a1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30edb5e0ff225a9bdf7cbe6eabbaa6e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a30edb5e0ff225a9bdf7cbe6eabbaa6e6">cr8r_pheap_pop</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> **r, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:a30edb5e0ff225a9bdf7cbe6eabbaa6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the root (minimal) element from a pairing heap.  <a href="pheap_8h.html#a30edb5e0ff225a9bdf7cbe6eabbaa6e6">More...</a><br /></td></tr>
-<tr class="separator:a30edb5e0ff225a9bdf7cbe6eabbaa6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af79ed824386d248258112fb0e6c76ed8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#af79ed824386d248258112fb0e6c76ed8">cr8r_pheap_decreased_key</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *n, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:af79ed824386d248258112fb0e6c76ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the (min) heap invariant after decreasing the key of a node.  <a href="pheap_8h.html#af79ed824386d248258112fb0e6c76ed8">More...</a><br /></td></tr>
-<tr class="separator:af79ed824386d248258112fb0e6c76ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a828d6c3b4e9852cb13e83ee21725a130"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a828d6c3b4e9852cb13e83ee21725a130">cr8r_pheap_delete</a> (<a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *r, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *ft)</td></tr>
-<tr class="memdesc:a828d6c3b4e9852cb13e83ee21725a130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all nodes in a pairing heap.  <a href="pheap_8h.html#a828d6c3b4e9852cb13e83ee21725a130">More...</a><br /></td></tr>
-<tr class="separator:a828d6c3b4e9852cb13e83ee21725a130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dc96f0177ffb5c572300d016cde76d9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">cr8r_pheap_new</a> (void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *first_child, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *sibling, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *parent)</td></tr>
+<tr class="memdesc:a0dc96f0177ffb5c572300d016cde76d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a new pairing heap node using ft-&gt;alloc and initialize it.  <a href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">More...</a><br /></td></tr>
+<tr class="separator:a0dc96f0177ffb5c572300d016cde76d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b38e08b0d32e542cfd534b63af16d6e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a2b38e08b0d32e542cfd534b63af16d6e">cr8r_pheap_top</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:a2b38e08b0d32e542cfd534b63af16d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the minimal data element of a pairing heap, or NULL if the heap is empty.  <a href="pheap_8h.html#a2b38e08b0d32e542cfd534b63af16d6e">More...</a><br /></td></tr>
+<tr class="separator:a2b38e08b0d32e542cfd534b63af16d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4022a4f9d69db075d8ed24ca409925c2"><td class="memItemLeft" align="right" valign="top"><a id="a4022a4f9d69db075d8ed24ca409925c2"></a>
+<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a4022a4f9d69db075d8ed24ca409925c2">cr8r_pheap_root</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *)</td></tr>
+<tr class="memdesc:a4022a4f9d69db075d8ed24ca409925c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the root node given a pointer to any node in a heap. <br /></td></tr>
+<tr class="separator:a4022a4f9d69db075d8ed24ca409925c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5e4b14888a9d41c3a56abd8aa60d05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a8f5e4b14888a9d41c3a56abd8aa60d05">cr8r_pheap_meld</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *a, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *b, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:a8f5e4b14888a9d41c3a56abd8aa60d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combine two pairing heaps, invalidating them The nodes of the existing heaps are reused and re-linked so no new allocations are done, but the original heaps are mutated.  <a href="pheap_8h.html#a8f5e4b14888a9d41c3a56abd8aa60d05">More...</a><br /></td></tr>
+<tr class="separator:a8f5e4b14888a9d41c3a56abd8aa60d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c13468a5013980730cbbdd912db8b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#ab8c13468a5013980730cbbdd912db8b4">cr8r_pheap_push</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *, void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:ab8c13468a5013980730cbbdd912db8b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an item into a pairing heap Allocates and initializes a new node for the new item.  <a href="pheap_8h.html#ab8c13468a5013980730cbbdd912db8b4">More...</a><br /></td></tr>
+<tr class="separator:ab8c13468a5013980730cbbdd912db8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eda60f1d7aa0c597886ff6a08f5347a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a1eda60f1d7aa0c597886ff6a08f5347a">cr8r_pheap_pop</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> **r, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:a1eda60f1d7aa0c597886ff6a08f5347a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the root (minimal) element from a pairing heap.  <a href="pheap_8h.html#a1eda60f1d7aa0c597886ff6a08f5347a">More...</a><br /></td></tr>
+<tr class="separator:a1eda60f1d7aa0c597886ff6a08f5347a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab0a35014f07f9a83ee7efd0808fab1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a4ab0a35014f07f9a83ee7efd0808fab1">cr8r_pheap_decreased_key</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *n, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:a4ab0a35014f07f9a83ee7efd0808fab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the (min) heap invariant after decreasing the key of a node.  <a href="pheap_8h.html#a4ab0a35014f07f9a83ee7efd0808fab1">More...</a><br /></td></tr>
+<tr class="separator:a4ab0a35014f07f9a83ee7efd0808fab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec62febac537990aaf9abe7d01cc841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a1ec62febac537990aaf9abe7d01cc841">cr8r_pheap_delete</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
+<tr class="memdesc:a1ec62febac537990aaf9abe7d01cc841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all nodes in a pairing heap.  <a href="pheap_8h.html#a1ec62febac537990aaf9abe7d01cc841">More...</a><br /></td></tr>
+<tr class="separator:a1ec62febac537990aaf9abe7d01cc841"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.3.0 </dd></dl>
-<h1><a class="anchor" id="LICENSE"></a>
-LICENSE</h1>
-<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
-<h1><a class="anchor" id="DESCRIPTION"></a>
-DESCRIPTION</h1>
-<p>Intrusive pairing heap. This data structure is INTRUSIVE, whereas most data structures in Crater are polymorphic. These are both ways of implementing generic data structures. Polymorphic in this case simply means that the data structure is implemented as as structs which contain metadata and element data. For example, avl tree nodes contain child pointers, balance factor (metadata), and the <code>char data[]</code> field (element data, stored polymorphically as a flexible length array).</p>
-<p>Intrusive data structures on the other hand have all the metadata stored in a struct which is the same for any type of element data, and then specialization to different types is handled by creating structs containing this metadata struct. EG, for a pairing heap, any struct containing a metadata struct of the correct type can be used as a pairing heap. </p>
-
-<p class="definition">Definition in file <a class="el" href="pheap_8h_source.html">pheap.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a1a103e01bf4dae0d92afdc9ef50ab3c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a103e01bf4dae0d92afdc9ef50ab3c6">&#9670;&nbsp;</a></span>cr8r_pheap_new()</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a0dc96f0177ffb5c572300d016cde76d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc96f0177ffb5c572300d016cde76d9">&#9670;&nbsp;</a></span>cr8r_pheap_new()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,24 +171,24 @@ DESCRIPTION</h1>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>first_child</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>sibling</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>parent</em>&#160;</td>
         </tr>
         <tr>
@@ -182,10 +200,11 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Allocate a new pairing heap node using ft-&gt;alloc and initialize it. </p>
-<p>The pointer returned is a pointer to the outer struct which contains the cr8r_pheap_node struct.</p>
+<p>The pointer returned is a pointer to the outer struct which contains the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct.</p>
 <p>Note that this function is not really needed in the normal use case for this data structure. Typically, the pairing heap will be a secondary data structure stored in place within a hash table, avl tree, or so on. In that case, the other data structure will handle the allocations. If the pairing heap is the primary data structure, consider using a regualar binary heap instead. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. WARNING: ft-&gt;base.size is the offset of the cr8r_pheap_node struct within the outer struct, so if there is padding between the used portion of the outer struct and the node struct it contains, or the node struct is not the last member of the outer struct, this function does not work and the allocation must be done manually. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. WARNING: ft-&gt;base.size is the offset of the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct within the outer struct, so if there is padding between the used portion of the outer struct and the node struct it contains, or the node struct is not the last member of the outer struct, this function does not work and the allocation must be done manually. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_child,sibling,parent</td><td>Initializers for the intrusive struct's fields </td></tr>
   </table>
   </dd>
 </dl>
@@ -193,8 +212,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="af5dc3c0df492b6270c9beda2af2fe706"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5dc3c0df492b6270c9beda2af2fe706">&#9670;&nbsp;</a></span>cr8r_pheap_top()</h2>
+<a id="a2b38e08b0d32e542cfd534b63af16d6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b38e08b0d32e542cfd534b63af16d6e">&#9670;&nbsp;</a></span>cr8r_pheap_top()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,14 +221,14 @@ DESCRIPTION</h1>
         <tr>
           <td class="memname">void* cr8r_pheap_top </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -224,29 +243,29 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="adb36e5c421a94c394c73fc6063271f7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb36e5c421a94c394c73fc6063271f7f">&#9670;&nbsp;</a></span>cr8r_pheap_meld()</h2>
+<a id="a8f5e4b14888a9d41c3a56abd8aa60d05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f5e4b14888a9d41c3a56abd8aa60d05">&#9670;&nbsp;</a></span>cr8r_pheap_meld()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a>* cr8r_pheap_meld </td>
+          <td class="memname"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a>* cr8r_pheap_meld </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -257,21 +276,27 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Combine two pairing heaps, invalidating them The nodes of the existing heaps are reused and re-linked so no new allocations are done, but the original heaps are mutated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">a,b</td><td>pointers to root nodes of two existing heaps. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the root element of the melded heap </dd></dl>
 
 </div>
 </div>
-<a id="a520ffe043f6113b89de35d445e02a1d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a520ffe043f6113b89de35d445e02a1d1">&#9670;&nbsp;</a></span>cr8r_pheap_push()</h2>
+<a id="ab8c13468a5013980730cbbdd912db8b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c13468a5013980730cbbdd912db8b4">&#9670;&nbsp;</a></span>cr8r_pheap_push()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a>* cr8r_pheap_push </td>
+          <td class="memname"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a>* cr8r_pheap_push </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -283,7 +308,7 @@ DESCRIPTION</h1>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -294,27 +319,33 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Insert an item into a pairing heap Allocates and initializes a new node for the new item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. The same warning from <a class="el" href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">cr8r_pheap_new</a> applies. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The new root element on success or NULL on failure. Failure only occurs if allocation fails: items with duplicate keys are permitted with unspecified storage order </dd></dl>
 
 </div>
 </div>
-<a id="a30edb5e0ff225a9bdf7cbe6eabbaa6e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30edb5e0ff225a9bdf7cbe6eabbaa6e6">&#9670;&nbsp;</a></span>cr8r_pheap_pop()</h2>
+<a id="a1eda60f1d7aa0c597886ff6a08f5347a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eda60f1d7aa0c597886ff6a08f5347a">&#9670;&nbsp;</a></span>cr8r_pheap_pop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a>* cr8r_pheap_pop </td>
+          <td class="memname"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a>* cr8r_pheap_pop </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> **&#160;</td>
           <td class="paramname"><em>r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -325,27 +356,33 @@ DESCRIPTION</h1>
 </div><div class="memdoc">
 
 <p>Remove the root (minimal) element from a pairing heap. </p>
-<p>The input pointer is modified to indicate the new root. Does nothing if called on an empty heap. </p><dl class="section return"><dt>Returns</dt><dd>The old root, but its links may not be nulled. </dd></dl>
+<p>The input pointer is modified to indicate the new root. Does nothing if called on an empty heap. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">r</td><td>pointer to pointer to root node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The old root, but its links may not be nulled. </dd></dl>
 
 </div>
 </div>
-<a id="af79ed824386d248258112fb0e6c76ed8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af79ed824386d248258112fb0e6c76ed8">&#9670;&nbsp;</a></span>cr8r_pheap_decreased_key()</h2>
+<a id="a4ab0a35014f07f9a83ee7efd0808fab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab0a35014f07f9a83ee7efd0808fab1">&#9670;&nbsp;</a></span>cr8r_pheap_decreased_key()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a>* cr8r_pheap_decreased_key </td>
+          <td class="memname"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a>* cr8r_pheap_decreased_key </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
           <td class="paramname"><em>n</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -366,8 +403,8 @@ DESCRIPTION</h1>
 
 </div>
 </div>
-<a id="a828d6c3b4e9852cb13e83ee21725a130"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a828d6c3b4e9852cb13e83ee21725a130">&#9670;&nbsp;</a></span>cr8r_pheap_delete()</h2>
+<a id="a1ec62febac537990aaf9abe7d01cc841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ec62febac537990aaf9abe7d01cc841">&#9670;&nbsp;</a></span>cr8r_pheap_delete()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,14 +412,14 @@ DESCRIPTION</h1>
         <tr>
           <td class="memname">void cr8r_pheap_delete </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__cr8r__pheap__node__s.html">cr8r_pheap_node</a> *&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramtype"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -398,11 +435,14 @@ DESCRIPTION</h1>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="pheap_8h.html">pheap.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

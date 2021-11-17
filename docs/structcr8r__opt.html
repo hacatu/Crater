@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: cr8r_opt Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('structcr8r__opt.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -68,6 +107,9 @@ $(function() {
 <div class="title">cr8r_opt Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Description of a command line option A list of these, terminated with a certain sentinel value, must be passed to <a class="el" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>.  
+ <a href="structcr8r__opt.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -98,8 +140,10 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:a423f9ed81e2ef8c36aa849f49e9f46d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00022">22</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<div class="textblock"><p>Description of a command line option A list of these, terminated with a certain sentinel value, must be passed to <a class="el" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>. </p>
+<p>See <a class="el" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a> and <a class="el" href="opts_8h.html#a390e2e9c382f2099af1f292cf674387a">CR8R_OPT_GENERIC_REQUIRED</a> for macros that can automatically generate these descriptions </p>
+
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00020">20</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ac6b7c79343c83b25ee7d8416ea154a05"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6b7c79343c83b25ee7d8416ea154a05">&#9670;&nbsp;</a></span>dest</h2>
@@ -116,7 +160,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>POINTER to variable/memory to store result in. </p>
 <p>on_opt and on_missing are responsible for setting this. To have a default value, the variable pointed by dest may be initialized or on_missing may be used. May be NULL. Can also be used to provide CUSTOM callbacks with extra data as well as a pointers to memory to initialize. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00028">28</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00026">26</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -135,7 +179,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Flag indicating whether or not the option was found. </p>
 <p>Should not be set, managed by <a class="el" href="opts_8h.html#ac1886d25b769578409f5f62dd466a2e6">cr8r_opt_parse</a>. Automatically set to false before parsing starts and true when this argument is found (but after calling on_opt if applicable). Can be checked after parsing is done to find which arguments were/weren't found, as an alternative to on_missing. Can also be checked in on_opt to determine if this option has been encountered before (ie is a duplicate). </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00035">35</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00033">33</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -154,7 +198,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>0 indicates this option does not take an argument, 1 indicates this option has a required argument, and 2 indicates this option has an optional argument. </p>
 <p>For long form options, <code>--long-name=argument</code> (argument in same command line argument after an '=') or <code>--long-name argument</code> (argument in next command line argument) are permitted. If either of these occurs, the argument will be passed to on_opt. Otherwise (if there is no '=' and the next command line argument starts with '-'), the option is considered to not havean argument. If arg_required is true, this is an error and on_opt is not called. If arg_required is false, on_opt is called with NULL. For short form options, note that <code>-ab=argument</code> and <code>-ab argument</code> are both valid ways of providing a short form option <code>a</code> with no argument and <code>b</code> with argument "argument", but <code>-bargument</code> is not a valid way of doing this. This would be interpreted as 9 short form options with no arguments, or possibly an argument to <code>t</code> depending on what follows. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00047">47</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00045">45</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +217,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The short name for this option. </p>
 <p>Must not contain '-', '=', ' ', or more than one character. However, multibyte characters are allowed. May be NULL, but if both short_name and long_name are NULL then this indicates the end of the option list. Any character in a short form option group (command line argument starting with a '-') is checked using this name. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00053">53</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00051">51</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -192,7 +236,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The long name for this option. </p>
 <p>Must not contain '=' or ' ', but may contain any number of characters including multibyte characters and '-'. May be NULL, but if both short_name and long_name are NULL then this indicates the end of the option list. Any long form option (part of a command line argument which starts with "--" and stops if an '=' is encountered) is checked using this name. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00060">60</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00058">58</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +255,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Function to call when this option is encountered. </p>
 <p>If NULL, any argument is ignored and the only effect of encountering this option is setting <code>found</code> (and hence not calling on_missing if applicable). If this function returns false, the argument to this option is considered invalid. The argument to the option, opt, can be supplied in the command line either in the same command line argument as the option but separated by an '=', or in the next command line argument but not preceded by a '-'. If no such argument is found, opt is NULL, so if arg_required is not set, on_opt must be prepared to deal with that. found is set after calling this function, so it can be used to check if this option is provided more than once. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00071">71</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00069">69</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +274,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Function to call after reading command line arguments if this option was not found. </p>
 <p>If the option is not found and this function is NULL or returns false, this option is considered missing. This function should return true if it is ok for this option to be missing ( <a class="el" href="opts_8h.html#a89194c1a8e2ef26f7d51fb20cb2a4bce">cr8r_opt_missing_optional</a> can be used to always return true, also see <a class="el" href="opts_8h.html#a6530d4fbb20297faedbabed171bf69de">CR8R_OPT_GENERIC_OPTIONAL</a> ). This function can also be used to initialize a variable in a default way if it is not provided as an option, eg by randomizing it, offering more flexibility than simply giving the variable a default value. </p>
 
-<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00078">78</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="opts_8h_source.html#l00076">76</a> of file <a class="el" href="opts_8h_source.html">opts.h</a>.</p>
 
 </div>
 </div>
@@ -238,11 +282,14 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <li>include/crater/<a class="el" href="opts_8h_source.html">opts.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structcr8r__opt.html">cr8r_opt</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

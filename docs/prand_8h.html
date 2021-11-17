@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/prand.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('prand_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -75,8 +110,21 @@ $(function() {
 <div class="title">prand.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;inttypes.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.3.0 Comprehensive pseudorandom number generation interfaces.</dd></dl>
+<p>PRNGs in general function by having an internal state (8-2496 bytes for the currently implemented generators), applying a function to the whole state, and then returning a part of the state (always 4 bytes for the generators implemented here). The function that transforms the state is not necessarily difficult to reverse or predict.</p>
+<p>However, the entire state should be impossible to recover from less than state/4 outputs and difficult to recover from state_size/4 outputs. More importantly, the outputs should satisfy certain randomness tests, like producing bytes with equal frequency and so forth. Some of the most well known and widely used tests are the diehard tests, testU01, and the NIST tests.</p>
+<p>PRNGs need to have their state initialized by "seeding". This can be done either by setting the entire state or by using a PRNG with smaller state to generate more state from a smaller initial state. For example, the Mersenne Twister has 2496 bytes of state but is usually initialized from 8 bytes using a Linear Congruential Generator. The cr8r_prng_init_* functions use a uint32_t as a seed by default. This is generally sufficient, but keep in mind the disadantages and consider if setting the full state is required for your use case.</p>
+<p>A prng's output sequence is a mathematical function of its state. Thus, when a prng is initialized from a 32 bit seed, there are only 2**32 possible output sequences (or fewer if the state has some restriction). This is usually a lot, but can skew probabilities in some cases. For example, for some prngs it is impossible to generate 0 as the first output if initial state is obtained by extending a 32 bit seed.</p>
+<p>PRNGs generally have a finite period, meaning they eventually repeat. You can generally expect this to be around at most 2^B where B is the number of state bits. For instance, an LCG with modulus 2**64 has maximal period 2**62, the standard MT with 19968 bits of state has period 2**19967, and Xoroshiro256** with 256 bits of state has period 2**256 (maximal for any possible PRNG by the pidgeonhole principle).</p>
+<p>You may wish to write a program that generates random numbers in multiple threads. Generally, Crater functions require you to do appropriate locking on your own, but for PRNGs the situation is more subtle. If using a single PRNG from multiple threads, it MUST be locked, unless it is known to be a "system" PRNG since then the state is maintained by the OS. However, locking is usually not ideal because it has significant overhead if you are generating a lot of random numbers. Therefore, use a different PRNG in each thread. HOWEVER, you should NOT simply use a different seed for each, as for some PRNG types this can cause increased correlation. Instead, the particular "jump" functions should be used to split up the output of the PRNG for a single seed. "jump" functions allow a PRNG to be advanced as if it were called a huge number of times very quickly. Currently, only 2 fixed size jump functions for Xoro are available, but more will be added soon.</p>
+<p>The fact that randomized seeds are (usually, not as much for lcgs) worse than "jumping" to equidistant points in the output sequence may be very counterintuitive. It was for me at first. The reason is due to an even deeper peculiarity of prngs: namely, a maximal period prng goes through each STATE at most once per period by the pidgeonhole principle. But moreover, the k-tuples it produces are limited: for large enough k, it is mathematically impossible for it to produce every possible k-tuple. For example, if the state is 128 bytes, there are at most 2**1024 states. However, there are 2**1032 129-tuples of bytes, so it is impossible for such a prng to generate all such tuples. We want to generate all k-tuples for as large a k as possible without compromising randomness though. To achieve this, it is common for prngs to generate all k-tuples equally often for some k smaller than their state, For k == 1, this represents the simple fact that all bytes should be generated equally likely. True random bytes are equally distributed. And while true random k-tuples are equally likely, the probability of generating a fixed number of truly random k-tuples and getting perfectly equal amounts of all of them goes to zero very quickly. So in this sense the output of a prng can be very contrived, but this is necessary to make as many sequences as possible occur in the output.</p>
+<p>Essentially, this is a tradeoff between "local" and "global" properties of the output sequence. An experement that requires random numbers cares about these local properties (is every sufficiently short byte sequence possible and equally likely, are outputs uncorrelated, etc), but not global properties (do all k-tuples occur exactly the same number of times). Put another way, you would expect the ratio of frequencies of any two k-tuples to approach 1 as you generated more and more random numbers, but you would expect the absolute difference to possibly be very large.</p>
+<p>Finally, some PRNGs are more suitable for cryptography and secure purporses than others. Generally this comes at the cost of speed. Only "system", the wrapper around Linux's getrandom syscall, should be considered secure.</p>
+<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
 </div>
 <p><a href="prand_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -195,27 +243,7 @@ Variables</h2></td></tr>
 <tr class="memdesc:a0809010c1f86d7834baa6bdb4db71b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default SplitMix prng, automatically used to extend seed values to state values if needed. <br /></td></tr>
 <tr class="separator:a0809010c1f86d7834baa6bdb4db71b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>hacatu </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.3.0 </dd></dl>
-<h1><a class="anchor" id="LICENSE"></a>
-LICENSE</h1>
-<p>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
-<h1><a class="anchor" id="DESCRIPTION"></a>
-DESCRIPTION</h1>
-<p>Comprehensive pseudorandom number generation interfaces.</p>
-<p>PRNGs in general function by having an internal state (8-2496 bytes for the currently implemented generators), applying a function to the whole state, and then returning a part of the state (always 4 bytes for the generators implemented here). The function that transforms the state is not necessarily difficult to reverse or predict.</p>
-<p>However, the entire state should be impossible to recover from less than state/4 outputs and difficult to recover from state_size/4 outputs. More importantly, the outputs should satisfy certain randomness tests, like producing bytes with equal frequency and so forth. Some of the most well known and widely used tests are the diehard tests, testU01, and the NIST tests.</p>
-<p>PRNGs need to have their state initialized by "seeding". This can be done either by setting the entire state or by using a PRNG with smaller state to generate more state from a smaller initial state. For example, the Mersenne Twister has 2496 bytes of state but is usually initialized from 8 bytes using a Linear Congruential Generator. The cr8r_prng_init_* functions use a uint32_t as a seed by default. This is generally sufficient, but keep in mind the disadantages and consider if setting the full state is required for your use case.</p>
-<p>A prng's output sequence is a mathematical function of its state. Thus, when a prng is initialized from a 32 bit seed, there are only 2**32 possible output sequences (or fewer if the state has some restriction). This is usually a lot, but can skew probabilities in some cases. For example, for some prngs it is impossible to generate 0 as the first output if initial state is obtained by extending a 32 bit seed.</p>
-<p>PRNGs generally have a finite period, meaning they eventually repeat. You can generally expect this to be around at most 2^B where B is the number of state bits. For instance, an LCG with modulus 2**64 has maximal period 2**62, the standard MT with 19968 bits of state has period 2**19967, and Xoroshiro256** with 256 bits of state has period 2**256 (maximal for any possible PRNG by the pidgeonhole principle).</p>
-<p>You may wish to write a program that generates random numbers in multiple threads. Generally, Crater functions require you to do appropriate locking on your own, but for PRNGs the situation is more subtle. If using a single PRNG from multiple threads, it MUST be locked, unless it is known to be a "system" PRNG since then the state is maintained by the OS. However, locking is usually not ideal because it has significant overhead if you are generating a lot of random numbers. Therefore, use a different PRNG in each thread. HOWEVER, you should NOT simply use a different seed for each, as for some PRNG types this can cause increased correlation. Instead, the particular "jump" functions should be used to split up the output of the PRNG for a single seed. "jump" functions allow a PRNG to be advanced as if it were called a huge number of times very quickly. Currently, only 2 fixed size jump functions for Xoro are available, but more will be added soon.</p>
-<p>The fact that randomized seeds are (usually, not as much for lcgs) worse than "jumping" to equidistant points in the output sequence may be very counterintuitive. It was for me at first. The reason is due to an even deeper peculiarity of prngs: namely, a maximal period prng goes through each STATE at most once per period by the pidgeonhole principle. But moreover, the k-tuples it produces are limited: for large enough k, it is mathematically impossible for it to produce every possible k-tuple. For example, if the state is 128 bytes, there are at most 2**1024 states. However, there are 2**1032 129-tuples of bytes, so it is impossible for such a prng to generate all such tuples. We want to generate all k-tuples for as large a k as possible without compromising randomness though. To achieve this, it is common for prngs to generate all k-tuples equally often for some k smaller than their state, For k == 1, this represents the simple fact that all bytes should be generated equally likely. True random bytes are equally distributed. And while true random k-tuples are equally likely, the probability of generating a fixed number of truly random k-tuples and getting perfectly equal amounts of all of them goes to zero very quickly. So in this sense the output of a prng can be very contrived, but this is necessary to make as many sequences as possible occur in the output.</p>
-<p>Essentially, this is a tradeoff between "local" and "global" properties of the output sequence. An experement that requires random numbers cares about these local properties (is every sufficiently short byte sequence possible and equally likely, are outputs uncorrelated, etc), but not global properties (do all k-tuples occur exactly the same number of times). Put another way, you would expect the ratio of frequencies of any two k-tuples to approach 1 as you generated more and more random numbers, but you would expect the absolute difference to possibly be very large.</p>
-<p>Finally, some PRNGs are more suitable for cryptography and secure purporses than others. Generally this comes at the cost of speed. Only "system", the wrapper around Linux's getrandom syscall, should be considered secure. </p>
-
-<p class="definition">Definition in file <a class="el" href="prand_8h_source.html">prand.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="ad4596f7c54d9872920c2f57ccae72bc7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4596f7c54d9872920c2f57ccae72bc7">&#9670;&nbsp;</a></span>cr8r_prng_seed()</h2>
 
@@ -604,11 +632,14 @@ DESCRIPTION</h1>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="prand_8h.html">prand.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

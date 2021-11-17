@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/avl_check.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('avl__check_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">avl_check.h</div>  </div>
@@ -77,12 +112,12 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">int</span> cr8r_avl_check_links(<a class="code" href="structcr8r__avl__node.html">cr8r_avl_node</a> *n){</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span>(!n)<span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span>(n-&gt;<a class="code" href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">left</a>){</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">if</span>(n-&gt;<a class="code" href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">left</a>-&gt;parent != n)<span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">if</span>(n-&gt;<a class="code" href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">left</a>-&gt;<a class="code" href="structcr8r__avl__node.html#a0a9e14d8a1baa9f18a791355a3236943">parent</a> != n)<span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordflow">if</span>(!cr8r_avl_check_links(n-&gt;<a class="code" href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">left</a>))<span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span>(n-&gt;right){</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span>(n-&gt;right-&gt;parent != n)<span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span>(!cr8r_avl_check_links(n-&gt;right))<span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span>(n-&gt;<a class="code" href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">right</a>){</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span>(n-&gt;<a class="code" href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">right</a>-&gt;<a class="code" href="structcr8r__avl__node.html#a0a9e14d8a1baa9f18a791355a3236943">parent</a> != n)<span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span>(!cr8r_avl_check_links(n-&gt;<a class="code" href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">right</a>))<span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    }</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
@@ -91,21 +126,26 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span>(!n)<span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> l, r;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span>((l = cr8r_avl_check_balance(n-&gt;<a class="code" href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">left</a>)) == -1)<span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span>((r = cr8r_avl_check_balance(n-&gt;right)) == -1)<span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span>((r = cr8r_avl_check_balance(n-&gt;<a class="code" href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">right</a>)) == -1)<span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(r - l == n-&gt;<a class="code" href="structcr8r__avl__node.html#afff74cbadce365a9ee5c4d153a4fcc28">balance</a>)<span class="keywordflow">return</span> 1 + (l &gt; r ? l : r);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructcr8r__avl__node_html_a9a2e08a44ae954771eb4f3f0c565ddcd"><div class="ttname"><a href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">cr8r_avl_node::left</a></div><div class="ttdeci">cr8r_avl_node * left</div><div class="ttdoc">Pointers to other nodes (can be NULL)</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00033">avl.h:33</a></div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="astructcr8r__avl__node_html_a9a2e08a44ae954771eb4f3f0c565ddcd"><div class="ttname"><a href="structcr8r__avl__node.html#a9a2e08a44ae954771eb4f3f0c565ddcd">cr8r_avl_node::left</a></div><div class="ttdeci">cr8r_avl_node * left</div><div class="ttdoc">Pointers to other nodes (can be NULL)</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00032">avl.h:32</a></div></div>
 <div class="ttc" id="aavl_8h_html"><div class="ttname"><a href="avl_8h.html">avl.h</a></div></div>
-<div class="ttc" id="astructcr8r__avl__node_html"><div class="ttname"><a href="structcr8r__avl__node.html">cr8r_avl_node</a></div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00031">avl.h:31</a></div></div>
-<div class="ttc" id="astructcr8r__avl__node_html_afff74cbadce365a9ee5c4d153a4fcc28"><div class="ttname"><a href="structcr8r__avl__node.html#afff74cbadce365a9ee5c4d153a4fcc28">cr8r_avl_node::balance</a></div><div class="ttdeci">signed char balance</div><div class="ttdoc">avl balance value; the height of the right subtree minus the height of the left subtree.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00036">avl.h:36</a></div></div>
+<div class="ttc" id="astructcr8r__avl__node_html_a0a9e14d8a1baa9f18a791355a3236943"><div class="ttname"><a href="structcr8r__avl__node.html#a0a9e14d8a1baa9f18a791355a3236943">cr8r_avl_node::parent</a></div><div class="ttdeci">cr8r_avl_node * parent</div><div class="ttdoc">Pointers to other nodes (can be NULL)</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00036">avl.h:36</a></div></div>
+<div class="ttc" id="astructcr8r__avl__node_html"><div class="ttname"><a href="structcr8r__avl__node.html">cr8r_avl_node</a></div><div class="ttdoc">An avl tree node, also used to store an entire tree by synecdoche.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00030">avl.h:30</a></div></div>
+<div class="ttc" id="astructcr8r__avl__node_html_a598939ac4cb02e1b1db3d63c3c870715"><div class="ttname"><a href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">cr8r_avl_node::right</a></div><div class="ttdeci">cr8r_avl_node * right</div><div class="ttdoc">Pointers to other nodes (can be NULL)</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00034">avl.h:34</a></div></div>
+<div class="ttc" id="astructcr8r__avl__node_html_afff74cbadce365a9ee5c4d153a4fcc28"><div class="ttname"><a href="structcr8r__avl__node.html#afff74cbadce365a9ee5c4d153a4fcc28">cr8r_avl_node::balance</a></div><div class="ttdeci">signed char balance</div><div class="ttdoc">avl balance value; the height of the right subtree minus the height of the left subtree.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00039">avl.h:39</a></div></div>
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><b>avl_check.h</b></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/kd_tree.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('kd__tree_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">kd_tree.h</div>  </div>
@@ -72,79 +107,82 @@ $(function() {
 <div class="contents">
 <a href="kd__tree_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="container_8h.html">crater/container.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">crater/vec.h</a>&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="kd__tree_8h.html#aa2c3f4156cdf990fb9600dbd1b780609">   32</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html">   34</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a>{</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#a0e944644c8ed86a929fb0dc82e9b4a68">   41</a></span>&#160;    <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> <a class="code" href="struct__cr8r__kd__ft.html#a0e944644c8ed86a929fb0dc82e9b4a68">super</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#a155253fb3815f6b3962f0f2a0f8d3f0b">   54</a></span>&#160;    uint64_t <a class="code" href="struct__cr8r__kd__ft.html#a155253fb3815f6b3962f0f2a0f8d3f0b">dim</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#abb02d5c80cd7b263f15aaa771848a78d">   62</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="struct__cr8r__kd__ft.html#abb02d5c80cd7b263f15aaa771848a78d">bounds_size</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#aa79d11787e2217b4bc56207e6b9410d1">   67</a></span>&#160;    void (*<a class="code" href="struct__cr8r__kd__ft.html#aa79d11787e2217b4bc56207e6b9410d1">split</a>)(<span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *root_pt, <span class="keywordtype">void</span> *o1, <span class="keywordtype">void</span> *o2);</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#a126e5f79c43522b468a6d71658cf27f6">   72</a></span>&#160;    void (*<a class="code" href="struct__cr8r__kd__ft.html#a126e5f79c43522b468a6d71658cf27f6">update</a>)(<span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt);</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#ab61c39e95b80399602051380cd4daaa2">   74</a></span>&#160;    double (*<a class="code" href="struct__cr8r__kd__ft.html#ab61c39e95b80399602051380cd4daaa2">min_sqdist</a>)(<span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt);</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="struct__cr8r__kd__ft.html#a15696fa150d8ce1ee0adf440340c2f4e">   76</a></span>&#160;    double (*<a class="code" href="struct__cr8r__kd__ft.html#a15696fa150d8ce1ee0adf440340c2f4e">sqdist</a>)(<span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *a, <span class="keyword">const</span> <span class="keywordtype">void</span> *b);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html">   88</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html#a585034435ad775f93b32b54c426e65f5">   94</a></span>&#160;    int64_t bl[3];</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html#a01191e98e13464da9a95130fc6b469a2">   96</a></span>&#160;    int64_t tr[3];</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} <a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">  104</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a> (*<a class="code" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a>)(<a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *win, <span class="keywordtype">void</span> *ent, <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a7eccbb0ffda27605bc9934c98513d43f">cr8r_kdwin_init_s2i64</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *<span class="keyword">self</span>, <span class="keyword">const</span> int64_t bl[3], <span class="keyword">const</span> int64_t tr[3]);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a5ab6b881327e315e753fe6f66576a339">cr8r_kdwin_init_c3i64</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *<span class="keyword">self</span>, <span class="keyword">const</span> int64_t bl[3], <span class="keyword">const</span> int64_t tr[3]);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a022865a7acb04f866647ccf915e7f0e8">cr8r_kdwin_bounding_i64x3</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a> *<span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *ents, <span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a88bc89263184b3678bd9b1c7c9d1d38f">cr8r_kd_ify</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a> *<span class="keyword">self</span>, <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *_ft, uint64_t a, uint64_t b);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#a36ae4ae628fc049c87b760c656bc5f30">cr8r_kd_walk</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a> *<span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <a class="code" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a> visitor, <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#ab07467e002c629aebb97b2cbd7256147">cr8r_kd_k_closest</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a> *<span class="keyword">self</span>, <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt, uint64_t k, <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *out);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#ae7f2c8093b56c1c21c985364f7041b22">cr8r_kd_k_closest_naive</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a> *<span class="keyword">self</span>, <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt, uint64_t k, <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *out);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> <a class="code" href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__cr8r__kd__ft.html">cr8r_kd_ft</a> <a class="code" href="kd__tree_8h.html#a92773a4739b7eeb2a548f46ffd64d447">cr8r_kdft_c3i64</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="container_8h.html">crater/container.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">crater/vec.h</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html">   33</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a>{</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a6db4e755e548fd8f02fb91e48d22c9b0">   40</a></span>&#160;    <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> <a class="code" href="structcr8r__kd__ft.html#a6db4e755e548fd8f02fb91e48d22c9b0">super</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a0dcb26bcb1ab262b2959a298555270be">   53</a></span>&#160;    uint64_t <a class="code" href="structcr8r__kd__ft.html#a0dcb26bcb1ab262b2959a298555270be">dim</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a1da9d7bb09bbac438a0a496177d48f8e">   61</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcr8r__kd__ft.html#a1da9d7bb09bbac438a0a496177d48f8e">bounds_size</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a20d5b683b5e59f727b4b91d6707c5db9">   66</a></span>&#160;    void (*<a class="code" href="structcr8r__kd__ft.html#a20d5b683b5e59f727b4b91d6707c5db9">split</a>)(<span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *root_pt, <span class="keywordtype">void</span> *o1, <span class="keywordtype">void</span> *o2);</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a9d238243b4b0a9979234569a874092f2">   71</a></span>&#160;    void (*<a class="code" href="structcr8r__kd__ft.html#a9d238243b4b0a9979234569a874092f2">update</a>)(<span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt);</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a8c5b2c833534b782c7e483948c308d53">   73</a></span>&#160;    double (*<a class="code" href="structcr8r__kd__ft.html#a8c5b2c833534b782c7e483948c308d53">min_sqdist</a>)(<span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *<span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt);</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structcr8r__kd__ft.html#a1a6419bedbf463879a182294396139e3">   75</a></span>&#160;    double (*<a class="code" href="structcr8r__kd__ft.html#a1a6419bedbf463879a182294396139e3">sqdist</a>)(<span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *a, <span class="keyword">const</span> <span class="keywordtype">void</span> *b);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html">   87</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html#a585034435ad775f93b32b54c426e65f5">   93</a></span>&#160;    int64_t bl[3];</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structcr8r__kdwin__s2i64.html#a01191e98e13464da9a95130fc6b469a2">   95</a></span>&#160;    int64_t tr[3];</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">  103</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a> (*<a class="code" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a>)(<a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *win, <span class="keywordtype">void</span> *ent, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a834c7f32aef9fcd279e1a3f7f27b33c3">cr8r_kdwin_init_s2i64</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a>*, <span class="keyword">const</span> int64_t bl[3], <span class="keyword">const</span> int64_t tr[3]);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#ada7cb60aa8b2c2a4cfd2690f6fd7479c">cr8r_kdwin_init_c3i64</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a>*, <span class="keyword">const</span> int64_t bl[3], <span class="keyword">const</span> int64_t tr[3]);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#afa2695e4484d4e4527dc2a489cce2a86">cr8r_kdwin_bounding_i64x3</a>(<a class="code" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a>*, <span class="keyword">const</span> <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *ents, <span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="kd__tree_8h.html#a4c3fad9f55231b7bf3a1a81b262e808f">cr8r_kd_ify</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, uint64_t a, uint64_t b);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">cr8r_kd_walk</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <span class="keyword">const</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <a class="code" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a> visitor, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt, uint64_t k, <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *out);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">cr8r_kd_k_closest_naive</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, <span class="keyword">const</span> <span class="keywordtype">void</span> *bounds, <span class="keyword">const</span> <span class="keywordtype">void</span> *pt, uint64_t k, <a class="code" href="structcr8r__vec.html">cr8r_vec</a> *out);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> <a class="code" href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> <a class="code" href="kd__tree_8h.html#a92773a4739b7eeb2a548f46ffd64d447">cr8r_kdft_c3i64</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astruct__cr8r__kd__ft_html"><div class="ttname"><a href="struct__cr8r__kd__ft.html">_cr8r_kd_ft</a></div><div class="ttdoc">Function table for kd tree, see cr8r_kd_ft.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00034">kd_tree.h:34</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_ab07467e002c629aebb97b2cbd7256147"><div class="ttname"><a href="kd__tree_8h.html#ab07467e002c629aebb97b2cbd7256147">cr8r_kd_k_closest</a></div><div class="ttdeci">void cr8r_kd_k_closest(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out)</div><div class="ttdoc">Find the k closest points to a given point.</div></div>
-<div class="ttc" id="astructcr8r__kdwin__s2i64_html"><div class="ttname"><a href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a></div><div class="ttdoc">Concrete bounds object for spherical and cuboid kd trees with 3 i64 coords.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00088">kd_tree.h:88</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_a7eccbb0ffda27605bc9934c98513d43f"><div class="ttname"><a href="kd__tree_8h.html#a7eccbb0ffda27605bc9934c98513d43f">cr8r_kdwin_init_s2i64</a></div><div class="ttdeci">bool cr8r_kdwin_init_s2i64(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3])</div><div class="ttdoc">Initialize a i64x3 bounds object with a given &quot;bottom left&quot; and &quot;top right&quot; point.</div></div>
-<div class="ttc" id="acontainer_8h_html_a6970e065db27984cca427f6b1df64df2"><div class="ttname"><a href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a></div><div class="ttdeci">cr8r_walk_decision</div><div class="ttdoc">Enum to allow a callee/visitor to control the behavior of a tree traversal.</div><div class="ttdef"><b>Definition:</b> <a href="container_8h_source.html#l00029">container.h:29</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_a61926b4ca12f0e8b867db398248b3ecf"><div class="ttname"><a href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a></div><div class="ttdeci">cr8r_walk_decision(* cr8r_kdvisitor)(cr8r_kd_ft *ft, const void *win, void *ent, void *data)</div><div class="ttdoc">Type of a visitor callback for a kd tree traversal.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00104">kd_tree.h:104</a></div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_a155253fb3815f6b3962f0f2a0f8d3f0b"><div class="ttname"><a href="struct__cr8r__kd__ft.html#a155253fb3815f6b3962f0f2a0f8d3f0b">_cr8r_kd_ft::dim</a></div><div class="ttdeci">uint64_t dim</div><div class="ttdoc">Dimension of the kd tree.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00054">kd_tree.h:54</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_ae7f2c8093b56c1c21c985364f7041b22"><div class="ttname"><a href="kd__tree_8h.html#ae7f2c8093b56c1c21c985364f7041b22">cr8r_kd_k_closest_naive</a></div><div class="ttdeci">void cr8r_kd_k_closest_naive(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out)</div><div class="ttdoc">Find the k closest points to a given point.</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="akd__tree_8h_html_afb17769c7119b44b15b18ca157f23a12"><div class="ttname"><a href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">cr8r_kd_k_closest_naive</a></div><div class="ttdeci">void cr8r_kd_k_closest_naive(cr8r_vec *, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out)</div><div class="ttdoc">Find the k closest points to a given point.</div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html"><div class="ttname"><a href="structcr8r__kd__ft.html">cr8r_kd_ft</a></div><div class="ttdoc">Function table for kd tree, see cr8r_kd_ft.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00033">kd_tree.h:33</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_ada7cb60aa8b2c2a4cfd2690f6fd7479c"><div class="ttname"><a href="kd__tree_8h.html#ada7cb60aa8b2c2a4cfd2690f6fd7479c">cr8r_kdwin_init_c3i64</a></div><div class="ttdeci">bool cr8r_kdwin_init_c3i64(cr8r_kdwin_s2i64 *, const int64_t bl[3], const int64_t tr[3])</div><div class="ttdoc">Initialize a i64x3 bounds object with a given &quot;bottom left&quot; and &quot;top right&quot; point.</div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a20d5b683b5e59f727b4b91d6707c5db9"><div class="ttname"><a href="structcr8r__kd__ft.html#a20d5b683b5e59f727b4b91d6707c5db9">cr8r_kd_ft::split</a></div><div class="ttdeci">void(* split)(const cr8r_kd_ft *ft, const void *self, const void *root_pt, void *o1, void *o2)</div><div class="ttdoc">split a bounds object in two along some dimension</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00066">kd_tree.h:66</a></div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a0dcb26bcb1ab262b2959a298555270be"><div class="ttname"><a href="structcr8r__kd__ft.html#a0dcb26bcb1ab262b2959a298555270be">cr8r_kd_ft::dim</a></div><div class="ttdeci">uint64_t dim</div><div class="ttdoc">Dimension of the kd tree.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00053">kd_tree.h:53</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_ae837168a16d777c5c9a66033512f7a2a"><div class="ttname"><a href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">cr8r_kd_walk</a></div><div class="ttdeci">void cr8r_kd_walk(cr8r_vec *, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvisitor visitor, void *data)</div><div class="ttdoc">Perform a preorder traversal of the points in a kd tree and call a visitor callback on each.</div></div>
+<div class="ttc" id="astructcr8r__kdwin__s2i64_html"><div class="ttname"><a href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a></div><div class="ttdoc">Concrete bounds object for spherical and cuboid kd trees with 3 i64 coords.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00087">kd_tree.h:87</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_afa2695e4484d4e4527dc2a489cce2a86"><div class="ttname"><a href="kd__tree_8h.html#afa2695e4484d4e4527dc2a489cce2a86">cr8r_kdwin_bounding_i64x3</a></div><div class="ttdeci">bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *, const cr8r_vec *ents, const cr8r_kd_ft *ft)</div><div class="ttdoc">Initialize a i64x3 bounds object with the &quot;bottom left&quot; and &quot;top right&quot; points bounding a list of poi...</div></div>
+<div class="ttc" id="acontainer_8h_html_a6970e065db27984cca427f6b1df64df2"><div class="ttname"><a href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a></div><div class="ttdeci">cr8r_walk_decision</div><div class="ttdoc">Enum to allow a callee/visitor to control the behavior of a tree traversal.</div><div class="ttdef"><b>Definition:</b> <a href="container_8h_source.html#l00032">container.h:32</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_a61926b4ca12f0e8b867db398248b3ecf"><div class="ttname"><a href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a></div><div class="ttdeci">cr8r_walk_decision(* cr8r_kdvisitor)(cr8r_kd_ft *ft, const void *win, void *ent, void *data)</div><div class="ttdoc">Type of a visitor callback for a kd tree traversal.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00103">kd_tree.h:103</a></div></div>
 <div class="ttc" id="acontainer_8h_html"><div class="ttname"><a href="container_8h.html">container.h</a></div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_a0e944644c8ed86a929fb0dc82e9b4a68"><div class="ttname"><a href="struct__cr8r__kd__ft.html#a0e944644c8ed86a929fb0dc82e9b4a68">_cr8r_kd_ft::super</a></div><div class="ttdeci">cr8r_vec_ft super</div><div class="ttdoc">Subtable for vector ft.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00041">kd_tree.h:41</a></div></div>
 <div class="ttc" id="akd__tree_8h_html_a92773a4739b7eeb2a548f46ffd64d447"><div class="ttname"><a href="kd__tree_8h.html#a92773a4739b7eeb2a548f46ffd64d447">cr8r_kdft_c3i64</a></div><div class="ttdeci">cr8r_kd_ft cr8r_kdft_c3i64</div><div class="ttdoc">kdft implementation for cuboid kd trees in 3 dimensions with i64 coordintates</div></div>
-<div class="ttc" id="akd__tree_8h_html_a022865a7acb04f866647ccf915e7f0e8"><div class="ttname"><a href="kd__tree_8h.html#a022865a7acb04f866647ccf915e7f0e8">cr8r_kdwin_bounding_i64x3</a></div><div class="ttdeci">bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, const cr8r_kd_ft *ft)</div><div class="ttdoc">Initialize a i64x3 bounds object with the &quot;bottom left&quot; and &quot;top right&quot; points bounding a list of poi...</div></div>
-<div class="ttc" id="akd__tree_8h_html_a5ab6b881327e315e753fe6f66576a339"><div class="ttname"><a href="kd__tree_8h.html#a5ab6b881327e315e753fe6f66576a339">cr8r_kdwin_init_c3i64</a></div><div class="ttdeci">bool cr8r_kdwin_init_c3i64(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3])</div><div class="ttdoc">Initialize a i64x3 bounds object with a given &quot;bottom left&quot; and &quot;top right&quot; point.</div></div>
-<div class="ttc" id="astructcr8r__vec__ft_html"><div class="ttname"><a href="structcr8r__vec__ft.html">cr8r_vec_ft</a></div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00040">vec.h:40</a></div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_abb02d5c80cd7b263f15aaa771848a78d"><div class="ttname"><a href="struct__cr8r__kd__ft.html#abb02d5c80cd7b263f15aaa771848a78d">_cr8r_kd_ft::bounds_size</a></div><div class="ttdeci">size_t bounds_size</div><div class="ttdoc">Size of a bounds object.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00062">kd_tree.h:62</a></div></div>
-<div class="ttc" id="astructcr8r__vec_html"><div class="ttname"><a href="structcr8r__vec.html">cr8r_vec</a></div><div class="ttdoc">A vector Take care if manipulating these fields directly, this should only be done if the functions i...</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00024">vec.h:24</a></div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a6db4e755e548fd8f02fb91e48d22c9b0"><div class="ttname"><a href="structcr8r__kd__ft.html#a6db4e755e548fd8f02fb91e48d22c9b0">cr8r_kd_ft::super</a></div><div class="ttdeci">cr8r_vec_ft super</div><div class="ttdoc">Subtable for vector ft.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00040">kd_tree.h:40</a></div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a1da9d7bb09bbac438a0a496177d48f8e"><div class="ttname"><a href="structcr8r__kd__ft.html#a1da9d7bb09bbac438a0a496177d48f8e">cr8r_kd_ft::bounds_size</a></div><div class="ttdeci">size_t bounds_size</div><div class="ttdoc">Size of a bounds object.</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00061">kd_tree.h:61</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_a4c3fad9f55231b7bf3a1a81b262e808f"><div class="ttname"><a href="kd__tree_8h.html#a4c3fad9f55231b7bf3a1a81b262e808f">cr8r_kd_ify</a></div><div class="ttdeci">bool cr8r_kd_ify(cr8r_vec *, cr8r_kd_ft *ft, uint64_t a, uint64_t b)</div><div class="ttdoc">Rearrange a vector of points into a kd tree.</div></div>
+<div class="ttc" id="akd__tree_8h_html_a834c7f32aef9fcd279e1a3f7f27b33c3"><div class="ttname"><a href="kd__tree_8h.html#a834c7f32aef9fcd279e1a3f7f27b33c3">cr8r_kdwin_init_s2i64</a></div><div class="ttdeci">bool cr8r_kdwin_init_s2i64(cr8r_kdwin_s2i64 *, const int64_t bl[3], const int64_t tr[3])</div><div class="ttdoc">Initialize a i64x3 bounds object with a given &quot;bottom left&quot; and &quot;top right&quot; point.</div></div>
+<div class="ttc" id="astructcr8r__vec__ft_html"><div class="ttname"><a href="structcr8r__vec__ft.html">cr8r_vec_ft</a></div><div class="ttdoc">Function table for vector.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00039">vec.h:39</a></div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a8c5b2c833534b782c7e483948c308d53"><div class="ttname"><a href="structcr8r__kd__ft.html#a8c5b2c833534b782c7e483948c308d53">cr8r_kd_ft::min_sqdist</a></div><div class="ttdeci">double(* min_sqdist)(const cr8r_kd_ft *ft, const void *self, const void *pt)</div><div class="ttdoc">find the minimum squared distance from a bounds object to a point</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00073">kd_tree.h:73</a></div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a9d238243b4b0a9979234569a874092f2"><div class="ttname"><a href="structcr8r__kd__ft.html#a9d238243b4b0a9979234569a874092f2">cr8r_kd_ft::update</a></div><div class="ttdeci">void(* update)(const cr8r_kd_ft *ft, void *self, const void *pt)</div><div class="ttdoc">update a bounds object to include some point</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00071">kd_tree.h:71</a></div></div>
+<div class="ttc" id="astructcr8r__vec_html"><div class="ttname"><a href="structcr8r__vec.html">cr8r_vec</a></div><div class="ttdoc">A vector Take care if manipulating these fields directly, this should only be done if the functions i...</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00023">vec.h:23</a></div></div>
 <div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_a15696fa150d8ce1ee0adf440340c2f4e"><div class="ttname"><a href="struct__cr8r__kd__ft.html#a15696fa150d8ce1ee0adf440340c2f4e">_cr8r_kd_ft::sqdist</a></div><div class="ttdeci">double(* sqdist)(const cr8r_kd_ft *ft, const void *a, const void *b)</div><div class="ttdoc">find the squared distance between two points</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00076">kd_tree.h:76</a></div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_a126e5f79c43522b468a6d71658cf27f6"><div class="ttname"><a href="struct__cr8r__kd__ft.html#a126e5f79c43522b468a6d71658cf27f6">_cr8r_kd_ft::update</a></div><div class="ttdeci">void(* update)(const cr8r_kd_ft *ft, void *self, const void *pt)</div><div class="ttdoc">update a bounds object to include some point</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00072">kd_tree.h:72</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_a88bc89263184b3678bd9b1c7c9d1d38f"><div class="ttname"><a href="kd__tree_8h.html#a88bc89263184b3678bd9b1c7c9d1d38f">cr8r_kd_ify</a></div><div class="ttdeci">bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b)</div><div class="ttdoc">Rearrange a vector of points into a kd tree.</div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_aa79d11787e2217b4bc56207e6b9410d1"><div class="ttname"><a href="struct__cr8r__kd__ft.html#aa79d11787e2217b4bc56207e6b9410d1">_cr8r_kd_ft::split</a></div><div class="ttdeci">void(* split)(const cr8r_kd_ft *ft, const void *self, const void *root_pt, void *o1, void *o2)</div><div class="ttdoc">split a bounds object in two along some dimension</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00067">kd_tree.h:67</a></div></div>
-<div class="ttc" id="akd__tree_8h_html_a36ae4ae628fc049c87b760c656bc5f30"><div class="ttname"><a href="kd__tree_8h.html#a36ae4ae628fc049c87b760c656bc5f30">cr8r_kd_walk</a></div><div class="ttdeci">void cr8r_kd_walk(cr8r_vec *self, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvisitor visitor, void *data)</div><div class="ttdoc">Perform a preorder traversal of the points in a kd tree and call a visitor callback on each.</div></div>
+<div class="ttc" id="astructcr8r__kd__ft_html_a1a6419bedbf463879a182294396139e3"><div class="ttname"><a href="structcr8r__kd__ft.html#a1a6419bedbf463879a182294396139e3">cr8r_kd_ft::sqdist</a></div><div class="ttdeci">double(* sqdist)(const cr8r_kd_ft *ft, const void *a, const void *b)</div><div class="ttdoc">find the squared distance between two points</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00075">kd_tree.h:75</a></div></div>
+<div class="ttc" id="akd__tree_8h_html_a724b67ccea7d3f84698da373751e098b"><div class="ttname"><a href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a></div><div class="ttdeci">void cr8r_kd_k_closest(cr8r_vec *, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out)</div><div class="ttdoc">Find the k closest points to a given point.</div></div>
 <div class="ttc" id="akd__tree_8h_html_a6907c4ff552244e7fb007585406e6bc5"><div class="ttname"><a href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a></div><div class="ttdeci">cr8r_kd_ft cr8r_kdft_s2i64</div><div class="ttdoc">kdft implementation for spherical kd trees in 3 dimensions with i64 coordinates</div></div>
-<div class="ttc" id="astruct__cr8r__kd__ft_html_ab61c39e95b80399602051380cd4daaa2"><div class="ttname"><a href="struct__cr8r__kd__ft.html#ab61c39e95b80399602051380cd4daaa2">_cr8r_kd_ft::min_sqdist</a></div><div class="ttdeci">double(* min_sqdist)(const cr8r_kd_ft *ft, const void *self, const void *pt)</div><div class="ttdoc">find the minimum squared distance from a bounds object to a point</div><div class="ttdef"><b>Definition:</b> <a href="kd__tree_8h_source.html#l00074">kd_tree.h:74</a></div></div>
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="kd__tree_8h.html">kd_tree.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

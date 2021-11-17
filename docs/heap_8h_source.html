@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: include/crater/heap.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -46,6 +69,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('heap_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +100,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">heap.h</div>  </div>
@@ -72,39 +107,42 @@ $(function() {
 <div class="contents">
 <a href="heap_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">crater/vec.h</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#a669f48203ad1935baf22ecac0a0a35f9">cr8r_heap_ify</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">int</span> ord);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="heap_8h.html#a24f7020b0cd47d088a2406b3208ff564">cr8r_heap_top</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#a68d654fd0fc5ad67e53820e26e3f4fe0">cr8r_heap_sift_up</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#af63adc3e5ea5dc2c9f4d901f022514ba">cr8r_heap_sift_down</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="heap_8h.html#af15c7d0fc04f2a5fa021819554f01b91">cr8r_heap_push</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keyword">const</span> <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="heap_8h.html#a3d223095bcb771a091f94bbf525dc2d9">cr8r_heap_pop</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *o, <span class="keywordtype">int</span> ord);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vec_8h.html">crater/vec.h</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#a669f48203ad1935baf22ecac0a0a35f9">cr8r_heap_ify</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">int</span> ord);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="heap_8h.html#a24f7020b0cd47d088a2406b3208ff564">cr8r_heap_top</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#a68d654fd0fc5ad67e53820e26e3f4fe0">cr8r_heap_sift_up</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="heap_8h.html#af63adc3e5ea5dc2c9f4d901f022514ba">cr8r_heap_sift_down</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="heap_8h.html#af15c7d0fc04f2a5fa021819554f01b91">cr8r_heap_push</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keyword">const</span> <span class="keywordtype">void</span> *e, <span class="keywordtype">int</span> ord);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="heap_8h.html#a3d223095bcb771a091f94bbf525dc2d9">cr8r_heap_pop</a>(<a class="code" href="structcr8r__vec.html">cr8r_vec</a>*, <a class="code" href="structcr8r__vec__ft.html">cr8r_vec_ft</a>*, <span class="keywordtype">void</span> *o, <span class="keywordtype">int</span> ord);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <div class="ttc" id="aheap_8h_html_af63adc3e5ea5dc2c9f4d901f022514ba"><div class="ttname"><a href="heap_8h.html#af63adc3e5ea5dc2c9f4d901f022514ba">cr8r_heap_sift_down</a></div><div class="ttdeci">void cr8r_heap_sift_down(cr8r_vec *, cr8r_vec_ft *, void *e, int ord)</div><div class="ttdoc">Move an element down the heap as necessary to restore the heap invariant.</div></div>
 <div class="ttc" id="aheap_8h_html_a24f7020b0cd47d088a2406b3208ff564"><div class="ttname"><a href="heap_8h.html#a24f7020b0cd47d088a2406b3208ff564">cr8r_heap_top</a></div><div class="ttdeci">void * cr8r_heap_top(cr8r_vec *, cr8r_vec_ft *)</div><div class="ttdoc">Get the top (typically max) element of a heap.</div></div>
 <div class="ttc" id="aheap_8h_html_af15c7d0fc04f2a5fa021819554f01b91"><div class="ttname"><a href="heap_8h.html#af15c7d0fc04f2a5fa021819554f01b91">cr8r_heap_push</a></div><div class="ttdeci">bool cr8r_heap_push(cr8r_vec *, cr8r_vec_ft *, const void *e, int ord)</div><div class="ttdoc">Add a new element to the heap.</div></div>
 <div class="ttc" id="aheap_8h_html_a669f48203ad1935baf22ecac0a0a35f9"><div class="ttname"><a href="heap_8h.html#a669f48203ad1935baf22ecac0a0a35f9">cr8r_heap_ify</a></div><div class="ttdeci">void cr8r_heap_ify(cr8r_vec *, cr8r_vec_ft *, int ord)</div><div class="ttdoc">Turn a vector into a heap in place in linear time.</div></div>
 <div class="ttc" id="aheap_8h_html_a68d654fd0fc5ad67e53820e26e3f4fe0"><div class="ttname"><a href="heap_8h.html#a68d654fd0fc5ad67e53820e26e3f4fe0">cr8r_heap_sift_up</a></div><div class="ttdeci">void cr8r_heap_sift_up(cr8r_vec *, cr8r_vec_ft *, void *e, int ord)</div><div class="ttdoc">Move an element up the heap as necessary to restore the heap invariant.</div></div>
 <div class="ttc" id="aheap_8h_html_a3d223095bcb771a091f94bbf525dc2d9"><div class="ttname"><a href="heap_8h.html#a3d223095bcb771a091f94bbf525dc2d9">cr8r_heap_pop</a></div><div class="ttdeci">bool cr8r_heap_pop(cr8r_vec *, cr8r_vec_ft *, void *o, int ord)</div><div class="ttdoc">Remove the top (typically max) element from the heap (has no relevant ordering guarantee)</div></div>
-<div class="ttc" id="astructcr8r__vec__ft_html"><div class="ttname"><a href="structcr8r__vec__ft.html">cr8r_vec_ft</a></div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00040">vec.h:40</a></div></div>
-<div class="ttc" id="astructcr8r__vec_html"><div class="ttname"><a href="structcr8r__vec.html">cr8r_vec</a></div><div class="ttdoc">A vector Take care if manipulating these fields directly, this should only be done if the functions i...</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00024">vec.h:24</a></div></div>
+<div class="ttc" id="astructcr8r__vec__ft_html"><div class="ttname"><a href="structcr8r__vec__ft.html">cr8r_vec_ft</a></div><div class="ttdoc">Function table for vector.</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00039">vec.h:39</a></div></div>
+<div class="ttc" id="astructcr8r__vec_html"><div class="ttname"><a href="structcr8r__vec.html">cr8r_vec</a></div><div class="ttdoc">A vector Take care if manipulating these fields directly, this should only be done if the functions i...</div><div class="ttdef"><b>Definition:</b> <a href="vec_8h_source.html#l00023">vec.h:23</a></div></div>
 <div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div></div>
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="heap_8h.html">heap.h</a></li>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,18 +1,25 @@
+<!-- HTML header for doxygen 1.9.2-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Crater Container Library: Data Fields</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen_awesome_sidebar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,11 +28,27 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Crater Container Library
-   &#160;<span id="projectnumber">0.2.0</span>
+   <div id="projectname"><a href="/index.html">Crater Container Library</a><span id="projectnumber">&#160;0.2.0</span>
    </div>
   </td>
  </tr>
+   <!--BEGIN FULL_SIDEBAR-->
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td></tr>
+   <!--END FULL_SIDEBAR-->
  </tbody>
 </table>
 </div>
@@ -47,6 +70,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -72,6 +111,7 @@ $(function() {
 <li>alloc
 : <a class="el" href="structcr8r__avl__ft.html#a82c1a14d6c1559102309448083256dc2">cr8r_avl_ft</a>
 , <a class="el" href="structcr8r__cll__ft.html#a5afe1fad2cfe88ef66c39715a972ef70">cr8r_cll_ft</a>
+, <a class="el" href="structcr8r__pheap__ft.html#ad9c4cb12a09c6b7030f5629354b5a95d">cr8r_pheap_ft</a>
 </li>
 <li>arg_mode
 : <a class="el" href="structcr8r__opt.html#aeaf3d08a263c12307fd424c35b61e174">cr8r_opt</a>
@@ -83,11 +123,18 @@ $(function() {
 <li>balance
 : <a class="el" href="structcr8r__avl__node.html#afff74cbadce365a9ee5c4d153a4fcc28">cr8r_avl_node</a>
 </li>
+<li>base
+: <a class="el" href="structcr8r__avl__ft.html#a68c172321e58b5642afc1b69dd28e2b2">cr8r_avl_ft</a>
+, <a class="el" href="structcr8r__cll__ft.html#af5a601ef448f69573effd451fd6615b2">cr8r_cll_ft</a>
+, <a class="el" href="structcr8r__hashtbl__ft.html#a960117cfc4c43296a2de0c3cc3b456a7">cr8r_hashtbl_ft</a>
+, <a class="el" href="structcr8r__pheap__ft.html#a956f7a6bebab32d47fdacf84e665d169">cr8r_pheap_ft</a>
+, <a class="el" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">cr8r_vec_ft</a>
+</li>
 <li>bl
 : <a class="el" href="structcr8r__kdwin__s2i64.html#a585034435ad775f93b32b54c426e65f5">cr8r_kdwin_s2i64</a>
 </li>
 <li>bounds_size
-: <a class="el" href="struct__cr8r__kd__ft.html#abb02d5c80cd7b263f15aaa771848a78d">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a1da9d7bb09bbac438a0a496177d48f8e">cr8r_kd_ft</a>
 </li>
 <li>buf
 : <a class="el" href="structcr8r__vec.html#aab4ce505eb98f6b52fd486c4ea1068e4">cr8r_vec</a>
@@ -104,6 +151,7 @@ $(function() {
 : <a class="el" href="structcr8r__avl__ft.html#a5b1e55a0806a5f40814332ca7304b9f6">cr8r_avl_ft</a>
 , <a class="el" href="structcr8r__cll__ft.html#a8b4ec46a8705f2f0be82aad1fb76e5ca">cr8r_cll_ft</a>
 , <a class="el" href="structcr8r__hashtbl__ft.html#ab1b260aacf147084da525996fc132fc6">cr8r_hashtbl_ft</a>
+, <a class="el" href="structcr8r__pheap__ft.html#aab3110a57c8489d597ce2bc3764273b5">cr8r_pheap_ft</a>
 , <a class="el" href="structcr8r__vec__ft.html#a7078d0ff1015a5f4544dc838d5b87ad3">cr8r_vec_ft</a>
 </li>
 <li>copy
@@ -132,7 +180,7 @@ $(function() {
 : <a class="el" href="structcr8r__opt.html#ac6b7c79343c83b25ee7d8416ea154a05">cr8r_opt</a>
 </li>
 <li>dim
-: <a class="el" href="struct__cr8r__kd__ft.html#a155253fb3815f6b3962f0f2a0f8d3f0b">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a0dcb26bcb1ab262b2959a298555270be">cr8r_kd_ft</a>
 </li>
 </ul>
 
@@ -145,6 +193,9 @@ $(function() {
 
 
 <h3><a id="index_f"></a>- f -</h3><ul>
+<li>first_child
+: <a class="el" href="structcr8r__pheap__node.html#a45fda3e6b79fed7bc5e9ef352597c143">cr8r_pheap_node</a>
+</li>
 <li>first_elem
 : <a class="el" href="structcr8r__sla.html#ac48959875d6d0fe51339a62c1a2cd710">cr8r_sla</a>
 </li>
@@ -165,6 +216,7 @@ $(function() {
 </li>
 <li>free
 : <a class="el" href="structcr8r__avl__ft.html#aeea986bd61f8ff72d5fe6aa9bb155609">cr8r_avl_ft</a>
+, <a class="el" href="structcr8r__pheap__ft.html#a0977a71ccb18f0fba82c781dcda15dee">cr8r_pheap_ft</a>
 </li>
 <li>full
 : <a class="el" href="structcr8r__hashtbl__t.html#a98fb4fcbad40b368a2f408f07fdbcf4a">cr8r_hashtbl_t</a>
@@ -217,12 +269,15 @@ $(function() {
 
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>min_sqdist
-: <a class="el" href="struct__cr8r__kd__ft.html#ab61c39e95b80399602051380cd4daaa2">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a8c5b2c833534b782c7e483948c308d53">cr8r_kd_ft</a>
 </li>
 </ul>
 
 
 <h3><a id="index_n"></a>- n -</h3><ul>
+<li>n
+: <a class="el" href="structcr8r__htent__cstr__u64.html#aa0426808c483f96e219ea2e730665eb2">cr8r_htent_cstr_u64</a>
+</li>
 <li>new_size
 : <a class="el" href="structcr8r__vec__ft.html#a95f3042b004cf315587de44332e445b8">cr8r_vec_ft</a>
 </li>
@@ -245,6 +300,14 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_p"></a>- p -</h3><ul>
+<li>parent
+: <a class="el" href="structcr8r__avl__node.html#a0a9e14d8a1baa9f18a791355a3236943">cr8r_avl_node</a>
+, <a class="el" href="structcr8r__pheap__node.html#a0078e92c487dd4db7afdba2dc93b8161">cr8r_pheap_node</a>
+</li>
+</ul>
+
+
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>r
 : <a class="el" href="structcr8r__hashtbl__t.html#af089d4c4b4cfb769da219b8f14a6fef3">cr8r_hashtbl_t</a>
@@ -252,12 +315,18 @@ $(function() {
 <li>resize
 : <a class="el" href="structcr8r__vec__ft.html#aba1882e8cec26b4cd269b24309160030">cr8r_vec_ft</a>
 </li>
+<li>right
+: <a class="el" href="structcr8r__avl__node.html#a598939ac4cb02e1b1db3d63c3c870715">cr8r_avl_node</a>
+</li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>short_name
 : <a class="el" href="structcr8r__opt.html#a8b50bc7b5ebec12e08570d092995b3b4">cr8r_opt</a>
+</li>
+<li>sibling
+: <a class="el" href="structcr8r__pheap__node.html#af22eeae526c3964cb330797192becc89">cr8r_pheap_node</a>
 </li>
 <li>size
 : <a class="el" href="structcr8r__base__ft.html#a64fa33f1fd759dc06c45d121025e84fc">cr8r_base_ft</a>
@@ -272,10 +341,10 @@ $(function() {
 : <a class="el" href="structcr8r__sla.html#a203d0c2393f373beae2e04edceebeb30">cr8r_sla</a>
 </li>
 <li>split
-: <a class="el" href="struct__cr8r__kd__ft.html#aa79d11787e2217b4bc56207e6b9410d1">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a20d5b683b5e59f727b4b91d6707c5db9">cr8r_kd_ft</a>
 </li>
 <li>sqdist
-: <a class="el" href="struct__cr8r__kd__ft.html#a15696fa150d8ce1ee0adf440340c2f4e">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a1a6419bedbf463879a182294396139e3">cr8r_kd_ft</a>
 </li>
 <li>state
 : <a class="el" href="structcr8r__prng.html#a879ecc91f97101db0b83bf04ca795c3e">cr8r_prng</a>
@@ -283,8 +352,11 @@ $(function() {
 <li>state_size
 : <a class="el" href="structcr8r__prng.html#a29af229501a36e0e32158d294b16af12">cr8r_prng</a>
 </li>
+<li>str
+: <a class="el" href="structcr8r__htent__cstr__u64.html#ad94c99620af32f255af28ec6484c38ed">cr8r_htent_cstr_u64</a>
+</li>
 <li>super
-: <a class="el" href="struct__cr8r__kd__ft.html#a0e944644c8ed86a929fb0dc82e9b4a68">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a6db4e755e548fd8f02fb91e48d22c9b0">cr8r_kd_ft</a>
 </li>
 <li>swap
 : <a class="el" href="structcr8r__vec__ft.html#a43b98e78bbff21525b20bc8d4a257afc">cr8r_vec_ft</a>
@@ -307,15 +379,17 @@ $(function() {
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>update
-: <a class="el" href="struct__cr8r__kd__ft.html#a126e5f79c43522b468a6d71658cf27f6">_cr8r_kd_ft</a>
+: <a class="el" href="structcr8r__kd__ft.html#a9d238243b4b0a9979234569a874092f2">cr8r_kd_ft</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.2-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Wed Nov 17 2021 05:19:35 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>
