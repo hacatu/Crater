@@ -1,4 +1,5 @@
 #define _POSIX_C_SOURCE 200809L
+#include "crater/container.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,6 +59,11 @@ static int cmp_edges(const cr8r_base_ft *ft, const void *_a, const void *_b){
 	return 0;
 }
 
+static void del_way(cr8r_base_ft *ft, void *_a){
+	way_data *a = _a;
+	free((void*)a->name);
+}
+
 static cr8r_hashtbl_ft edge_ft = {
 	.base.size=sizeof(street_edge),
 	.hash=hash_edge,
@@ -76,6 +82,7 @@ static cr8r_hashtbl_ft way_ft = {
 	.base.size=sizeof(way_data),
 	.hash=cr8r_default_hash_u64,
 	.cmp=cr8r_default_cmp_u64,
+	.del=del_way,
 	.load_factor=.7
 };
 
@@ -137,7 +144,11 @@ static bool read_file(const char *path, graph *out){
 				continue;
 			}
 			way_data data = {.id=edge.way, .name=strdup(cols[5])};
-			cr8r_hash_insert(&out->edges, &way_ft, &data, NULL);
+			int status;
+			cr8r_hash_insert(&out->ways, &way_ft, &data, &status);
+			if(status != 1){
+				free((void*)data.name);
+			}
 		}else if(!strcmp(cols[0], "node")){
 			street_node node = {
 				.id=strtoull(cols[1], NULL, 10),
@@ -160,19 +171,27 @@ static bool read_file(const char *path, graph *out){
 		v->out = cr8r_sla_alloc(&neighbor_sla);
 		*v->out = (street_neighbor){.id=it->u, neighbor};
 	}
+	fclose(f);
+	free(line);
 	return true;
 }
 
-int main(){
+int main(int argc, char **argv){
+	if(argc != 2){
+		fprintf(stderr, "\e[1;31mPlease specify the file to read!\e[0m\n");
+		exit(EXIT_FAILURE);
+	}
 	graph graph = {.start_id=104314819, .target_id=104304705};
 	node_pqft.base.data = &graph.nodes;
-	read_file("resources/rutgers_roads.csv", &graph);
+	read_file(argv[1], &graph);
 	street_node *start = cr8r_hash_get(&graph.nodes, &node_ft, &(street_node){.id=graph.start_id});
 	graph.frontier = CR8R_INNER_S(start, &node_pqft);
 	start->dist = 0;
 	start->visited = true;
 	street_node *curr;
-	while((curr = CR8R_OUTER_S(cr8r_pheap_pop(&graph.frontier, &node_pqft), &node_pqft))){
+	void *tmp;
+	while((tmp = cr8r_pheap_pop(&graph.frontier, &node_pqft))){
+		curr = CR8R_OUTER_S(tmp, &node_pqft);
 		if(curr->id == graph.target_id){
 			break;
 		}
@@ -195,7 +214,7 @@ int main(){
 			}
 		}
 	}
-	printf("Computed distance from College Farm Road to Allison Road: %f\n", curr->dist);
+	printf("Computed distance from College Farm Road to Allison Road: %f m\n", curr->dist);
 	cr8r_sla_delete(&neighbor_sla);
 	cr8r_hash_destroy(&graph.edges, &edge_ft);
 	cr8r_hash_destroy(&graph.nodes, &node_ft);

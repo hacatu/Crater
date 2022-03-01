@@ -55,9 +55,9 @@ def geodist(lat1, lon1, lat2, lon2):
 	a = 6378137.0 # semimajor axis of earth
 	b = 6356752.314245 # semiminor axis of earth
 	f = 1 - b/a # "flattening" parameter of earth
-	u1 = math.atan((1-f)*lat1) # "reduced latitude" of 1st point
-	u2 = math.atan((1-f)*lat2) # "reduced latitude" of 2nd point
-	L = lon2 - lon1
+	u1 = math.atan((1-f)*math.tan(lat1/180*math.pi)) # "reduced latitude" of 1st point
+	u2 = math.atan((1-f)*math.tan(lat2/180*math.pi)) # "reduced latitude" of 2nd point
+	L = (lon2 - lon1)/180*math.pi
 	# sin and cos of u1 and u2
 	su1 = math.sin(u1)
 	cu1 = math.cos(u1)
@@ -69,6 +69,8 @@ def geodist(lat1, lon1, lat2, lon2):
 		sl = math.sin(l)
 		cl = math.cos(l)
 		ss = math.hypot(cu2*sl, cu1*su2 - su1*cu2*cl)
+		if ss < 1e-10:
+			return 0
 		cs = su1*su2 + cu1*cu2*cl
 		s = math.atan2(ss, cs) # sigma, the angle between the points on ref. sphere
 		sa = cu1*cu2*sl/ss # sin of alpha, the angle between the extended geodesic and the equator

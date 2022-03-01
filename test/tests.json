@@ -71,6 +71,18 @@
 	},
 	"digit_factorial_sum": {
 		"no_red_tests": [[]]
+	},
+	"vec_qselect": {
+		"no_red_tests": [[]]
+	},
+	"minmax_heap": {
+		"no_red_tests": [[]]
+	},
+	"streetmap": {
+		"no_red_tests": [["../../resources/rutgers_roads.csv"]]
+	},
+	"pointcloud": {
+		"no_red_tests": [[]]
 	}
 }
 

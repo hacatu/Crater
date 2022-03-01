@@ -101,7 +101,7 @@ static void update_i64sp(const cr8r_kd_ft *_ft, void *_self, const void *_pt){
 		ft.super.base.data = (void*)i;
 		if(ft.super.cmp(&ft.super.base, pt, self->bl) < 0){
 			self->bl[2 + i] = pt[2 + i];
-		}else if(ft.super.cmp(&ft.super.base, pt, self->tr) < 0){
+		}else if(ft.super.cmp(&ft.super.base, pt, self->tr) > 0){
 			self->tr[2 + i] = pt[2 + i];
 		}
 	}
@@ -205,7 +205,7 @@ static void update_i64cu(const cr8r_kd_ft *_ft, void *_self, const void *_pt){
 		ft.super.base.data = (void*)i;
 		if(ft.super.cmp(&ft.super.base, pt, self->bl) < 0){
 			self->bl[i] = pt[i];
-		}else if(ft.super.cmp(&ft.super.base, pt, self->tr) < 0){
+		}else if(ft.super.cmp(&ft.super.base, pt, self->tr) > 0){
 			self->tr[i] = pt[i];
 		}
 	}
@@ -257,33 +257,6 @@ bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, con
 	for(uint64_t i = 1; i < ents->len; ++i){
 		const void *ent = ents->buf + i*ft->super.base.size;
 		ft->update(ft, self, ent);
-	}
-	return true;
-}
-
-inline static bool cr8r_kd_check_tree(const cr8r_vec *self, const cr8r_kd_ft *_ft, uint64_t a, uint64_t b){
-	cr8r_kd_ft ft = *_ft;
-	while(b > a){
-		uint64_t mid_idx = (a + b)/2;
-		const void *mid = self->buf + mid_idx*ft.super.base.size;
-		for(uint64_t i = a; i < mid_idx; ++i){
-			const void *ent = self->buf + i*ft.super.base.size;
-			if(ft.super.cmp(&ft.super.base, ent, mid) > 0){
-				return false;
-			}
-		}
-		for(uint64_t i = mid_idx + 1; i < b; ++i){
-			const void *ent = self->buf + i*ft.super.base.size;
-			if(ft.super.cmp(&_ft->super.base, ent, mid) < 0){
-				return false;
-			}
-		}
-		// increment depth
-		++*(uint64_t*)&ft.super.base.data;
-		if(!cr8r_kd_check_tree(self, &ft, mid_idx + 1, b)){
-			return false;
-		}
-		b = mid_idx;
 	}
 	return true;
 }
