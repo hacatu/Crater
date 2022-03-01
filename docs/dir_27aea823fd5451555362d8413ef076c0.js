@@ -7,6 +7,7 @@ var dir_27aea823fd5451555362d8413ef076c0 =
     [ "hash.h", "hash_8h.html", "hash_8h" ],
     [ "heap.h", "heap_8h.html", "heap_8h" ],
     [ "iter.h", "iter_8h.html", "iter_8h" ],
+    [ "kd_check.h", "kd__check_8h_source.html", null ],
     [ "kd_tree.h", "kd__tree_8h.html", "kd__tree_8h" ],
     [ "minmax_heap.h", "minmax__heap_8h.html", "minmax__heap_8h" ],
     [ "opts.h", "opts_8h.html", "opts_8h" ],

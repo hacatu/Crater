@@ -128,13 +128,26 @@ Features</h2>
 <li>Use incremental resizing (have two tables internally while resizing and amortize moving entries over insert/remove operations). Entries are stored directly in the hash table using quadratic probing on collisions.</li>
 </ul>
 </li>
-<li>Vectors (/heaps)<ul>
+<li>Vectors (/ heaps + minmax heaps)<ul>
 <li>Self resizing array with standard constant time operations</li>
 <li>Allocator and growth rate are configurable (can specify function to compute new size)</li>
 <li>Include pushl/popl (linear time left access) and <code>O(nlog(n))</code> sorting (using heapsort)</li>
 <li>Support using vectors as heaps (min and max with configurable comparison function, implemented as an implicit binary heap)</li>
+<li>Support using vectors as minmax heaps, where both minimum and maximum elements can be extracted in constant time, without sacrificing asymptotic performance compared to a simple min or max heap.</li>
 <li>Include operations for sorted vectors (find element index in sorted list, etc)</li>
-<li>Support finding ith element without sorting in linear time with quickselect, partitioning, etc. Implicit, immutable KD trees can be implemented on top of this, but inserting/removing elements is much, much more complicated than implicitly stored heaps so it isn't supported without rebuilding the KD tree.</li>
+<li>Support finding ith element without sorting in linear time with quickselect, partitioning, etc.</li>
+</ul>
+</li>
+<li>KD Trees (built on top of vectors)<ul>
+<li>Good for dealing with spatially organized data</li>
+<li><code>O(n)</code> time to organize data into a KD tree</li>
+<li><code>O(klog(k)log(n))</code> time to find the nearest <code>k</code> points, assuming uniform distribution</li>
+<li><code>O(Vlog(n))</code> time to find all points in a region with volume <code>V</code>, assuming uniform distribution</li>
+<li>Note that building and especially searching depends exponentially on the number of dimensions <code>d</code>, so KD trees fall off hard if the number of dimensions is high</li>
+<li>The current implementation does not allow adding points. If points must be added, the tree must be rebuilt.</li>
+<li>"Default" function tables are provided for "cuboid" kd trees of <code>int64_t</code>s 3D and "spherical" in 3D.</li>
+<li>These tables can be adapted to any number of dimensions and to handle trees where points have metadata.</li>
+<li>Spherical kd trees treat all but 2 dimensions normally, but the last 2 are combined into a direction. So for an actual sphere, points are compared based on angle around the central axis, with distance from the central axis completely ignored.</li>
 </ul>
 </li>
 <li>Pairing heaps (intrusive)<ul>
@@ -404,7 +417,7 @@ Test All Insert/Remove Sequences for size 7 AVL Trees</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Nov 17 2021 05:35:06 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+    <li class="footer">Generated on Tue Mar 1 2022 23:03:58 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
   </ul>
 </div>
 </body>
