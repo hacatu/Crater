@@ -23,17 +23,26 @@ All containers can be parameterized by specifying callback functions in a "funct
 	- Inserting an entry with the same key as an existing entry can optionally update the existing value (eg by adding them)
 	- Use incremental resizing (have two tables internally while resizing and amortize moving entries over
 	 insert/remove operations).  Entries are stored directly in the hash table using quadratic probing on collisions.
-- Vectors (/heaps)
+- Vectors (/ heaps + minmax heaps)
 	- Self resizing array with standard constant time operations
 	- Allocator and growth rate are configurable (can specify function to compute new size)
 	- Include pushl/popl (linear time left access) and `O(nlog(n))` sorting (using heapsort)
 	- Support using vectors as heaps (min and max with configurable comparison function,
 	 implemented as an implicit binary heap)
+	- Support using vectors as minmax heaps, where both minimum and maximum elements can be extracted in
+	 constant time, without sacrificing asymptotic performance compared to a simple min or max heap.
 	- Include operations for sorted vectors (find element index in sorted list, etc)
 	- Support finding ith element without sorting in linear time with quickselect, partitioning, etc.
-	 Implicit, immutable KD trees can be implemented on top of this, but inserting/removing elements
-	 is much, much more complicated than implicitly stored heaps so it isn't supported without rebuilding
-	 the KD tree.
+- KD Trees (built on top of vectors)
+	- Good for dealing with spatially organized data
+	- `O(n)` time to organize data into a KD tree
+	- `O(klog(k)log(n))` time to find the nearest `k` points, assuming uniform distribution
+	- `O(Vlog(n))` time to find all points in a region with volume `V`, assuming uniform distribution
+	- Note that building and especially searching depends exponentially on the number of dimensions `d`, so KD trees fall off hard if the number of dimensions is high
+	- The current implementation does not allow adding points.  If points must be added, the tree must be rebuilt.
+	- "Default" function tables are provided for "cuboid" kd trees of `int64_t`s 3D and "spherical" in 3D.
+	- These tables can be adapted to any number of dimensions and to handle trees where points have metadata.
+	- Spherical kd trees treat all but 2 dimensions normally, but the last 2 are combined into a direction.  So for an actual sphere, points are compared based on angle around the central axis, with distance from the central axis completely ignored.
 - Pairing heaps (intrusive)
 	- Like all heaps, pairing heaps allow efficiently finding the smallest (or largest) of their elements.
 	- Support merging two heaps together in constant time.

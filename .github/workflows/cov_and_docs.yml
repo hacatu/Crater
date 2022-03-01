@@ -1,4 +1,4 @@
-name: Run Coverage and Update Docs
+name: Cov & Docs
 
 on:
   push:
