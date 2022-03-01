@@ -485,15 +485,12 @@ int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft *ft){
 	}
 }
 
-// Insertion sort the range of elements [a, a + stride, a + 2*stride, ..., b).
-// Note that b is exlusive.
-static inline void cr8r_vec_range_sort_i(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t stride){
+static inline void cr8r_vec_sort_i(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
 	void *start = self->buf + a*ft->base.size;
 	void *end = self->buf + b*ft->base.size;
-	uint64_t offset = stride*ft->base.size;
-	for(void *it = start + offset; it < end; it += offset){
-		for(void *jt = it; jt > start && ft->cmp(&ft->base, jt - offset, jt) > 0; jt -= offset){
-			ft->swap(&ft->base, jt - offset, jt);
+	for(void *it = start + ft->base.size; it < end; it += ft->base.size){
+		for(void *jt = it; jt > start && ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
+			ft->swap(&ft->base, jt - ft->base.size, jt);
 		}
 	}
 }
@@ -502,37 +499,23 @@ void *cr8r_vec_pivot_mm(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b)
 	if(a >= b || b > self->len){
 		return NULL;
 	}
-	// the traditional median of medians algorithm works by viewing an array in chunks of 5 elements,
-	// creating a new array made up of the medians of these chunks, and recursing.
-	// since each chunk has 5 elements, its median can be found in constant time by sorting.
-	// the lengths of the arrays at each step form a geometric series, which has a finite sum,
-	// in particular, for 5 element chunks the total length of all arrays processed when recursing is 5/4 times
-	// the length of the original array.
-	//
-	// instead of allocating any new array to hold the medians of chunks, we can sort each chunk in place in the
-	// big array and then do a couple tricks.  First, we swap the middle and middle elements of each chunk,
-	// so that the medians are all at the fronts.  Then, we can work on the array of medians in place
-	// by treating the first elements of all the chunks as a strided array.  We start with an array of elements
-	// grouped into chunks of 5, then we have an array with stride 5 of medians of chunks, then we have
-	// an array with stride 25 of medians of medians of chunks, and so on.
-	// look carefully at how incomplete chunks are dealt with: we simply find the median of <5 elements if the last
-	// chunk is incomplete. 
-	for(uint64_t chunk_size = 5, chunk_stride = 1; chunk_stride < b - a; chunk_stride = chunk_size, chunk_size *= 5){
-		for(uint64_t i = a; i < b; i += chunk_size){
-			uint64_t curr_size = i + chunk_size > b ? b - i : chunk_size;
-			uint64_t curr_len = (curr_size + chunk_stride - 1)/chunk_stride;
-			if(curr_len == 1){
-				break;
-			}
-			cr8r_vec_range_sort_i(self, ft, i, curr_size, chunk_stride);
-			if(curr_len == 2){
-				break;
-			}
-			ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + (i + (curr_len - 1)/2*chunk_stride)*ft->base.size);
+	// Selecting a pivot by median of medians is mutually recursive with quickselect itself.
+	// First we split the vector into chunks of 5 and find the median of each chunk.
+	// As we do this, we swap the median to the front of the array so at the end
+	// the first 20% or so of the array is composed of the medians of the chunks.
+	// Then we find the median of this portion of the array with quickselect.
+	// This is guaranteed to be >= about 3/10 of the array and <= about 3/10 as well.
+	uint64_t j = a;
+	for(uint64_t i = a; i < b; i += 5){
+		uint64_t curr_len = b - i < 5 ? b - i : 5;
+		if(curr_len < 3){
+			ft->swap(&ft->base, self->buf + (j++)*ft->base.size, self->buf + i*ft->base.size);
+		}else{
+			cr8r_vec_sort_i(self, ft, i, i + curr_len);
+			ft->swap(&ft->base, self->buf + (j++)*ft->base.size, self->buf + (i + curr_len/2)*ft->base.size);
 		}
 	}
-	// at the end, the first element is the median of medians
-	return self->buf + a*ft->base.size;
+	return cr8r_vec_ith(self, ft, a, a + (b - a + 4)/5, (b - a + 4)/10);
 }
 
 void *cr8r_vec_pivot_m3(const cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
@@ -614,7 +597,6 @@ void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b
 // If i >= 0, find the ith element by partially sorting the i+1 smallest elements ascending
 // in the beginning of the subrange and returning a pointer to the i+1 smallest.
 static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, int64_t i){
-	// TODO: when i == 0 or -1, this reduces to finding the min/max
 	int ord = 1;
 	if(i < 0){
 		ord = -1;
@@ -626,17 +608,22 @@ static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t 
 	if(res >= end){
 		return NULL;// error
 	}
+	// initially, [a, a + 1) = [start, start + 1) is sorted
 	for(void *it = start + ft->base.size; it <= res; it += ft->base.size){
-		for(void *jt = it; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) < 0; jt -= ft->base.size){
+		for(void *jt = it; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
 			ft->swap(&ft->base, jt - ft->base.size, jt);
 		}
+		// at this point, we have [a, it) is sorted
 	}
+	// now [a, res + 1) is sorted
 	for(void *it = res + ft->base.size; it < end; it += ft->base.size){
 		if(ord*ft->cmp(&ft->base, res, it) <= 0){
+			// [a, res + 1) is sorted and res is <= [res + 1, it + 1)
 			continue;
 		}
 		ft->swap(&ft->base, res, it);
-		for(void *jt = res; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) < 0; jt -= ft->base.size){
+		// again [a, res + 1) is sorted and res is <= [res + 1, it + 1)
+		for(void *jt = res; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
 			ft->swap(&ft->base, jt - ft->base.size, jt);
 		}
 	}
@@ -645,6 +632,7 @@ static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t 
 
 void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t i){
 	while(1){
+		//fprintf(stderr, "cr8r_vec_ith(self, ft, %"PRIu64", %"PRIu64", %"PRIu64")\n", a, b, i);
 		if(i >= b - a){
 			return NULL;
 		}else if(i < CR8R_VEC_ISORT_BOUND){
@@ -652,16 +640,17 @@ void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint
 		}else if(b - i <= CR8R_VEC_ISORT_BOUND){
 			return cr8r_vec_sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
 		}
-		void *piv = cr8r_vec_pivot_m3(self, ft, a, b);
+		void *piv = cr8r_vec_pivot_mm(self, ft, a, b);
 		piv = cr8r_vec_partition(self, ft, a, b, piv);
 		if(!piv){
 			return NULL;
 		}
 		uint64_t j = (piv - self->buf)/ft->base.size - a;
 		if(i < j){
-			b = j;
+			b = a + j;
 		}else if(i > j){
-			a = j + 1;
+			i -= j + 1;
+			a += j + 1;
 		}else{
 			return piv;
 		}

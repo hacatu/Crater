@@ -4,11 +4,17 @@
 #include <string.h>
 #include <inttypes.h>
 
-#include <crater/vec.h>
+#include <crater/minmax_heap.h>
 
 inline static void default_copy(cr8r_base_ft *ft, void *dest, const void *src){
 	memcpy(dest, src, ft->size);
 }
+
+inline static bool dummy_pred(const cr8r_vec_ft *ft, const void *ent, void *data){
+	return true;
+}
+
+inline static void dummy_mapper(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *dest, const void *src, void *data){}
 
 int main(){
 	fprintf(stderr, "\e[1;34mTesting vector out of memory conditions and edge cases\e[0m\n");
@@ -134,6 +140,15 @@ int main(){
 		++passed;
 	}else{
 		fprintf(stderr, "\e[1;31mcr8r_vec_trim does not report shrink fail correctly!\e[0m\n");
+	}
+
+	status = cr8r_mmheap_push(&vec, &ft, &tested);
+	++tested;
+	if(!status){
+		fprintf(stderr, "\e[1;32mcr8r_mmheap_push reports oom correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_mmheap_push does not report oom correctly!\e[0m\n");
 	}
 
 	ft.resize = cr8r_default_resize;
@@ -266,8 +281,93 @@ int main(){
 	}else{
 		fprintf(stderr, "\e[1;31mcr8r_vec_augment does not report oom correctly!\e[0m\n");
 	}
+
+	status = cr8r_vec_filtered(&fake_vec, &vec, &ft, dummy_pred, NULL);
+	++tested;
+	if(!status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_filtered reports oom correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_filtered does not report oom correctly!\e[0m\n");
+	}
+
+	status = cr8r_vec_map(&fake_vec, &vec, &ft, &ft, dummy_mapper, NULL);
+	++tested;
+	if(!status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_map reports oom correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_map does not report oom correctly!\e[0m\n");
+	}
+
+	status = cr8r_vec_reversed(&fake_vec, &vec, &ft);
+	++tested;
+	if(!status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_reversed reports oom correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_reversed does not report oom correctly!\e[0m\n");
+	}
+
+	status = cr8r_vec_sorted(&fake_vec, &vec, &ft);
+	++tested;
+	if(!status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_sorted reports oom correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_sorted does not report oom correctly!\e[0m\n");
+	}
+
 	ft.resize = cr8r_default_resize;
 	cr8r_vec_delete(&vec, &ft);
+
+	status = -1 == cr8r_vec_index(&vec, &ft, &status);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_index reports missing item correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_index does not report missing item correctly!\e[0m\n");
+	}
+
+	status = -1 == cr8r_vec_indexs(&vec, &ft, &status);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_indexs reports missing item correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_indexs does not report missing item correctly!\e[0m\n");
+	}
+
+	status = !cr8r_vec_exm(&vec, &ft, 1);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_exm reports empty vector correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_exm does not report empty vector correctly!\e[0m\n");
+	}
+
+	cr8r_vec_reverse(&vec, &ft); // does nothing since vec.len < 2
+
+	status = !cr8r_mmheap_peek_max(&vec, &ft);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_mmheap_peek_max reports empty vector correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_mmheap_peek_max does not report empty vector correctly!\e[0m\n");
+	}
+
+	uint64_t tmp;
+	status = !cr8r_mmheap_pop_max(&vec, &ft, &tmp);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_mmheap_pop_max reports empty vector correctly!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_mmheap_pop_max does not report empty vector correctly!\e[0m\n");
+	}
 
 	if(passed == tested){
 		fprintf(stderr, "\e[1;32mSuccess: passed %"PRIu64"/%"PRIu64" tests\e[0m\n", passed, tested);
