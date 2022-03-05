@@ -162,7 +162,11 @@ bool cr8r_vec_combine(cr8r_vec *dest, const cr8r_vec *src_a, const cr8r_vec *src
 
 bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft *ft){
 	if(self->len + other->len > self->cap){
-		if(!cr8r_vec_resize(self, ft, self->len + other->len)){
+		uint64_t cap = ft->new_size(&ft->base, self->cap);
+		if(self->len + other->len > cap){
+			cap = self->len + other->len;
+		}
+		if(!cr8r_vec_resize(self, ft, cap)){
 			return false;
 		}
 	}
