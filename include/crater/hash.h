@@ -69,6 +69,8 @@ typedef struct{
 	/// Function to combine two elements.  Should only depend on "value" data within the elements.
 	/// Specifying this function can be used to define behavior when { @link cr8r_hash_append} is called and an element
 	/// with the given key already exists, such as adding the int values in any key->int map to create a counter.
+	/// The first void* argument is the existing entry, and the second is the entry passed to append.
+	/// Should return 0 on failure, nonzero on success.
 	int (*add)(cr8r_base_ft*, void*, void*);
 	/// Function to be called to delete elements.  Not required.
 	/// Specifying this function allows cleaning up sensitive data by jumbling the memory of an element when it

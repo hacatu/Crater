@@ -35,14 +35,17 @@ typedef struct{
 /// as well as how to perform necessary operations (compare, copy, etc).
 /// Remember that function tables must be initialized manually.  In particular,
 /// the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set.
+/// Also look at complete default tables provided, cr8r_vecft_*.
 typedef struct cr8r_vec_ft cr8r_vec_ft;
 struct cr8r_vec_ft{
 	/// Base function table values (data and size)
 	cr8r_base_ft base;
-	/// determines the capacity to grow to if the vector is full but needs to have additional elements added
+	/// determines the capacity to grow to if the vector is full but needs to have additional elements added.
+	/// Both "cap" and the return value are counted in terms of number of elements, not number of bytes.
 	/// { @link cr8r_default_new_size } is a good choice generally.
 	uint64_t (*new_size)(cr8r_base_ft*, uint64_t cap);
 	/// resize the backing array to a new size, possibly copying it to a new buffer.
+	/// "cap" is counted in terms of number of elements, not number of bytes.
 	/// Must return NULL and "free" buf if the new cap is 0, must "free" NULL (by doing nothing), and must be able to
 	/// allocate a new buffer if the current buffer is NULL.  { @link cr8r_default_resize } wraps realloc and free to do this.
 	/// If it is not possible to safely move elements, then this function should probably not be allowed to move the allocated buffer
@@ -277,7 +280,7 @@ int cr8r_vec_forEachPermutation(cr8r_vec*, cr8r_vec_ft*, void (*f)(const cr8r_ve
 /// dest should NOT be initialized or its buffer will be leaked!
 /// First, ensures the dest buffer has enough capacity for both src vectors, extending if necessary, then copy the vectors one after
 /// the other.  ft->copy is called if applicable
-/// @param [out] dest: vector in which to store result, should have a cap of 0 or valid buffer
+/// @param [out] dest: vector in which to store result
 /// @param [in] src_a, src_b: vectors to copy elements from
 /// @return 1 on success, 0 on failure (allocation failure)
 bool cr8r_vec_combine(cr8r_vec *dest, const cr8r_vec *src_a, const cr8r_vec *src_b, cr8r_vec_ft*);
