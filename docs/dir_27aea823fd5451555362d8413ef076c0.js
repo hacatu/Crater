@@ -2,6 +2,7 @@ var dir_27aea823fd5451555362d8413ef076c0 =
 [
     [ "avl.h", "avl_8h.html", "avl_8h" ],
     [ "avl_check.h", "avl__check_8h_source.html", null ],
+    [ "bitvec.h", "bitvec_8h.html", "bitvec_8h" ],
     [ "cll.h", "cll_8h.html", "cll_8h" ],
     [ "container.h", "container_8h.html", "container_8h" ],
     [ "hash.h", "hash_8h.html", "hash_8h" ],

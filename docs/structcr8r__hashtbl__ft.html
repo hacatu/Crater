@@ -174,9 +174,9 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><div class="memdoc">
 
 <p>Function to combine two elements. </p>
-<p>Should only depend on "value" data within the elements. Specifying this function can be used to define behavior when <a class="el" href="hash_8h.html#a10b2be8a15ee34e093470226d4b4954f">cr8r_hash_append</a> is called and an element with the given key already exists, such as adding the int values in any key-&gt;int map to create a counter. </p>
+<p>Should only depend on "value" data within the elements. Specifying this function can be used to define behavior when <a class="el" href="hash_8h.html#a10b2be8a15ee34e093470226d4b4954f">cr8r_hash_append</a> is called and an element with the given key already exists, such as adding the int values in any key-&gt;int map to create a counter. The first void* argument is the existing entry, and the second is the entry passed to append. Should return 0 on failure, nonzero on success. </p>
 
-<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00072">72</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00074">74</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +195,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Function to be called to delete elements. </p>
 <p>Not required. Specifying this function allows cleaning up sensitive data by jumbling the memory of an element when it is deleted (including when the whole hash table is deleted), freeing resources "owned" by elements, and so on. If not specified, deleting elements/the whole hash table will be slightly quicker. </p>
 
-<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00077">77</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00079">79</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
 
 </div>
 </div>
@@ -214,7 +214,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Maximum allowable ratio of entries present to total capacity. </p>
 <p>According to the birthday paradox, at least one collision is expected even with a perfect hash function and random data once the load facter reaches the square root of the capacity, but nevertheless good performance can be expected even up to 50% load factor or possibly higher. Setting lower than .3 would be extravagant and lower than .1 would probably be absurd. </p>
 
-<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00083">83</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00085">85</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +228,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structcr8r__hashtbl__ft.html">cr8r_hashtbl_ft</a></li>
-    <li class="footer">Generated on Tue Mar 1 2022 23:03:58 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+    <li class="footer">Generated on Sat Mar 5 2022 05:19:55 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
   </ul>
 </div>
 </body>

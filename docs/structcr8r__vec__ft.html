@@ -117,9 +117,8 @@ Data Fields</h2></td></tr>
 <a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html#a0ce4f07570c97f7e1f2a19fcee5cbded">base</a></td></tr>
 <tr class="memdesc:a0ce4f07570c97f7e1f2a19fcee5cbded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base function table values (data and size) <br /></td></tr>
 <tr class="separator:a0ce4f07570c97f7e1f2a19fcee5cbded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95f3042b004cf315587de44332e445b8"><td class="memItemLeft" align="right" valign="top"><a id="a95f3042b004cf315587de44332e445b8"></a>
-uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html#a95f3042b004cf315587de44332e445b8">new_size</a> )(<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, uint64_t cap)</td></tr>
-<tr class="memdesc:a95f3042b004cf315587de44332e445b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">determines the capacity to grow to if the vector is full but needs to have additional elements added <a class="el" href="container_8h.html#afe863262f21f39d2d95940863e10d883">cr8r_default_new_size</a> is a good choice generally. <br /></td></tr>
+<tr class="memitem:a95f3042b004cf315587de44332e445b8"><td class="memItemLeft" align="right" valign="top">uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html#a95f3042b004cf315587de44332e445b8">new_size</a> )(<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, uint64_t cap)</td></tr>
+<tr class="memdesc:a95f3042b004cf315587de44332e445b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">determines the capacity to grow to if the vector is full but needs to have additional elements added.  <a href="structcr8r__vec__ft.html#a95f3042b004cf315587de44332e445b8">More...</a><br /></td></tr>
 <tr class="separator:a95f3042b004cf315587de44332e445b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba1882e8cec26b4cd269b24309160030"><td class="memItemLeft" align="right" valign="top">void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__vec__ft.html#aba1882e8cec26b4cd269b24309160030">resize</a> )(<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, void *p, uint64_t cap)</td></tr>
 <tr class="memdesc:aba1882e8cec26b4cd269b24309160030"><td class="mdescLeft">&#160;</td><td class="mdescRight">resize the backing array to a new size, possibly copying it to a new buffer.  <a href="structcr8r__vec__ft.html#aba1882e8cec26b4cd269b24309160030">More...</a><br /></td></tr>
@@ -139,10 +138,29 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Function table for vector. </p>
-<p>Imagine this struct as the class of the vector. This struct specifies the size of the elements in a vector in bytes, as well as how to perform necessary operations (compare, copy, etc). Remember that function tables must be initialized manually. In particular, the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set. </p>
+<p>Imagine this struct as the class of the vector. This struct specifies the size of the elements in a vector in bytes, as well as how to perform necessary operations (compare, copy, etc). Remember that function tables must be initialized manually. In particular, the cr8r_vec_default_* functions can be used as decent defaults, but must be explicitly set. Also look at complete default tables provided, cr8r_vecft_*. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00039">39</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00040">40</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a id="a95f3042b004cf315587de44332e445b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95f3042b004cf315587de44332e445b8">&#9670;&nbsp;</a></span>new_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t(* cr8r_vec_ft::new_size) (<a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *, uint64_t cap)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>determines the capacity to grow to if the vector is full but needs to have additional elements added. </p>
+<p>Both "cap" and the return value are counted in terms of number of elements, not number of bytes. <a class="el" href="container_8h.html#afe863262f21f39d2d95940863e10d883">cr8r_default_new_size</a> is a good choice generally. </p>
+
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00046">46</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+
+</div>
+</div>
 <a id="aba1882e8cec26b4cd269b24309160030"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba1882e8cec26b4cd269b24309160030">&#9670;&nbsp;</a></span>resize</h2>
 
@@ -156,9 +174,9 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><div class="memdoc">
 
 <p>resize the backing array to a new size, possibly copying it to a new buffer. </p>
-<p>Must return NULL and "free" buf if the new cap is 0, must "free" NULL (by doing nothing), and must be able to allocate a new buffer if the current buffer is NULL. <a class="el" href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a> wraps realloc and free to do this. If it is not possible to safely move elements, then this function should probably not be allowed to move the allocated buffer (in the manner realloc does) and should fail instead so that external logic can manage copying to a new vector. </p>
+<p>"cap" is counted in terms of number of elements, not number of bytes. Must return NULL and "free" buf if the new cap is 0, must "free" NULL (by doing nothing), and must be able to allocate a new buffer if the current buffer is NULL. <a class="el" href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a> wraps realloc and free to do this. If it is not possible to safely move elements, then this function should probably not be allowed to move the allocated buffer (in the manner realloc does) and should fail instead so that external logic can manage copying to a new vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00050">50</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00053">53</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -177,7 +195,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>delete an element of the vector. </p>
 <p>This only needs to clean up data owned by the element, not the element itself because it lives in the buffer. Can also be used to scramble memory if desired. Useful for strings, file descriptors, etc. Can be NULL if no operation is needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00054">54</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00057">57</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -196,7 +214,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>copy an element of the vector. </p>
 <p>Can be NULL if memcpy is sufficient, otherwise this function must perform the role of memcpy plus whatever else it needs to do. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00057">57</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00060">60</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -215,7 +233,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>compare two elements of the vector. </p>
 <p><a class="el" href="container_8h.html#adb4b61e520c0cee3c3d074635d6cdef4">cr8r_default_cmp</a> is a suitable default if needed. should return &lt;0 if a &lt; b, 0 if a == b, and &gt;0 if a &gt; b. should not return INT_MIN. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00060">60</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00063">63</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +252,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>swap two elements. </p>
 <p>The default <a class="el" href="container_8h.html#abaed3e57335670ca2dfbc304b75fede2">cr8r_default_swap</a> simply swaps the two elements using memcpy and a temporary buffer. more optimized versions can be used if relevant. Should work even if a == b, when it should do nothing. </p>
 
-<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00063">63</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vec_8h_source.html#l00066">66</a> of file <a class="el" href="vec_8h_source.html">vec.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +266,7 @@ uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a></li>
-    <li class="footer">Generated on Tue Mar 1 2022 23:03:58 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+    <li class="footer">Generated on Sat Mar 5 2022 05:19:55 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
   </ul>
 </div>
 </body>

@@ -3,6 +3,8 @@ var annotated_dup =
     [ "cr8r_avl_ft", "structcr8r__avl__ft.html", "structcr8r__avl__ft" ],
     [ "cr8r_avl_node", "structcr8r__avl__node.html", "structcr8r__avl__node" ],
     [ "cr8r_base_ft", "structcr8r__base__ft.html", "structcr8r__base__ft" ],
+    [ "cr8r_bvec", "structcr8r__bvec.html", "structcr8r__bvec" ],
+    [ "cr8r_bvec_ft", "structcr8r__bvec__ft.html", "structcr8r__bvec__ft" ],
     [ "cr8r_cll_ft", "structcr8r__cll__ft.html", "structcr8r__cll__ft" ],
     [ "cr8r_cll_node", "structcr8r__cll__node.html", "structcr8r__cll__node" ],
     [ "cr8r_hashtbl_ft", "structcr8r__hashtbl__ft.html", "structcr8r__hashtbl__ft" ],
