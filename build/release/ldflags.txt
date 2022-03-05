@@ -2,7 +2,7 @@
 -lcrater
 -lm
 -lSDL2
--fuse-ld=gold
+-B/usr/share/libexec/mold
 -O2
 -flto
 -std=c2x

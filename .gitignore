@@ -34,6 +34,7 @@ compile_flags.txt
 ######################
 *.log
 !test/*.log
+test/tmp.log
 *.sql
 *.sqlite
 # OS generated files #

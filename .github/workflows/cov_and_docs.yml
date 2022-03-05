@@ -14,7 +14,9 @@ jobs:
     - name: Run Coverage and Doxygen
       run: |
         sudo apt-get update
-        sudo apt-get install -y lcov doxygen libsdl2-dev
+        sudo apt-get install -y lcov doxygen libsdl2-dev mold
+        sudo mkdir -p /usr/share/libexec/mold
+        sudo ln -s `which mold` /usr/share/libexec/mold/ld
         make coverage
         grep -qF `printf "\e[1;32mtest.py suite passed all tests!\e[0m"` build/debug/log/test*.log
         make docs

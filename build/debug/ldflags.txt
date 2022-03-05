@@ -2,7 +2,7 @@
 -lcrater
 -lm
 -lSDL2
--fuse-ld=gold
+-B/usr/share/libexec/mold
 -std=c2x
 -ggdb3
 -fno-strict-aliasing
