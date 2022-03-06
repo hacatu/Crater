@@ -83,6 +83,9 @@
 	},
 	"pointcloud": {
 		"no_red_tests": [[]]
+	},
+	"dlog_t64": {
+		"no_red_tests": [[]]
 	}
 }
 

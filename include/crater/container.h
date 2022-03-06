@@ -154,6 +154,9 @@ void cr8r_default_copy_cstr(cr8r_base_ft*, void*, const void*);
 /// Raise b to the power of e modulo n using binary exponentiation
 uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n);
 
+/// Raise b to the power of e using binary exponentiation
+uint64_t cr8r_pow_u64(uint64_t b, uint64_t e);
+
 /// Cast a flexible length array member to a given type using union hackery sorcery
 #define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)
 

@@ -768,7 +768,11 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 	if(lb != ea || eb != ha || ea > med_idx || eb <= med_idx){
 		return NULL;
 	}
+#ifdef DEBUG
 	return cr8r_vec_check_pwm(ft, self, a, lb, ha, b, med) ? med : NULL;
+#else
+	return med;
+#endif
 }
 
 uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n){
@@ -778,6 +782,18 @@ uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n){
 			res = (unsigned __int128)res * (unsigned __int128)b % (unsigned __int128)n;
 		}
 		b = (unsigned __int128)b * (unsigned __int128)b % (unsigned __int128)n;
+		e >>= 1;
+	}
+	return res;
+}
+
+uint64_t cr8r_pow_u64(uint64_t b, uint64_t e){
+	uint64_t res = 1;
+	while(e){
+		if(e&1){
+			res *= b;
+		}
+		b *= b;
 		e >>= 1;
 	}
 	return res;

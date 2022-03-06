@@ -80,50 +80,42 @@ double cr8r_prng_uniform01_double(cr8r_prng *self){
 	return bits.as_double;
 }
 
-inline static uint64_t pow_ti_mod_tj(uint64_t b, uint64_t i, uint64_t j){
+const uint64_t cr8r_prng_2tg_t64[4] = {1, (1ull << 63) + 3, (1ull << 63) - 1, -1};
+
+// raise b to the power of 2**i mod 2**j
+inline static uint64_t pow_ti(uint64_t b, uint64_t i){
 	while(i--){
-		b = (b*b)&((1ull << j) - 1);
+		b *= b;
 	}
 	return b;
 }
 
 uint64_t cr8r_prng_log_mod_t64(uint64_t h){
-	uint64_t k = 64;
-	const uint64_t gs[4] = {3, -3, (1ull << (k - 1)) + 3, (1ull << (k - 1)) - 3};
+	uint64_t y = pow_ti(3, 61);
+	uint64_t g1 = 12297829382473034411ull;
 	for(uint64_t gi = 0; gi < 4; ++gi){
-		// h = g**x can be rewritten as h*g**-x = 1, but for simplicity we suppress the - and negate
-		// x in the exponent group (ie mod 2**(k -2)) at the end
-		// h*g**x = 1 mod 2**k
-		// (h*g**x)**(2**(k - 2 - i)) = 1 mod 2**k
-		uint64_t g = gs[gi];
 		uint64_t x = 0;
-		uint64_t b = h;
-		// maintain g**(2**i)
-		uint64_t g_ti = g;
-		uint64_t i = 0;
-		for(; i < k - 2; ++i){
-			// first, b = h*g**x with the previous x
-			if(pow_ti_mod_tj(b, k - 3 - i, k) == 1){
-				// (h*g**x)**(2**(k - 2 - i)) = 1 mod 2**k
+		uint64_t b = h*cr8r_prng_2tg_t64[gi];
+		// maintain g1_ti = g1**(2**i)
+		uint64_t g1_tk = g1;
+		uint64_t k = 0;
+		for(; k < 62; ++k){
+			uint64_t hk = pow_ti(b, 61 - k);
+			if(hk == 1){
+				// x is not modified
+			}else if(hk == y){
+				x |= 1ull << k;
+				b *= g1_tk;
 			}else{
-				// the previous x did not work, set the new bit and try again
-				b = (b*g_ti)&((1ull << k) - 1);
-				x |= 1 << i;
-				if(pow_ti_mod_tj(b, k - 3 - i, k) == 1){
-					// (h*g**x)**(2**(k - 2 - i)) = 1 mod 2**k
-				}else{
-					// the previous x does not work, whether the new bit is 0 or 1
-					// leave the inner loop and try the next generator g
-					break;
-				}
+				break;
 			}
-			g_ti = (g_ti*g_ti)&((1ull << k) - 1);
+			g1_tk = g1_tk*g1_tk;
 		}
-		if(i == k - 2){
-			// x was successfully extended to k - 2 bits, set the high 2 bits based on what
+		if(k == 62){
+			// x was successfully extended to 62 bits, set the high 2 bits based on what
 			// the first generator that worked was (0b00 for 3, 0b01 for -3,
 			// 0b10 for 2**(k-1)+3, or 0b11 for 2**(k-1)-3)
-			return (gi << (k - 2)) |  ((-x)&((1ull << (k - 2)) - 1));
+			return (gi << 62) |  (x&((1ull << 62) - 1));
 		}
 	}
 	// reachable iff h is even

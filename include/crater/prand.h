@@ -117,7 +117,7 @@ typedef struct{
 
 /// Set the state of a prng
 ///
-/// WARNING: accesses { @link cr8r_default_prng_splitmix } for generators where state_size > 4,
+/// WARNING: accesses { @link cr8r_default_prng_splitmix } for generators where state_size > sizeof(uint64_t),
 /// all accesses to the default splitmix prng should be done in the same thread or protected by locks.
 /// If necessary, the given seed is extended using splitmix to generate random bytes according to
 /// prng->state_size, and then prng->fixup_state is called.  Returns false only if fixup_state
@@ -168,9 +168,10 @@ double cr8r_prng_uniform01_double(cr8r_prng*);
 /// works differently than discrete logarithm modulo powers of odd primes.
 /// A generator for the multiplicative group only exists mod 2, 4, p**k, and 2*p**k where
 /// p is any odd prime.  In particular, the multiplicative group modulo 2**k does not
-/// have a generator for k > 2 and instead decomposes as the direct product of the multiplicative
-/// group mod 8 and the cyclic group mod 2**(k-2).  The multiplicative group mod 8, aka
-/// the klein 4 group, has 4 elements: 1, 3, 5, and 7.  It is more convenient to use the
+/// have a generator for k > 2 and instead decomposes as the direct product of the group
+/// with 2 elements and the cyclic group mod 2**(k-2).  The multiplicative group mod 8, aka
+/// the klein 4 group, has 4 elements: 1, 3, 5, and 7 and is always embedded in the
+/// multiplicative group.  It is more convenient to use the
 /// representation 1, 2**(k-1)-1, 2**(k-1)+1, -1.
 ///
 /// Therefore, we can express each x_i as g**(a_i)*p**(b_i)*q**(c_i) where p and q represent
@@ -183,11 +184,18 @@ double cr8r_prng_uniform01_double(cr8r_prng*);
 /// @param [in] h: power of g to find the exponent of
 /// @param [out] g: base of logarithm.  because the multiplicative group of 2**64 is not
 /// cyclic, g can be +/-3 or 2**63 +/- 3
-/// @return discrete logarithm x so that h = g**x mod 2**64.  The low 62 bits are x.
-/// the high 2 bits encode which g to use: 0 -> 3, 1 -> -3, 2 -> 2**63 + 3, 3 -> 2**63 - 3.
+/// @return discrete logarithm x so that h = 3**x*p**a*q**b mod 2**64.  The low 62 bits are x.
+/// The highest bit indicates a and the second highest indicates b.  Recall that
+/// p = 2**63-1 and q = 2**63+1.  You can get p**a*q**b via `cr8r_prng_2tg_t64[res >> 62]`.
 /// On failure, 0 is returned, which should only happen if h is even, but still, check if 0
 /// is returned and h is not 1.
 uint64_t cr8r_prng_log_mod_t64(uint64_t h);
+
+/// The multipliers for 3**x in the result of { @link cr8r_prng_log_mod_t64 }
+/// This is the Klein 4 group embedded in the multiplicative group mod 2**64,
+/// or equivalently the 2-Torsion Group mod 2**64.  All odd numbers mod 2**64
+/// decompose as c*3**x where c is in this array.
+extern const uint64_t cr8r_prng_2tg_t64[4];
 
 // these constants are taken from the standard MT19937-64 generator configuration
 #define CR8R_PRNG_MT_N 312
