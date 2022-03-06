@@ -33,5 +33,6 @@ var prand_8h =
     [ "cr8r_prng_init_splitmix", "prand_8h.html#a6ddb37ca49e0102188bdbf2e6b11dfa5", null ],
     [ "cr8r_prng_xoro_jump_t128", "prand_8h.html#aac6111faad151beef22c18ff5596f8da", null ],
     [ "cr8r_prng_xoro_jump_t192", "prand_8h.html#a60f6578400630293828baecb190811f7", null ],
+    [ "cr8r_prng_2tg_t64", "prand_8h.html#a3653a4604d358edaa1d82e941a0e3d94", null ],
     [ "cr8r_default_prng_splitmix", "prand_8h.html#a0809010c1f86d7834baa6bdb4db71b1d", null ]
 ];

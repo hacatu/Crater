@@ -159,17 +159,19 @@ $(document).ready(function(){initNavTree('container_8h_source.html',''); initRes
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;uint64_t <a class="code" href="container_8h.html#ae7fa73a600bfb34e19cdba45aa1b0941">cr8r_powmod</a>(uint64_t b, uint64_t e, uint64_t n);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">  158</a></span>&#160;<span class="preprocessor">#define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;uint64_t <a class="code" href="container_8h.html#a813122c6d690cdd6469f09dc7ebc3807">cr8r_pow_u64</a>(uint64_t b, uint64_t e);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="container_8h.html#aa79128caa105eb0990a2ee8227001846">  166</a></span>&#160;<span class="preprocessor">#define CR8R_OUTER(ptr, T, memb) ((T*)((void*)(ptr) - offsetof(T, memb)))</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">  174</a></span>&#160;<span class="preprocessor">#define CR8R_OUTER_S(ptr, ft) (((void*)(ptr) - (ft)-&gt;base.size))</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">  182</a></span>&#160;<span class="preprocessor">#define CR8R_INNER(ptr, T, memb) (((void*)(ptr) + offsetof(T, memb)))</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">  190</a></span>&#160;<span class="preprocessor">#define CR8R_INNER_S(ptr, ft) (((void*)(ptr) + (ft)-&gt;base.size))</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="container_8h.html#a200f4c65e946ac05c4f3af2cb4052688">  161</a></span>&#160;<span class="preprocessor">#define CR8R_FLA_CAST(T, p) (((union{__typeof__(p) data; T a;})(p)).a)</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="container_8h.html#aa79128caa105eb0990a2ee8227001846">  169</a></span>&#160;<span class="preprocessor">#define CR8R_OUTER(ptr, T, memb) ((T*)((void*)(ptr) - offsetof(T, memb)))</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="container_8h.html#a2f3571b1ff2e05aacbab97baa0c3de4d">  177</a></span>&#160;<span class="preprocessor">#define CR8R_OUTER_S(ptr, ft) (((void*)(ptr) - (ft)-&gt;base.size))</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="container_8h.html#a6371349b1d0a713fb6c5b5528cd14f55">  185</a></span>&#160;<span class="preprocessor">#define CR8R_INNER(ptr, T, memb) (((void*)(ptr) + offsetof(T, memb)))</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">  193</a></span>&#160;<span class="preprocessor">#define CR8R_INNER_S(ptr, ft) (((void*)(ptr) + (ft)-&gt;base.size))</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="acontainer_8h_html_a7a3d055543718947686f2600a87bb38f"><div class="ttname"><a href="container_8h.html#a7a3d055543718947686f2600a87bb38f">cr8r_default_hash_cstr</a></div><div class="ttdeci">uint64_t cr8r_default_hash_cstr(const cr8r_base_ft *, const void *)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;hash implementation for null terminated strings (for hash tables)</div></div>
@@ -177,6 +179,7 @@ $(document).ready(function(){initNavTree('container_8h_source.html',''); initRes
 <div class="ttc" id="acontainer_8h_html_ae7fa73a600bfb34e19cdba45aa1b0941"><div class="ttname"><a href="container_8h.html#ae7fa73a600bfb34e19cdba45aa1b0941">cr8r_powmod</a></div><div class="ttdeci">uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n)</div><div class="ttdoc">Raise b to the power of e modulo n using binary exponentiation.</div></div>
 <div class="ttc" id="acontainer_8h_html_a298ab3d3cf336dc71468fd55493c6a1d"><div class="ttname"><a href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a></div><div class="ttdeci">void * cr8r_default_resize(cr8r_base_ft *, void *p, uint64_t cap)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;resize implementation (for vectors)</div></div>
 <div class="ttc" id="acontainer_8h_html_abaed3e57335670ca2dfbc304b75fede2"><div class="ttname"><a href="container_8h.html#abaed3e57335670ca2dfbc304b75fede2">cr8r_default_swap</a></div><div class="ttdeci">void cr8r_default_swap(cr8r_base_ft *, void *a, void *b)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;swap implementation (for vectors)</div></div>
+<div class="ttc" id="acontainer_8h_html_a813122c6d690cdd6469f09dc7ebc3807"><div class="ttname"><a href="container_8h.html#a813122c6d690cdd6469f09dc7ebc3807">cr8r_pow_u64</a></div><div class="ttdeci">uint64_t cr8r_pow_u64(uint64_t b, uint64_t e)</div><div class="ttdoc">Raise b to the power of e using binary exponentiation.</div></div>
 <div class="ttc" id="acontainer_8h_html_adf4bc179e0a30b22a9be58fccda45d77"><div class="ttname"><a href="container_8h.html#adf4bc179e0a30b22a9be58fccda45d77">cr8r_default_free_pass</a></div><div class="ttdeci">void cr8r_default_free_pass(cr8r_base_ft *, void *)</div><div class="ttdoc">ft-&gt;free implementation (for avl trees or circular lists) that does nothing</div></div>
 <div class="ttc" id="acontainer_8h_html_a7c8447aba675a3cac695143f54a30638"><div class="ttname"><a href="container_8h.html#a7c8447aba675a3cac695143f54a30638">cr8r_default_resize_pass</a></div><div class="ttdeci">void * cr8r_default_resize_pass(cr8r_base_ft *, void *p, uint64_t cap)</div><div class="ttdoc">&quot;Default&quot; do-nothing ft-&gt;resize implementation (for vectors)</div></div>
 <div class="ttc" id="acontainer_8h_html_a6970e065db27984cca427f6b1df64df2"><div class="ttname"><a href="container_8h.html#a6970e065db27984cca427f6b1df64df2">cr8r_walk_decision</a></div><div class="ttdeci">cr8r_walk_decision</div><div class="ttdoc">Enum to allow a callee/visitor to control the behavior of a tree traversal.</div><div class="ttdef"><b>Definition:</b> <a href="container_8h_source.html#l00032">container.h:32</a></div></div>
@@ -200,7 +203,7 @@ $(document).ready(function(){initNavTree('container_8h_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="container_8h.html">container.h</a></li>
-    <li class="footer">Generated on Sat Mar 5 2022 05:19:55 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
+    <li class="footer">Generated on Sun Mar 6 2022 00:40:31 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.8.17 </li>
   </ul>
 </div>
 </body>

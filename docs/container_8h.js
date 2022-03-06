@@ -29,5 +29,6 @@ var container_8h =
     [ "cr8r_default_free_sla", "container_8h.html#a626e88c5f0d4d62a4d09d90df419a2c3", null ],
     [ "cr8r_default_free", "container_8h.html#a3dc2070a9246a4e03ef6571f40e5c0ce", null ],
     [ "cr8r_default_copy_cstr", "container_8h.html#aee2ab5471f326b55c5d7e5f17fdbe0a0", null ],
-    [ "cr8r_powmod", "container_8h.html#ae7fa73a600bfb34e19cdba45aa1b0941", null ]
+    [ "cr8r_powmod", "container_8h.html#ae7fa73a600bfb34e19cdba45aa1b0941", null ],
+    [ "cr8r_pow_u64", "container_8h.html#a813122c6d690cdd6469f09dc7ebc3807", null ]
 ];
