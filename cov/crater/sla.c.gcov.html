@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-06 00:40:29</td>
+            <td class="headerValue">2022-03-09 08:54:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -79,15 +79,15 @@
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span><span class="lineCov">          3 : bool cr8r_sla_init(cr8r_sla *self, uint64_t elem_size, uint64_t cap){</span></a>
 <a name="6"><span class="lineNum">       6 </span><span class="lineCov">          3 :     if(!cap || elem_size &lt; sizeof(void*)){</span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="8"><span class="lineNum">       8 </span>            :     }</a>
 <a name="9"><span class="lineNum">       9 </span><span class="lineCov">          3 :     self-&gt;elem_size = elem_size;</span></a>
 <a name="10"><span class="lineNum">      10 </span><span class="lineCov">          3 :     char (*slab)[elem_size] = malloc(cap*elem_size);//start the allocator with one block of length cap</span></a>
 <a name="11"><span class="lineNum">      11 </span><span class="lineCov">          3 :     if(!slab){</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="13"><span class="lineNum">      13 </span><span class="lineCov">          3 :     }else if(!(self-&gt;slabs = malloc(1*sizeof(void*)))){//put slab in an array</span></a>
 <a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 :         free(slab);</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :     }</a>
 <a name="17"><span class="lineNum">      17 </span><span class="lineCov">          3 :     self-&gt;slab_cap = cap;</span></a>
 <a name="18"><span class="lineNum">      18 </span><span class="lineCov">          3 :     self-&gt;first_elem = self-&gt;slabs[0] = slab;</span></a>
@@ -96,7 +96,7 @@
 <a name="21"><span class="lineNum">      21 </span><span class="lineCov">      84630 :         *(void**)(slab + i) = slab + i + 1;</span></a>
 <a name="22"><span class="lineNum">      22 </span>            :     }</a>
 <a name="23"><span class="lineNum">      23 </span><span class="lineCov">          3 :     *(void**)(slab + cap - 1) = NULL;</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">          3 :     return true;</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">          3 :     return 1;</span></a>
 <a name="25"><span class="lineNum">      25 </span>            : }</a>
 <a name="26"><span class="lineNum">      26 </span>            : </a>
 <a name="27"><span class="lineNum">      27 </span><span class="lineCov">          3 : void cr8r_sla_delete(cr8r_sla *self){</span></a>

@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-06 00:40:29</td>
+            <td class="headerValue">2022-03-09 08:54:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">29</td>
@@ -117,7 +117,7 @@
 <a name="42"><span class="lineNum">      42 </span>            :     void (*free)(cr8r_base_ft*, void*)</a>
 <a name="43"><span class="lineNum">      43 </span>            : ){</a>
 <a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :     if(!cmp || !alloc || !free){</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="46"><span class="lineNum">      46 </span>            :     }</a>
 <a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :     ft-&gt;base.data = data;</span></a>
 <a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :     ft-&gt;base.size = size;</span></a>
@@ -125,7 +125,7 @@
 <a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :     ft-&gt;add = add;</span></a>
 <a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :     ft-&gt;alloc = alloc;</span></a>
 <a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :     ft-&gt;free = free;</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :     return true;</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :     return 1;</span></a>
 <a name="54"><span class="lineNum">      54 </span>            : }</a>
 <a name="55"><span class="lineNum">      55 </span>            : </a>
 <a name="56"><span class="lineNum">      56 </span><span class="lineCov">          2 : bool cr8r_avl_ft_initsla(cr8r_avl_ft *ft,</span></a>
@@ -134,7 +134,7 @@
 <a name="59"><span class="lineNum">      59 </span>            :     int (*add)(cr8r_base_ft*, void*, void*)</a>
 <a name="60"><span class="lineNum">      60 </span>            : ){</a>
 <a name="61"><span class="lineNum">      61 </span><span class="lineCov">          2 :     if(!cmp || !sla || !cr8r_sla_init(sla, offsetof(cr8r_avl_node, data) + size, reserve)){</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :     }</a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineCov">          2 :     ft-&gt;base.data = sla;</span></a>
 <a name="65"><span class="lineNum">      65 </span><span class="lineCov">          2 :     ft-&gt;base.size = size;</span></a>
@@ -142,7 +142,7 @@
 <a name="67"><span class="lineNum">      67 </span><span class="lineCov">          2 :     ft-&gt;add = add;</span></a>
 <a name="68"><span class="lineNum">      68 </span><span class="lineCov">          2 :     ft-&gt;alloc = cr8r_default_alloc_sla;</span></a>
 <a name="69"><span class="lineNum">      69 </span><span class="lineCov">          2 :     ft-&gt;free = cr8r_default_free_sla;</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">          2 :     return true;</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">          2 :     return 1;</span></a>
 <a name="71"><span class="lineNum">      71 </span>            : }</a>
 <a name="72"><span class="lineNum">      72 </span>            : </a>
 <a name="73"><span class="lineNum">      73 </span><span class="lineCov">  177818000 : void *cr8r_default_alloc_sla(cr8r_base_ft *ft){</span></a>

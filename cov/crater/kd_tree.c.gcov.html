@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-06 00:40:29</td>
+            <td class="headerValue">2022-03-09 08:54:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -314,18 +314,18 @@
 <a name="239"><span class="lineNum">     239 </span><span class="lineNoCov">          0 : bool cr8r_kdwin_init_i64sp(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]){</span></a>
 <a name="240"><span class="lineNum">     240 </span><span class="lineNoCov">          0 :     memcpy(self-&gt;bl, bl, 3*sizeof(int64_t));</span></a>
 <a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :     memcpy(self-&gt;tr, tr, 3*sizeof(int64_t));</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :     return true;</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :     return 1;</span></a>
 <a name="243"><span class="lineNum">     243 </span>            : }</a>
 <a name="244"><span class="lineNum">     244 </span>            : </a>
 <a name="245"><span class="lineNum">     245 </span><span class="lineNoCov">          0 : bool cr8r_kdwin_init_i64cu(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]){</span></a>
 <a name="246"><span class="lineNum">     246 </span><span class="lineNoCov">          0 :     memcpy(self-&gt;bl, bl, 3*sizeof(int64_t));</span></a>
 <a name="247"><span class="lineNum">     247 </span><span class="lineNoCov">          0 :     memcpy(self-&gt;tr, tr, 3*sizeof(int64_t));</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineNoCov">          0 :     return true;</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineNoCov">          0 :     return 1;</span></a>
 <a name="249"><span class="lineNum">     249 </span>            : }</a>
 <a name="250"><span class="lineNum">     250 </span>            : </a>
 <a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 : bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, const cr8r_kd_ft *ft){</span></a>
 <a name="252"><span class="lineNum">     252 </span><span class="lineCov">          1 :     if(!ents-&gt;len){</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="254"><span class="lineNum">     254 </span>            :     }</a>
 <a name="255"><span class="lineNum">     255 </span><span class="lineCov">          1 :     memcpy(self-&gt;bl, ents-&gt;buf, ft-&gt;super.base.size);</span></a>
 <a name="256"><span class="lineNum">     256 </span><span class="lineCov">          1 :     memcpy(self-&gt;tr, ents-&gt;buf, ft-&gt;super.base.size);</span></a>
@@ -333,7 +333,7 @@
 <a name="258"><span class="lineNum">     258 </span><span class="lineCov">        999 :         const void *ent = ents-&gt;buf + i*ft-&gt;super.base.size;</span></a>
 <a name="259"><span class="lineNum">     259 </span><span class="lineCov">        999 :         ft-&gt;update(ft, self, ent);</span></a>
 <a name="260"><span class="lineNum">     260 </span>            :     }</a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :     return true;</span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :     return 1;</span></a>
 <a name="262"><span class="lineNum">     262 </span>            : }</a>
 <a name="263"><span class="lineNum">     263 </span>            : </a>
 <a name="264"><span class="lineNum">     264 </span><span class="lineCov">       1001 : bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b){</span></a>
@@ -342,17 +342,17 @@
 <a name="267"><span class="lineNum">     267 </span><span class="lineCov">       1000 :         uint64_t mid_idx = (a + b)/2;</span></a>
 <a name="268"><span class="lineNum">     268 </span><span class="lineCov">       1000 :         void *piv = cr8r_vec_ith(self, &amp;ft.super, a, b, mid_idx - a);</span></a>
 <a name="269"><span class="lineNum">     269 </span><span class="lineCov">       1000 :         if(!piv){</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineNoCov">          0 :             return false;</span></a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineNoCov">          0 :             return 0;</span></a>
 <a name="271"><span class="lineNum">     271 </span>            :         }</a>
 <a name="272"><span class="lineNum">     272 </span><span class="lineCov">       1000 :         piv = cr8r_vec_partition_with_median(self, &amp;ft.super, a, b, piv);</span></a>
 <a name="273"><span class="lineNum">     273 </span>            :         // increment depth</a>
 <a name="274"><span class="lineNum">     274 </span><span class="lineCov">       1000 :         ++*(uint64_t*)&amp;ft.super.base.data;</span></a>
 <a name="275"><span class="lineNum">     275 </span><span class="lineCov">       1000 :         if(!cr8r_kd_ify(self, &amp;ft, mid_idx + 1, b)){</span></a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineNoCov">          0 :             return false;</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineNoCov">          0 :             return 0;</span></a>
 <a name="277"><span class="lineNum">     277 </span>            :         }</a>
 <a name="278"><span class="lineNum">     278 </span><span class="lineCov">       1000 :         b = mid_idx;</span></a>
 <a name="279"><span class="lineNum">     279 </span>            :     }</a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       1001 :     return true;</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       1001 :     return 1;</span></a>
 <a name="281"><span class="lineNum">     281 </span>            : }</a>
 <a name="282"><span class="lineNum">     282 </span>            : </a>
 <a name="283"><span class="lineNum">     283 </span><span class="lineNoCov">          0 : cr8r_walk_decision cr8r_kd_walk_r(cr8r_vec *self, const cr8r_kd_ft *_ft, void *bounds, cr8r_kdvisitor visitor, void *data, uint64_t a, uint64_t b){</span></a>

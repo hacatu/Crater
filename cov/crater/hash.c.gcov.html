@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-06 00:40:29</td>
+            <td class="headerValue">2022-03-09 08:54:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">25</td>
@@ -197,7 +197,7 @@
 <a name="122"><span class="lineNum">     122 </span>            :     void (*del)(cr8r_base_ft*, void*)</a>
 <a name="123"><span class="lineNum">     123 </span>            : ){</a>
 <a name="124"><span class="lineNum">     124 </span><span class="lineCov">          1 :     if(!hash || !cmp){</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineNoCov">          0 :         return false;</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineNoCov">          0 :         return 0;</span></a>
 <a name="126"><span class="lineNum">     126 </span>            :     }</a>
 <a name="127"><span class="lineNum">     127 </span><span class="lineCov">          1 :     ft-&gt;base.data = data;</span></a>
 <a name="128"><span class="lineNum">     128 </span><span class="lineCov">          1 :     ft-&gt;base.size = size;</span></a>
@@ -205,7 +205,7 @@
 <a name="130"><span class="lineNum">     130 </span><span class="lineCov">          1 :     ft-&gt;cmp = cmp;</span></a>
 <a name="131"><span class="lineNum">     131 </span><span class="lineCov">          1 :     ft-&gt;add = add;</span></a>
 <a name="132"><span class="lineNum">     132 </span><span class="lineCov">          1 :     ft-&gt;del = del;</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          1 :     return true;</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          1 :     return 1;</span></a>
 <a name="134"><span class="lineNum">     134 </span>            : }</a>
 <a name="135"><span class="lineNum">     135 </span>            : </a>
 <a name="136"><span class="lineNum">     136 </span>            : </a>
@@ -335,12 +335,12 @@
 <a name="260"><span class="lineNum">     260 </span>            : </a>
 <a name="261"><span class="lineNum">     261 </span><span class="lineCov">     168990 : inline static void *cr8r_hash_get_single_a(cr8r_hashtbl_t *self, uint64_t i, const cr8r_hashtbl_ft *ft, const void *key){</span></a>
 <a name="262"><span class="lineNum">     262 </span><span class="lineCov">     168990 :     uint64_t a = cr8r_hash_get_index(self-&gt;table_a, self-&gt;flags_a, self-&gt;len_a, i, ft, key);</span></a>
-<a name="263"><span class="lineNum">     263 </span><span class="lineCov">     168990 :     return ~a ? self-&gt;table_a + a*ft-&gt;base.size : NULL;</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">     168990 :     return (~a) ? self-&gt;table_a + a*ft-&gt;base.size : NULL;</span></a>
 <a name="264"><span class="lineNum">     264 </span>            : }</a>
 <a name="265"><span class="lineNum">     265 </span>            : </a>
 <a name="266"><span class="lineNum">     266 </span><span class="lineCov">      43556 : inline static void *cr8r_hash_get_single_b(cr8r_hashtbl_t *self, uint64_t i, const cr8r_hashtbl_ft *ft, const void *key){</span></a>
 <a name="267"><span class="lineNum">     267 </span><span class="lineCov">      43556 :     uint64_t b = cr8r_hash_get_index(self-&gt;table_b, self-&gt;flags_b, self-&gt;len_b, i, ft, key);</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">      43556 :     return ~b ? self-&gt;table_b + b*ft-&gt;base.size : NULL;</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">      43556 :     return (~b) ? self-&gt;table_b + b*ft-&gt;base.size : NULL;</span></a>
 <a name="269"><span class="lineNum">     269 </span>            : }</a>
 <a name="270"><span class="lineNum">     270 </span>            : </a>
 <a name="271"><span class="lineNum">     271 </span><span class="lineCov">      29114 : inline static void *cr8r_hash_get_split(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft, const void *key){</span></a>
