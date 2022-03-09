@@ -13,10 +13,10 @@ static bool hupify(cr8r_vec *self, cr8r_vec_ft *ft, int ord){
 	for(uint64_t i = 1; i < self->len; ++i){
 		uint64_t j = (i - 1) >> 1;
 		if(ord*ft->cmp(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size) > 0){
-			return false;
+			return 0;
 		}
 	}
-	return true;
+	return 1;
 }
 
 int main(){

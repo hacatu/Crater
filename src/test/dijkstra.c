@@ -160,7 +160,7 @@ static bool read_file(const char *path, graph *out){
 		out->nodes[i].dist = UINT64_MAX;
 	}
 	out->frontier = NULL;
-	return true;
+	return 1;
 	ERROR:;
 	if(f){
 		fclose(f);
@@ -168,7 +168,7 @@ static bool read_file(const char *path, graph *out){
 	if(out->edges.cap){
 		cr8r_hash_destroy(&out->edges, &graph_edge_ft);
 	}
-	return false;
+	return 0;
 }
 
 static void visit_edge(graph *self, uint64_t i, uint64_t j){

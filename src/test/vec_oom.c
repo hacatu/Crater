@@ -11,7 +11,7 @@ inline static void default_copy(cr8r_base_ft *ft, void *dest, const void *src){
 }
 
 inline static bool dummy_pred(const cr8r_vec_ft *ft, const void *ent, void *data){
-	return true;
+	return 1;
 }
 
 inline static void dummy_mapper(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *dest, const void *src, void *data){}

@@ -352,7 +352,7 @@ int cr8r_bvec_forEachPermutation(cr8r_bvec *self, void (*f)(const cr8r_bvec*, vo
 	}
 	cr8r_bvec_set_range(self, 0, popcount, 1);
 	cr8r_bvec_set_range(self, popcount, self->len, 0);
-	while(true){
+	while(1){
 		uint64_t tz = cr8r_bvec_ctz(self);
 		cr8r_bvec_set_range(self, 0, tz, 1);
 		uint64_t to = cr8r_bvec_cto(self);
@@ -613,8 +613,11 @@ bool cr8r_bvec_all_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
 			return 0;
 		}
 	}
-	mask = (uint64_t)-1 >> (64 - bw);
-	return !bw || (self->buf[bl] & mask) == mask;
+	if(bw){
+		mask = (uint64_t)-1 >> (64 - bw);
+		return (self->buf[bl] & mask) == mask;
+	}
+	return 1;
 }
 
 bool cr8r_bvec_set_range(cr8r_bvec *self, uint64_t a, uint64_t b, bool v){

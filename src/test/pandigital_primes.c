@@ -28,7 +28,7 @@ bool is_prime_dmr(uint64_t n){
 		return n == 2;
 	}
 	--n;
-	s = __builtin_ctz(n);
+	s = __builtin_ctzll(n);
 	d = n>>s;
 	++n;
 	for(uint64_t i = 0, a, x; i < DMR_PRIMES_C; ++i){
@@ -105,10 +105,10 @@ bool gen_digitperms(cr8r_hashtbl_t *self){
 	}
 	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm, NULL);
 	for(uint64_t i = 0; i < 7; ++i){
-		_digitperm[i] = 6 - i ?: 7;
+		_digitperm[i] = (6 - i) ?: 7;
 	}
 	cr8r_vec_forEachPermutation(&digitperm, &ft, process_digitperm, NULL);
-	return true;
+	return 1;
 }
 
 int main(){

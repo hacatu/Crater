@@ -122,7 +122,7 @@ bool cr8r_hash_ft_init(cr8r_hashtbl_ft *ft,
 	void (*del)(cr8r_base_ft*, void*)
 ){
 	if(!hash || !cmp){
-		return false;
+		return 0;
 	}
 	ft->base.data = data;
 	ft->base.size = size;
@@ -130,7 +130,7 @@ bool cr8r_hash_ft_init(cr8r_hashtbl_ft *ft,
 	ft->cmp = cmp;
 	ft->add = add;
 	ft->del = del;
-	return true;
+	return 1;
 }
 
 
@@ -260,12 +260,12 @@ inline static uint64_t cr8r_hash_get_index(void *table, uint64_t *flags, uint64_
 
 inline static void *cr8r_hash_get_single_a(cr8r_hashtbl_t *self, uint64_t i, const cr8r_hashtbl_ft *ft, const void *key){
 	uint64_t a = cr8r_hash_get_index(self->table_a, self->flags_a, self->len_a, i, ft, key);
-	return ~a ? self->table_a + a*ft->base.size : NULL;
+	return (~a) ? self->table_a + a*ft->base.size : NULL;
 }
 
 inline static void *cr8r_hash_get_single_b(cr8r_hashtbl_t *self, uint64_t i, const cr8r_hashtbl_ft *ft, const void *key){
 	uint64_t b = cr8r_hash_get_index(self->table_b, self->flags_b, self->len_b, i, ft, key);
-	return ~b ? self->table_b + b*ft->base.size : NULL;
+	return (~b) ? self->table_b + b*ft->base.size : NULL;
 }
 
 inline static void *cr8r_hash_get_split(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft, const void *key){

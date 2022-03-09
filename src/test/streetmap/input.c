@@ -113,7 +113,7 @@ static cr8r_sla neighbor_sla;
 static bool read_file(const char *path, graph *out){
 	FILE *f = fopen(path, "r");
 	if(!f){
-		return false;
+		return 0;
 	}
 	cr8r_hash_init(&out->nodes, &node_ft, 50000);
 	cr8r_hash_init(&out->edges, &edge_ft, 70000);
@@ -173,7 +173,7 @@ static bool read_file(const char *path, graph *out){
 	}
 	fclose(f);
 	free(line);
-	return true;
+	return 1;
 }
 
 int main(int argc, char **argv){

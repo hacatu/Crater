@@ -45,16 +45,16 @@ bool combine_mode(cr8r_opt *self, char *opt){
 	case 'm': *(uint64_t*)self->dest |= 4ull; break;
 	case 'c': *(uint64_t*)self->dest |= 8ull; break;
 	case 'L': *(uint64_t*)self->dest |= 16ull; break;
-	default: return false;
+	default: return 0;
 	}
-	return true;
+	return 1;
 }
 
 bool parse_filename(void *data, int argc, char **argv, int i){
 	const char *filename1 = NULL;
 	if(strcmp(argv[i], "-") && !(filename1 = strdup(argv[i]))){
 		fprintf(stderr, "Could not allocate space for filenames!\n");
-		return false;
+		return 0;
 	}
 	return cr8r_vec_pushr(data, &vecft_cstr_txtcnt, &(text_counter){.filename = filename1});
 }
@@ -65,7 +65,7 @@ bool parse_listfilename(cr8r_opt *self, char *opt){
 	FILE *listfile = strcmp(opt, "-") ? fopen(opt, "rb") : stdin;
 	if(!listfile){
 		fprintf(stderr, "Could not open list file \"%s\"!\n", opt);
-		return false;
+		return 0;
 	}
 	bool success = true;
 	while(1){
@@ -152,7 +152,7 @@ bool process_file(text_counter *counter){
 	FILE *file = counter->filename ? fopen(counter->filename, "rb") : stdin;
 	if(!file){
 		fprintf(stderr, "Could not open file \"%s\"!\n", counter->filename);
-		return true;
+		return 1;
 	}
 	bool success = true;
 	while(1){

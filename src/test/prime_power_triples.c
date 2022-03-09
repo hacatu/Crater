@@ -66,19 +66,19 @@ bool sieve_primes_silly(cr8r_vec *out, uint64_t max){
 	for(uint64_t i = 0; i < wheel_primes_count; ++i){
 		if(!cr8r_vec_pushl(out, &cr8r_vecft_u64, wheel_primes + i)){
 			cr8r_hash_destroy(&is_prime, &htft_generic);
-			return false;
+			return 0;
 		}
 	}
 	for(uint64_t *prime = cr8r_hash_next(&is_prime, &htft_generic, NULL); prime; prime = cr8r_hash_next(&is_prime, &htft_generic, prime)){
 		if(!cr8r_vec_pushr(out, &cr8r_vecft_u64, prime)){
 			cr8r_hash_destroy(&is_prime, &htft_generic);
-			return false;
+			return 0;
 		}
 	}
 	cr8r_hash_destroy(&is_prime, &htft_generic);
 	cr8r_vec_trim(out, &cr8r_vecft_u64);
 	cr8r_vec_sort(out, &cr8r_vecft_u64);
-	return true;
+	return 1;
 }
 
 int main(){

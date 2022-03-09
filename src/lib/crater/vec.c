@@ -67,22 +67,18 @@ bool cr8r_vec_init(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
 		return !(cap && ft->base.size);
 	}
 	*self = (cr8r_vec){.buf=tmp, .cap=cap};
-	return true;
+	return 1;
 }
 
 void cr8r_vec_delete(cr8r_vec *self, cr8r_vec_ft *ft){
-	if(ft->del){
-		for(void *e = self->buf; e < self->buf + self->len*ft->base.size; e += ft->base.size){
-			ft->del(&ft->base, e);
-		}
-	}
+	cr8r_vec_clear(self, ft);
 	ft->resize(&ft->base, self->buf, 0);
 	*self = (cr8r_vec){};
 }
 
 bool cr8r_vec_copy(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 	if(!cr8r_vec_init(dest, ft, src->len)){
-		return false;
+		return 0;
 	}
 	return cr8r_vec_augment(dest, src, ft);
 }
@@ -94,19 +90,19 @@ inline static bool _sub_copy(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *f
 		ft->copy(&ft->base, dest->buf + i*ft->base.size, src->buf + (a + i)*ft->base.size);
 	}
 	dest->len = b - a;
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_sub(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, uint64_t a, uint64_t b){
 	if(b > src->len || b < a || !cr8r_vec_init(dest, ft, b - a)){
-		return false;
+		return 0;
 	}
 	return _sub_copy(dest, src, ft, a, b);
 }
 
 bool cr8r_vec_resize(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
 	if(cap < self->len){
-		return false;
+		return 0;
 	}
 	void *tmp = ft->resize(&ft->base, self->buf, cap);
 	if(!tmp){
@@ -114,7 +110,7 @@ bool cr8r_vec_resize(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
 	}
 	self->buf = tmp;
 	self->cap = cap;
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_trim(cr8r_vec *self, cr8r_vec_ft *ft){
@@ -123,13 +119,13 @@ bool cr8r_vec_trim(cr8r_vec *self, cr8r_vec_ft *ft){
 		if(!(self->len && ft->base.size)){
 			self->buf = NULL;
 			self->cap = self->len;
-			return true;
+			return 1;
 		}
-		return false;
+		return 0;
 	}
 	self->buf = tmp;
 	self->cap = self->len;
-	return true;
+	return 1;
 }
 
 void cr8r_vec_clear(cr8r_vec *self, cr8r_vec_ft *ft){
@@ -143,7 +139,7 @@ void cr8r_vec_clear(cr8r_vec *self, cr8r_vec_ft *ft){
 
 bool cr8r_vec_combine(cr8r_vec *dest, const cr8r_vec *src_a, const cr8r_vec *src_b, cr8r_vec_ft *ft){
 	if(!cr8r_vec_init(dest, ft, src_a->len + src_b->len)){
-		return false;
+		return 0;
 	}
 	if(!ft->copy){
 		memcpy(dest->buf, src_a->buf, src_a->len*ft->base.size);
@@ -157,7 +153,7 @@ bool cr8r_vec_combine(cr8r_vec *dest, const cr8r_vec *src_a, const cr8r_vec *src
 		}
 	}
 	dest->len = src_a->len + src_b->len;
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft *ft){
@@ -167,7 +163,7 @@ bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft *ft){
 			cap = self->len + other->len;
 		}
 		if(!cr8r_vec_resize(self, ft, cap)){
-			return false;
+			return 0;
 		}
 	}
 	if(!ft->copy){
@@ -176,7 +172,7 @@ bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft *ft){
 		ft->copy(&ft->base, self->buf + (self->len + i)*ft->base.size, other->buf + i*ft->base.size);
 	}
 	self->len += other->len;
-	return true;
+	return 1;
 }
 
 void *cr8r_vec_get(cr8r_vec *self, const cr8r_vec_ft *ft, uint64_t i){
@@ -207,9 +203,12 @@ void cr8r_vec_shuffle(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_prng *prng){
 	}
 }
 
-bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
-	if(self->len == self->cap){
+static inline bool ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
+	if(cap > self->cap && ft->base.size){
 		uint64_t new_cap = ft->new_size(&ft->base, self->cap);
+		if(cap > new_cap){
+			new_cap = cap;
+		}
 		void *tmp = ft->resize(&ft->base, self->buf, new_cap);
 		if(!tmp){
 			return !ft->base.size;
@@ -217,41 +216,44 @@ bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
 		self->buf = tmp;
 		self->cap = new_cap;
 	}
-	memcpy(self->buf + self->len++*ft->base.size, e, ft->base.size);
-	return true;
+	return 1;
+}
+
+bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
+	if(!ensure_cap(self, ft, self->len + 1)){
+		return 0;
+	}else if(ft->base.size){
+		memcpy(self->buf + self->len++*ft->base.size, e, ft->base.size);
+	}
+	return 1;
 }
 
 bool cr8r_vec_popr(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
 	if(!self->len){
-		return false;
+		return 0;
 	}
 	memcpy(o, self->buf + (--self->len)*ft->base.size, ft->base.size);
-	return true;
+	return 1;
 }
 
 //Accessing the left end of a vector is O(n) -- slow.
 bool cr8r_vec_pushl(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
-	if(self->len == self->cap){
-		uint64_t new_cap = ft->new_size(&ft->base, self->cap);
-		void *tmp = ft->resize(&ft->base, self->buf, new_cap);
-		if(!tmp){
-			return !ft->base.size;
-		}
-		self->buf = tmp;
-		self->cap = new_cap;
+	if(!ensure_cap(self, ft, self->len + 1)){
+		return 0;
+	}else if(ft->base.size){
+		memmove(self->buf + ft->base.size, self->buf, self->len++*ft->base.size);
+		memcpy(self->buf, e, ft->base.size);
 	}
-	memmove(self->buf + ft->base.size, self->buf, self->len++*ft->base.size);
-	memcpy(self->buf, e, ft->base.size);
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_popl(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
 	if(!self->len){
-		return false;
+		return 0;
 	}
 	memcpy(o, self->buf, ft->base.size);
 	memmove(self->buf, self->buf + ft->base.size, (--self->len)*ft->base.size);
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_filter(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_vec_pred pred, void *data){
@@ -301,7 +303,7 @@ bool cr8r_vec_filter(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_vec_pred pred, void *
 
 bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, cr8r_vec_pred pred, void *data){
 	if(!cr8r_vec_init(dest, ft, src->len)){
-		return false;
+		return 0;
 	}
 	if(!ft->copy){
 		for(void *e = src->buf; e < src->buf + src->len*ft->base.size; e += ft->base.size){
@@ -317,18 +319,18 @@ bool cr8r_vec_filtered(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft, cr8
 		}
 	}
 	cr8r_vec_trim(dest, ft);
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_map(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *src_ft, cr8r_vec_ft *dest_ft, cr8r_vec_mapper f, void *data){
 	if(!cr8r_vec_init(dest, dest_ft, src->len)){
-		return false;
+		return 0;
 	}
 	for(uint64_t i = 0; i < src->len; ++i){
 		f(src_ft, dest_ft, dest->buf + i*dest_ft->base.size, src->buf + i*src_ft->base.size, data);
 	}
 	dest->len = src->len;
-	return true;
+	return 1;
 }
 
 int cr8r_vec_forEachPermutation(cr8r_vec *self, cr8r_vec_ft *ft, void (*f)(const cr8r_vec *self, const cr8r_vec_ft *ft, void *data), void *data){
@@ -354,19 +356,19 @@ int cr8r_vec_forEachPermutation(cr8r_vec *self, cr8r_vec_ft *ft, void (*f)(const
 bool cr8r_vec_all(const cr8r_vec *self, const cr8r_vec_ft *ft, cr8r_vec_pred pred, void *data){
 	for(void *e = self->buf; e < self->buf + self->len*ft->base.size; e += ft->base.size){
 		if(!pred(ft, e, data)){
-			return false;
+			return 0;
 		}
 	}
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_any(const cr8r_vec *self, const cr8r_vec_ft *ft, cr8r_vec_pred pred, void *data){
 	for(void *e = self->buf; e < self->buf + self->len*ft->base.size; e += ft->base.size){
 		if(pred(ft, e, data)){
-			return true;
+			return 1;
 		}
 	}
-	return false;
+	return 0;
 }
 
 bool cr8r_vec_contains(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
@@ -407,7 +409,7 @@ void cr8r_vec_reverse(cr8r_vec *self, cr8r_vec_ft *ft){
 
 bool cr8r_vec_reversed(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 	if(!cr8r_vec_init(dest, ft, src->len)){
-		return false;
+		return 0;
 	}
 	if(ft->copy){
 		for(uint64_t i = 0, j = src->len - 1; i < src->len; ++i, --j){
@@ -417,7 +419,7 @@ bool cr8r_vec_reversed(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 		memcpy(dest->buf + i*ft->base.size, src->buf + j*ft->base.size, ft->base.size);
 	}
 	dest->len = src->len;
-	return true;
+	return 1;
 }
 
 void *cr8r_vec_foldr(const cr8r_vec *self, const cr8r_vec_ft *ft, cr8r_vec_accumulator f, void *init){
@@ -448,10 +450,10 @@ void cr8r_vec_sort(cr8r_vec *self, cr8r_vec_ft *ft){
 
 bool cr8r_vec_sorted(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 	if(!cr8r_vec_copy(dest, src, ft)){
-		return false;
+		return 0;
 	}
 	cr8r_vec_sort(dest, ft);
-	return true;
+	return 1;
 }
 
 bool cr8r_vec_containss(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
@@ -595,12 +597,18 @@ void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b
 	return jt;
 }
 
+static inline void sort_end_tail(cr8r_vec_ft *ft, int ord, void *start, void *it){
+	for(void *jt = it; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
+		ft->swap(&ft->base, jt - ft->base.size, jt);
+	}
+}
+
 // Partially sort a subrange of the given vector to find an element near the max or min.
 // If i < 0, find the (b + i)th element by partially sorting the -i largest elements
 // descending in the beginning of the subrange and returning a pointer to the -i largest.
 // If i >= 0, find the ith element by partially sorting the i+1 smallest elements ascending
 // in the beginning of the subrange and returning a pointer to the i+1 smallest.
-static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, int64_t i){
+static inline void *sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, int64_t i){
 	int ord = 1;
 	if(i < 0){
 		ord = -1;
@@ -614,10 +622,7 @@ static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t 
 	}
 	// initially, [a, a + 1) = [start, start + 1) is sorted
 	for(void *it = start + ft->base.size; it <= res; it += ft->base.size){
-		for(void *jt = it; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
-			ft->swap(&ft->base, jt - ft->base.size, jt);
-		}
-		// at this point, we have [a, it) is sorted
+		sort_end_tail(ft, ord, start, it);
 	}
 	// now [a, res + 1) is sorted
 	for(void *it = res + ft->base.size; it < end; it += ft->base.size){
@@ -627,9 +632,7 @@ static inline void *cr8r_vec_sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t 
 		}
 		ft->swap(&ft->base, res, it);
 		// again [a, res + 1) is sorted and res is <= [res + 1, it + 1)
-		for(void *jt = res; jt > start && ord*ft->cmp(&ft->base, jt - ft->base.size, jt) > 0; jt -= ft->base.size){
-			ft->swap(&ft->base, jt - ft->base.size, jt);
-		}
+		sort_end_tail(ft, ord, start, res);
 	}
 	return res;
 }
@@ -640,9 +643,9 @@ void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint
 		if(i >= b - a){
 			return NULL;
 		}else if(i < CR8R_VEC_ISORT_BOUND){
-			return cr8r_vec_sort_end(self, ft, a, b, i);
+			return sort_end(self, ft, a, b, i);
 		}else if(b - i <= CR8R_VEC_ISORT_BOUND){
-			return cr8r_vec_sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
+			return sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
 		}
 		void *piv = cr8r_vec_pivot_mm(self, ft, a, b);
 		piv = cr8r_vec_partition(self, ft, a, b, piv);
@@ -661,115 +664,162 @@ void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint
 	}
 }
 
+typedef struct{
+	void *med;
+	uint64_t med_idx; // median index
+	uint64_t lb; // elements < the median occur in the range [a, lb)
+	uint64_t ea;
+	uint64_t eb; // elements == the median occur in the range [ea, eb)
+	uint64_t ha; // elements > the median occur in the range [ha, b)
+} pwm_state;
+
+// Advance lb past any elements < med, since they belong in the range [a, lb)
+// When elements == med are encountered and there is room on the left of [ea, eb),
+// we swap it there and continue.
+// Finally, when an element > med is encountered or lb bumps into ea, we break.
+static inline void pwm_advance_le(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+	while(st->lb < st->ea){
+		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, st->med);
+		if(ord > 0){
+			break;
+		}else if(ord < 0){
+			++st->lb;
+		}else{
+			if(st->lb == --st->ea){
+				break;
+			}
+			ft->swap(&ft->base, self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size);
+		}
+	}
+}
+
+// Advance ha (backwards) past any elements > med, since they belong in the range [ha, b)
+// When elements == med are encountered and there is room on the right of [ea, eb),
+// we swap in there and continue.
+// Finally, when an element < med is encountered or ha bumps into eb, we break.
+static inline void pwm_advance_ge(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+	while(st->eb < st->ha){
+		int ord = ft->cmp(&ft->base, st->med, self->buf + (st->ha - 1)*ft->base.size);
+		if(ord > 0){
+			break;
+		}else if(ord < 0){
+			--st->ha;
+		}else{
+			if(++st->eb == st->ha){
+				break;
+			}
+			ft->swap(&ft->base, self->buf + (st->eb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
+		}
+	}
+}
+
+// Variant of pmw_advance_le that runs when ha has bumped int eb.
+// This means that lb bumping into ea is final,
+// but also that if we find more elements > med we'll have to shift the == region
+static inline void pwm_finish_lt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+	char tmp[ft->base.size];
+	while(st->lb < st->ea){
+		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, st->med);
+		if(ord < 0){
+			++st->lb;
+		}else if(!ord){
+			if(st->lb == --st->ea){
+				break;
+			}
+			ft->swap(&ft->base, self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size);
+		}else{ // lb is > the median so it must go on the right, so we must shift an == element over
+			--st->eb;
+			--st->ha;
+			if(st->lb == --st->ea){
+				ft->swap(&ft->base, self->buf + st->ea*ft->base.size, self->buf + st->ha*ft->base.size);
+				break;
+			}
+			// triple swap lb, ea, and ha
+			memcpy(tmp, self->buf + st->lb*ft->base.size, ft->base.size);
+			memcpy(self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size, ft->base.size);
+			memcpy(self->buf + st->ea*ft->base.size, self->buf + st->ha*ft->base.size, ft->base.size);
+			memcpy(self->buf + st->ha*ft->base.size, tmp, ft->base.size);
+		}
+	}
+}
+
+// Variant of pmw_advance_ge that runs when lb has bumped int ea.
+// This means that ha bumping into eb is final,
+// but also that if we find more elements < med we'll have to shift the == region
+static inline void pwm_finish_gt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+	char tmp[ft->base.size];
+	while(st->eb < st->ha){
+		int ord = ft->cmp(&ft->base, st->med, self->buf + (st->ha - 1)*ft->base.size);
+		if(ord < 0){
+			--st->ha;
+		}else if(!ord){
+			if(++st->eb == st->ha){
+				break;
+			}
+			ft->swap(&ft->base, self->buf + (st->eb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
+		}else{ // ha is < the median so it must go on the left, so we must shift an == element over
+			++st->lb;
+			++st->ea;
+			if(++st->eb == st->ha){
+				ft->swap(&ft->base, self->buf + (st->ea - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
+				break;
+			}
+			// triple swap lb - 1, ha - 1, and eb -1
+			memcpy(tmp, self->buf + (st->lb - 1)*ft->base.size, ft->base.size);
+			memcpy(self->buf + (st->lb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size, ft->base.size);
+			memcpy(self->buf + (st->ha - 1)*ft->base.size, self->buf + (st->eb - 1)*ft->base.size, ft->base.size);
+			memcpy(self->buf + (st->eb - 1)*ft->base.size, tmp, ft->base.size);
+		}
+	}
+}
+
 void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *med){
-	uint64_t med_idx = (med - self->buf)/ft->base.size;
-	if(a >= b || med_idx < a || med_idx >= b){
+	pwm_state st = {};
+	st.med = med;
+	st.med_idx = (med - self->buf)/ft->base.size;
+	if(a >= b || st.med_idx < a || st.med_idx >= b){
 		return NULL;
 	}
 	// We need to partition our array but ensure the median element is placed in the center
 	// of the array.  This requires a partitioning algorithm that can handle equal elements to
 	// the median, since the basic partitioning algorithm could have it out of place by up to
 	// as many equal elements as there are
-	uint64_t lb = a; // the elements < the median occur in the range [a, lb)
-	uint64_t ea = (b + a)/2;
-	uint64_t eb = ea + 1; // the elements == the median occur in the range [ea, eb)
-	uint64_t ha = b; // the elements > the median occur in the range [ha, b)
-	if(med_idx != ea){
-		med = self->buf + ea*ft->base.size;
-		ft->swap(&ft->base, med, self->buf + med_idx*ft->base.size); // ensure the median is placed at the center
-		med_idx = ea;
+	st.lb = a; // the elements < the median occur in the range [a, lb)
+	st.ea = (b + a)/2;
+	st.eb = st.ea + 1; // the elements == the median occur in the range [ea, eb)
+	st.ha = b; // the elements > the median occur in the range [ha, b)
+	if(st.med_idx != st.ea){
+		med = self->buf + st.ea*ft->base.size;
+		ft->swap(&ft->base, med, self->buf + st.med_idx*ft->base.size); // ensure the median is placed at the center
+		st.med_idx = st.ea;
 	}
 	// now we will extend [a, lb), [ha, b), and [ea, eb) until they encompass the entire array
 	// TODO: consider alternating which side we place == elements on
-	while(lb < ea && eb < ha){
+	while(st.lb < st.ea && st.eb < st.ha){
 		// first we skip over any elements on the left < the median, and swap any == to the
 		// central region
-		while(lb < ea){
-			int ord = ft->cmp(&ft->base, self->buf + lb*ft->base.size, med);
-			if(ord > 0){
-				break;
-			}else if(ord < 0){
-			++lb;
-			}else{
-				if(lb == --ea){
-					break;
-				}
-				ft->swap(&ft->base, self->buf + lb*ft->base.size, self->buf + ea*ft->base.size);
-			}
-		}
+		pwm_advance_le(self, ft, &st);
 		// next we skip over any elements on the right > the median, and swap any == to the
 		// central region
-		while(eb < ha){
-			int ord = ft->cmp(&ft->base, med, self->buf + (ha - 1)*ft->base.size);
-			if(ord > 0){
-				break;
-			}else if(ord < 0){
-				--ha;
-			}else{
-				if(++eb == ha){
-					break;
-				}
-				ft->swap(&ft->base, self->buf + (eb - 1)*ft->base.size, self->buf + (ha - 1)*ft->base.size);
-			}
-		}
-		if(lb == ea || eb == ha){
+		pwm_advance_ge(self, ft, &st);
+		// now there are two possibilities: one of [a, lb) or [ha, b) bumped into [ea, eb),
+		// or we have a pair of mismatched elements at lb and ha-1 which we can swap.
+		if(st.lb == st.ea || st.eb == st.ha){
 			break;
 		}
-		--ha;
-		ft->swap(&ft->base, self->buf + lb*ft->base.size, self->buf + ha*ft->base.size);
-		++lb;
+		--st.ha;
+		ft->swap(&ft->base, self->buf + st.lb*ft->base.size, self->buf + st.ha*ft->base.size);
+		++st.lb;
 	}
-	char tmp[ft->base.size];
-	// now either eb == ha or lb == ea so only one of the following two loops will run
-	while(lb < ea){
-		int ord = ft->cmp(&ft->base, self->buf + lb*ft->base.size, med);
-		if(ord < 0){
-			++lb;
-		}else if(!ord){
-			if(lb == --ea){
-				break;
-			}
-			ft->swap(&ft->base, self->buf + lb*ft->base.size, self->buf + ea*ft->base.size);
-		}else{ // lb is > the median so it must go on the right, so we must shift an == element over
-			--eb;
-			--ha;
-			if(lb == --ea){
-				ft->swap(&ft->base, self->buf + ea*ft->base.size, self->buf + ha*ft->base.size);
-				break;
-			}
-			memcpy(tmp, self->buf + lb*ft->base.size, ft->base.size);
-			memcpy(self->buf + lb*ft->base.size, self->buf + ea*ft->base.size, ft->base.size);
-			memcpy(self->buf + ea*ft->base.size, self->buf + ha*ft->base.size, ft->base.size);
-			memcpy(self->buf + ha*ft->base.size, tmp, ft->base.size);
-		}
-	}
-	while(eb < ha){
-		int ord = ft->cmp(&ft->base, med, self->buf + (ha - 1)*ft->base.size);
-		if(ord < 0){
-			--ha;
-		}else if(!ord){
-			if(++eb == ha){
-				break;
-			}
-			ft->swap(&ft->base, self->buf + (eb - 1)*ft->base.size, self->buf + (ha - 1)*ft->base.size);
-		}else{ // ha is < the median so it must go on the left, so we must shift an == element over
-			++lb;
-			++ea;
-			if(++eb == ha){
-				ft->swap(&ft->base, self->buf + (ea - 1)*ft->base.size, self->buf + (ha - 1)*ft->base.size);
-				break;
-			}
-			memcpy(tmp, self->buf + (lb - 1)*ft->base.size, ft->base.size);
-			memcpy(self->buf + (lb - 1)*ft->base.size, self->buf + (ha - 1)*ft->base.size, ft->base.size);
-			memcpy(self->buf + (ha - 1)*ft->base.size, self->buf + (eb - 1)*ft->base.size, ft->base.size);
-			memcpy(self->buf + (eb - 1)*ft->base.size, tmp, ft->base.size);
-		}
-	}
-	if(lb != ea || eb != ha || ea > med_idx || eb <= med_idx){
+	// now either eb == ha or lb == ea, which will cause pwm_finish_lt and/or pwm_finish_gt to
+	// become no-ops, respectively
+	pwm_finish_lt(self, ft, &st);
+	pwm_finish_gt(self, ft, &st);
+	if(st.lb != st.ea || st.eb != st.ha || st.ea > st.med_idx || st.eb <= st.med_idx){
 		return NULL;
 	}
 #ifdef DEBUG
-	return cr8r_vec_check_pwm(ft, self, a, lb, ha, b, med) ? med : NULL;
+	return cr8r_vec_check_pwm(ft, self, a, st.lb, st.ha, b, med) ? med : NULL;
 #else
 	return med;
 #endif

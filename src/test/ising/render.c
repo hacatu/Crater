@@ -82,12 +82,12 @@ bool generate_random_seed(cr8r_opt *self){
 	cr8r_prng *sys_rng = cr8r_prng_init_system();
 	if(!sys_rng){
 		fprintf(stderr, "\e[1;31mERROR: Could not initialize sys rng!\e[0m\n");
-		return false;
+		return 0;
 	}
 	cr8r_prng_get_bytes(sys_rng, sizeof(uint64_t), self->dest);
 	fprintf(stderr, "\e[1;33mseed=%"PRIx64"\e[0m\n", *(uint64_t*)self->dest);
 	free(sys_rng);
-	return true;
+	return 1;
 }
 
 int main(int argc, char **argv){

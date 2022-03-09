@@ -57,6 +57,11 @@ int main(){
 		fprintf(stderr, "\e[1;32mKD Tree build failed!\e[0m\n");
 	}
 
+	if(passed == tested){
+		fprintf(stderr, "\e[1;32mSuccess: passed %"PRIu64"/%"PRIu64" tests\e[0m\n", passed, tested);
+	}else{
+		fprintf(stderr, "\e[1;31mFailed: passed %"PRIu64"/%"PRIu64" tests\e[0m\n", passed, tested);
+	}
 	cr8r_vec_delete(&points, &cr8r_kdft_c3i64.super);
 	free(prng);
 }

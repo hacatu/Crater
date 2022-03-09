@@ -42,7 +42,7 @@ bool cr8r_avl_ft_init(cr8r_avl_ft *ft,
 	void (*free)(cr8r_base_ft*, void*)
 ){
 	if(!cmp || !alloc || !free){
-		return false;
+		return 0;
 	}
 	ft->base.data = data;
 	ft->base.size = size;
@@ -50,7 +50,7 @@ bool cr8r_avl_ft_init(cr8r_avl_ft *ft,
 	ft->add = add;
 	ft->alloc = alloc;
 	ft->free = free;
-	return true;
+	return 1;
 }
 
 bool cr8r_avl_ft_initsla(cr8r_avl_ft *ft,
@@ -59,7 +59,7 @@ bool cr8r_avl_ft_initsla(cr8r_avl_ft *ft,
 	int (*add)(cr8r_base_ft*, void*, void*)
 ){
 	if(!cmp || !sla || !cr8r_sla_init(sla, offsetof(cr8r_avl_node, data) + size, reserve)){
-		return false;
+		return 0;
 	}
 	ft->base.data = sla;
 	ft->base.size = size;
@@ -67,7 +67,7 @@ bool cr8r_avl_ft_initsla(cr8r_avl_ft *ft,
 	ft->add = add;
 	ft->alloc = cr8r_default_alloc_sla;
 	ft->free = cr8r_default_free_sla;
-	return true;
+	return 1;
 }
 
 void *cr8r_default_alloc_sla(cr8r_base_ft *ft){

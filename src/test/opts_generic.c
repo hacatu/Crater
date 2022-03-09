@@ -65,7 +65,7 @@ int main(int argc, char **argv){
 	if(options[13].found){fprintf(stderr, "v_d=%f\n", v_d);}
 	if(options[14].found){fprintf(stderr, "v_ld=%Lf\n", v_ld);}
 	if(options[15].found){fprintf(stderr, "v_cstr=%s\n", v_cstr);}
-	if(options[16].found){fprintf(stderr, "v_b=%hhu\n", v_b);}
+	if(options[16].found){fprintf(stderr, "v_b=%hhu\n", (unsigned char)v_b);}
 	if(options[17].found){fprintf(stderr, "v_i128=%s\n", cr8r_sprint_i128(pbuf, v_i128));}
 	if(options[18].found){fprintf(stderr, "v_u128=%s\n", cr8r_sprint_u128(pbuf, v_u128));}
 }

@@ -42,7 +42,6 @@ void cr8r_mmheap_sift_up(cr8r_vec *self, cr8r_vec_ft *ft, void *e){
 		ft->swap(&ft->base, e, e1);
 		i = i1;
 		e = e1;
-		is_min_layer ^= 1;
 		ord = -ord;
 	}
 	while(i > 2){
@@ -102,10 +101,10 @@ void cr8r_mmheap_sift_down(cr8r_vec *self, cr8r_vec_ft *ft, void *e){
 
 bool cr8r_mmheap_push(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
 	if(!cr8r_vec_pushr(self, ft, e)){
-		return false;
+		return 0;
 	}
 	cr8r_mmheap_sift_up(self, ft, cr8r_vec_getx(self, ft, -1));
-	return true;
+	return 1;
 }
 
 bool cr8r_mmheap_pop_min(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
@@ -124,25 +123,25 @@ bool cr8r_mmheap_pop_idx(cr8r_vec *self, cr8r_vec_ft *ft, void *o, uint64_t i){
 	if(i == self->len - 1){
 		return cr8r_vec_popr(self, ft, o);
 	}else if(!self->len){
-		return false;
+		return 0;
 	}
 	void *e = self->buf + i*ft->base.size;
 	memcpy(o, e, ft->base.size);
 	cr8r_vec_popr(self, ft, e);
 	cr8r_mmheap_sift_down(self, ft, e);
-	return true;
+	return 1;
 }
 
 bool cr8r_mmheap_pushpop_min(cr8r_vec *self, cr8r_vec_ft *ft, const void *e, void *o){
 	if(!cr8r_mmheap_push(self, ft, e)){
-		return false;
+		return 0;
 	}
 	return cr8r_mmheap_pop_min(self, ft, o);
 }
 
 bool cr8r_mmheap_pushpop_max(cr8r_vec *self, cr8r_vec_ft *ft, const void *e, void *o){
 	if(!cr8r_mmheap_push(self, ft, e)){
-		return false;
+		return 0;
 	}
 	return cr8r_mmheap_pop_max(self, ft, o);
 }

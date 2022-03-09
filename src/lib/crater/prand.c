@@ -61,7 +61,7 @@ uint64_t cr8r_prng_uniform_u64(cr8r_prng *self, uint64_t a, uint64_t b){
 			r = cr8r_prng_get_u32(self);
 		}while(r >= ub);
 	}else{
-		ub = 0x7FFFFFFFFFFFFFFFull%l*-2;
+		ub = 0x7FFFFFFFFFFFFFFFull%l*(uint64_t)-2;
 		do{
 			r = cr8r_prng_get_u64(self);
 		}while(r >= ub);
@@ -92,6 +92,7 @@ inline static uint64_t pow_ti(uint64_t b, uint64_t i){
 
 uint64_t cr8r_prng_log_mod_t64(uint64_t h){
 	uint64_t y = pow_ti(3, 61);
+	// the inverse of 3 mod 2**64
 	uint64_t g1 = 12297829382473034411ull;
 	for(uint64_t gi = 0; gi < 4; ++gi){
 		uint64_t x = 0;
@@ -112,9 +113,9 @@ uint64_t cr8r_prng_log_mod_t64(uint64_t h){
 			g1_tk = g1_tk*g1_tk;
 		}
 		if(k == 62){
-			// x was successfully extended to 62 bits, set the high 2 bits based on what
-			// the first generator that worked was (0b00 for 3, 0b01 for -3,
-			// 0b10 for 2**(k-1)+3, or 0b11 for 2**(k-1)-3)
+			// x was successfully extended to 62 bits, set the high 2 bits
+			// to the powers (0 or 1) of the order-2 generators 2**63+1 for
+			// the highest bit, and 2**63-1 for the second highest bit.
 			return (gi << 62) |  (x&((1ull << 62) - 1));
 		}
 	}
@@ -129,7 +130,7 @@ static uint32_t cr8r_prng_system_get_u32(void *_state){
 }
 
 static bool cr8r_prng_system_fixup(void *_state){
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_system(){
@@ -153,7 +154,7 @@ static bool cr8r_prng_lcg_fixup(void *_state){
 	if(!*state){
 		*state = CR8R_DEFAULT_PRNG_LCG_SEED;
 	}
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_lcg(uint64_t seed){
@@ -188,13 +189,13 @@ static bool cr8r_prng_lfg_sc_fixup(void *_state){
 	for(uint64_t i = 0; i < 12; i += 6){
 		// depends on little endianness
 		if(state[i]&1){
-			return true;
+			return 1;
 		}
 	}
 	for(uint64_t i = 0; i < 12; i += 6){
 		state[i] |= 1;
 	}
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_lfg_sc(uint64_t seed){
@@ -230,7 +231,7 @@ static bool cr8r_prng_lfg_m_fixup(void *_state){
 		state->XS[i] |= 1;
 	}
 	state->index %= CR8R_PRNG_LFM_R;
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_lfg_m(uint64_t seed){
@@ -270,7 +271,7 @@ static const uint64_t cr8r_prng_mt_himask = ~cr8r_prng_mt_lomask;
 static bool cr8r_prng_mt_seed(void *_state, const void *_seed){
 	uint64_t seed = *(const uint64_t*)_seed;
 	if(!seed){
-		return false;
+		return 0;
 	}
 	cr8r_prng_mt_st *state = _state;
 	state->index = 2*CR8R_PRNG_MT_N;
@@ -278,12 +279,12 @@ static bool cr8r_prng_mt_seed(void *_state, const void *_seed){
 	for(uint64_t i = 1; i < CR8R_PRNG_MT_N; ++i){
 		state->MT[i] = CR8R_PRNG_MT_F*(state->MT[i-1]^(state->MT[i-1] >> 62)) + i;
 	}
-	return true;
+	return 1;
 }
 */
 
 static bool cr8r_prng_mt_fixup(void *_state){
-	return true;
+	return 1;
 }
 
 static uint32_t cr8r_prng_mt_get_u32(void *_state){
@@ -419,7 +420,7 @@ void cr8r_prng_xoro_jump_t192(cr8r_prng *self){
 }
 
 static bool cr8r_prng_xoro_fixup(void *_state){
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_xoro(uint64_t seed){
@@ -461,7 +462,7 @@ static uint32_t cr8r_prng_splitmix_get_u32(void *_state){
 }
 
 static bool cr8r_prng_splitmix_fixup(void *_state){
-	return true;
+	return 1;
 }
 
 cr8r_prng *cr8r_prng_init_splitmix(uint64_t seed){

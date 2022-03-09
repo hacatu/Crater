@@ -10,7 +10,7 @@
 #include <crater/hash.h>
 
 bool cr8r_opt_missing_optional(cr8r_opt *self){
-	return true;
+	return 1;
 }
 
 bool cr8r_opt_print_help(cr8r_opt *self, char *opt){
@@ -35,18 +35,18 @@ bool cr8r_opt_print_help(cr8r_opt *self, char *opt){
 }
 
 bool cr8r_opt_ignore_arg(void *data, int argc, char **argv, int i){
-	return true;
+	return 1;
 }
 
 bool cr8r_opt_set_enum_0(cr8r_opt *self, char *opt){
 	*(int*)self->dest = 0;
-	return true;
+	return 1;
 }
 
 /// Implementation of on_opt that sets *(int*)self->dest to 1
 bool cr8r_opt_set_enum_1(cr8r_opt *self, char *opt){
 	*(int*)self->dest = 1;
-	return true;
+	return 1;
 }
 
 bool cr8r_opt_parse_ull(cr8r_opt *self, char *opt){
@@ -116,11 +116,11 @@ bool cr8r_opt_parse_s(cr8r_opt *self, char *opt){
 bool cr8r_opt_parse_uc(cr8r_opt *self, char *opt){
 	char *end = opt;
 	if(!*end){
-		return false;
+		return 0;
 	}
 	if(!end[1]){
 		*(unsigned char*)self->dest = end[0];
-		return true;
+		return 1;
 	}
 	errno = 0;
 	unsigned long n = strtoul(opt, &end, 0);
@@ -132,11 +132,11 @@ bool cr8r_opt_parse_uc(cr8r_opt *self, char *opt){
 bool cr8r_opt_parse_sc(cr8r_opt *self, char *opt){
 	char *end = opt;
 	if(!*end){
-		return false;
+		return 0;
 	}
 	if(!end[1]){
 		*(signed char*)self->dest = end[0];
-		return true;
+		return 1;
 	}
 	errno = 0;
 	long n = strtol(opt, &end, 0);
@@ -148,11 +148,11 @@ bool cr8r_opt_parse_sc(cr8r_opt *self, char *opt){
 bool cr8r_opt_parse_c(cr8r_opt *self, char *opt){
 	char *end = opt;
 	if(!*end){
-		return false;
+		return 0;
 	}
 	if(!end[1]){
 		*(char*)self->dest = end[0];
-		return true;
+		return 1;
 	}
 	errno = 0;
 #if CHAR_MIN
@@ -198,7 +198,7 @@ bool cr8r_opt_parse_b(cr8r_opt *self, char *opt){
 	unsigned long n = strtoul(opt, &end, 0);
 	*(bool*)self->dest = !!n;
 	if(errno == ERANGE || n > 1){
-		return false;
+		return 0;
 	}
 	if(end == opt){
 		if(!strcasecmp(opt, "true") || !strcasecmp(opt, "yes") || !strcasecmp(opt, "t") || !strcasecmp(opt, "y")){
@@ -206,10 +206,10 @@ bool cr8r_opt_parse_b(cr8r_opt *self, char *opt){
 		}else if(!strcasecmp(opt, "false") || !strcasecmp(opt, "no") || !strcasecmp(opt, "f") || !strcasecmp(opt, "n")){
 			*(bool*)self->dest = false;
 		}else{
-			return false;
+			return 0;
 		}
 	}
-	return true;
+	return 1;
 }
 
 static inline int get_digit_base(int c, int base){
@@ -385,29 +385,29 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 		int char_len;
 		if(opt->arg_mode && !opt->on_opt){
 			fprintf(stderr, "Crater opt error: invalid opt spec (argument to opt allowed but on_opt missing)\n");
-			return false;
+			return 0;
 		}else if(opt->long_name && !*opt->long_name){
 			fprintf(stderr, "Crater opt error: invalid opt spec (long_name is empty string (use NULL instead))\n");
-			return false;
+			return 0;
 		}else if(opt->short_name && !*opt->short_name){
 			fprintf(stderr, "Crater opt error: invalid opt spec (short_name is empty string (use NULL instead))\n");
-			return false;
+			return 0;
 		}else if(opt->short_name && ((char_len = mblen(opt->short_name, MB_CUR_MAX)) == -1 || opt->short_name[char_len])){
 			fprintf(stderr, "Crater opt error: invalid opt spec (short_name contains invalid multibyte character or multiple locale characters)\n");
-			return false;
+			return 0;
 		}else if(opt->short_name && strchr("-= ", *opt->short_name)){
 			fprintf(stderr, "Crater opt error: invalid opt spec (short_name is '-', '=', or ' ', which are not permitted)\n");
-			return false;
+			return 0;
 		}else if(opt->long_name){
 			for(uint64_t i = 0; (char_len = mblen(opt->long_name + i, MB_CUR_MAX)) > 0; i += char_len){
 				if(char_len == 1 && strchr("= ", opt->long_name[i])){
 					fprintf(stderr, "Crater opt error: invalid opt spec (long_name contains '=' or ' ', which are not permitted)\n");
-					return false;
+					return 0;
 				}
 			}
 		}else if(opt->arg_mode < 0 || opt->arg_mode > 2){
 			fprintf(stderr, "Crater opt error: unknown value for arg_mode\n");
-			return false;
+			return 0;
 		}
 		opt->found = false;
 		num_long += !!opt->long_name;
@@ -415,16 +415,16 @@ static bool init_opt_tbls(cr8r_opt *opts, cr8r_opt_cfg *cfg, cr8r_hashtbl_t *lon
 	}
 	if(!cr8r_hash_init(long_opts, &cr8r_htft_cstr_u64, num_long*3)){
 		fprintf(stderr, "Crater opt error: could not allocate long_opts table!\n");
-		return false;
+		return 0;
 	}
 	if(!cr8r_hash_init(short_opts, &cr8r_htft_cstr_u64, num_short*3)){
 		cr8r_hash_destroy(long_opts, &cr8r_htft_cstr_u64);
 		fprintf(stderr, "Crater opt error: could not allocate short_opts table!\n");
-		return false;
+		return 0;
 	}
 	bool success = true;
 	for(uint64_t i = 0; i < num_opts; ++i){
-		int status;
+		int status = 0;
 		if(opts[i].short_name){
 			cr8r_hash_insert(short_opts, &cr8r_htft_cstr_u64, &(cr8r_htent_cstr_u64){opts[i].short_name, i}, &status);
 			if(status != 1){
@@ -472,7 +472,7 @@ static inline bool parse_long_opt(cr8r_hashtbl_t *long_opts, cr8r_opt *opts, cr8
 			*eq_chr = '=';
 		}
 		++*argi;
-		return false;
+		return 0;
 	}
 	if(eq_chr){
 		*eq_chr = '=';
@@ -517,7 +517,7 @@ static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts
 	bool success = true, reading_group = true;
 	for(int j = 1, char_len; reading_group && argv[*argi][j]; j += char_len){
 		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
-			return false;
+			return 0;
 		}
 		char_len = mblen(argv[*argi] + j, MB_CUR_MAX);
 		if(strchr("-= ", argv[*argi][j]) || char_len <= 0){
@@ -575,7 +575,7 @@ static inline bool parse_short_optgrp(cr8r_hashtbl_t *short_opts, cr8r_opt *opts
 bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 	cr8r_hashtbl_t long_opts, short_opts;
 	if(!init_opt_tbls(opts, cfg, &long_opts, &short_opts)){
-		return false;
+		return 0;
 	}
 	bool success = true;
 	int i = 1;
@@ -612,7 +612,7 @@ bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
 			cr8r_hash_destroy(&long_opts, &cr8r_htft_cstr_u64);
 			cr8r_hash_destroy(&short_opts, &cr8r_htft_cstr_u64);
-			return false;
+			return 0;
 		}
 	}
 	cr8r_hash_destroy(&long_opts, &cr8r_htft_cstr_u64);
@@ -645,7 +645,7 @@ bool cr8r_opt_parse(cr8r_opt *opts, cr8r_opt_cfg *cfg, int argc, char **argv){
 			success = false;
 		}
 		if(!success && (cfg->flags & CR8R_OPTS_FATAL_ERRS)){
-			return false;
+			return 0;
 		}
 	}
 	for(; i < argc; ++i){

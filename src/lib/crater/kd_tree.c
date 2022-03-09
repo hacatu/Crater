@@ -239,18 +239,18 @@ static double sqdist_i64cu(const cr8r_kd_ft *_ft, const void *_a, const void *_b
 bool cr8r_kdwin_init_i64sp(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]){
 	memcpy(self->bl, bl, 3*sizeof(int64_t));
 	memcpy(self->tr, tr, 3*sizeof(int64_t));
-	return true;
+	return 1;
 }
 
 bool cr8r_kdwin_init_i64cu(cr8r_kdwin_s2i64 *self, const int64_t bl[3], const int64_t tr[3]){
 	memcpy(self->bl, bl, 3*sizeof(int64_t));
 	memcpy(self->tr, tr, 3*sizeof(int64_t));
-	return true;
+	return 1;
 }
 
 bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, const cr8r_kd_ft *ft){
 	if(!ents->len){
-		return false;
+		return 0;
 	}
 	memcpy(self->bl, ents->buf, ft->super.base.size);
 	memcpy(self->tr, ents->buf, ft->super.base.size);
@@ -258,7 +258,7 @@ bool cr8r_kdwin_bounding_i64x3(cr8r_kdwin_s2i64 *self, const cr8r_vec *ents, con
 		const void *ent = ents->buf + i*ft->super.base.size;
 		ft->update(ft, self, ent);
 	}
-	return true;
+	return 1;
 }
 
 bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b){
@@ -267,17 +267,17 @@ bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b){
 		uint64_t mid_idx = (a + b)/2;
 		void *piv = cr8r_vec_ith(self, &ft.super, a, b, mid_idx - a);
 		if(!piv){
-			return false;
+			return 0;
 		}
 		piv = cr8r_vec_partition_with_median(self, &ft.super, a, b, piv);
 		// increment depth
 		++*(uint64_t*)&ft.super.base.data;
 		if(!cr8r_kd_ify(self, &ft, mid_idx + 1, b)){
-			return false;
+			return 0;
 		}
 		b = mid_idx;
 	}
-	return true;
+	return 1;
 }
 
 cr8r_walk_decision cr8r_kd_walk_r(cr8r_vec *self, const cr8r_kd_ft *_ft, void *bounds, cr8r_kdvisitor visitor, void *data, uint64_t a, uint64_t b){

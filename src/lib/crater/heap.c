@@ -44,10 +44,10 @@ void cr8r_heap_sift_down(cr8r_vec *self, cr8r_vec_ft *ft, void *e, int ord){
 
 bool cr8r_heap_push(cr8r_vec *self, cr8r_vec_ft *ft, const void *e, int ord){
 	if(!cr8r_vec_pushr(self, ft, e)){
-		return false;
+		return 0;
 	}
 	cr8r_heap_sift_up(self, ft, self->buf + (self->len - 1)*ft->base.size, ord);
-	return true;
+	return 1;
 }
 
 bool cr8r_heap_pop(cr8r_vec *self, cr8r_vec_ft *ft, void *o, int ord){
@@ -55,11 +55,11 @@ bool cr8r_heap_pop(cr8r_vec *self, cr8r_vec_ft *ft, void *o, int ord){
 		ft->swap(&ft->base, self->buf, self->buf + (self->len - 1)*ft->base.size);
 	}
 	if(!cr8r_vec_popr(self, ft, o)){
-		return false;
+		return 0;
 	}
 	if(self->len){
 		cr8r_heap_sift_down(self, ft, self->buf, ord);
 	}
-	return true;
+	return 1;
 }
 

@@ -56,11 +56,11 @@ int64_t ising2D_flip(ising2D_lattice *self, uint64_t i){
 bool ising2D_compute_energy_probs(uint64_t n, double B, double *energy_probs){
 	int64_t N = n*n;
 	if(N > 63){
-		return false;
+		return 0;
 	}
 	ising2D_lattice *latt = calloc(offsetof(ising2D_lattice, spin_masks) + sizeof(uint64_t), 1);
 	if(!latt){
-		return false;
+		return 0;
 	}
 	latt->size = n;
 	latt->B = B;
@@ -104,7 +104,7 @@ bool ising2D_compute_energy_probs(uint64_t n, double B, double *energy_probs){
 	for(uint64_t i = 0; i <= (uint64_t)N; ++i){
 		energy_probs[i] /= Z;
 	}
-	return true;
+	return 1;
 }
 
 // the ising model is the simplest model in statistical mechanics that has a critical point.

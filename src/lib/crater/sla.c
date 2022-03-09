@@ -4,15 +4,15 @@
 
 bool cr8r_sla_init(cr8r_sla *self, uint64_t elem_size, uint64_t cap){
 	if(!cap || elem_size < sizeof(void*)){
-		return false;
+		return 0;
 	}
 	self->elem_size = elem_size;
 	char (*slab)[elem_size] = malloc(cap*elem_size);//start the allocator with one block of length cap
 	if(!slab){
-		return false;
+		return 0;
 	}else if(!(self->slabs = malloc(1*sizeof(void*)))){//put slab in an array
 		free(slab);
-		return false;
+		return 0;
 	}
 	self->slab_cap = cap;
 	self->first_elem = self->slabs[0] = slab;
@@ -21,7 +21,7 @@ bool cr8r_sla_init(cr8r_sla *self, uint64_t elem_size, uint64_t cap){
 		*(void**)(slab + i) = slab + i + 1;
 	}
 	*(void**)(slab + cap - 1) = NULL;
-	return true;
+	return 1;
 }
 
 void cr8r_sla_delete(cr8r_sla *self){
