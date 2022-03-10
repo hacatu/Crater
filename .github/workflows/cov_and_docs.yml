@@ -24,6 +24,10 @@ jobs:
         mv build/debug/cov website/
         mv build/debug/coverage.svg website/
         mv docs website/
+        export CODACY_ORGANIZATION_PROVIDER=gh
+        export CODACY_USERNAME=hacatu
+        export CODACY_PROJECT_NAME=Crater
+        bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l C -r build/debug/notes/combined.info
     - name: Deploy Coverage and Docs to Pages
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:

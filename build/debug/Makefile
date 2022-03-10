@@ -91,8 +91,8 @@ test: all $(SIMPLE_TEST_BINS) $(COMPOUND_TEST_BINS) log
 
 .PHONY: coverage
 coverage: test | cov
-	geninfo notes
-	find notes/lib -name "*.info" | xargs genhtml --num-spaces 4 --css-file ../../resources/lcov.css --html-prolog ../../resources/lcov_prolog.html -o cov | grep -oP "(?<=lines\\.{6,6}: )\\d+\\.\d+" | xargs ../../cov_shield.py | xargs curl -o coverage.svg
+	geninfo notes -o notes/combined.info
+	genhtml --num-spaces 4 --css-file ../../resources/lcov.css --html-prolog ../../resources/lcov_prolog.html -o cov notes/combined.info | grep -oP "(?<=lines\\.{6,6}: )\\d+\\.\d+" | xargs ../../cov_shield.py | xargs curl -o coverage.svg
 
 .PHONY: clean
 clean:
