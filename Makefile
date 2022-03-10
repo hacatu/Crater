@@ -10,7 +10,13 @@ HEADERS := $(shell find include -name '*.h')
 
 .PHONY: all
 all:
-	$(MAKE) -C $(BUILD_ROOT)
+	@if [ $EUID -e 0 ]; then \
+		@read -p "WARNING: building as root, continue anyway [y/n]?" -n 1 r
+		@echo
+		@if [[ $REPLY =~ ^[Yy]$ ]]; then \
+			$(MAKE) -C $(BUILD_ROOT); \
+		fi; \
+	fi;
 
 .PHONY: test
 test:
