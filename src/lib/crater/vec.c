@@ -676,47 +676,10 @@ typedef struct{
 // Advance lb past any elements < med, since they belong in the range [a, lb)
 // When elements == med are encountered and there is room on the left of [ea, eb),
 // we swap it there and continue.
-// Finally, when an element > med is encountered or lb bumps into ea, we break.
-static inline void pwm_advance_le(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
-	while(st->lb < st->ea){
-		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, st->med);
-		if(ord > 0){
-			break;
-		}else if(ord < 0){
-			++st->lb;
-		}else{
-			if(st->lb == --st->ea){
-				break;
-			}
-			ft->swap(&ft->base, self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size);
-		}
-	}
-}
-
-// Advance ha (backwards) past any elements > med, since they belong in the range [ha, b)
-// When elements == med are encountered and there is room on the right of [ea, eb),
-// we swap in there and continue.
-// Finally, when an element < med is encountered or ha bumps into eb, we break.
-static inline void pwm_advance_ge(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
-	while(st->eb < st->ha){
-		int ord = ft->cmp(&ft->base, st->med, self->buf + (st->ha - 1)*ft->base.size);
-		if(ord > 0){
-			break;
-		}else if(ord < 0){
-			--st->ha;
-		}else{
-			if(++st->eb == st->ha){
-				break;
-			}
-			ft->swap(&ft->base, self->buf + (st->eb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
-		}
-	}
-}
-
-// Variant of pmw_advance_le that runs when ha has bumped int eb.
-// This means that lb bumping into ea is final,
-// but also that if we find more elements > med we'll have to shift the == region
-static inline void pwm_finish_lt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+// Finally, when an element > med is encountered or lb bumps into ea, we break,
+// unless ha has already bumped into eb, in which case we just shift over the == region
+// and keep going
+static inline void pwm_advance_le(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st, bool is_ge_done){
 	char tmp[ft->base.size];
 	while(st->lb < st->ea){
 		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, st->med);
@@ -727,7 +690,8 @@ static inline void pwm_finish_lt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st)
 				break;
 			}
 			ft->swap(&ft->base, self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size);
-		}else{ // lb is > the median so it must go on the right, so we must shift an == element over
+		// otherwise lb is > the median so it must go on the right
+		}else if(is_ge_done){// eb == ha so we must shift an == element over
 			--st->eb;
 			--st->ha;
 			if(st->lb == --st->ea){
@@ -739,14 +703,19 @@ static inline void pwm_finish_lt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st)
 			memcpy(self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size, ft->base.size);
 			memcpy(self->buf + st->ea*ft->base.size, self->buf + st->ha*ft->base.size, ft->base.size);
 			memcpy(self->buf + st->ha*ft->base.size, tmp, ft->base.size);
+		}else{ // eb < ha so we stop and see if continuing to search the elements in [eb, ha) contain any < med
+			break;
 		}
 	}
 }
 
-// Variant of pmw_advance_ge that runs when lb has bumped int ea.
-// This means that ha bumping into eb is final,
-// but also that if we find more elements < med we'll have to shift the == region
-static inline void pwm_finish_gt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st){
+// Advance ha (backwards) past any elements > med, since they belong in the range [ha, b)
+// When elements == med are encountered and there is room on the right of [ea, eb),
+// we swap in there and continue.
+// Finally, when an element < med is encountered or ha bumps into eb, we break,
+// unless lb has already bumped int ea, in which case we just shift over the == region
+// and keep going
+static inline void pwm_advance_ge(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st, bool is_le_done){
 	char tmp[ft->base.size];
 	while(st->eb < st->ha){
 		int ord = ft->cmp(&ft->base, st->med, self->buf + (st->ha - 1)*ft->base.size);
@@ -757,7 +726,8 @@ static inline void pwm_finish_gt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st)
 				break;
 			}
 			ft->swap(&ft->base, self->buf + (st->eb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
-		}else{ // ha is < the median so it must go on the left, so we must shift an == element over
+		// otherwise ha is < the median so it must go on the left
+		}else if(is_le_done){ // lb == ea so we must shift an == element over
 			++st->lb;
 			++st->ea;
 			if(++st->eb == st->ha){
@@ -769,6 +739,8 @@ static inline void pwm_finish_gt(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st)
 			memcpy(self->buf + (st->lb - 1)*ft->base.size, self->buf + (st->ha - 1)*ft->base.size, ft->base.size);
 			memcpy(self->buf + (st->ha - 1)*ft->base.size, self->buf + (st->eb - 1)*ft->base.size, ft->base.size);
 			memcpy(self->buf + (st->eb - 1)*ft->base.size, tmp, ft->base.size);
+		}else{ // lb < ea so we stop and see if continuing to search the elements in [lb, ea) contain any < med
+			break;
 		}
 	}
 }
@@ -798,10 +770,10 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 	while(st.lb < st.ea && st.eb < st.ha){
 		// first we skip over any elements on the left < the median, and swap any == to the
 		// central region
-		pwm_advance_le(self, ft, &st);
+		pwm_advance_le(self, ft, &st, false);
 		// next we skip over any elements on the right > the median, and swap any == to the
 		// central region
-		pwm_advance_ge(self, ft, &st);
+		pwm_advance_ge(self, ft, &st, false);
 		// now there are two possibilities: one of [a, lb) or [ha, b) bumped into [ea, eb),
 		// or we have a pair of mismatched elements at lb and ha-1 which we can swap.
 		if(st.lb == st.ea || st.eb == st.ha){
@@ -813,8 +785,8 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 	}
 	// now either eb == ha or lb == ea, which will cause pwm_finish_lt and/or pwm_finish_gt to
 	// become no-ops, respectively
-	pwm_finish_lt(self, ft, &st);
-	pwm_finish_gt(self, ft, &st);
+	pwm_advance_le(self, ft, &st, true);
+	pwm_advance_ge(self, ft, &st, true);
 	if(st.lb != st.ea || st.eb != st.ha || st.ea > st.med_idx || st.eb <= st.med_idx){
 		return NULL;
 	}

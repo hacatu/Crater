@@ -23,7 +23,7 @@ int main(){
 			}
 		}else{
 			uint64_t g = gs[x >> 62];
-			x &= (uint64_t)-1 >> 2;
+			x &= ~0ull >> 2;
 			if(h != g*cr8r_pow_u64(3, x)){
 				fprintf(stderr, "\e[1;31mg,x = log_mod_t64(h=%"PRIu64") does not actually satisfy h=g**x mod 2**64\e[0m\n", h);
 				++num_odd_incorrect;

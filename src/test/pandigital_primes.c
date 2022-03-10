@@ -7,19 +7,6 @@
 #include <crater/vec.h>
 #include <crater/hash.h>
 
-uint64_t powmod(uint64_t b, uint64_t e, uint64_t n){
-	uint64_t r = 1;
-	b %= n;
-	while(e){
-		if(e&1){
-			r = (uint64_t)((unsigned __int128)r*(unsigned __int128)b%(unsigned __int128)n);
-		}
-		e >>= 1;
-		b = (uint64_t)((unsigned __int128)b*(unsigned __int128)b%(unsigned __int128)n);
-	}
-	return r;
-}
-
 bool is_prime_dmr(uint64_t n){
 	static const uint64_t DMR_PRIMES[2] = {31, 73};//sufficient for numbers < 9080191
 	static const uint64_t DMR_PRIMES_C = 2;
@@ -36,12 +23,12 @@ bool is_prime_dmr(uint64_t n){
 		if(a >= n){
 			break;
 		}
-		x = powmod(a, d, n);
+		x = cr8r_powmod(a, d, n);
 		if(x == 1 || x == n - 1){
 			goto CONTINUE_WITNESSLOOP;
 		}
 		for(a = 0; a < s - 1; ++a){
-			x = powmod(x, 2, n);
+			x = cr8r_powmod(x, 2, n);
 			if(x == 1){
 				return 0;
 			}

@@ -184,11 +184,8 @@ bool cr8r_bvec_getux(cr8r_bvec *self, int64_t i){
 bool cr8r_bvec_set(cr8r_bvec *self, uint64_t i, bool b){
 	if(i >= self->len){
 		return 0;
-	}else if(b){
-		self->buf[i/64] |= 1ull << i%64;
-	}else{
-		self->buf[i/64] &= ~(1ull << i%64);
 	}
+	cr8r_bvec_setu(self, i, b);
 	return 1;
 }
 
@@ -229,18 +226,25 @@ uint64_t cr8r_bvec_len(cr8r_bvec *self){
 	return self->len;
 }
 
-bool cr8r_bvec_pushr(cr8r_bvec *self, cr8r_bvec_ft *ft, bool b){
-	if(self->len + 1 > self->cap){
-		uint64_t cap = ft->new_size(&ft->base, self->cap/64);
-		if(64*cap < self->len + 1){
-			return 0;
+static bool ensure_cap(cr8r_bvec *self, cr8r_bvec_ft *ft, uint64_t cap){
+	if(cap > self->cap){
+		uint64_t new_cap = ft->new_size(&ft->base, self->cap/64);
+		if(64*new_cap < cap){
+			new_cap = (cap + 63)/64*64;
 		}
-		uint64_t *tmp = ft->resize(&ft->base, self->buf, cap);
+		uint64_t *tmp = ft->resize(&ft->base, self->buf, new_cap);
 		if(!tmp){
 			return 0;
 		}
-		self->cap = 64*cap;
+		self->cap = 64*new_cap;
 		self->buf = tmp;
+	}
+	return 1;
+}
+
+bool cr8r_bvec_pushr(cr8r_bvec *self, cr8r_bvec_ft *ft, bool b){
+	if(!ensure_cap(self, ft, self->len + 1)){
+		return 0;
 	}
 	cr8r_bvec_setu(self, self->len++, b);
 	return 1;
@@ -261,17 +265,8 @@ bool cr8r_bvec_popr(cr8r_bvec *self, int *status){
 }
 
 bool cr8r_bvec_pushl(cr8r_bvec *self, cr8r_bvec_ft *ft, bool b){
-	if(self->len + 1 > self->cap){
-		uint64_t cap = ft->new_size(&ft->base, self->cap/64);
-		if(64*cap < self->len + 1){
-			return 0;
-		}
-		uint64_t *tmp = ft->resize(&ft->base, self->buf, cap);
-		if(!tmp){
-			return 0;
-		}
-		self->cap = 64*cap;
-		self->buf = tmp;
+	if(!ensure_cap(self, ft, self->len + 1)){
+		return 0;
 	}
 	uint64_t cap = (self->len + 63)/64;
 	if(self->len%64 == 0){
@@ -392,7 +387,7 @@ bool cr8r_bvec_augment(cr8r_bvec *self, const cr8r_bvec *other, cr8r_bvec_ft *ft
 	}
 	uint64_t offset = self->len%64;
 	uint64_t self_base = self->len/64;
-	self->buf[self_base] &= (uint64_t)-1 >> (64 - offset);
+	self->buf[self_base] &= ~0ull >> (64 - offset);
 	self->buf[self_base] |= other->buf[0] << offset;
 	uint64_t cap = (other->len + 63)/64;
 	for(uint64_t i = 0; i + 1 < cap; ++i){
@@ -412,7 +407,7 @@ bool cr8r_bvec_all(const cr8r_bvec *self){
 		}
 	}
 	if(w){
-		uint64_t mask = (uint64_t)-1 >> (64 - w);
+		uint64_t mask = ~0ull >> (64 - w);
 		return (self->buf[l] & mask) == mask;
 	}
 	return 1;
@@ -427,7 +422,7 @@ bool cr8r_bvec_any(const cr8r_bvec *self){
 		}
 	}
 	if(w){
-		uint64_t mask = (uint64_t)-1 >> (64 - w);
+		uint64_t mask = ~0ull >> (64 - w);
 		return self->buf[l] & mask;
 	}
 	return 0;
@@ -441,7 +436,7 @@ uint64_t cr8r_bvec_popcount(const cr8r_bvec *self){
 		res += __builtin_popcountll(self->buf[i]);
 	}
 	if(w){
-		uint64_t mask = (uint64_t)-1 >> (64 - w);
+		uint64_t mask = ~0ull >> (64 - w);
 		res += __builtin_popcountll(self->buf[l] & mask);
 	}
 	return res;
@@ -452,7 +447,7 @@ uint64_t cr8r_bvec_clz(const cr8r_bvec *self){
 	uint64_t w = self->len%64;
 	uint64_t res = 0;
 	if(w){
-		uint64_t mask = (uint64_t)-1 >> w;
+		uint64_t mask = ~0ull >> w;
 		res = __builtin_clzll((self->buf[l] << w) | mask);
 	}
 	for(uint64_t i = l; i-- > 0;){
@@ -477,7 +472,7 @@ uint64_t cr8r_bvec_ctz(const cr8r_bvec *self){
 		}
 	}
 	if(w){
-		uint64_t mask = (uint64_t)-1 << w;
+		uint64_t mask = ~0ull << w;
 		res += __builtin_ctzll(self->buf[l] | mask);
 	}
 	return res;
@@ -512,7 +507,7 @@ uint64_t cr8r_bvec_cto(const cr8r_bvec *self){
 		}
 	}
 	if(w){
-		uint64_t mask = (uint64_t)-1 << w;
+		uint64_t mask = ~0ull << w;
 		res += __builtin_ctzll(~self->buf[l] | mask);
 	}
 	return res;
@@ -521,7 +516,7 @@ uint64_t cr8r_bvec_cto(const cr8r_bvec *self){
 void cr8r_bvec_icompl(cr8r_bvec *self){
 	uint64_t cap = (self->len + 63)/64;
 	for(uint64_t i = 0; i < cap; ++i){
-		self->buf[i] ^= (uint64_t)-1;
+		self->buf[i] ^= ~0ull;
 	}
 }
 
@@ -548,7 +543,7 @@ void cr8r_bvec_ior(cr8r_bvec *self, const cr8r_bvec *other){
 		self->buf[i] |= other->buf[i];
 	}
 	if(w){
-		self->buf[l] |= other->buf[l] & ((uint64_t)-1 >> (64-w));
+		self->buf[l] |= other->buf[l] & (~0ull >> (64-w));
 	}
 }
 
@@ -560,7 +555,7 @@ void cr8r_bvec_ixor(cr8r_bvec *self, const cr8r_bvec *other){
 		self->buf[i] ^= other->buf[i];
 	}
 	if(w){
-		self->buf[l] ^= other->buf[l] & ((uint64_t)-1 >> (64-w));
+		self->buf[l] ^= other->buf[l] & (~0ull >> (64-w));
 	}
 }
 
@@ -574,8 +569,8 @@ bool cr8r_bvec_any_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
 	uint64_t bw = b%64;
 	if(aw){
 		if(al == bl && bw){
-			return self->buf[al] & ((uint64_t)-1 >> (64 - bw)) & ((uint64_t)-1 << aw);
-		}else if(self->buf[al] & ((uint64_t)-1 << aw)){
+			return self->buf[al] & (~0ull >> (64 - bw)) & (~0ull << aw);
+		}else if(self->buf[al] & (~0ull << aw)){
 			return 1;
 		}
 		++al;
@@ -585,7 +580,7 @@ bool cr8r_bvec_any_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
 			return 1;
 		}
 	}
-	return bw && (self->buf[bl] & ((uint64_t)-1 >> (64 - bw)));
+	return bw && (self->buf[bl] & (~0ull >> (64 - bw)));
 }
 
 bool cr8r_bvec_all_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
@@ -598,10 +593,10 @@ bool cr8r_bvec_all_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
 	uint64_t aw = a%64;
 	uint64_t bl = b/64;
 	uint64_t bw = b%64;
-	uint64_t mask = (uint64_t)-1 << aw;
+	uint64_t mask = ~0ull << aw;
 	if(aw){
 		if(al == bl && bw){
-			mask &= (uint64_t)-1 >> (64 - bw);
+			mask &= ~0ull >> (64 - bw);
 			return (self->buf[al] & mask) == mask;
 		}else if((self->buf[al] & mask) != mask){
 			return 0;
@@ -614,7 +609,7 @@ bool cr8r_bvec_all_range(const cr8r_bvec *self, uint64_t a, uint64_t b){
 		}
 	}
 	if(bw){
-		mask = (uint64_t)-1 >> (64 - bw);
+		mask = ~0ull >> (64 - bw);
 		return (self->buf[bl] & mask) == mask;
 	}
 	return 1;
@@ -631,32 +626,32 @@ bool cr8r_bvec_set_range(cr8r_bvec *self, uint64_t a, uint64_t b, bool v){
 	if(v){
 		if(aw){
 			if(al == bl && bw){
-				self->buf[al] |= ((uint64_t)-1 >> (64 - bw)) & ((uint64_t)-1 << aw);
+				self->buf[al] |= (~0ull >> (64 - bw)) & (~0ull << aw);
 				return 1;
 			}
-			self->buf[al] |= (uint64_t)-1 << aw;
+			self->buf[al] |= ~0ull << aw;
 			++al;
 		}
 		if(al != bl){
 			memset(self->buf + al, 0xFF, (bl - al)*sizeof(uint64_t));
 		}
 		if(bw){
-			self->buf[bl] |= (uint64_t)-1 >> (64 - bw);
+			self->buf[bl] |= ~0ull >> (64 - bw);
 		}
 	}else{
 		if(aw){
 			if(al == bl && bw){
-				self->buf[al] &= ~(((uint64_t)-1 >> (64 - bw)) & ((uint64_t)-1 << aw));
+				self->buf[al] &= ~((~0ull >> (64 - bw)) & (~0ull << aw));
 				return 1;
 			}
-			self->buf[al] &= (uint64_t)-1 >> (64 - aw);
+			self->buf[al] &= ~0ull >> (64 - aw);
 			++al;
 		}
 		if(al != bl){
 			memset(self->buf + al, 0, (bl - al)*sizeof(uint64_t));
 		}
 		if(bw){
-			self->buf[bl] &= (uint64_t)-1 << bw;
+			self->buf[bl] &= ~0ull << bw;
 		}
 	}
 	return 1;
@@ -673,7 +668,7 @@ int cr8r_bvec_cmp(const cr8r_bvec *a, const cr8r_bvec *b){
 	uint64_t l = a_width/64;
 	uint64_t w = a_width%64;
 	if(w){
-		uint64_t mask = (uint64_t)-1 >> (64 - w);
+		uint64_t mask = ~0ull >> (64 - w);
 		uint64_t aa = mask&a->buf[l];
 		uint64_t bb = mask&b->buf[l];
 		if(aa > bb){
