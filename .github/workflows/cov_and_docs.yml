@@ -12,8 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run Coverage and Doxygen
-      env:
-        CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
       run: |
         sudo add-apt-repository ppa:wsnipex/mold-linker
         sudo apt-get update
@@ -26,10 +24,6 @@ jobs:
         mv build/debug/cov website/
         mv build/debug/coverage.svg website/
         mv docs website/
-        export CODACY_ORGANIZATION_PROVIDER=gh
-        export CODACY_USERNAME=hacatu
-        export CODACY_PROJECT_NAME=Crater
-        bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l C -r build/debug/notes/combined.info
     - name: Deploy Coverage and Docs to Pages
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
