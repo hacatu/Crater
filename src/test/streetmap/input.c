@@ -188,7 +188,7 @@ int main(int argc, char **argv){
 	graph.frontier = CR8R_INNER_S(start, &node_pqft);
 	start->dist = 0;
 	start->visited = true;
-	street_node *curr;
+	street_node *curr = NULL;
 	void *tmp;
 	while((tmp = cr8r_pheap_pop(&graph.frontier, &node_pqft))){
 		curr = CR8R_OUTER_S(tmp, &node_pqft);

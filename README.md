@@ -119,6 +119,15 @@ Some convenient default callbacks are also included.
 
 ### Overview/Linux
 
+Make arguments:
+
+- `BUILD_ROOT`: Which directory to look in for variant specific files.  Defaults to `build/debug`,
+ but look in `build` for other possibilities like `build/release`.
+- `ALLOW_ROOT`: Whether to allow building as root.  Defaults to `0` (false).  If building as root,
+ you will be prompted to answer `y/n` to continue unless this is set to `1`.  This is done to avoid
+ creating files owned by root in the build directory.  If running an automated build for CI,
+ either add `ALLOW_ROOT=1` or pipe `yes` into `make`.
+
 Project directories:
 
 - `include/crater`: Contains header files.  Can be copied into system include directory

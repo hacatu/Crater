@@ -6,7 +6,7 @@
 #include <crater/heap.h>
 
 void cr8r_heap_ify(cr8r_vec *self, cr8r_vec_ft *ft, int ord){
-	for(uint64_t i = (ULLONG_MAX >> 1) >> __builtin_clzll(self->len); i-- > 0;){
+	for(uint64_t i = self->len ? (ULLONG_MAX >> 1) >> __builtin_clzll(self->len) : 0; i-- > 0;){
 		cr8r_heap_sift_down(self, ft, self->buf + i*ft->base.size, ord);//void pointer arithmetic works like char pointer arithmetic
 	}
 }

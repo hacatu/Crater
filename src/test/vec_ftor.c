@@ -22,6 +22,18 @@ int main(){
 			break;
 		}
 	}
+	uint64_t *exm = cr8r_vec_exm(&nums_shuf, &cr8r_vecft_u64, -1);
+	if(exm && *exm == p - 1){
+		fprintf(stderr, "\e[1;32mcr8r_vec_exm found maximum correctly\e[0m\n");
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_exm failed to find maximum\e[0m\n");
+	}
+	exm = cr8r_vec_exm(&nums_shuf, &cr8r_vecft_u64, 1);
+	if(exm && !*exm){
+		fprintf(stderr, "\e[1;32mcr8r_vec_exm found minimum correctly\e[0m\n");
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_exm failed to find minimum\e[0m\n");
+	}
 	cr8r_vec_sorted(&nums_asc, &nums_shuf, &cr8r_vecft_u64);
 	g = 2*p;
 	for(uint64_t i = 0; i < p; ++i){
@@ -65,7 +77,7 @@ int main(){
 	if(acc[0] != sum2){
 		fprintf(stderr, "\e[1;31mERROR: Wrong foldr quadratic checksum for scrambled vector\e[0m\n");
 	}
-	cr8r_vec_delete(&nums_asc, &cr8r_vecft_u64);
 	cr8r_vec_delete(&nums_shuf, &cr8r_vecft_u64);
+	cr8r_vec_delete(&nums_asc, &cr8r_vecft_u64);
 }
 

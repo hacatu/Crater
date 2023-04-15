@@ -1,4 +1,6 @@
 #define _GNU_SOURCE
+#include "crater/container.h"
+#include "crater/vec.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +17,10 @@ inline static bool dummy_pred(const cr8r_vec_ft *ft, const void *ent, void *data
 }
 
 inline static void dummy_mapper(const cr8r_vec_ft *src_ft, const cr8r_vec_ft *dest_ft, void *dest, const void *src, void *data){}
+
+inline static uint64_t dummy_new_size(cr8r_base_ft *ft, uint64_t cap){
+	return 0;
+}
 
 int main(){
 	fprintf(stderr, "\e[1;34mTesting vector out of memory conditions and edge cases\e[0m\n");
@@ -368,6 +374,38 @@ int main(){
 	}else{
 		fprintf(stderr, "\e[1;31mcr8r_mmheap_pop_max does not report empty vector correctly!\e[0m\n");
 	}
+
+	ft.new_size = dummy_new_size;
+	for(uint64_t i = 0; i < 2; ++i){
+		status = cr8r_vec_pushr(&fake_vec, &ft, &i);
+		if(!status){
+			break;
+		}
+	}
+	ft.new_size = cr8r_default_bump_size;
+	status = status && fake_vec.cap == fake_vec.len && cr8r_vec_augment(&vec, &fake_vec, &ft) && vec.cap == vec.len;
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mPush/augment correctly increase ft->new_size to the minimum if it's insufficient!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mPush/augment failed when ft->new_size did not suggest enough memory!\e[0m\n");
+	}
+	ft.copy = default_copy;
+	cr8r_vec_clear(&fake_vec, &ft);
+	status = cr8r_vec_reversed(&fake_vec, &vec, &ft);
+	for(uint64_t i = 0; status && i < 2; ++i){
+		status = *(const uint64_t*)cr8r_vec_get(&fake_vec, &ft, i) == 1 - i;
+	}
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_reversed succeeds with custom ft->copy!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_reversed failed with custom ft->copy!\e[0m\n");
+	}
+	cr8r_vec_delete(&vec, &ft);
+	cr8r_vec_delete(&fake_vec, &ft);
 
 	if(passed == tested){
 		fprintf(stderr, "\e[1;32mSuccess: passed %"PRIu64"/%"PRIu64" tests\e[0m\n", passed, tested);

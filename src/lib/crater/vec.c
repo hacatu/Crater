@@ -34,6 +34,10 @@ uint64_t cr8r_default_new_size(cr8r_base_ft *base, uint64_t cap){
 	return cap ? cap << 1 : 8;
 }
 
+uint64_t cr8r_default_bump_size(cr8r_base_ft *base, uint64_t cap){
+	return cap + 1;
+}
+
 void *cr8r_default_resize(cr8r_base_ft *base, void *p, uint64_t cap){
 	if(!cap){
 		if(p){
@@ -476,15 +480,57 @@ int64_t cr8r_vec_indexs(const cr8r_vec *self, const cr8r_vec_ft *ft, const void 
 	return -1;
 }
 
+int64_t cr8r_vec_first_gts(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
+	uint64_t a = 0, b = self->len;
+	// rightmost binary search
+	while(a < b){
+		uint64_t i = (a + b) >> 1;
+		int ord = ft->cmp(&ft->base, e, self->buf + i*ft->base.size);
+		if(ord < 0){
+			b = i;
+		}else{
+			a = i + 1;
+		}
+	}// Now, 1) b == 0, 2) self[b-1] == e, or 3) there are self->len - b elements of self > e
+	return b == self->len ? -1 : (int64_t)b;
+}
+
+int64_t cr8r_vec_first_ges(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
+	int64_t i = cr8r_vec_last_lts(self, ft, e);
+	return i + 1 == (int64_t)self->len ? -1 : i + 1;
+}
+
+int64_t cr8r_vec_last_lts(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
+	uint64_t a = 0, b = self->len;
+	// leftmost binary search
+	while(a < b){
+		uint64_t i = (a + b) >> 1;
+		int ord = ft->cmp(&ft->base, e, self->buf + i*ft->base.size);
+		if(ord > 0){
+			a = i + 1;
+		}else{
+			b = i;
+		}
+	}// Now, 1) a == self->len, 2) self[a] == e, or 3) there are a elements of self < e
+	return (int64_t)a - 1;
+}
+
+int64_t cr8r_vec_last_les(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
+	int64_t i = cr8r_vec_first_gts(self, ft, e);
+	if(i < 0){
+		return self->len - 1;
+	}
+	return i - 1;
+}
+
 int cr8r_vec_cmp(const cr8r_vec *a, const cr8r_vec *b, const cr8r_vec_ft *ft){
-	int ord;
 	for(uint64_t i = 0;; ++i){
 		if(i >= b->len){
 			return i < a->len;
 		}else if(i >= a->len){
 			return -1;
 		}
-		ord = ft->cmp(&ft->base, a->buf + i*ft->base.size, b->buf + i*ft->base.size);
+		int ord = ft->cmp(&ft->base, a->buf + i*ft->base.size, b->buf + i*ft->base.size);
 		if(ord){
 			return ord;
 		}

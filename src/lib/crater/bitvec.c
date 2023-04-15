@@ -1,3 +1,4 @@
+#include "crater/container.h"
 #include "crater/prand.h"
 #include <stdint.h>
 #include <string.h>
@@ -687,5 +688,9 @@ int cr8r_bvec_cmp(const cr8r_bvec *a, const cr8r_bvec *b){
 	return 0;
 }
 
-cr8r_bvec_ft cr8r_bvecft = {.base.size=sizeof(uint64_t)};
+cr8r_bvec_ft cr8r_bvecft = {
+	.base.size=sizeof(uint64_t),
+	.new_size=cr8r_default_new_size,
+	.resize=cr8r_default_resize
+};
 

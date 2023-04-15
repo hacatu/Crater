@@ -1,4 +1,7 @@
 {
+	"vec_bsearch": {
+		"no_red_tests": [[]]
+	},
 	"ising": {
 		"log_diff_tests": [[]]
 	},

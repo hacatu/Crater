@@ -410,6 +410,46 @@ bool cr8r_vec_containss(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 /// @return index of the element in the vector, or -1 if not present
 int64_t cr8r_vec_indexs(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
 
+/// Get the index of the first element greater than a given key in a sorted vector
+///
+/// The vector should be in ascending order according to ft->cmp.
+/// Uses binary search, so the average and worst case time complexities are O(log(n)).
+/// If the elements are sorted and belong to some known distribution, some form of interpolation
+/// seach could work even faster, but this is best implemented as a custom function.
+/// @param [in] e: element to search for (using ft->cmp)
+/// @return index of the element in the vector, or -1 if not present
+int64_t cr8r_vec_first_gts(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
+
+/// Get the index of the first element greater than or equal to a given key in a sorted vector
+///
+/// The vector should be in ascending order according to ft->cmp.
+/// Uses binary search, so the average and worst case time complexities are O(log(n)).
+/// If the elements are sorted and belong to some known distribution, some form of interpolation
+/// seach could work even faster, but this is best implemented as a custom function.
+/// @param [in] e: element to search for (using ft->cmp)
+/// @return index of the element in the vector, or -1 if not present
+int64_t cr8r_vec_first_ges(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
+
+/// Get the index of the last element less than a given key in a sorted vector
+///
+/// The vector should be in ascending order according to ft->cmp.
+/// Uses binary search, so the average and worst case time complexities are O(log(n)).
+/// If the elements are sorted and belong to some known distribution, some form of interpolation
+/// seach could work even faster, but this is best implemented as a custom function.
+/// @param [in] e: element to search for (using ft->cmp)
+/// @return index of the element in the vector, or -1 if not present
+int64_t cr8r_vec_last_lts(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
+
+/// Get the index of the last element greater than a given key in a sorted vector
+///
+/// The vector should be in ascending order according to ft->cmp.
+/// Uses binary search, so the average and worst case time complexities are O(log(n)).
+/// If the elements are sorted and belong to some known distribution, some form of interpolation
+/// seach could work even faster, but this is best implemented as a custom function.
+/// @param [in] e: element to search for (using ft->cmp)
+/// @return index of the element in the vector, or -1 if not present
+int64_t cr8r_vec_last_les(const cr8r_vec*, const cr8r_vec_ft*, const void *e);
+
 /// Lexicographically compare two vectors
 ///
 /// @param [in] a, b: vectors to compare

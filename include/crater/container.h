@@ -42,6 +42,13 @@ typedef enum{
 /// @return what capacity the vector should grow to
 uint64_t cr8r_default_new_size(cr8r_base_ft*, uint64_t cap);
 
+/// "Default" increase-by-one ft->new_size implementation (for vectors)
+///
+/// Increases the capacity by 1.
+/// @param [in] cap: the capacity before resizing
+/// @return what capacity the vector should grow to
+uint64_t cr8r_default_bump_size(cr8r_base_ft*, uint64_t cap);
+
 /// "Default" ft->resize implementation (for vectors)
 ///
 /// Calls "free" if the given capacity is 0 (note that freeing NULL is a valid no-op),
