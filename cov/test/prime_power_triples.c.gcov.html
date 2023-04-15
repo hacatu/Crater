@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-10 10:25:23</td>
+            <td class="headerValue">2023-04-15 07:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -179,15 +179,15 @@
 <a name="104"><span class="lineNum">     104 </span><span class="lineCov">          1 :     cr8r_hash_ft_init(&amp;htft_replace, NULL, sizeof(uint64_t), cr8r_default_hash_u64, cr8r_default_cmp_u64, cr8r_default_replace, NULL);</span></a>
 <a name="105"><span class="lineNum">     105 </span><span class="lineCov">         24 :     for(uint64_t k = 0; k &lt;= rb; ++k){</span></a>
 <a name="106"><span class="lineNum">     106 </span><span class="lineCov">       1702 :         for(uint64_t j = 0; j &lt;= qb; ++j){</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">    1141250 :             for(uint64_t i = 0; i &lt;= pb; ++i){</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">    1141200 :                 uint64_t p = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, i);</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">    1141200 :                 uint64_t q = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, j);</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">    1141200 :                 uint64_t r = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, k);</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">    1141200 :                 uint64_t ppt = p*p + q*q*q + r*r*r*r;</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">    1141200 :                 if(ppt &gt;= 50000000){</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">    1141254 :             for(uint64_t i = 0; i &lt;= pb; ++i){</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">    1141201 :                 uint64_t p = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, i);</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">    1141201 :                 uint64_t q = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, j);</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">    1141201 :                 uint64_t r = *(uint64_t*)cr8r_vec_get(&amp;primes, &amp;cr8r_vecft_u64, k);</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">    1141201 :                 uint64_t ppt = p*p + q*q*q + r*r*r*r;</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">    1141201 :                 if(ppt &gt;= 50000000){</span></a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineCov">       1626 :                     break;</span></a>
 <a name="114"><span class="lineNum">     114 </span>            :                 }</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">    1139580 :                 cr8r_hash_append(&amp;ppts, &amp;htft_replace, &amp;ppt, NULL);</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">    1139575 :                 cr8r_hash_append(&amp;ppts, &amp;htft_replace, &amp;ppt, NULL);</span></a>
 <a name="116"><span class="lineNum">     116 </span>            :             }</a>
 <a name="117"><span class="lineNum">     117 </span>            :         }</a>
 <a name="118"><span class="lineNum">     118 </span>            :     }</a>

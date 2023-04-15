@@ -12,6 +12,7 @@ var container_8h =
       [ "CR8R_WALK_STOP", "container_8h.html#a6970e065db27984cca427f6b1df64df2a96e416abac0cbd8b583db5e927043e78", null ]
     ] ],
     [ "cr8r_default_new_size", "container_8h.html#afe863262f21f39d2d95940863e10d883", null ],
+    [ "cr8r_default_bump_size", "container_8h.html#a0bd45f43164682902b5de1b249f366f6", null ],
     [ "cr8r_default_resize", "container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d", null ],
     [ "cr8r_default_resize_pass", "container_8h.html#a7c8447aba675a3cac695143f54a30638", null ],
     [ "cr8r_default_cmp", "container_8h.html#adb4b61e520c0cee3c3d074635d6cdef4", null ],

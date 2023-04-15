@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-10 10:25:23</td>
+            <td class="headerValue">2023-04-15 07:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">27</td>
@@ -101,8 +101,8 @@
 <a name="26"><span class="lineNum">      26 </span><span class="lineCov">         11 :     return self-&gt;fixup_state(self-&gt;state);</span></a>
 <a name="27"><span class="lineNum">      27 </span>            : }</a>
 <a name="28"><span class="lineNum">      28 </span>            : </a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">   26015000 : uint32_t cr8r_prng_get_u32(cr8r_prng *self){</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">   26015000 :     return self-&gt;get_u32(self-&gt;state);</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">   26014992 : uint32_t cr8r_prng_get_u32(cr8r_prng *self){</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">   26014992 :     return self-&gt;get_u32(self-&gt;state);</span></a>
 <a name="31"><span class="lineNum">      31 </span>            : }</a>
 <a name="32"><span class="lineNum">      32 </span>            : </a>
 <a name="33"><span class="lineNum">      33 </span><span class="lineCov">       1010 : uint64_t cr8r_prng_get_u64(cr8r_prng *self){</span></a>
@@ -122,26 +122,26 @@
 <a name="47"><span class="lineNum">      47 </span>            :     }</a>
 <a name="48"><span class="lineNum">      48 </span><span class="lineCov">       1009 : }</span></a>
 <a name="49"><span class="lineNum">      49 </span>            : </a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">   14015000 : uint64_t cr8r_prng_uniform_u64(cr8r_prng *self, uint64_t a, uint64_t b){</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">   14015000 :     uint64_t l = b - a;</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">   14015000 :     if(!l){</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">   14014983 : uint64_t cr8r_prng_uniform_u64(cr8r_prng *self, uint64_t a, uint64_t b){</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">   14014983 :     uint64_t l = b - a;</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">   14014983 :     if(!l){</span></a>
 <a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :         return a;</span></a>
 <a name="54"><span class="lineNum">      54 </span>            :     }</a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">   14015000 :     uint64_t one_call = l &lt;= 0x100000000ull;</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">   14014983 :     uint64_t one_call = l &lt;= 0x100000000ull;</span></a>
 <a name="56"><span class="lineNum">      56 </span>            :     uint64_t ub, r;</a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">   14015000 :     if(one_call){</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">   14015000 :         ub = 0x100000000ull;</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">   14015000 :         ub -= ub%l;</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">   14014983 :     if(one_call){</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">   14014983 :         ub = 0x100000000ull;</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">   14014983 :         ub -= ub%l;</span></a>
 <a name="60"><span class="lineNum">      60 </span>            :         do{</a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">   14015000 :             r = cr8r_prng_get_u32(self);</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">   14015000 :         }while(r &gt;= ub);</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">   14014992 :             r = cr8r_prng_get_u32(self);</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">   14014992 :         }while(r &gt;= ub);</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :     }else{</a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :         ub = 0x7FFFFFFFFFFFFFFFull%l*(uint64_t)-2;</span></a>
 <a name="65"><span class="lineNum">      65 </span>            :         do{</a>
 <a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :             r = cr8r_prng_get_u64(self);</span></a>
 <a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :         }while(r &gt;= ub);</span></a>
 <a name="68"><span class="lineNum">      68 </span>            :     }</a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">   14015000 :     return r%l + a;</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">   14014983 :     return r%l + a;</span></a>
 <a name="70"><span class="lineNum">      70 </span>            : }</a>
 <a name="71"><span class="lineNum">      71 </span>            : </a>
 <a name="72"><span class="lineNum">      72 </span><span class="lineCov">         10 : double cr8r_prng_uniform01_double(cr8r_prng *self){</span></a>
@@ -159,8 +159,8 @@
 <a name="84"><span class="lineNum">      84 </span>            : </a>
 <a name="85"><span class="lineNum">      85 </span>            : // raise b to the power of 2**i mod 2**j</a>
 <a name="86"><span class="lineNum">      86 </span><span class="lineCov">      63254 : inline static uint64_t pow_ti(uint64_t b, uint64_t i){</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">    2085590 :     while(i--){</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">    2022330 :         b *= b;</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">    2085587 :     while(i--){</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">    2022333 :         b *= b;</span></a>
 <a name="89"><span class="lineNum">      89 </span>            :     }</a>
 <a name="90"><span class="lineNum">      90 </span><span class="lineCov">      63254 :     return b;</span></a>
 <a name="91"><span class="lineNum">      91 </span>            : }</a>
@@ -292,12 +292,12 @@
 <a name="217"><span class="lineNum">     217 </span>            :     uint64_t XS[CR8R_PRNG_LFM_R];</a>
 <a name="218"><span class="lineNum">     218 </span>            : } cr8r_prng_lfg_m_state;</a>
 <a name="219"><span class="lineNum">     219 </span>            : </a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">   16212000 : static uint32_t cr8r_prng_lfg_m_get_u32(void *_state){</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">   16212000 :     cr8r_prng_lfg_m_state *state = _state;</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">   16212000 :     uint64_t next_index = state-&gt;index ? state-&gt;index - 1 : CR8R_PRNG_LFM_R - 1;</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">   16212000 :     state-&gt;XS[next_index] *= state-&gt;XS[(state-&gt;index + CR8R_PRNG_LFM_S - 1)%CR8R_PRNG_LFM_R];</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">   16212000 :     state-&gt;index = next_index;</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">   16212000 :     return state-&gt;XS[next_index] &gt;&gt; 16;</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">   16211992 : static uint32_t cr8r_prng_lfg_m_get_u32(void *_state){</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">   16211992 :     cr8r_prng_lfg_m_state *state = _state;</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">   16211992 :     uint64_t next_index = state-&gt;index ? state-&gt;index - 1 : CR8R_PRNG_LFM_R - 1;</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">   16211992 :     state-&gt;XS[next_index] *= state-&gt;XS[(state-&gt;index + CR8R_PRNG_LFM_S - 1)%CR8R_PRNG_LFM_R];</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">   16211992 :     state-&gt;index = next_index;</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">   16211992 :     return state-&gt;XS[next_index] &gt;&gt; 16;</span></a>
 <a name="226"><span class="lineNum">     226 </span>            : }</a>
 <a name="227"><span class="lineNum">     227 </span>            : </a>
 <a name="228"><span class="lineNum">     228 </span><span class="lineCov">          5 : static bool cr8r_prng_lfg_m_fixup(void *_state){</span></a>
@@ -365,14 +365,14 @@
 <a name="290"><span class="lineNum">     290 </span><span class="lineCov">    2000020 : static uint32_t cr8r_prng_mt_get_u32(void *_state){</span></a>
 <a name="291"><span class="lineNum">     291 </span><span class="lineCov">    2000020 :     cr8r_prng_mt_st *state = _state;</span></a>
 <a name="292"><span class="lineNum">     292 </span><span class="lineCov">    2000020 :     if(state-&gt;index &gt;= 2*CR8R_PRNG_MT_N){</span></a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">    1003480 :         for(uint64_t i = 0; i &lt; CR8R_PRNG_MT_N; ++i){</span></a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineCov">    1000270 :             uint64_t x = (state-&gt;MT[i]&amp;cr8r_prng_mt_himask)</span></a>
-<a name="295"><span class="lineNum">     295 </span><span class="lineCov">    1000270 :                 | (state-&gt;MT[(i+1)%CR8R_PRNG_MT_N]&amp;cr8r_prng_mt_lomask);</span></a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineCov">    1000270 :             uint64_t xA = x &gt;&gt; 1;</span></a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">    1000270 :             if(x&amp;1){</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">    1003478 :         for(uint64_t i = 0; i &lt; CR8R_PRNG_MT_N; ++i){</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">    1000272 :             uint64_t x = (state-&gt;MT[i]&amp;cr8r_prng_mt_himask)</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">    1000272 :                 | (state-&gt;MT[(i+1)%CR8R_PRNG_MT_N]&amp;cr8r_prng_mt_lomask);</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">    1000272 :             uint64_t xA = x &gt;&gt; 1;</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">    1000272 :             if(x&amp;1){</span></a>
 <a name="298"><span class="lineNum">     298 </span><span class="lineCov">     500096 :                 xA ^= CR8R_PRNG_MT_A;</span></a>
 <a name="299"><span class="lineNum">     299 </span>            :             }</a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineCov">    1000270 :             state-&gt;MT[i] = state-&gt;MT[(i + CR8R_PRNG_MT_M)%CR8R_PRNG_MT_N]^xA;</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">    1000272 :             state-&gt;MT[i] = state-&gt;MT[(i + CR8R_PRNG_MT_M)%CR8R_PRNG_MT_N]^xA;</span></a>
 <a name="301"><span class="lineNum">     301 </span>            :         }</a>
 <a name="302"><span class="lineNum">     302 </span><span class="lineCov">       3206 :         state-&gt;index = 0;</span></a>
 <a name="303"><span class="lineNum">     303 </span>            :     }</a>

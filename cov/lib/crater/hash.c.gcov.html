@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-10 10:25:23</td>
+            <td class="headerValue">2023-04-15 07:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">25</td>
@@ -92,10 +92,10 @@
 <a name="17"><span class="lineNum">      17 </span>            : </a>
 <a name="18"><span class="lineNum">      18 </span>            : const uint64_t cr8r_hash_u64_prime = 536870909;</a>
 <a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">    1357990 : uint64_t cr8r_default_hash_u64(const cr8r_base_ft *ft, const void *_a){</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">    1357990 :     uint64_t a = *(const uint64_t*)_a;</span></a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">    1357990 :     unsigned __int128 prod = a*((unsigned __int128)cr8r_hash_u64_prime);</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">    1357990 :     return (uint64_t)(prod &gt;&gt; 64) ^ (uint64_t)prod;</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">    1357993 : uint64_t cr8r_default_hash_u64(const cr8r_base_ft *ft, const void *_a){</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">    1357993 :     uint64_t a = *(const uint64_t*)_a;</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">    1357993 :     unsigned __int128 prod = a*((unsigned __int128)cr8r_hash_u64_prime);</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">    1357993 :     return (uint64_t)(prod &gt;&gt; 64) ^ (uint64_t)prod;</span></a>
 <a name="24"><span class="lineNum">      24 </span>            : }</a>
 <a name="25"><span class="lineNum">      25 </span>            : </a>
 <a name="26"><span class="lineNum">      26 </span><span class="lineCov">       2398 : uint64_t cr8r_default_hash(const cr8r_base_ft *ft, const void *_a){</span></a>
@@ -116,14 +116,14 @@
 <a name="41"><span class="lineNum">      41 </span><span class="lineCov">      86934 :     return h;</span></a>
 <a name="42"><span class="lineNum">      42 </span>            : }</a>
 <a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov"> 1000020000 : int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b){</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov"> 1000020000 :     uint64_t a = *(const uint64_t*)_a, b = *(const uint64_t*)_b;</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov"> 1000020000 :     if(a &lt; b){</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">  456096000 :         return -1;</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">  543920000 :     }else if(a == b){</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">  188296000 :         return 0;</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov"> 1000133950 : int cr8r_default_cmp_u64(const cr8r_base_ft *ft, const void *_a, const void *_b){</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov"> 1000133950 :     uint64_t a = *(const uint64_t*)_a, b = *(const uint64_t*)_b;</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov"> 1000133950 :     if(a &lt; b){</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">  456146400 :         return -1;</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">  543987550 :     }else if(a == b){</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">  188323699 :         return 0;</span></a>
 <a name="50"><span class="lineNum">      50 </span>            :     }</a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">  355624000 :     return 1;</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">  355663851 :     return 1;</span></a>
 <a name="52"><span class="lineNum">      52 </span>            : }</a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
 <a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 : int cr8r_default_cmp_i64(const cr8r_base_ft *ft, const void *_a, const void *_b){</span></a>
@@ -241,13 +241,13 @@
 <a name="166"><span class="lineNum">     166 </span><span class="lineNoCov">          0 :     return ~0ULL;</span></a>
 <a name="167"><span class="lineNum">     167 </span>            : }</a>
 <a name="168"><span class="lineNum">     168 </span>            : </a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">    1368280 : inline static uint64_t cr8r_hash_find_slot_ap(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft, const void *key){</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">    1368280 :     uint64_t a = ft-&gt;hash(&amp;ft-&gt;base,key) % self-&gt;len_a;</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">    1471710 :     for(uint64_t j = 0, i; j &lt; self-&gt;len_a; ++j){</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">    1471710 :         i = (a + (j&amp;1 ? j*j : self-&gt;len_a - j*j%self-&gt;len_a))%self-&gt;len_a;</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">    1471710 :         uint64_t f = (self-&gt;flags_a[i &gt;&gt; 5] &gt;&gt; (i&amp;0x1F))&amp;0x100000001ULL;</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">    1471710 :         if(!(f&amp;0x100000000ULL &amp;&amp; ft-&gt;cmp(&amp;ft-&gt;base, key, self-&gt;table_a + i*ft-&gt;base.size))){</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">    1368280 :             return i;</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">    1368283 : inline static uint64_t cr8r_hash_find_slot_ap(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *ft, const void *key){</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">    1368283 :     uint64_t a = ft-&gt;hash(&amp;ft-&gt;base,key) % self-&gt;len_a;</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">    1471709 :     for(uint64_t j = 0, i; j &lt; self-&gt;len_a; ++j){</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">    1471709 :         i = (a + (j&amp;1 ? j*j : self-&gt;len_a - j*j%self-&gt;len_a))%self-&gt;len_a;</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">    1471709 :         uint64_t f = (self-&gt;flags_a[i &gt;&gt; 5] &gt;&gt; (i&amp;0x1F))&amp;0x100000001ULL;</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">    1471709 :         if(!(f&amp;0x100000000ULL &amp;&amp; ft-&gt;cmp(&amp;ft-&gt;base, key, self-&gt;table_a + i*ft-&gt;base.size))){</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">    1368283 :             return i;</span></a>
 <a name="176"><span class="lineNum">     176 </span>            :         }</a>
 <a name="177"><span class="lineNum">     177 </span>            :     }</a>
 <a name="178"><span class="lineNum">     178 </span><span class="lineNoCov">          0 :     return ~0ULL;</span></a>
@@ -403,10 +403,10 @@
 <a name="328"><span class="lineNum">     328 </span><span class="lineCov">     155905 :     return ret;</span></a>
 <a name="329"><span class="lineNum">     329 </span>            : }</a>
 <a name="330"><span class="lineNum">     330 </span>            : </a>
-<a name="331"><span class="lineNum">     331 </span><span class="lineCov">    1214900 : void *cr8r_hash_append(cr8r_hashtbl_t *self, cr8r_hashtbl_ft *ft, void *key, int *_status){</span></a>
-<a name="332"><span class="lineNum">     332 </span><span class="lineCov">    1214900 :     void *ret = NULL;</span></a>
-<a name="333"><span class="lineNum">     333 </span><span class="lineCov">    1214900 :     int status = 0;</span></a>
-<a name="334"><span class="lineNum">     334 </span><span class="lineCov">    1214900 :     if(self-&gt;full == self-&gt;cap){</span></a>
+<a name="331"><span class="lineNum">     331 </span><span class="lineCov">    1214903 : void *cr8r_hash_append(cr8r_hashtbl_t *self, cr8r_hashtbl_ft *ft, void *key, int *_status){</span></a>
+<a name="332"><span class="lineNum">     332 </span><span class="lineCov">    1214903 :     void *ret = NULL;</span></a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineCov">    1214903 :     int status = 0;</span></a>
+<a name="334"><span class="lineNum">     334 </span><span class="lineCov">    1214903 :     if(self-&gt;full == self-&gt;cap){</span></a>
 <a name="335"><span class="lineNum">     335 </span><span class="lineCov">          6 :         if(!cr8r_hash_ix_start(self, ft)){</span></a>
 <a name="336"><span class="lineNum">     336 </span><span class="lineNoCov">          0 :             if(_status){</span></a>
 <a name="337"><span class="lineNum">     337 </span><span class="lineNoCov">          0 :                 *_status = 0;</span></a>
@@ -414,7 +414,7 @@
 <a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :             return NULL;</span></a>
 <a name="340"><span class="lineNum">     340 </span>            :         }</a>
 <a name="341"><span class="lineNum">     341 </span>            :     }</a>
-<a name="342"><span class="lineNum">     342 </span><span class="lineCov">    1214900 :     if(self-&gt;table_b){</span></a>
+<a name="342"><span class="lineNum">     342 </span><span class="lineCov">    1214903 :     if(self-&gt;table_b){</span></a>
 <a name="343"><span class="lineNum">     343 </span><span class="lineCov">       5752 :         cr8r_hash_ix_move(self, ft, self-&gt;r);</span></a>
 <a name="344"><span class="lineNum">     344 </span><span class="lineCov">       5752 :         if(self-&gt;table_b){</span></a>
 <a name="345"><span class="lineNum">     345 </span><span class="lineCov">       5746 :             if((ret = cr8r_hash_get_single_b(self, ft-&gt;hash(&amp;ft-&gt;base,key), ft, key))){</span></a>
@@ -426,15 +426,15 @@
 <a name="351"><span class="lineNum">     351 </span>            :             }</a>
 <a name="352"><span class="lineNum">     352 </span>            :         }</a>
 <a name="353"><span class="lineNum">     353 </span>            :     }</a>
-<a name="354"><span class="lineNum">     354 </span><span class="lineCov">    1212380 :     uint64_t i = cr8r_hash_find_slot_ap(self, ft, key);</span></a>
-<a name="355"><span class="lineNum">     355 </span><span class="lineCov">    1212380 :     if(!~i){</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">    1212378 :     uint64_t i = cr8r_hash_find_slot_ap(self, ft, key);</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineCov">    1212378 :     if(!~i){</span></a>
 <a name="356"><span class="lineNum">     356 </span><span class="lineNoCov">          0 :         if(_status){</span></a>
 <a name="357"><span class="lineNum">     357 </span><span class="lineNoCov">          0 :             *_status = 0;</span></a>
 <a name="358"><span class="lineNum">     358 </span>            :         }</a>
 <a name="359"><span class="lineNum">     359 </span><span class="lineNoCov">          0 :         return NULL;</span></a>
 <a name="360"><span class="lineNum">     360 </span>            :     }</a>
-<a name="361"><span class="lineNum">     361 </span><span class="lineCov">    1212380 :     ret = self-&gt;table_a + i*ft-&gt;base.size;</span></a>
-<a name="362"><span class="lineNum">     362 </span><span class="lineCov">    1212380 :     if((self-&gt;flags_a[i &gt;&gt; 5] &gt;&gt; (i&amp;0x1F))&amp;0x100000000ULL){</span></a>
+<a name="361"><span class="lineNum">     361 </span><span class="lineCov">    1212378 :     ret = self-&gt;table_a + i*ft-&gt;base.size;</span></a>
+<a name="362"><span class="lineNum">     362 </span><span class="lineCov">    1212378 :     if((self-&gt;flags_a[i &gt;&gt; 5] &gt;&gt; (i&amp;0x1F))&amp;0x100000000ULL){</span></a>
 <a name="363"><span class="lineNum">     363 </span><span class="lineCov">     108058 :         status = ft-&gt;add(&amp;ft-&gt;base,ret, key) ? 2 : 0;</span></a>
 <a name="364"><span class="lineNum">     364 </span>            :     }else{</a>
 <a name="365"><span class="lineNum">     365 </span><span class="lineCov">    1104320 :         memcpy(ret, key, ft-&gt;base.size);</span></a>
@@ -443,10 +443,10 @@
 <a name="368"><span class="lineNum">     368 </span><span class="lineCov">    1104320 :         ++self-&gt;full;</span></a>
 <a name="369"><span class="lineNum">     369 </span><span class="lineCov">    1104320 :         status = 1;</span></a>
 <a name="370"><span class="lineNum">     370 </span>            :     }</a>
-<a name="371"><span class="lineNum">     371 </span><span class="lineCov">    1212380 :     if(_status){</span></a>
+<a name="371"><span class="lineNum">     371 </span><span class="lineCov">    1212378 :     if(_status){</span></a>
 <a name="372"><span class="lineNum">     372 </span><span class="lineCov">      72803 :         *_status = status;</span></a>
 <a name="373"><span class="lineNum">     373 </span>            :     }</a>
-<a name="374"><span class="lineNum">     374 </span><span class="lineCov">    1212380 :     return ret;</span></a>
+<a name="374"><span class="lineNum">     374 </span><span class="lineCov">    1212378 :     return ret;</span></a>
 <a name="375"><span class="lineNum">     375 </span>            : }</a>
 <a name="376"><span class="lineNum">     376 </span>            : </a>
 <a name="377"><span class="lineNum">     377 </span><span class="lineCov">        783 : inline static int cr8r_hash_remove_single_a(cr8r_hashtbl_t *self, uint64_t i, cr8r_hashtbl_ft *ft, const void *key){</span></a>

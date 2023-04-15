@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-10 10:25:23</td>
+            <td class="headerValue">2023-04-15 07:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -77,25 +77,25 @@
 <a name="2"><span class="lineNum">       2 </span>            : </a>
 <a name="3"><span class="lineNum">       3 </span>            : #include &lt;crater/avl.h&gt;</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov"> 1380630000 : inline static int cr8r_avl_check_links(cr8r_avl_node *n){</span></a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov"> 1380630000 :     if(!n)return 1;</span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov"> 1355230000 :     if(n-&gt;left){</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">  522162000 :         if(n-&gt;left-&gt;parent != n)return 0;</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">  522162000 :         if(!cr8r_avl_check_links(n-&gt;left))return 0;</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineCov"> 1380634122 : inline static int cr8r_avl_check_links(cr8r_avl_node *n){</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov"> 1380634122 :     if(!n)return 1;</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov"> 1355232522 :     if(n-&gt;left){</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">  522161516 :         if(n-&gt;left-&gt;parent != n)return 0;</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">  522161516 :         if(!cr8r_avl_check_links(n-&gt;left))return 0;</span></a>
 <a name="10"><span class="lineNum">      10 </span>            :     }</a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov"> 1355230000 :     if(n-&gt;right){</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">  502843000 :         if(n-&gt;right-&gt;parent != n)return 0;</span></a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">  502843000 :         if(!cr8r_avl_check_links(n-&gt;right))return 0;</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineCov"> 1355232522 :     if(n-&gt;right){</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">  502843130 :         if(n-&gt;right-&gt;parent != n)return 0;</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">  502843130 :         if(!cr8r_avl_check_links(n-&gt;right))return 0;</span></a>
 <a name="14"><span class="lineNum">      14 </span>            :     }</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov"> 1355230000 :     return 1;</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov"> 1355232522 :     return 1;</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : }</a>
 <a name="17"><span class="lineNum">      17 </span>            : </a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov"> 3066090000 : inline static int cr8r_avl_check_balance(cr8r_avl_node *n){</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov"> 3066090000 :     if(!n)return 0;</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov"> 3066094520 : inline static int cr8r_avl_check_balance(cr8r_avl_node *n){</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov"> 3066094520 :     if(!n)return 0;</span></a>
 <a name="20"><span class="lineNum">      20 </span>            :     int l, r;</a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov"> 1355230000 :     if((l = cr8r_avl_check_balance(n-&gt;left)) == -1)return -1;</span></a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov"> 1355230000 :     if((r = cr8r_avl_check_balance(n-&gt;right)) == -1)return -1;</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov"> 1355230000 :     if(r - l == n-&gt;balance)return 1 + (l &gt; r ? l : r);</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov"> 1355232522 :     if((l = cr8r_avl_check_balance(n-&gt;left)) == -1)return -1;</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov"> 1355232522 :     if((r = cr8r_avl_check_balance(n-&gt;right)) == -1)return -1;</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov"> 1355232522 :     if(r - l == n-&gt;balance)return 1 + (l &gt; r ? l : r);</span></a>
 <a name="24"><span class="lineNum">      24 </span><span class="lineNoCov">          0 :     return -1;</span></a>
 <a name="25"><span class="lineNum">      25 </span>            : }</a>
 <a name="26"><span class="lineNum">      26 </span>            : </a>

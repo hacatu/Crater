@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-03-10 10:25:23</td>
+            <td class="headerValue">2023-04-15 07:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -88,7 +88,7 @@
 <a name="13"><span class="lineNum">      13 </span><span class="lineCov">          6 :     if(!counters){</span></a>
 <a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 :         return -1.;</span></a>
 <a name="15"><span class="lineNum">      15 </span>            :     }</a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">    6000010 :     for(uint64_t i = 0; i &lt; n; ++i){</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">    6000006 :     for(uint64_t i = 0; i &lt; n; ++i){</span></a>
 <a name="17"><span class="lineNum">      17 </span><span class="lineCov">    6000000 :         uint32_t r = cr8r_prng_get_u32(prng);</span></a>
 <a name="18"><span class="lineNum">      18 </span><span class="lineCov">   30000000 :         for(uint64_t i = 0; i &lt; 4; ++i){</span></a>
 <a name="19"><span class="lineNum">      19 </span><span class="lineCov">   24000000 :             ++counters[r&amp;0xFF];</span></a>
@@ -118,7 +118,7 @@
 <a name="43"><span class="lineNum">      43 </span><span class="lineCov">   24000000 :             s += x;</span></a>
 <a name="44"><span class="lineNum">      44 </span><span class="lineCov">   24000000 :             s2 += x*x;</span></a>
 <a name="45"><span class="lineNum">      45 </span><span class="lineCov">   24000000 :             if(l &lt; 0x100){</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">   24000000 :                 sl += x*l;</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">   23999994 :                 sl += x*l;</span></a>
 <a name="47"><span class="lineNum">      47 </span>            :             }</a>
 <a name="48"><span class="lineNum">      48 </span><span class="lineCov">   24000000 :             l = x;</span></a>
 <a name="49"><span class="lineNum">      49 </span><span class="lineCov">   24000000 :             if(i++ == 3){</span></a>
