@@ -125,7 +125,7 @@ uint64_t cr8r_prng_log_mod_t64(uint64_t h){
 
 static uint32_t cr8r_prng_system_get_u32(void *_state){
 	uint32_t res;
-	getrandom(&res, sizeof(uint32_t), 0);
+	(void)getrandom(&res, sizeof(uint32_t), 0);
 	return res;
 }
 
