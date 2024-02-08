@@ -5,8 +5,9 @@
 
 #include <crater/minmax_heap.h>
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 void cr8r_mmheap_ify(cr8r_vec *self, cr8r_vec_ft *ft){
-	for(uint64_t i = (ULLONG_MAX >> 1) >> __builtin_clzll(self->len); i-- > 0;){
+	for(uint64_t i = (ULLONG_MAX >> 1) >> __builtin_clzll(self->len); i--;){
 		cr8r_mmheap_sift_down(self, ft, self->buf + i*ft->base.size);//void pointer arithmetic works like char pointer arithmetic
 	}
 }

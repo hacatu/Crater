@@ -5,8 +5,9 @@
 
 #include <crater/heap.h>
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 void cr8r_heap_ify(cr8r_vec *self, cr8r_vec_ft *ft, int ord){
-	for(uint64_t i = self->len ? (ULLONG_MAX >> 1) >> __builtin_clzll(self->len) : 0; i-- > 0;){
+	for(uint64_t i = self->len ? (ULLONG_MAX >> 1) >> __builtin_clzll(self->len) : 0; i--;){
 		cr8r_heap_sift_down(self, ft, self->buf + i*ft->base.size, ord);//void pointer arithmetic works like char pointer arithmetic
 	}
 }
@@ -16,12 +17,12 @@ void *cr8r_heap_top(cr8r_vec *self, cr8r_vec_ft *ft){
 }
 
 void cr8r_heap_sift_up(cr8r_vec *self, cr8r_vec_ft *ft, void *e, int ord){
-	uint64_t i = (e - self->buf)/ft->base.size;
-	uint64_t j = (i - 1) >> 1;
-	while(i && ord*ft->cmp(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size) > 0){
-		ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size);
-		i = j;
+	for(uint64_t i = (e - self->buf)/ft->base.size, j; i; i = j){
 		j = (i - 1) >> 1;
+		if(ord*ft->cmp(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size) <= 0){
+			break;
+		}
+		ft->swap(&ft->base, self->buf + i*ft->base.size, self->buf + j*ft->base.size);
 	}
 }
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <sys/random.h>
 
+#include <crater/container.h>
 #include <crater/prand.h>
 
 typedef union{
@@ -83,6 +84,7 @@ double cr8r_prng_uniform01_double(cr8r_prng *self){
 const uint64_t cr8r_prng_2tg_t64[4] = {1, (1ull << 63) + 3, (1ull << 63) - 1, -1};
 
 // raise b to the power of 2**i mod 2**j
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 inline static uint64_t pow_ti(uint64_t b, uint64_t i){
 	while(i--){
 		b *= b;
@@ -90,6 +92,7 @@ inline static uint64_t pow_ti(uint64_t b, uint64_t i){
 	return b;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 uint64_t cr8r_prng_log_mod_t64(uint64_t h){
 	uint64_t y = pow_ti(3, 61);
 	// the inverse of 3 mod 2**64
@@ -125,10 +128,7 @@ uint64_t cr8r_prng_log_mod_t64(uint64_t h){
 
 static uint32_t cr8r_prng_system_get_u32(void *_state){
 	uint32_t res;
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-result"
-	getrandom(&res, sizeof(uint32_t), 0);
-#pragma GCC diagnostic pop
+	(void)!getrandom(&res, sizeof(uint32_t), 0);
 	return res;
 }
 
@@ -146,6 +146,7 @@ cr8r_prng *cr8r_prng_init_system(){
 	return res;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_lcg_get_u32(void *_state){
 	uint64_t *state = _state;
 	*state = 6364136223846793005*(*state) + 1;
@@ -174,6 +175,7 @@ cr8r_prng *cr8r_prng_init_lcg(uint64_t seed){
 	return res;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_lfg_sc_get_u32(void *_state){
 	uint64_t x0 = 0, x5 = 0, x12 = 0;
 	// depends on little endianness
@@ -220,6 +222,7 @@ typedef struct{
 	uint64_t XS[CR8R_PRNG_LFM_R];
 } cr8r_prng_lfg_m_state;
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_lfg_m_get_u32(void *_state){
 	cr8r_prng_lfg_m_state *state = _state;
 	uint64_t next_index = state->index ? state->index - 1 : CR8R_PRNG_LFM_R - 1;
@@ -290,6 +293,7 @@ static bool cr8r_prng_mt_fixup(void *_state){
 	return 1;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_mt_get_u32(void *_state){
 	cr8r_prng_mt_st *state = _state;
 	if(state->index >= 2*CR8R_PRNG_MT_N){
@@ -357,10 +361,12 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
    a 64-bit seed, we suggest to seed a splitmix64 generator and use its
    output to fill s. */
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 static inline uint64_t rotl(uint64_t x, uint64_t k){
 	return (x << k) | (x >> (64 - k));
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_xoro_get_u32(void *_state){
 	uint64_t *s = _state;
 	uint64_t res = rotl(s[1]*5, 7)*9;
@@ -455,6 +461,7 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
    It is a very fast generator passing BigCrush, and it can be useful if
    for some reason you absolutely want 64 bits of state. */
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow", "implicit-unsigned-integer-truncation")
 static uint32_t cr8r_prng_splitmix_get_u32(void *_state){
 	uint64_t *state = _state;
 	uint64_t z = (*state += 0x9e3779b97f4a7c15);

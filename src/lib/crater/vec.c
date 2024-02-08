@@ -190,7 +190,7 @@ void *cr8r_vec_getx(cr8r_vec *self, const cr8r_vec_ft *ft, int64_t i){
 	if(i < -(int64_t)self->len || (int64_t)self->len <= i){
 		return NULL;
 	}else if(i < 0){
-		return self->buf + (self->len + i)*ft->base.size;
+		return self->buf + ((int64_t)self->len + i)*ft->base.size;
 	}else{
 		return self->buf + i*ft->base.size;
 	}
@@ -411,6 +411,7 @@ void cr8r_vec_reverse(cr8r_vec *self, cr8r_vec_ft *ft){
 	}
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 bool cr8r_vec_reversed(cr8r_vec *dest, const cr8r_vec *src, cr8r_vec_ft *ft){
 	if(!cr8r_vec_init(dest, ft, src->len)){
 		return 0;
@@ -515,6 +516,7 @@ int64_t cr8r_vec_last_lts(const cr8r_vec *self, const cr8r_vec_ft *ft, const voi
 	return (int64_t)a - 1;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 int64_t cr8r_vec_last_les(const cr8r_vec *self, const cr8r_vec_ft *ft, const void *e){
 	int64_t i = cr8r_vec_first_gts(self, ft, e);
 	if(i < 0){

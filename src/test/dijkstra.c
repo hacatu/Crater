@@ -78,7 +78,7 @@ static bool read_file(const char *path, graph *out){
 		goto ERROR;
 	}
 	uint64_t weight, col = 0, row = 0, idx = 0;
-	char sep;
+	char sep = '\n';
 	for(int status;; ++idx){
 		status = fscanf(f, "%"SCNu64"%c", &weight, &sep);
 		if(status == 0 || status == EOF){

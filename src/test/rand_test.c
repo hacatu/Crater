@@ -30,16 +30,16 @@ double cr8r_rndchk_chi2_bytes(cr8r_prng *prng, uint64_t n){
 	return num/(1024.*n);
 }
 
-double cr8r_rndchk_corr_bytes(cr8r_prng *prng, uint64_t n){
+double cr8r_rndchk_corr_bytes(cr8r_prng *prng, int64_t n){
 	if(!n){
 		return 0.;
 	}
 	uint32_t r = cr8r_prng_get_u32(prng);
-	uint64_t s = 0, s2 = 0, sl = 0;
-	uint64_t x0 = r&0xFF, xn, l = 0x100;
-	for(uint64_t i = 0;; r = cr8r_prng_get_u32(prng)){
-		for(uint64_t i = 0;; r >>= 8){
-			uint64_t x = r&0xFF;
+	int64_t s = 0, s2 = 0, sl = 0;
+	int64_t x0 = r&0xFF, xn, l = 0x100;
+	for(int64_t i = 0;; r = cr8r_prng_get_u32(prng)){
+		for(int64_t i = 0;; r >>= 8){
+			int64_t x = r&0xFF;
 			s += x;
 			s2 += x*x;
 			if(l < 0x100){

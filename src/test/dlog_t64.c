@@ -7,6 +7,7 @@
 
 const uint64_t gs[4] = {1, (1ull << 63) + 3, (1ull << 63) - 1, -1};
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 int main(){
 	fprintf(stderr, "\e[1;34mTesting cr8r_prng_log_mul_t64 on 1000 random integers\e[0m\n");
 	cr8r_prng *prng = cr8r_prng_init_xoro(0x92f71af767c63704);

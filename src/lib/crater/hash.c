@@ -17,12 +17,14 @@ uint64_t exp_primes[64] = {0UL, 3UL, 7UL, 13UL, 31UL, 61UL, 127UL, 251UL, 509UL,
 
 const uint64_t cr8r_hash_u64_prime = 536870909;
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 uint64_t cr8r_default_hash_u64(const cr8r_base_ft *ft, const void *_a){
 	uint64_t a = *(const uint64_t*)_a;
 	unsigned __int128 prod = a*((unsigned __int128)cr8r_hash_u64_prime);
 	return (uint64_t)(prod >> 64) ^ (uint64_t)prod;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 uint64_t cr8r_default_hash(const cr8r_base_ft *ft, const void *_a){
 	const char *a = _a;
 	uint64_t h = 5381;
@@ -32,6 +34,7 @@ uint64_t cr8r_default_hash(const cr8r_base_ft *ft, const void *_a){
 	return h;
 }
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 uint64_t cr8r_default_hash_cstr(const cr8r_base_ft *ft, const void *_a){
 	const char *a = *(const char**)_a;
 	uint64_t h = 5381;

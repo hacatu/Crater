@@ -6,6 +6,7 @@
 
 #include <crater/hash.h>
 
+CR8R_ATTR_NO_SAN("unsigned-integer-overflow")
 int main(){
 	fprintf(stderr, "\e[1;34mFinding largest palindrome product of 2 3-digit numbers...\e[0m\n");
 	// We want 100001*a + 10010*b + 1100*c = A*B with 0 <= a, b, c <= 9 and 100 <= A, B <= 999
@@ -30,8 +31,8 @@ int main(){
 		}
 	}
 	for(uint64_t a = 9; a >= 8; --a){
-		for(uint64_t b = 10; b-- > 0;){
-			for(uint64_t c = 10; c-- > 0;){
+		for(uint64_t b = 10; b--;){
+			for(uint64_t c = 10; c--;){
 				uint64_t palindrome = 100001*a + 10010*b + 1100*c;
 				if(cr8r_hash_get(&products, &cr8r_htft_u64_void, &palindrome)){
 					cr8r_hash_destroy(&products, &cr8r_htft_u64_void);

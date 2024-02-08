@@ -199,4 +199,10 @@ uint64_t cr8r_pow_u64(uint64_t b, uint64_t e);
 /// @return pointer to the intrusive data structure
 #define CR8R_INNER_S(ptr, ft) (((void*)(ptr) + (ft)->base.size))
 
+/// Prevent clang from reporting spurious errors when a length zero array is passed to a length annotated function parameter
+#if !defined(DOXYGEN) && __has_c_attribute(clang::no_sanitize)
+#define CR8R_ATTR_NO_SAN(...) [[clang::no_sanitize(__VA_ARGS__)]]
+#else
+#define CR8R_ATTR_NO_SAN(...)
+#endif
 
