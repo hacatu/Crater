@@ -30,15 +30,15 @@
 		"no_red_tests": [[]]
 	},
 	"wordcount": {
-		"log_diff_tests": [["../../resources/frankenstein.txt"]]
+		"log_diff_tests": [["resources/frankenstein.txt"]]
 	},
 	"wc": {
 		"log_diff_tests": [
-			["-f=../../resources/wc.files0", "-wl"],
-			["--files0-from=../../resources/wc.files0", "-mc", "--max-line-length"],
+			["-f=resources/wc.files0", "-wl"],
+			["--files0-from=resources/wc.files0", "-mc", "--max-line-length"],
 			["--help"],
-			["--files0-from", "../../resources/wc.files0"],
-			["-f", "../../resources/wc.files0"],
+			["--files0-from", "resources/wc.files0"],
+			["-f", "resources/wc.files0"],
 			["--fake-option", "-?"]]
 	},
 	"opts_generic": {
@@ -61,7 +61,8 @@
 		"no_red_tests": [[]]
 	},
 	"dijkstra": {
-		"no_red_tests": [["../../resources/p083_matrix.txt"]]
+		"no_red_tests": [["resources/p083_matrix.txt"]],
+		"run_on_builds": ["coverage", "release", "valgrind", "windows"]
 	},
 	"guess_passcode": {
 		"no_red_tests": [[]]
@@ -82,7 +83,7 @@
 		"no_red_tests": [[]]
 	},
 	"streetmap": {
-		"no_red_tests": [["../../resources/rutgers_roads.csv"]]
+		"no_red_tests": [["resources/rutgers_roads.csv"]]
 	},
 	"pointcloud": {
 		"no_red_tests": [[]]

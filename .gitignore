@@ -18,7 +18,6 @@ build/*/*/
 ########################
 .kdev/
 .vscode/
-compile_flags.txt
 *.kdev4
 # Packages #
 ############
@@ -55,4 +54,7 @@ __pycache__/
 *.gcno
 *.info
 *.osm
+.waf*
+.lock-waf*
+build/
 

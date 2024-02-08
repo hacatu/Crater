@@ -4,28 +4,54 @@ on:
   push:
     branches: [ master ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.3.0
     - name: Run Coverage and Doxygen
       run: |
-        sudo add-apt-repository ppa:wsnipex/mold-linker
         sudo apt-get update
-        sudo apt-get install -y lcov doxygen libsdl2-dev mold
-        sudo mkdir -p /usr/share/libexec/mold
-        sudo ln -s `which mold` /usr/share/libexec/mold/ld
-        make coverage
-        grep -qF "$(printf '\e[1;32mtest.py suite passed all tests!\e[0m')" build/debug/log/test*.log
-        make docs
-        mv build/debug/cov website/
-        mv build/debug/coverage.svg website/
-        mv docs website/
+        sudo apt-get install -y lcov cpanminus doxygen libsdl2-dev valgrind clang-15 llvm-15 gcc-13 opencl-headers ocl-icd-opencl-dev libpocl2 mesa-opencl-icd
+        cpanm Cpanel::JSON::XS
+        sudo update-alternatives \
+          --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 \
+          --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-13 \
+          --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-13 \
+          --slave /usr/bin/gcov gcov /usr/bin/gcov-13
+        sudo update-alternatives \
+          --install /usr/bin/llvm-ar llvm-ar /usr/bin/llvm-ar-15 100 \
+          --slave /usr/bin/llvm-ranlib llvm-ranlib /usr/bin/llvm-ranlib-15 \
+          --slave /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-15
+        sudo update-alternatives \
+         --install /usr/bin/clang clang /usr/bin/clang-15 100
+        gcc --version
+        clang --version
+        ./waf configure -v
+        ./waf build_debug test_debug
+        ./waf build_valgrind test_valgrind
+        ./waf build_coverage test_coverage
+        ./waf build_release test_release
+        ./waf docs
+        mv cov coverage.svg docs website/
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: vg_logs
+        path: "test/*.valgrind.log"
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: waf_logs
+        path: "build/config.log"
     - name: Deploy Coverage and Docs to Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.1
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         branch: gh-pages
         folder: website

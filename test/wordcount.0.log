@@ -1,4 +1,4 @@
-[1;34mCounting all words in file "../../resources/frankenstein.txt"...[0m
+[1;34mCounting all words in file "resources/frankenstein.txt"...[0m
 [1;34mUsing a hash table...[0m
 [1;34mUsing an avl tree...[0m
 [1;34mHash table found 6977 unique words[0m

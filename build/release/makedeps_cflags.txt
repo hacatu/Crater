@@ -1,3 +1,0 @@
--I../../include
--std=c2x
-

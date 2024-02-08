@@ -119,96 +119,52 @@ Some convenient default callbacks are also included.
 
 ### Overview/Linux
 
-Make arguments:
+This library uses [Waf](https://waf.io) as the build system.
+To build the release variant, simply run `./waf configure build_release` in the project root directory.
+The resulting files will be in `build/release` and `build/release/bin`,
+or you can run `sudo ./waf install_release` after building.
 
-- `BUILD_ROOT`: Which directory to look in for variant specific files.  Defaults to `build/debug`,
- but look in `build` for other possibilities like `build/release`.
-- `ALLOW_ROOT`: Whether to allow building as root.  Defaults to `0` (false).  If building as root,
- you will be prompted to answer `y/n` to continue unless this is set to `1`.  This is done to avoid
- creating files owned by root in the build directory.  If running an automated build for CI,
- either add `ALLOW_ROOT=1` or pipe `yes` into `make`.
+The general usage of Waf is `./waf subcommand_1 subcommand_2 ...`, where each subcommand is either user defined/modified
+or builtin, and many subcommands can be specified.
 
-Project directories:
+The main subcommands to be aware of are
+- `configure`: set up Waf, must be run before most other commands
+- `build_<variant>`: build the indicated variant.  Results are stored in `build/<variant>`.  The currently extant variants are:
+  - `coverage`: debug variant, includes address sanitizer, some ub sanitizers, and coverage collection.  builds using `gcc`
+  - `debug`: debug variant, includes memory sanitizer and most ub sanitizers.  builds using `clang`
+  - `release`: release variant, no sanitizers.  builds using `gcc` with `-O3`
+  - `valgrind`: debug variant, no sanitizers.  builds using `clang` with `-O1`
+  - `windows`: release variant, no sanitizers.  builds using `x86_64-w64-mingw32-gcc`
+- `clean_<variant>`: delete build files
+- `install_<variant>`: copy headers, built libraries, and build binaries (but not test binaries) to the system.  Typically requires `sudo`.  Consider running without `sudo` first to ensure it's doing what you want.
+- `uninstall_<variant>`: remove installed files.  Typically requires `sudo`.  Consider running without `sudo` first to ensure it's doing what you want.
+- `test_<variant>`: run tests (invoke `tests/test.py`).  This is a special rule, it will always run tests, unlike `build_*` which only builds outputs if their inputs have changed.  Requires `build_<variant>` to have been run successfully first.
+  - For the `coverage` variant, `geninfo` and `genhtml` are automatically invoked after tests succeed.
+- `distclean`: delete the whole build directory (build files for all variants)
+- `docs`: run `doxygen` to create the documentation.  Similar to `test_<variant>` this always executes, but it is not tied to a variant.
 
-- `include/crater`: Contains header files.  Can be copied into system include directory
- without worry of clashes.
-- `src/bin`: Any file `<name>.c` in this directory is compiled into a binary
- `<BUILD_ROOT>/bin/<name>`.  Any directory `<name>` in this directory is compiled
- into a binary `<BUILD_ROOT>/bin/<name>`.
-- `src/lib`: Any file `<name>.c` in this directory is compiled into a static library
- `<BUILD_ROOT>/lib/lib<name>.a`.  Any directory `<name>` in this directory is compiled
- into a static library `<BUILD_ROOT>/lib/lib<name>.a`.
-- `src/test`: Any file `<name>.c` in this directory is compiled into a binary
- `<BUILD_ROOT>/bin/test/<name>`.  Any directory `<name>` in this directory is compiled
- into a binary `<BUILD_ROOT>/bin/test/<name>`.
-- `<BUILD_ROOT>`: all output files are put in the `<BUILD_ROOT>`
- directory, which is `build/debug` by default, but can be changed to use a different
- build root.  Each build root represents a variant build.  The build root directory
- should contain:
-	- `Makefile`: Invoked by the top level makefile to build the selected variant.
-	 A good way to create a new variant is to copy this file and edit it.
-	- `cflags.txt`: Compilation flags for this variant build.
-	- `ldflags.txt`: Linking flags for this variant build.
-	- `makedeps_cflags.txt`: Flags to pass to the C compiler to emit Makefile
-	 dependency information.  `-MM -MQ $@ -MG -MP $^ -MF` will be added to this.
-	 This should not need to be changed for new variant builds.
-- `<BUILD_ROOT>/bin`: Output folder for compiled binaries.
-- `<BUILD_ROOT>/lib`: Output folder for compiled static librares.
-- `<BUILD_ROOT>/bin/test`: Output folder for compiled test binaries.
-- `<BUILD_ROOT>/notes`: Output folder for coverage information.  Not flat internally:
- many files will be placed in subfolders.
-- `<BUILD_ROOT>/obj`: Output folder for intermediate object files.  Not flat 
- internally, many files will be placed in subfolders.
-- `<BUILD_ROOT>/log`: Output folder for test output.
-- `test`: Contains `test.py`, `tests.json`, and expected output for applicable tests.
-- `resources`: Contains non-code resources for tests (and binaries and libraries) to
- read.
-- `website`: Contains the manually created parts of the website.  Lcov and Doxygen
- then generate the coverage report and documentation pages.
+To introduce new variants, look in `wscript` and add an appropriate section in `configure` as well as the `for` loop at the end of the file.
 
-This library uses variant makefiles for each build type.  To build the debug variant, simply run `make`
-in the project root directory.  The resulting files will be in `build/debug/lib` and `build/debug/bin`.
+Waf depends on two main files: `waf`, the compressed python script comprising Waf itself, and `wscript`, the main user config.
+These are somewhat analagous to the systemwide `make` executable and the `Makefile`.
+Waf is intended to be distributed with the project, with a separate copy in each project.
 
-To build a different variant, change the `<BUILD_ROOT>` variable from `build/debug` to `build/release`
-or some other value, for instance `make BUILD_ROOT="build/release"`.  You can check what variants exist
-by looking at the subdirectories of `build`, and you can create your own by copying and modifying `build/debug`.
+Executables, static libraries, and test executables are automatically created based on the contents of `src`:
+every C file or directory in `src/bin` is turned into its own executable in `$build/<variant>/bin`, every C file
+or directory in `src/lib` is turned into its own static library in `build/<variant>`, and every C file or
+directory in `src/test` is turned into its own test executable in `build/<variant>`.
 
-To run tests, simply run `make test` (or `make BUILD_ROOT=build/release test`).  For build variants where
-coverage testing should be done, `make coverage` is better since both will re-run all tests every time.
+`./waf distclean` will not remove `cov` and `docs`, the directories generated by `test_coverage` and `docs` respectively;
+these can be removed with `rm -rf cov docs`.
 
-`make clean` should remove all output files in all variant build directories, as well as all generated
-documentation.
-
-Finally, `make docs` generates the documentation in the `docs` directory.  Like `make clean`, this is not
-tied to a build variant and even if you specify one the same thing will happen.
-
-Only Linux is properly supported.  To build, only `gcc`/`clang`, `ar`, and `make` are strictly required.  `gold` is specified as the linker by default.  Tests require `python 3` and `SDL2`, coverage requires `lcov`, and documentation requires `doxygen`.
-If you do not have `gold`, you can remove the line `-fuse-ld=gold` in `<BUILD_ROOT>/ldflags.txt`.
-
-`-fno-strict-aliasing` is important to keep because the elements in most containers are stored in flexible length
-`char` arrays, and strict aliasing has to be disabled to allow a two way conversion between `char*` and `T*`.
-
-To use clang instead of gcc, `make CC=clang LD=clang test` can be used.  You may wish to edit `build/debug/ldflags.txt`
-to not use gold since it causes some link warnings in clang.
+Only Linux is properly supported.  To build, only (`gcc` and `ar` or `clang`) and `python` are strictly required, but `lcov`
+and `doxygen` are required for coverage and documentation, `valgrind` is required for testing, and it's recommended to have both `gcc` and `clang`.
+Cross compiling for windows requires `x86_64-w64-mingw32-gcc` and `libwinpthread` and isn't fully supported.  WSL or similar may be better for windows users.
 
 ### Windows
 
-Try installing the Windows subsystem for Linux or setting Crater up in VSCode.
-VSCodium on Linux is able to build and manage Crater pretty well, using the
-`clangd` and `Makefile Tools` extensions.  You will need to create a copy of
-`build/debug/cflags.txt` in the project root called `compile_flags.txt` but
-with the `-I../../include` line changed to `-Iinclude`, this should make `clangd`
-work properly.  Simply running the make commands in VSCode's bash terminal is
-recommended because the `Makefile Tools` extension does not handle ANSI escape
-sequences so its output is hard to read.
-
-## Installing
-`make BUILD_ROOT=build/release` followed by `sudo make BUILD_ROOT=build/release install`
-will install the headers to `/usr/include/crater/` and libraries to `/usr/lib/crater/`.
-NOTE: Installing debug builds or any build variant besides release is not really recommended,
-these variants should be stored in and linked from their respective directories within `build/`.
-NOTE: Do not run `sudo make BUILD_ROOT=build/release install` unless you have run `make BUILD_ROOT=build/release`
-immediately beforehand.  If you do, you will get files owned by root in `build/release`.
+Cross compiling for windows from linux is the recommended way to build for windows.
+WSL or a VM can be used to run linux on windows, then install a cross compiler.
 
 ## Linking
 Once the library has been built, it can be linked with C programs by adding the flags `-Lbuild/debug/lib -lcrater`
@@ -218,8 +174,9 @@ directories so this can be used to link to the debug variant even if crater is i
 
 ## Tests
 
-To run tests, use `make tests`.  To run tests and generate a coverage report, use
-`make coverage`, which will put the report in `<BUILD_ROOT>/cov`.
+To run tests, use `./waf test_<variant>`.  For `./waf test_coverage`, this will also
+generate a coverage report.
+
 What tests are run is determined by a couple files in the `test` folder.
 `test/test.py` uses `test/tests.json` to determine what tests to run.  This json
 configuration looks like `{<name>: {<test_kind>: [<arg_list>]}}` where
@@ -233,6 +190,8 @@ configuration looks like `{<name>: {<test_kind>: [<arg_list>]}}` where
 	 considered to pass if its output matches with the file `test/<name>.i.log`.
 - `<arg_list>` is a list of command line arguments to pass to the test executable.
  Paths should be relative to `<BUILD_ROOT>`.
+- `"run_on_builds"` is an optional list of variants to run the test for, useful if a test uses
+ an external library and has spurious errors under valgrind or other tests
 
 The configuration for the tests for `<name>` is a json object whose keys are
 `<test_kind>` values and whose values are lists of `<arg_lists>`.  For each
@@ -242,9 +201,7 @@ The configuration for the tests for `<name>` is a json object whose keys are
 Notice `{"no_red_tests": [[]]}` is the basic way to run the test executable for
 `<name>` once with no arguments and check it does not output any red text.
 
-`test/test.py` is automatically invoked by `make test` with `<BUILD_ROOT>` as the
-working directory.  If you wish to invoke it manually, make sure to switch directories
-first.
+`test/test.py` is automatically invoked by `./waf test_<variant>`.
 
 ## Examples
 
