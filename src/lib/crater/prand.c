@@ -489,6 +489,7 @@ cr8r_prng *cr8r_prng_init_splitmix(uint64_t seed){
 	return res;
 }
 
+// need to create anonymous struct to statically allocate fla
 static struct{
 	uint64_t state_size;
 	uint32_t (*get_u32)(void*);

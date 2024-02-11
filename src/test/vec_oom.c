@@ -1,12 +1,16 @@
 #define _GNU_SOURCE
-#include "crater/container.h"
-#include "crater/vec.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
 
+#include <crater/vec.h>
 #include <crater/minmax_heap.h>
+
+const char *__asan_default_options(){
+	return "detect_leaks=0";
+	// there is a bogus leak that asan finds but valgrind doesn't
+}
 
 inline static void default_copy(cr8r_base_ft *ft, void *dest, const void *src){
 	memcpy(dest, src, ft->size);

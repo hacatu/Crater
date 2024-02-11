@@ -1,5 +1,4 @@
 //This test is based on Project Euler 41
-#include "crater/container.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

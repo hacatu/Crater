@@ -1,10 +1,10 @@
-#include "crater/kd_check.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
 
+#include <crater/kd_check.h>
 #include <crater/kd_tree.h>
 
 int main(){

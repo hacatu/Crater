@@ -45,7 +45,10 @@ void *cr8r_default_resize(cr8r_base_ft *base, void *p, uint64_t cap){
 		}
 		return NULL;
 	}
-	return p ? realloc(p, cap*base->size) : malloc(cap*base->size);
+	if(base->size){
+		return p ? realloc(p, cap*base->size) : malloc(cap*base->size);
+	}
+	return p;
 }
 
 void *cr8r_default_resize_pass(cr8r_base_ft *base, void *p, uint64_t cap){
@@ -208,7 +211,7 @@ void cr8r_vec_shuffle(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_prng *prng){
 }
 
 static inline bool ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
-	if(cap > self->cap && ft->base.size){
+	if(cap > self->cap){
 		uint64_t new_cap = ft->new_size(&ft->base, self->cap);
 		if(cap > new_cap){
 			new_cap = cap;
@@ -577,21 +580,24 @@ void *cr8r_vec_pivot_m3(const cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint6
 		return NULL;
 	}
 	void *fst = self->buf + a*ft->base.size;
+	if(b - a < 3){
+		return fst;
+	}
 	void *lst = self->buf + (b - 1)*ft->base.size;
 	void *mid = self->buf + (a + b - 1)/2*ft->base.size;
 	int ord = ft->cmp(&ft->base, fst, mid);
 	int sorted;
-	if(!ord){
+	if(!ord){// if *fst == *mid, then both are valid pivots regardless of *lst
 		return mid;
-	}else if((sorted = ord*ft->cmp(&ft->base, mid, lst))){
-		if(sorted > 0){
+	}else if((sorted = ord*ft->cmp(&ft->base, mid, lst))){// multiplying the ord of *mid and *lst by the ord of *fst and *mid lets us easily detect if the sequence is monotonic
+		if(sorted > 0){// in this case, either *fst < *mid < *lst OR *fst > *mid > *lst
 			return mid;
-		}else if(ft->cmp(&ft->base, lst, fst)*ord >= 0){
+		}else if(ft->cmp(&ft->base, lst, fst)*ord >= 0){// if sorted < 0, *mid is either the max or min, determined by ord (the comparison between *fst and *mid)
+			return fst;// if the ord of *fst and *mid is the same as the ord of *lst and *fst, then either *lst < *fst < *mid or *lst > *fst > *mid.  Alternatively, if *lst == *fst, ten both are valid pivots
+		}else{// otherwise, *fst is either the max or min, but *mid is also either the max or min, and since none of the three are equal in this case, we can conclude tht *lst is the median
 			return lst;
-		}else{
-			return fst;
 		}
-	}else{
+	}else{// if *fst != *mid but *mid == *lst, then both mid and lst are valid pivots regardless of *fst
 		return mid;
 	}
 }

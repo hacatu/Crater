@@ -1,4 +1,3 @@
-#include "crater/container.h"
 #include "crater/vec.h"
 #include <stdio.h>
 #include <stdlib.h>

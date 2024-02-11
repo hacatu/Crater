@@ -209,7 +209,7 @@ inline static void *cr8r_hash_next(cr8r_hashtbl_t *self, const cr8r_hashtbl_ft *
 	if(self->table_b){
 		if(cur){
 			b = (cur - self->table_b)/ft->base.size;
-			if(b++ >= self->len_b){
+			if(b++ >= self->len_b){// also goes to SEARCH_A if "b < 0" due to unsigned overflow wrapping
 				goto SEARCH_A;
 			}
 		}
