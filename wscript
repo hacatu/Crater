@@ -232,8 +232,8 @@ def test(ctx):
 	if child.returncode != 0:
 		ctx.fatal('tests failed')
 	if ctx.variant == 'coverage':
-		ctx.exec_command('geninfo build/coverage/src/lib/nut')
-		ctx.exec_command('find build/coverage/src/lib/nut -name "*.info" | xargs genhtml --num-spaces 4 --css-file resources/lcov.css --html-prolog resources/lcov_prolog.html -o cov | grep -oP "(?<=lines\\.{6,6}: )\\d+\\.\d+" | xargs ./cov_shield.py > coverage.svg')
+		ctx.exec_command('geninfo build/coverage/src/lib/crater')
+		ctx.exec_command('find build/coverage/src/lib/crater -name "*.info" | xargs genhtml --num-spaces 4 --css-file resources/lcov.css --html-prolog resources/lcov_prolog.html -o cov | grep -oP "(?<=lines\\.{6,6}: )\\d+\\.\d+" | xargs ./cov_shield.py > coverage.svg')
 
 def docs(ctx):
 	ctx.exec_command('doxygen doxygen.conf')
