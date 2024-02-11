@@ -68,8 +68,8 @@ typedef struct{
 } cr8r_pheap_ft;
 
 /// Allocate a new pairing heap node using ft->alloc and initialize it.
-/// The pointer returned is a pointer to the outer struct which contains
-/// the cr8r_pheap_node struct.
+/// Returns a pointer to a pheap node that lives within an outer struct
+/// (the pairing heap is said to be "intrusive" in the outer struct).
 ///
 /// Note that this function is not really needed in the normal use case
 /// for this data structure.  Typically, the pairing heap will be a
@@ -79,13 +79,13 @@ typedef struct{
 /// binary heap instead.
 /// @param [in] key: Pointer to an initializer for the outer struct.  ft->base.size bytes
 /// are copied from here to the newly allocated node.  WARNING: ft->base.size is the
-/// offset of the cr8r_pheap_node struct within the outer struct, so if there is
-/// padding between the used portion of the outer struct and the node struct
-/// it contains, or the node struct is not the last member of the outer struct, this
+/// offset of the cr8r_pheap_node struct within the outer struct, so if the node struct is
+/// not the last member of the outer struct (including if there is padding due to alignment),
+/// or if there is padding in the struct and some other code cares about its value, this
 /// function does not work and the allocation must be done manually.
 /// @param [in] first_child, sibling, parent: Initializers for the intrusive struct's fields
-/// @return A pointer to the outer struct which was allocated and initialized, or NULL if the allocator failed.
-void *cr8r_pheap_new(void *key, cr8r_pheap_ft*, cr8r_pheap_node *first_child, cr8r_pheap_node *sibling, cr8r_pheap_node *parent);
+/// @return A pointer to the pheap node within the outer struct that was allocated and initialized, or NULL if the allocator failed.
+cr8r_pheap_node *cr8r_pheap_new(void *key, cr8r_pheap_ft*, cr8r_pheap_node *first_child, cr8r_pheap_node *sibling, cr8r_pheap_node *parent);
 
 /// Return a pointer to the minimal data element of a pairing heap, or NULL if the heap is empty.
 /// The pointer returned is to the outer struct.

@@ -3,13 +3,13 @@
 
 #include <crater/pheap.h>
 
-void *cr8r_pheap_new(void *key, cr8r_pheap_ft *ft, cr8r_pheap_node *first_child, cr8r_pheap_node *sibling, cr8r_pheap_node *parent){
+cr8r_pheap_node *cr8r_pheap_new(void *key, cr8r_pheap_ft *ft, cr8r_pheap_node *first_child, cr8r_pheap_node *sibling, cr8r_pheap_node *parent){
 	void *res = ft->alloc ? ft->alloc(&ft->base) : NULL;
 	if(res){
 		memcpy(res, key, ft->base.size);
 		memcpy(res + ft->base.size, &(cr8r_pheap_node){.first_child = first_child, .sibling = sibling, .parent = parent}, sizeof(cr8r_pheap_node));
 	}
-	return res;
+	return res + ft->base.size;
 }
 
 void *cr8r_pheap_top(cr8r_pheap_node *r, cr8r_pheap_ft *ft){
