@@ -160,11 +160,20 @@ cr8r_avl_node *cr8r_avl_remove_node(cr8r_avl_node *n, cr8r_avl_ft*);
 
 /// Add a given node to an existing tree.
 ///
+/// The existing tree may contain a node with the same element (see { @link cr8r_avl_attach_exclusive } for a version that disallows this).
+/// @param [in] r: the root of the existing tree.  Notice this is a pointer, not a pointer to a pointer as many other functions have.  Can be NULL.
+/// @param [in] n: the node to insert.  Should not have links.
+/// @param [out] is_duplicate: if this is not null, 0 is written if the node's key is not equal to any existing node, and 1 is written if it is.
+/// @return a pointer to the new root, in case it changed.
+cr8r_avl_node *cr8r_avl_attach(cr8r_avl_node *r, cr8r_avl_node *n, cr8r_avl_ft*, int *is_duplicate);
+
+/// Add a given node to an existing tree.
+///
 /// The existing tree should not already contain a node with the same element.
 /// @param [in] r: the root of the existing tree.  Notice this is a pointer, not a pointer to a pointer as many other functions have.  Can be NULL.
 /// @param [in] n: the node to insert.  Should not have links.
-/// @return a pointer to the new root, in case it changed, or NULL if a node with the same element as n already exists.
-cr8r_avl_node *cr8r_avl_attach(cr8r_avl_node *r, cr8r_avl_node *n, cr8r_avl_ft*);
+/// @return a pointer to the new root, in case it changed, or NULL if n has the same key as an existing node
+cr8r_avl_node *cr8r_avl_attach_exclusive(cr8r_avl_node *r, cr8r_avl_node *n, cr8r_avl_ft*);
 
 /// Remove a given node from the tree containing it but do not free it.
 ///
@@ -180,12 +189,17 @@ cr8r_avl_node *cr8r_avl_detach(cr8r_avl_node *n, cr8r_avl_ft*);
 /// @return a pointer to the node matching the given key, or NULL if no match exists.
 cr8r_avl_node *cr8r_avl_get(cr8r_avl_node *r, void *key, cr8r_avl_ft*);
 
-/// Find the deepest node that is a would be ancestor of a given element,
-/// a leaf node which is either the lower bound or upper bound of the given key.
+/// Find the deepest node on the search path for a given key
+/// If there is a node in the tree with the given key, returns a pointer to that node.
+/// Otherwise, returns a pointer leaf node which is either the lower bound or upper bound
+/// of the given key.  In both cases, the node returned is the deepest node that would
+/// be an ancestor of the key if it were inserted into the tree without rebalancing.
 ///
 /// @param [in] r: the root of the tree to search
 /// @param [in] key: element to search for in the tree
-/// @return a pointer to the last node in the tree on the search path for the given key.
+/// @return a pointer to the last node in the tree on the search path for the given key,
+/// which could compare equal to the key, be its lower bound or upper bound, or, if the given
+/// root is null, be null
 cr8r_avl_node *cr8r_avl_search(cr8r_avl_node *r, void *key, cr8r_avl_ft*);
 
 /// Find the root of the tree containing a given node.
@@ -246,29 +260,25 @@ cr8r_avl_node *cr8r_avl_upper_bound(cr8r_avl_node *r, void *key, cr8r_avl_ft*);
 /// @param [in] r: the root of the tree, which is invalidated (unless ft->free doesn't invalidate nodes for some reason)
 void cr8r_avl_delete(cr8r_avl_node *r, cr8r_avl_ft*);
 
-/// Swap two nodes in a tree, swapping their contents and then patching up links
-///
-/// @param [in, out] a, b: the nodes to swap
-/// @param [in] size: the size of the element.  Only this is required rather than the entire function table
-void cr8r_avl_swap_nodes(cr8r_avl_node *a, cr8r_avl_node *b, uint64_t size);
-
 /// Restore the binary search tree invariant after decreasing the key for a single node
 ///
 /// After decreasing the key in a node, this function should be called, which then moves the node
 /// if necessary to ensure the tree is a BST.  Only the given node should violate the BST condition.
-/// Also requires the tree have no duplicate keys.
 /// @param [in] n: the node that has had its key decreased and may need to be moved
-/// @return a pointer to the root of the tree, in case it changes, or NULL if a duplicate key is encountered
-cr8r_avl_node *cr8r_avl_decrease(cr8r_avl_node *n, cr8r_avl_ft*);
+/// @param [out] is_duplicate: if this is not null, 0 is written if the decreased key is unique within the tree,
+/// and 1 is written if it is equal to some existing key
+/// @return a pointer to the root of the tree, in case it changes
+cr8r_avl_node *cr8r_avl_decrease(cr8r_avl_node *n, cr8r_avl_ft*, int *is_duplicate);
 
 /// Restore the binary search tree invariant after increasing the key for a single node
 ///
 /// After increasing the key in a node, this function should be called, which then moves the node
 /// if necessary to ensure the tree is a BST.  Only the given node should violate the BST condition.
-/// Also requires the tree have no duplicate keys.
 /// @param [in] n: the node that has had its key increased and may need to be moved
+/// @param [out] is_duplicate: if this is not null, 0 is written if the increased key is unique within the tree,
+/// and 1 is written if it is equal to some existing key
 /// @return a pointer to the root of the tree, in case it changes, or NULL if a duplicate key is encountered
-cr8r_avl_node *cr8r_avl_increase(cr8r_avl_node *n, cr8r_avl_ft*);
+cr8r_avl_node *cr8r_avl_increase(cr8r_avl_node *n, cr8r_avl_ft*, int *is_duplicate);
 
 /// Find the first node in a postorder traversal of the tree
 ///

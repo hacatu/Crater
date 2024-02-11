@@ -24,3 +24,14 @@ inline static int cr8r_avl_check_balance(cr8r_avl_node *n){
 	return -1;
 }
 
+#ifdef DEBUG
+#include <assert.h>
+#define CR8R_AVL_ASSERT_LINKS(n) assert(cr8r_avl_check_links(n))
+#define CR8R_AVL_ASSERT_BALANCE(n) assert(cr8r_avl_check_balance(n) != -1)
+#define CR8R_AVL_ASSERT_ALL(n) do{CR8R_AVL_ASSERT_LINKS(n);CR8R_AVL_ASSERT_BALANCE(n);}while(0)
+#else
+#define CR8R_AVL_ASSERT_LINKS(n)
+#define CR8R_AVL_ASSERT_BALANCE(n)
+#define CR8R_AVL_ASSERT_ALL(n)
+#endif
+
