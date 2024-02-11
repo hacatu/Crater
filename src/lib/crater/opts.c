@@ -261,7 +261,7 @@ static const unsigned __int128 u128_max = ~(unsigned __int128)0;
 // if !is_signed, a leading '-' is ignored rather than treated as an error.
 // errno is not set to 0 in the absence of any error
 // **end is not const
-CR8R_ATTR_NO_SAN("implicit-integer-sign-change")
+CR8R_ATTR_NO_SAN("integer")
 static inline unsigned __int128 strtou128(const char *str, char **end, int base, bool is_signed){
 	if(end){
 		*end = (char*)str;

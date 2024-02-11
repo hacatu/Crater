@@ -34,6 +34,7 @@ build/*/*/
 *.log
 !test/*.log
 test/tmp.log
+test/*.valgrind.log
 *.sql
 *.sqlite
 # OS generated files #

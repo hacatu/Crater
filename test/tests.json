@@ -3,7 +3,8 @@
 		"no_red_tests": [[]]
 	},
 	"avl_extra": {
-		"no_red_tests": [[]]
+		"no_red_tests": [[]],
+		"run_on_builds": ["coverage", "release", "valgrind", "windows"]
 	},
 	"vec_bsearch": {
 		"no_red_tests": [[]]

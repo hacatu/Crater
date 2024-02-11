@@ -383,6 +383,7 @@ void cr8r_vec_reverse(cr8r_vec*, cr8r_vec_ft*);
 
 /// Create a reversed copy of a vector
 ///
+/// dest should NOT be initialized or its buffer will be leaked!
 /// copies elements in reverse order, using ft->copy if applicable
 /// @param [out] dest: the vector to store the reversed copy in
 /// @param [in] src: the vector to create a reversed copy from

@@ -7,10 +7,12 @@
 #include <crater/vec.h>
 #include <crater/minmax_heap.h>
 
+/*
 const char *__asan_default_options(){
 	return "detect_leaks=0";
 	// there is a bogus leak that asan finds but valgrind doesn't
 }
+*/
 
 inline static void default_copy(cr8r_base_ft *ft, void *dest, const void *src){
 	memcpy(dest, src, ft->size);
@@ -396,7 +398,7 @@ int main(){
 		fprintf(stderr, "\e[1;31mPush/augment failed when ft->new_size did not suggest enough memory!\e[0m\n");
 	}
 	ft.copy = default_copy;
-	cr8r_vec_clear(&fake_vec, &ft);
+	cr8r_vec_delete(&fake_vec, &ft);
 	status = cr8r_vec_reversed(&fake_vec, &vec, &ft);
 	for(uint64_t i = 0; status && i < 2; ++i){
 		status = *(const uint64_t*)cr8r_vec_get(&fake_vec, &ft, i) == 1 - i;
