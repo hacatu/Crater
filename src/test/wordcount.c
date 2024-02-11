@@ -25,7 +25,9 @@ int combine_u64_then_free(cr8r_base_ft *ft, void *_e, void *_i){
 }
 
 int cmp_counts(const cr8r_base_ft *ft, const void *_a, const void *_b){
-	return cr8r_default_cmp_u64(ft, _a + offsetof(word_count, count), _b + offsetof(word_count, count));
+	// break ties in count using alphabetical order on word, to avoid instability on order of words with the same count
+	return cr8r_default_cmp_u64(ft, _a + offsetof(word_count, count), _b + offsetof(word_count, count))
+		?: -cr8r_default_cmp_cstr(ft, _a + offsetof(word_count, word), _b + offsetof(word_count, word));
 }
 
 cr8r_hashtbl_ft htft_wc = {
@@ -159,6 +161,19 @@ int main(int argc, char **argv){
 	munmap(text_buf, text_len);
 	
 	fprintf(stderr, "\e[1;34mHash table found %"PRIu64" unique words\e[0m\n", wordcount_ht.full);
+	uint64_t avl_len = 0;
+	for(cr8r_avl_node *it = cr8r_avl_first(wordcount_avl); it; it = cr8r_avl_next(it)){
+		++avl_len;
+		word_count *wc = cr8r_hash_get(&wordcount_ht, &htft_wc, it->data);
+		if(!wc){
+			fprintf(stderr, "\e[1;31m\"%s\" found in avl wordcount but not hash table!\e[0m\n", ((word_count*)it->data)->word);
+		}else if(wc->count != ((word_count*)it->data)->count){
+			fprintf(stderr, "\e[1;31mavl/hash table counts did not match for \"%s\"\e[0m\n", wc->word);
+		}
+	}
+	if(avl_len != wordcount_ht.full){
+		fprintf(stderr, "\e[1;31mAvl tree found different number of words (%"PRIu64")\e[0m\n", avl_len);
+	}
 	cr8r_vec wordcount_vec;
 	if(!cr8r_vec_init(&wordcount_vec, &vecft_wc, wordcount_ht.full)){
 		cr8r_hash_destroy(&wordcount_ht, &htft_wc);

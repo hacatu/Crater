@@ -25,6 +25,54 @@ static int test_pivot_mm(cr8r_vec *vec, cr8r_vec_ft *ft, cr8r_prng *prng){
 	return 1;
 }
 
+static int test_pivot_m3(cr8r_vec *vec, cr8r_vec_ft *ft, cr8r_prng *prng){
+	for(uint64_t i = 0; i < 1000; ++i){
+		cr8r_vec_shuffle(vec, ft, prng);
+		uint64_t *it = cr8r_vec_pivot_m3(vec, ft, 0, vec->len);
+		uint64_t *fst = vec->buf;
+		uint64_t *lst = fst + (vec->len - 1);
+		uint64_t *mid = fst + (vec->len - 1)/2;
+		if(it == fst){
+			if((*lst > *fst && *mid > *fst) || (*lst < *fst && *mid < *fst)){
+				fprintf(stderr, "\e[1;31mInvalid pivot on trial %"PRIu64"/1000!\e[0m\n", i);
+				return 0;
+			}
+		}else if(it == mid){
+			if((*fst > *mid && *lst > *mid) || (*fst < *mid && *lst < *mid)){
+				fprintf(stderr, "\e[1;31mInvalid pivot on trial %"PRIu64"/1000!\e[0m\n", i);
+				return 0;
+			}
+		}else if(it == lst){
+			if((*fst > *lst && *mid > *lst) || (*fst < *lst && *mid < *lst)){
+				fprintf(stderr, "\e[1;31mInvalid pivot on trial %"PRIu64"/1000!\e[0m\n", i);
+				return 0;
+			}
+		}else{
+			fprintf(stderr, "\e[1;31mInvalid pivot on trial %"PRIu64"/1000 (not first, middle, or last)!\e[0m\n", i);
+			return 0;
+		}
+	}
+	for(uint64_t i = 0; i < 100; ++i){
+		cr8r_vec_shuffle(vec, ft, prng);
+		uint64_t *it = cr8r_vec_pivot_m3(vec, ft, 0, 2);
+		if(it != vec->buf){
+			fprintf(stderr, "\e[1;31mDidn't select first element as pivot in short vec on trial %"PRIu64"/100!\e[0m\n", i);
+			return 0;
+		}
+		it = cr8r_vec_pivot_m3(vec, ft, 0, 0);
+		if(it){
+			fprintf(stderr, "\e[1;31mDidn't recognize empty range on trial %"PRIu64"/100!\e[0m\n", i);
+			return 0;
+		}
+		it = cr8r_vec_pivot_m3(vec, ft, vec->len, vec->len + 1);
+		if(it){
+			fprintf(stderr, "\e[1;31mDidn't recognize out of bound range on trial %"PRIu64"/100!\e[0m\n", i);
+			return 0;
+		}
+	}
+	return 1;
+}
+
 static int test_partition(cr8r_vec *vec, cr8r_vec_ft *ft, cr8r_prng *prng){
 	for(uint64_t i = 0; i < 1000; ++i){
 		cr8r_vec_shuffle(vec, ft, prng);
@@ -122,6 +170,16 @@ int main(){
 		++passed;
 	}else{
 		fprintf(stderr, "\e[1;31mcr8r_vec_pivot_mm failed!\e[0m\n");
+	}
+
+	fprintf(stderr, "\e[1;34mTesting cr8r_vec_pivot_m3 1000x on a 1000 element array\e[0m\n");
+	status = test_pivot_m3(&vec, &ft, prng);
+	++tested;
+	if(status){
+		fprintf(stderr, "\e[1;32mcr8r_vec_pivot_m3 succeeded!\e[0m\n");
+		++passed;
+	}else{
+		fprintf(stderr, "\e[1;31mcr8r_vec_pivot_m3 failed!\e[0m\n");
 	}
 
 	fprintf(stderr, "\e[1;34mTesting cr8r_vec_ith 1000x on a 1000 element array\e[0m\n");

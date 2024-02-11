@@ -1,4 +1,10 @@
 {
+	"set_diff": {
+		"no_red_tests": [[]]
+	},
+	"avl_extra": {
+		"no_red_tests": [[]]
+	},
 	"vec_bsearch": {
 		"no_red_tests": [[]]
 	},
@@ -21,9 +27,6 @@
 		"no_red_tests": [[]]
 	},
 	"shuffle": {
-		"no_red_tests": [[]]
-	},
-	"test_avl": {
 		"no_red_tests": [[]]
 	},
 	"vec_ftor": {
@@ -89,6 +92,9 @@
 		"no_red_tests": [[]]
 	},
 	"dlog_t64": {
+		"no_red_tests": [[]]
+	},
+	"test_avl": {
 		"no_red_tests": [[]]
 	}
 }
