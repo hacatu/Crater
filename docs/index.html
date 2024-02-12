@@ -206,54 +206,43 @@ Features</h2>
 Building</h1>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Overview/Linux</h2>
-<p>Make arguments:</p>
-<ul>
-<li><code>BUILD_ROOT</code>: Which directory to look in for variant specific files. Defaults to <code>build/debug</code>, but look in <code>build</code> for other possibilities like <code>build/release</code>.</li>
-<li><code>ALLOW_ROOT</code>: Whether to allow building as root. Defaults to <code>0</code> (false). If building as root, you will be prompted to answer <code>y/n</code> to continue unless this is set to <code>1</code>. This is done to avoid creating files owned by root in the build directory. If running an automated build for CI, either add <code>ALLOW_ROOT=1</code> or pipe <code>yes</code> into <code>make</code>.</li>
-</ul>
-<p>Project directories:</p>
-<ul>
-<li><code>include/crater</code>: Contains header files. Can be copied into system include directory without worry of clashes.</li>
-<li><code>src/bin</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/&lt;name&gt;</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/&lt;name&gt;</code>.</li>
-<li><code>src/lib</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a static library <code>&lt;BUILD_ROOT&gt;/lib/lib&lt;name&gt;.a</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a static library <code>&lt;BUILD_ROOT&gt;/lib/lib&lt;name&gt;.a</code>.</li>
-<li><code>src/test</code>: Any file <code>&lt;name&gt;.c</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/test/&lt;name&gt;</code>. Any directory <code>&lt;name&gt;</code> in this directory is compiled into a binary <code>&lt;BUILD_ROOT&gt;/bin/test/&lt;name&gt;</code>.</li>
-<li><code>&lt;BUILD_ROOT&gt;</code>: all output files are put in the <code>&lt;BUILD_ROOT&gt;</code> directory, which is <code>build/debug</code> by default, but can be changed to use a different build root. Each build root represents a variant build. The build root directory should contain:<ul>
-<li><code>Makefile</code>: Invoked by the top level makefile to build the selected variant. A good way to create a new variant is to copy this file and edit it.</li>
-<li><code>cflags.txt</code>: Compilation flags for this variant build.</li>
-<li><code>ldflags.txt</code>: Linking flags for this variant build.</li>
-<li><code>makedeps_cflags.txt</code>: Flags to pass to the C compiler to emit Makefile dependency information. <code>-MM -MQ $@ -MG -MP $^ -MF</code> will be added to this. This should not need to be changed for new variant builds.</li>
+<p>This library uses <a href="https://waf.io">Waf</a> as the build system. To build the release variant, simply run <code>./waf configure build_release</code> in the project root directory. The resulting files will be in <code>build/release</code> and <code>build/release/bin</code>, or you can run <code>sudo ./waf install_release</code> after building.</p>
+<p>The general usage of Waf is <code>./waf subcommand_1 subcommand_2 ...</code>, where each subcommand is either user defined/modified or builtin, and many subcommands can be specified.</p>
+<p>The main subcommands to be aware of are</p><ul>
+<li><code>configure</code>: set up Waf, must be run before most other commands</li>
+<li><code>build_&lt;variant&gt;</code>: build the indicated variant. Results are stored in <code>build/&lt;variant&gt;</code>. The currently extant variants are:<ul>
+<li><code>coverage</code>: debug variant, includes address sanitizer, some ub sanitizers, and coverage collection. builds using <code>gcc</code></li>
+<li><code>debug</code>: debug variant, includes memory sanitizer and most ub sanitizers. builds using <code>clang</code></li>
+<li><code>release</code>: release variant, no sanitizers. builds using <code>gcc</code> with <code>-O3</code></li>
+<li><code>valgrind</code>: debug variant, no sanitizers. builds using <code>clang</code> with <code>-O1</code></li>
+<li><code>windows</code>: release variant, no sanitizers. builds using <code>x86_64-w64-mingw32-gcc</code></li>
 </ul>
 </li>
-<li><code>&lt;BUILD_ROOT&gt;/bin</code>: Output folder for compiled binaries.</li>
-<li><code>&lt;BUILD_ROOT&gt;/lib</code>: Output folder for compiled static librares.</li>
-<li><code>&lt;BUILD_ROOT&gt;/bin/test</code>: Output folder for compiled test binaries.</li>
-<li><code>&lt;BUILD_ROOT&gt;/notes</code>: Output folder for coverage information. Not flat internally: many files will be placed in subfolders.</li>
-<li><code>&lt;BUILD_ROOT&gt;/obj</code>: Output folder for intermediate object files. Not flat internally, many files will be placed in subfolders.</li>
-<li><code>&lt;BUILD_ROOT&gt;/log</code>: Output folder for test output.</li>
-<li><code>test</code>: Contains <code>test.py</code>, <code>tests.json</code>, and expected output for applicable tests.</li>
-<li><code>resources</code>: Contains non-code resources for tests (and binaries and libraries) to read.</li>
-<li><code>website</code>: Contains the manually created parts of the website. Lcov and Doxygen then generate the coverage report and documentation pages.</li>
+<li><code>clean_&lt;variant&gt;</code>: delete build files</li>
+<li><code>install_&lt;variant&gt;</code>: copy headers, built libraries, and build binaries (but not test binaries) to the system. Typically requires <code>sudo</code>. Consider running without <code>sudo</code> first to ensure it's doing what you want.</li>
+<li><code>uninstall_&lt;variant&gt;</code>: remove installed files. Typically requires <code>sudo</code>. Consider running without <code>sudo</code> first to ensure it's doing what you want.</li>
+<li><code>test_&lt;variant&gt;</code>: run tests (invoke <code>tests/test.py</code>). This is a special rule, it will always run tests, unlike <code>build_*</code> which only builds outputs if their inputs have changed. Requires <code>build_&lt;variant&gt;</code> to have been run successfully first.<ul>
+<li>For the <code>coverage</code> variant, <code>geninfo</code> and <code>genhtml</code> are automatically invoked after tests succeed.</li>
 </ul>
-<p>This library uses variant makefiles for each build type. To build the debug variant, simply run <code>make</code> in the project root directory. The resulting files will be in <code>build/debug/lib</code> and <code>build/debug/bin</code>.</p>
-<p>To build a different variant, change the <code>&lt;BUILD_ROOT&gt;</code> variable from <code>build/debug</code> to <code>build/release</code> or some other value, for instance <code>make BUILD_ROOT="build/release"</code>. You can check what variants exist by looking at the subdirectories of <code>build</code>, and you can create your own by copying and modifying <code>build/debug</code>.</p>
-<p>To run tests, simply run <code>make test</code> (or <code>make BUILD_ROOT=build/release test</code>). For build variants where coverage testing should be done, <code>make coverage</code> is better since both will re-run all tests every time.</p>
-<p><code>make clean</code> should remove all output files in all variant build directories, as well as all generated documentation.</p>
-<p>Finally, <code>make docs</code> generates the documentation in the <code>docs</code> directory. Like <code>make clean</code>, this is not tied to a build variant and even if you specify one the same thing will happen.</p>
-<p>Only Linux is properly supported. To build, only <code>gcc</code>/<code>clang</code>, <code>ar</code>, and <code>make</code> are strictly required. <code>gold</code> is specified as the linker by default. Tests require <code>python 3</code> and <code>SDL2</code>, coverage requires <code>lcov</code>, and documentation requires <code>doxygen</code>. If you do not have <code>gold</code>, you can remove the line <code>-fuse-ld=gold</code> in <code>&lt;BUILD_ROOT&gt;/ldflags.txt</code>.</p>
-<p><code>-fno-strict-aliasing</code> is important to keep because the elements in most containers are stored in flexible length <code>char</code> arrays, and strict aliasing has to be disabled to allow a two way conversion between <code>char*</code> and <code>T*</code>.</p>
-<p>To use clang instead of gcc, <code>make CC=clang LD=clang test</code> can be used. You may wish to edit <code>build/debug/ldflags.txt</code> to not use gold since it causes some link warnings in clang.</p>
+</li>
+<li><code>distclean</code>: delete the whole build directory (build files for all variants)</li>
+<li><code>docs</code>: run <code>doxygen</code> to create the documentation. Similar to <code>test_&lt;variant&gt;</code> this always executes, but it is not tied to a variant.</li>
+</ul>
+<p>To introduce new variants, look in <code>wscript</code> and add an appropriate section in <code>configure</code> as well as the <code>for</code> loop at the end of the file.</p>
+<p>Waf depends on two main files: <code>waf</code>, the compressed python script comprising Waf itself, and <code>wscript</code>, the main user config. These are somewhat analagous to the systemwide <code>make</code> executable and the <code>Makefile</code>. Waf is intended to be distributed with the project, with a separate copy in each project.</p>
+<p>Executables, static libraries, and test executables are automatically created based on the contents of <code>src</code>: every C file or directory in <code>src/bin</code> is turned into its own executable in <code>$build/&lt;variant&gt;/bin</code>, every C file or directory in <code>src/lib</code> is turned into its own static library in <code>build/&lt;variant&gt;</code>, and every C file or directory in <code>src/test</code> is turned into its own test executable in <code>build/&lt;variant&gt;</code>.</p>
+<p><code>./waf distclean</code> will not remove <code>cov</code> and <code>docs</code>, the directories generated by <code>test_coverage</code> and <code>docs</code> respectively; these can be removed with <code>rm -rf cov docs</code>.</p>
+<p>Only Linux is properly supported. To build, only (<code>gcc</code> and <code>ar</code> or <code>clang</code>) and <code>python</code> are strictly required, but <code>lcov</code> and <code>doxygen</code> are required for coverage and documentation, <code>valgrind</code> is required for testing, and it's recommended to have both <code>gcc</code> and <code>clang</code>. Cross compiling for windows requires <code>x86_64-w64-mingw32-gcc</code> and <code>libwinpthread</code> and isn't fully supported. WSL or similar may be better for windows users.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Windows</h2>
-<p>Try installing the Windows subsystem for Linux or setting Crater up in VSCode. VSCodium on Linux is able to build and manage Crater pretty well, using the <code>clangd</code> and <code>Makefile Tools</code> extensions. You will need to create a copy of <code>build/debug/cflags.txt</code> in the project root called <code>compile_flags.txt</code> but with the <code>-I../../include</code> line changed to <code>-Iinclude</code>, this should make <code>clangd</code> work properly. Simply running the make commands in VSCode's bash terminal is recommended because the <code>Makefile Tools</code> extension does not handle ANSI escape sequences so its output is hard to read.</p>
+<p>Cross compiling for windows from linux is the recommended way to build for windows. WSL or a VM can be used to run linux on windows, then install a cross compiler.</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
-Installing</h1>
-<p><code>make BUILD_ROOT=build/release</code> followed by <code>sudo make BUILD_ROOT=build/release install</code> will install the headers to <code>/usr/include/crater/</code> and libraries to <code>/usr/lib/crater/</code>. NOTE: Installing debug builds or any build variant besides release is not really recommended, these variants should be stored in and linked from their respective directories within <code>build/</code>. NOTE: Do not run <code>sudo make BUILD_ROOT=build/release install</code> unless you have run <code>make BUILD_ROOT=build/release</code> immediately beforehand. If you do, you will get files owned by root in <code>build/release</code>.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
 Linking</h1>
 <p>Once the library has been built, it can be linked with C programs by adding the flags <code>-Lbuild/debug/lib -lcrater</code> or <code>-L&lt;BUILD_ROOT&gt;/lib -lcrater</code> to use a different variant build. If crater is installed, <code>-L</code> is not needed, but keep in mind that <code>-L</code> directories are searched before system directories so this can be used to link to the debug variant even if crater is installed.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Tests</h1>
-<p>To run tests, use <code>make tests</code>. To run tests and generate a coverage report, use <code>make coverage</code>, which will put the report in <code>&lt;BUILD_ROOT&gt;/cov</code>. What tests are run is determined by a couple files in the <code>test</code> folder. <code>test/test.py</code> uses <code>test/tests.json</code> to determine what tests to run. This json configuration looks like <code>{&lt;name&gt;: {&lt;test_kind&gt;: [&lt;arg_list&gt;]}}</code> where</p><ul>
+<p>To run tests, use <code>./waf test_&lt;variant&gt;</code>. For <code>./waf test_coverage</code>, this will also generate a coverage report.</p>
+<p>What tests are run is determined by a couple files in the <code>test</code> folder. <code>test/test.py</code> uses <code>test/tests.json</code> to determine what tests to run. This json configuration looks like <code>{&lt;name&gt;: {&lt;test_kind&gt;: [&lt;arg_list&gt;]}}</code> where</p><ul>
 <li><code>&lt;name&gt;</code> is the name of the test executable in <code>&lt;BUILD_ROOT&gt;/bin/test</code></li>
 <li><code>&lt;test_kind&gt;</code> specifies how to validate the results of the tests in the associated array, for example:<ul>
 <li><code>no_red_tests</code>: tests in <code>test_cfg[&lt;name&gt;]["no_red_tests"]</code> are considered to pass as long as they do not output red text (the ansi control sequence <code>\\033[1;31m</code>)</li>
@@ -261,14 +250,15 @@ Tests</h1>
 </ul>
 </li>
 <li><code>&lt;arg_list&gt;</code> is a list of command line arguments to pass to the test executable. Paths should be relative to <code>&lt;BUILD_ROOT&gt;</code>.</li>
+<li><code>"run_on_builds"</code> is an optional list of variants to run the test for, useful if a test uses an external library and has spurious errors under valgrind or other tests</li>
 </ul>
 <p>The configuration for the tests for <code>&lt;name&gt;</code> is a json object whose keys are <code>&lt;test_kind&gt;</code> values and whose values are lists of <code>&lt;arg_lists&gt;</code>. For each <code>&lt;name&gt;</code>, for each <code>&lt;test_kind&gt;</code>, the test executable for <code>&lt;name&gt;</code> is run with each <code>&lt;arg_list&gt;</code> and validated according to that test kind.</p>
 <p>Notice <code>{"no_red_tests": [[]]}</code> is the basic way to run the test executable for <code>&lt;name&gt;</code> once with no arguments and check it does not output any red text.</p>
-<p><code>test/test.py</code> is automatically invoked by <code>make test</code> with <code>&lt;BUILD_ROOT&gt;</code> as the working directory. If you wish to invoke it manually, make sure to switch directories first.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<p><code>test/test.py</code> is automatically invoked by <code>./waf test_&lt;variant&gt;</code>.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Examples</h1>
 <p>Look in src/test for more examples!</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Command Line Arguments (from src/test/ising/render.c)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="opts_8h.html">crater/opts.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="prand_8h.html">crater/prand.h</a>&gt;</span></div>
@@ -322,7 +312,7 @@ Command Line Arguments (from src/test/ising/render.c)</h2>
 <div class="ttc" id="astructcr8r__opt__cfg_html"><div class="ttname"><a href="structcr8r__opt__cfg.html">cr8r_opt_cfg</a></div><div class="ttdoc">General configuration settings for parsing options.</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00080">opts.h:80</a></div></div>
 <div class="ttc" id="astructcr8r__opt_html"><div class="ttname"><a href="structcr8r__opt.html">cr8r_opt</a></div><div class="ttdoc">Description of a command line option A list of these, terminated with a certain sentinel value,...</div><div class="ttdef"><b>Definition:</b> <a href="opts_8h_source.html#l00020">opts.h:20</a></div></div>
 <div class="ttc" id="astructcr8r__prng_html"><div class="ttname"><a href="structcr8r__prng.html">cr8r_prng</a></div><div class="ttdoc">A PseudoRandom Number Generator.</div><div class="ttdef"><b>Definition:</b> <a href="prand_8h_source.html#l00105">prand.h:105</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 Test All Insert/Remove Sequences for size 7 AVL Trees</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
@@ -422,7 +412,7 @@ Test All Insert/Remove Sequences for size 7 AVL Trees</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Apr 15 2023 07:55:29 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 12 2024 01:19:33 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

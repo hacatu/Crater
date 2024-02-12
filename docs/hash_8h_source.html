@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('hash_8h_source.html',''); initResizabl
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">if</span>(self-&gt;table_b){</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">if</span>(cur){</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            b = (cur - <span class="keyword">self</span>-&gt;table_b)/ft-&gt;<a class="code" href="structcr8r__hashtbl__ft.html#a960117cfc4c43296a2de0c3cc3b456a7">base</a>.<a class="code" href="structcr8r__base__ft.html#a64fa33f1fd759dc06c45d121025e84fc">size</a>;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">if</span>(b++ &gt;= self-&gt;len_b){</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">if</span>(b++ &gt;= self-&gt;len_b){<span class="comment">// also goes to SEARCH_A if &quot;b &lt; 0&quot; due to unsigned overflow wrapping</span></div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">goto</span> SEARCH_A;</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div>
@@ -246,7 +246,7 @@ $(document).ready(function(){initNavTree('hash_8h_source.html',''); initResizabl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="hash_8h.html">hash.h</a></li>
-    <li class="footer">Generated on Sat Apr 15 2023 07:55:29 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -2,7 +2,7 @@ var pheap_8h =
 [
     [ "cr8r_pheap_node", "structcr8r__pheap__node.html", "structcr8r__pheap__node" ],
     [ "cr8r_pheap_ft", "structcr8r__pheap__ft.html", "structcr8r__pheap__ft" ],
-    [ "cr8r_pheap_new", "pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9", null ],
+    [ "cr8r_pheap_new", "pheap_8h.html#a07ad25a632cd2d7b70785cb73adf6444", null ],
     [ "cr8r_pheap_top", "pheap_8h.html#a2b38e08b0d32e542cfd534b63af16d6e", null ],
     [ "cr8r_pheap_root", "pheap_8h.html#a4022a4f9d69db075d8ed24ca409925c2", null ],
     [ "cr8r_pheap_meld", "pheap_8h.html#a8f5e4b14888a9d41c3a56abd8aa60d05", null ],

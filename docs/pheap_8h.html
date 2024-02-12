@@ -128,9 +128,9 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0dc96f0177ffb5c572300d016cde76d9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">cr8r_pheap_new</a> (void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *first_child, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *sibling, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *parent)</td></tr>
-<tr class="memdesc:a0dc96f0177ffb5c572300d016cde76d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a new pairing heap node using ft-&gt;alloc and initialize it.  <a href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">More...</a><br /></td></tr>
-<tr class="separator:a0dc96f0177ffb5c572300d016cde76d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ad25a632cd2d7b70785cb73adf6444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a07ad25a632cd2d7b70785cb73adf6444">cr8r_pheap_new</a> (void *key, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *first_child, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *sibling, <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *parent)</td></tr>
+<tr class="memdesc:a07ad25a632cd2d7b70785cb73adf6444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a new pairing heap node using ft-&gt;alloc and initialize it.  <a href="pheap_8h.html#a07ad25a632cd2d7b70785cb73adf6444">More...</a><br /></td></tr>
+<tr class="separator:a07ad25a632cd2d7b70785cb73adf6444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b38e08b0d32e542cfd534b63af16d6e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pheap_8h.html#a2b38e08b0d32e542cfd534b63af16d6e">cr8r_pheap_top</a> (<a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> *, <a class="el" href="structcr8r__pheap__ft.html">cr8r_pheap_ft</a> *)</td></tr>
 <tr class="memdesc:a2b38e08b0d32e542cfd534b63af16d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the minimal data element of a pairing heap, or NULL if the heap is empty.  <a href="pheap_8h.html#a2b38e08b0d32e542cfd534b63af16d6e">More...</a><br /></td></tr>
 <tr class="separator:a2b38e08b0d32e542cfd534b63af16d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,14 +155,14 @@ Functions</h2></td></tr>
 <tr class="separator:a1ec62febac537990aaf9abe7d01cc841"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a0dc96f0177ffb5c572300d016cde76d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dc96f0177ffb5c572300d016cde76d9">&#9670;&nbsp;</a></span>cr8r_pheap_new()</h2>
+<a id="a07ad25a632cd2d7b70785cb73adf6444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ad25a632cd2d7b70785cb73adf6444">&#9670;&nbsp;</a></span>cr8r_pheap_new()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* cr8r_pheap_new </td>
+          <td class="memname"><a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a>* cr8r_pheap_new </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -200,15 +200,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Allocate a new pairing heap node using ft-&gt;alloc and initialize it. </p>
-<p>The pointer returned is a pointer to the outer struct which contains the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct.</p>
+<p>Returns a pointer to a pheap node that lives within an outer struct (the pairing heap is said to be "intrusive" in the outer struct).</p>
 <p>Note that this function is not really needed in the normal use case for this data structure. Typically, the pairing heap will be a secondary data structure stored in place within a hash table, avl tree, or so on. In that case, the other data structure will handle the allocations. If the pairing heap is the primary data structure, consider using a regualar binary heap instead. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. WARNING: ft-&gt;base.size is the offset of the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct within the outer struct, so if there is padding between the used portion of the outer struct and the node struct it contains, or the node struct is not the last member of the outer struct, this function does not work and the allocation must be done manually. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. WARNING: ft-&gt;base.size is the offset of the <a class="el" href="structcr8r__pheap__node.html">cr8r_pheap_node</a> struct within the outer struct, so if the node struct is not the last member of the outer struct (including if there is padding due to alignment), or if there is padding in the struct and some other code cares about its value, this function does not work and the allocation must be done manually. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">first_child,sibling,parent</td><td>Initializers for the intrusive struct's fields </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the outer struct which was allocated and initialized, or NULL if the allocator failed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the pheap node within the outer struct that was allocated and initialized, or NULL if the allocator failed. </dd></dl>
 
 </div>
 </div>
@@ -321,7 +321,7 @@ Functions</h2></td></tr>
 <p>Insert an item into a pairing heap Allocates and initializes a new node for the new item. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. The same warning from <a class="el" href="pheap_8h.html#a0dc96f0177ffb5c572300d016cde76d9">cr8r_pheap_new</a> applies. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Pointer to an initializer for the outer struct. ft-&gt;base.size bytes are copied from here to the newly allocated node. The same warning from <a class="el" href="pheap_8h.html#a07ad25a632cd2d7b70785cb73adf6444">cr8r_pheap_new</a> applies. </td></tr>
   </table>
   </dd>
 </dl>
@@ -441,7 +441,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="pheap_8h.html">pheap.h</a></li>
-    <li class="footer">Generated on Sat Apr 15 2023 07:55:29 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -173,7 +173,12 @@ $(document).ready(function(){initNavTree('container_8h_source.html',''); initRes
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
 <div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="container_8h.html#a9c8918a1392d8b4a87a9e71b5ba99685">  200</a></span>&#160;<span class="preprocessor">#define CR8R_INNER_S(ptr, ft) (((void*)(ptr) + (ft)-&gt;base.size))</span></div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#if !defined(DOXYGEN) &amp;&amp; __has_c_attribute(clang::no_sanitize)</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#define CR8R_ATTR_NO_SAN(...) [[clang::no_sanitize(__VA_ARGS__)]]</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="container_8h.html#a7ef326ff69e385ee0a22cae78a3c5b02">  206</a></span>&#160;<span class="preprocessor">#define CR8R_ATTR_NO_SAN(...)</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
 <div class="ttc" id="acontainer_8h_html_a0172f0e8f2b9c741f7de068cd700e40a"><div class="ttname"><a href="container_8h.html#a0172f0e8f2b9c741f7de068cd700e40a">cr8r_default_replace</a></div><div class="ttdeci">int cr8r_default_replace(cr8r_base_ft *, void *_a, void *_b)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;add implementation (for avl trees and hash tables)</div></div>
 <div class="ttc" id="acontainer_8h_html_a0bd45f43164682902b5de1b249f366f6"><div class="ttname"><a href="container_8h.html#a0bd45f43164682902b5de1b249f366f6">cr8r_default_bump_size</a></div><div class="ttdeci">uint64_t cr8r_default_bump_size(cr8r_base_ft *, uint64_t cap)</div><div class="ttdoc">&quot;Default&quot; increase-by-one ft-&gt;new_size implementation (for vectors)</div></div>
 <div class="ttc" id="acontainer_8h_html_a298ab3d3cf336dc71468fd55493c6a1d"><div class="ttname"><a href="container_8h.html#a298ab3d3cf336dc71468fd55493c6a1d">cr8r_default_resize</a></div><div class="ttdeci">void * cr8r_default_resize(cr8r_base_ft *, void *p, uint64_t cap)</div><div class="ttdoc">&quot;Default&quot; ft-&gt;resize implementation (for vectors)</div></div>
@@ -206,7 +211,7 @@ $(document).ready(function(){initNavTree('container_8h_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="container_8h.html">container.h</a></li>
-    <li class="footer">Generated on Sat Apr 15 2023 07:55:29 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

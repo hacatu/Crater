@@ -131,6 +131,17 @@ $(document).ready(function(){initNavTree('avl__check_8h_source.html',''); initRe
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_LINKS(n) assert(cr8r_avl_check_links(n))</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_BALANCE(n) assert(cr8r_avl_check_balance(n) != -1)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_ALL(n) do{CR8R_AVL_ASSERT_LINKS(n);CR8R_AVL_ASSERT_BALANCE(n);}while(0)</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_LINKS(n)</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_BALANCE(n)</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define CR8R_AVL_ASSERT_ALL(n)</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="ttc" id="aavl_8h_html"><div class="ttname"><a href="avl_8h.html">avl.h</a></div></div>
 <div class="ttc" id="astructcr8r__avl__node_html"><div class="ttname"><a href="structcr8r__avl__node.html">cr8r_avl_node</a></div><div class="ttdoc">An avl tree node, also used to store an entire tree by synecdoche.</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00030">avl.h:30</a></div></div>
 <div class="ttc" id="astructcr8r__avl__node_html_a0a9e14d8a1baa9f18a791355a3236943"><div class="ttname"><a href="structcr8r__avl__node.html#a0a9e14d8a1baa9f18a791355a3236943">cr8r_avl_node::parent</a></div><div class="ttdeci">cr8r_avl_node * parent</div><div class="ttdoc">Pointers to other nodes (can be NULL)</div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00036">avl.h:36</a></div></div>
@@ -144,7 +155,7 @@ $(document).ready(function(){initNavTree('avl__check_8h_source.html',''); initRe
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><b>avl_check.h</b></li>
-    <li class="footer">Generated on Sat Apr 15 2023 07:55:29 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

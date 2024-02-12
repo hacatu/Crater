@@ -30,12 +30,11 @@ var NAVTREE =
       [ "Overview/Linux", "index.html#autotoc_md3", null ],
       [ "Windows", "index.html#autotoc_md4", null ]
     ] ],
-    [ "Installing", "index.html#autotoc_md5", null ],
-    [ "Linking", "index.html#autotoc_md6", null ],
-    [ "Tests", "index.html#autotoc_md7", null ],
-    [ "Examples", "index.html#autotoc_md8", [
-      [ "Command Line Arguments (from src/test/ising/render.c)", "index.html#autotoc_md9", null ],
-      [ "Test All Insert/Remove Sequences for size 7 AVL Trees", "index.html#autotoc_md10", null ]
+    [ "Linking", "index.html#autotoc_md5", null ],
+    [ "Tests", "index.html#autotoc_md6", null ],
+    [ "Examples", "index.html#autotoc_md7", [
+      [ "Command Line Arguments (from src/test/ising/render.c)", "index.html#autotoc_md8", null ],
+      [ "Test All Insert/Remove Sequences for size 7 AVL Trees", "index.html#autotoc_md9", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
