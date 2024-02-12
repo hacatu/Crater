@@ -169,8 +169,8 @@ int main(){
 	status = cr8r_vec_init(&vec, &ft, 8);
 	for(uint64_t i = 0; status && i < vec.cap; ++i){
 		char *cstr = NULL;
-		asprintf(&cstr, "a%"PRIu64, i + 666);
-		status = !!cstr && cr8r_vec_pushr(&vec, &ft, &cstr);
+		status = asprintf(&cstr, "a%"PRIu64, i + 666) != -1;
+		status = status && !!cstr && cr8r_vec_pushr(&vec, &ft, &cstr);
 	}
 	if(!status){
 		fprintf(stderr, "\e[1;31mERROR: failed to initialize cstr vec!\e[0m\n");
