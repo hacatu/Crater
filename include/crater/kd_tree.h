@@ -11,7 +11,6 @@
 /// License, v. 2.0. If a copy of the MPL was not distributed with this
 /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#include "crater/container.h"
 #include <stddef.h>
 #include <inttypes.h>
 #include <stdbool.h>
@@ -95,6 +94,15 @@ typedef struct{
 	int64_t tr[3];
 } cr8r_kdwin_s2i64;
 
+/// Additional state for { @link }
+typedef struct{
+	cr8r_kd_ft ft;
+	const void *pt;
+	cr8r_vec *ents;
+	uint64_t k;
+	double max_sqdist;
+} cr8r_kd_k_closest_state;
+
 /// Type of a visitor callback for a kd tree traversal
 ///
 /// f(cr8r_kd_ft *ft, const void *win, void *ent, void *data)
@@ -134,6 +142,8 @@ void cr8r_kd_walk(cr8r_vec*, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvi
 
 /// Find the k closest points to a given point
 ///
+/// The output vec MUST be initialized ({ @link cr8r_vec_init }), but
+/// will be { @link cr8r_vec_clear}'d.
 /// @param [in] ft: (uint64_t)_ft->super.base.data is interpreted as the depth of the current subarray, and
 /// so should be zero when calling this function generally on the whole vector
 /// @param [in] bounds: the bounds of the tree
@@ -141,17 +151,18 @@ void cr8r_kd_walk(cr8r_vec*, const cr8r_kd_ft *ft, const void *bounds, cr8r_kdvi
 /// If there is a tie for the kth closest point, the list of the k closest points may contain any of the tied points,
 /// but will always contain exactly k unless there are fewer than k entries in the tree.
 /// @param [in] k: the number of points to find
-/// @param [out] out: vector where the k closest points will be stored, in no specified order (the current
-/// implementation unsurprisingly places them in a minmax heap order)
-void cr8r_kd_k_closest(cr8r_vec*, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
+/// @param [out] out: vector where the k closest points will be stored.  Must be allocated but will be cleared before use.
+/// The output is in no specified order (the current implementation unsurprisingly places them in a minmax heap order
+/// @return true on success, false on (allocation) failure.  Will not allocate if out->cap >= k + 1 already, but may
+/// return fewer than k points if fewer than k are available
+bool cr8r_kd_k_closest(cr8r_vec*, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
 
-/// Find the k closest points to a given point
+/// Comparison function that compares two kd tree points based on their distance from a fixed point
 ///
-/// This function is designed to enable testing { @link cr8r_kd_k_closest }.  That function prunes its search area if the max
-/// distance of any of the k closest points so far is less than the min distance of the bounding box of the subtree rooted ata
-/// a node, then that node and its subtree can be skipped.  This function does not do that and just compares all points.
-void cr8r_kd_k_closest_naive(cr8r_vec*, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out);
-
+/// This function MUST be called with _ft pointing at a cr8r_base_ft WITHIN { @link cr8r_kd_k_closest_state }.
+/// See the implementation of { @link cr8r_kd_k_closest } for more details.
+/// This function will only read from the `pt` field of the `cr8r_kd_k_closest_state` struct.
+int cr8r_default_cmp_kd_kcs_pt_dist(const cr8r_base_ft *_ft, const void *a, const void *b);
 /// kdft implementation for spherical kd trees in 3 dimensions with i64 coordinates
 extern cr8r_kd_ft cr8r_kdft_s2i64;
 /// kdft implementation for cuboid kd trees in 3 dimensions with i64 coordintates

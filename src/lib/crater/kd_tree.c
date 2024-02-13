@@ -1,5 +1,3 @@
-#include "crater/container.h"
-#include "crater/vec.h"
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
@@ -7,6 +5,7 @@
 #include <math.h>
 
 #include <crater/kd_tree.h>
+#include <crater/kd_check.h>
 #include <crater/minmax_heap.h>
 
 static int cmp_depth_i64cu(const cr8r_base_ft *_ft, const void *_a, const void *_b){
@@ -191,8 +190,8 @@ static void split_i64cu(const cr8r_kd_ft *ft, const void *_self, const void *_ro
 	cr8r_kdwin_s2i64 *o1 = _o1;
 	cr8r_kdwin_s2i64 *o2 = _o2;
 	uint64_t idx = (uint64_t)ft->super.base.data%ft->dim;
-	memcpy(o1, self, ft->dim*sizeof(int64_t));
-	memcpy(o2, self, ft->dim*sizeof(int64_t));
+	memcpy(o1, self, sizeof(cr8r_kdwin_s2i64));
+	memcpy(o2, self, sizeof(cr8r_kdwin_s2i64));
 	o1->tr[idx] = root[idx];
 	o2->bl[idx] = root[idx];
 }
@@ -270,6 +269,11 @@ bool cr8r_kd_ify(cr8r_vec *self, cr8r_kd_ft *_ft, uint64_t a, uint64_t b){
 			return 0;
 		}
 		piv = cr8r_vec_partition_with_median(self, &ft.super, a, b, piv);
+#ifdef DEBUG
+		if(!piv || !cr8r_kd_check_layer(self, &ft, a, b)){
+			__builtin_trap();
+		}
+#endif
 		// increment depth
 		++*(uint64_t*)&ft.super.base.data;
 		if(!cr8r_kd_ify(self, &ft, mid_idx + 1, b)){
@@ -312,16 +316,8 @@ void cr8r_kd_walk(cr8r_vec *self, const cr8r_kd_ft *ft, const void *_bounds, cr8
 	cr8r_kd_walk_r(self, ft, bounds, visitor, data, 0, self->len);
 }
 
-typedef struct{
-	cr8r_vec *ents;
-	cr8r_kd_ft ft;
-	const void *pt;
-	uint64_t k;
-	double max_sqdist;
-} k_closest_state;
-
 inline static cr8r_walk_decision k_closest_visitor(cr8r_kd_ft *ft, const void *bounds, void *ent, void *_data){
-	k_closest_state *data = _data;
+	cr8r_kd_k_closest_state *data = _data;
 	char tmp[ft->super.base.size];
 	if(data->ents->len < data->k){
 		cr8r_mmheap_push(data->ents, &data->ft.super, ent);
@@ -335,9 +331,9 @@ inline static cr8r_walk_decision k_closest_visitor(cr8r_kd_ft *ft, const void *b
 	return CR8R_WALK_SKIP_CHILDREN;
 }
 
-inline static int cmp_pt_dist(const cr8r_base_ft *_ft, const void *a, const void *b){
+int cr8r_default_cmp_kd_kcs_pt_dist(const cr8r_base_ft *_ft, const void *a, const void *b){
 	const cr8r_kd_ft *ft = (const cr8r_kd_ft*)_ft;
-	const k_closest_state *data = CR8R_OUTER(ft, k_closest_state, ft);
+	const cr8r_kd_k_closest_state *data = CR8R_OUTER(ft, cr8r_kd_k_closest_state, ft);
 	double a_sqdist = ft->sqdist(ft, data->pt, a);
 	double b_sqdist = ft->sqdist(ft, data->pt, b);
 	if(a_sqdist < b_sqdist){
@@ -348,30 +344,40 @@ inline static int cmp_pt_dist(const cr8r_base_ft *_ft, const void *a, const void
 	return 0;
 }
 
-void cr8r_kd_k_closest(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out){
-	k_closest_state data = {
+bool cr8r_kd_k_closest(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out){
+	cr8r_vec_clear(out, &ft->super);
+	if(!cr8r_vec_ensure_cap(out, &ft->super, k + 1)){
+		return false;
+	}
+	cr8r_kd_k_closest_state data = {
 		.ents = out,
 		.ft = *ft,
 		.pt = pt,
 		.k = k,
 		.max_sqdist = INFINITY
 	};
-	data.ft.super.cmp = cmp_pt_dist;
+	data.ft.super.cmp = cr8r_default_cmp_kd_kcs_pt_dist;
 	cr8r_kd_walk(self, ft, bounds, k_closest_visitor, &data);
+	return true;
 }
 
-void cr8r_kd_k_closest_naive(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out){
-	k_closest_state data = {
+bool cr8r_kd_k_closest_naive(cr8r_vec *self, cr8r_kd_ft *ft, const void *bounds, const void *pt, uint64_t k, cr8r_vec *out){
+	cr8r_vec_clear(out, &ft->super);
+	if(!cr8r_vec_ensure_cap(out, &ft->super, k + 1)){
+		return false;
+	}
+	cr8r_kd_k_closest_state data = {
 		.ents = out,
 		.ft = *ft,
 		.pt = pt,
 		.k = k,
 		.max_sqdist = INFINITY
 	};
-	data.ft.super.cmp = cmp_pt_dist;
+	data.ft.super.cmp = cr8r_default_cmp_kd_kcs_pt_dist;
 	for(uint64_t i = 0; i < self->len; ++i){
 		k_closest_visitor(ft, bounds, self->buf + i*ft->super.base.size, &data);
 	}
+	return true;
 }
 
 cr8r_kd_ft cr8r_kdft_s2i64 = {
