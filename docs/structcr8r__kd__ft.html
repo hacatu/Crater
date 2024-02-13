@@ -144,7 +144,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>Function table for kd tree.</p>
 <p>A kd tree is stored as an implicit binary tree in a vector. The root of the tree is the element of the vector at the middle position, and the left and right subranges correstpond to subtrees with roots at their middles and so on. This means kd trees do NOT support efficient insertion/removal of points. For that, we would need to use a self balancing tree like a modified avl or red black tree. Implicit binary trees are maximally balanced and do not have the space or time overheads of child pointers, so they are the better choice when adding/removing points is rare enough that performing linear time re-treeifying is acceptable. </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00033">33</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00032">32</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a6db4e755e548fd8f02fb91e48d22c9b0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6db4e755e548fd8f02fb91e48d22c9b0">&#9670;&nbsp;</a></span>super</h2>
@@ -161,7 +161,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>Subtable for vector ft. </p>
 <p>Since kd trees are stored as vectors, a vector ft is included in the kd ft so that vector functions may be used and vector len/elem size queried without carrying around two fts. Note that this is exactly like saying kd extends vec if we consider how fts are just an implementation of classes in C, hence the name super. </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00040">40</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00039">39</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>Dimension of the kd tree. </p>
 <p>This is the number of directions points are split in. For instance, in a kd cuboid tree, there are k directions to split in. However, for a sphere in k dimensions, we can split in only k-1 directions. The first k-2 simply split points along some axis. For the final one however, points are split based on their angle about the origin in some plane. The important takeaway about this field is that points in the tree might have more than dim coordinates. To be clear, this is because for a spherical kd tree in k dimensions, only points on the surface of the sphere are allowed, or to be more accurate, all points are effectively projected onto the surface of a (hyper)cylinder with the same axis (axes). These peculiarities are specific to the implementation of <a class="el" href="kd__tree_8h.html#a6907c4ff552244e7fb007585406e6bc5">cr8r_kdft_s2i64</a> and one could easily create a spherical kd tree that resolves these issues in other ways. </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00053">53</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00052">52</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>Size of a bounds object. </p>
 <p>Generally a bounds object is encoded as bl, tr, where bl is a point with each coordinate equal to the minimum of that coordinate over all points in the tree, and tr is the same but for maximum (standing for bottom left and top right). TODO: should we replace bounds_size with coords or something? ft-&gt;super.base.size is the size of the key (point) + value (tag), dim is &lt;= the number of coordinates in each point, etc </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00061">61</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00060">60</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -218,7 +218,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>split a bounds object in two along some dimension </p>
 <p>the bounds object self is split into the part before root_pt (stored in o1) and the part after root_pt (stored in o2), in the dimenstion depthft-&gt;dim. depth is stored in ft-&gt;super.base.data </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00066">66</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00065">65</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>update a bounds object to include some point </p>
 <p>self is a bounds object. If pt is already in self, nothing is changed. Otherwise, self is extended to include pt </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00071">71</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00070">70</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +251,7 @@ double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a></li>
-    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Feb 13 2024 04:57:27 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

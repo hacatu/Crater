@@ -216,6 +216,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5d51bc905d119424b59a57b6973041f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a5d51bc905d119424b59a57b6973041f5">cr8r_vec_augment</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *other, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *)</td></tr>
 <tr class="memdesc:a5d51bc905d119424b59a57b6973041f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a copy of another vector to a given vector.  <a href="vec_8h.html#a5d51bc905d119424b59a57b6973041f5">More...</a><br /></td></tr>
 <tr class="separator:a5d51bc905d119424b59a57b6973041f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a712cd394d39e77a8434442dc382c0e2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#a712cd394d39e77a8434442dc382c0e2b">cr8r_vec_ensure_cap</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *self, <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *ft, uint64_t cap)</td></tr>
+<tr class="memdesc:a712cd394d39e77a8434442dc382c0e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand a vector's internal storage if needed to fit a given capacity Will not reallocate if self-&gt;cap &gt;= cap already Otherwise, try to get a size hint from ft-&gt;new_size, but falls back if this is still &lt; cap.  <a href="vec_8h.html#a712cd394d39e77a8434442dc382c0e2b">More...</a><br /></td></tr>
+<tr class="separator:a712cd394d39e77a8434442dc382c0e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09f92dfd14711cb40908e76b826389a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">cr8r_vec_all</a> (const <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *, <a class="el" href="vec_8h.html#a904e79eacb27da124a159e60072cf285">cr8r_vec_pred</a> pred, void *data)</td></tr>
 <tr class="memdesc:aa09f92dfd14711cb40908e76b826389a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if a predicate holds for all elements in a vector.  <a href="vec_8h.html#aa09f92dfd14711cb40908e76b826389a">More...</a><br /></td></tr>
 <tr class="separator:aa09f92dfd14711cb40908e76b826389a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1360,6 +1363,43 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
+
+</div>
+</div>
+<a id="a712cd394d39e77a8434442dc382c0e2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712cd394d39e77a8434442dc382c0e2b">&#9670;&nbsp;</a></span>cr8r_vec_ensure_cap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cr8r_vec_ensure_cap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcr8r__vec__ft.html">cr8r_vec_ft</a> *&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>cap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Expand a vector's internal storage if needed to fit a given capacity Will not reallocate if self-&gt;cap &gt;= cap already Otherwise, try to get a size hint from ft-&gt;new_size, but falls back if this is still &lt; cap. </p>
 <dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure (allocation failure) </dd></dl>
 
 </div>
@@ -2538,7 +2578,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="vec_8h.html">vec.h</a></li>
-    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Feb 13 2024 04:57:27 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -127,6 +127,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kdwin__s2i64.html">cr8r_kdwin_s2i64</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concrete bounds object for spherical and cuboid kd trees with 3 i64 coords.  <a href="structcr8r__kdwin__s2i64.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcr8r__kd__k__closest__state.html">cr8r_kd_k_closest_state</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional state for <a class="el" href="">.</a> <a href="structcr8r__kd__k__closest__state.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -154,12 +157,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__
 <tr class="memitem:ae837168a16d777c5c9a66033512f7a2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">cr8r_kd_walk</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, const <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, <a class="el" href="kd__tree_8h.html#a61926b4ca12f0e8b867db398248b3ecf">cr8r_kdvisitor</a> visitor, void *data)</td></tr>
 <tr class="memdesc:ae837168a16d777c5c9a66033512f7a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a preorder traversal of the points in a kd tree and call a visitor callback on each.  <a href="kd__tree_8h.html#ae837168a16d777c5c9a66033512f7a2a">More...</a><br /></td></tr>
 <tr class="separator:ae837168a16d777c5c9a66033512f7a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a724b67ccea7d3f84698da373751e098b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
-<tr class="memdesc:a724b67ccea7d3f84698da373751e098b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">More...</a><br /></td></tr>
-<tr class="separator:a724b67ccea7d3f84698da373751e098b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb17769c7119b44b15b18ca157f23a12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">cr8r_kd_k_closest_naive</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
-<tr class="memdesc:afb17769c7119b44b15b18ca157f23a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#afb17769c7119b44b15b18ca157f23a12">More...</a><br /></td></tr>
-<tr class="separator:afb17769c7119b44b15b18ca157f23a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb5b2759ec7baaaf3981a4bc9d03263"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a9cb5b2759ec7baaaf3981a4bc9d03263">cr8r_kd_k_closest</a> (<a class="el" href="structcr8r__vec.html">cr8r_vec</a> *, <a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *ft, const void *bounds, const void *pt, uint64_t k, <a class="el" href="structcr8r__vec.html">cr8r_vec</a> *out)</td></tr>
+<tr class="memdesc:a9cb5b2759ec7baaaf3981a4bc9d03263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the k closest points to a given point.  <a href="kd__tree_8h.html#a9cb5b2759ec7baaaf3981a4bc9d03263">More...</a><br /></td></tr>
+<tr class="separator:a9cb5b2759ec7baaaf3981a4bc9d03263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c58dd65bbde950005086be7e5b4b9a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kd__tree_8h.html#a7c58dd65bbde950005086be7e5b4b9a7">cr8r_default_cmp_kd_kcs_pt_dist</a> (const <a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *_ft, const void *a, const void *b)</td></tr>
+<tr class="memdesc:a7c58dd65bbde950005086be7e5b4b9a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison function that compares two kd tree points based on their distance from a fixed point.  <a href="kd__tree_8h.html#a7c58dd65bbde950005086be7e5b4b9a7">More...</a><br /></td></tr>
+<tr class="separator:a7c58dd65bbde950005086be7e5b4b9a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -188,7 +191,7 @@ Variables</h2></td></tr>
 <p>Type of a visitor callback for a kd tree traversal. </p>
 <p>f(cr8r_kd_ft *ft, const void *win, void *ent, void *data) where the arguments are the kd tree function table, bounds of the subtree rooted at ent, current node, and reentrant data respectively </p>
 
-<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00103">103</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kd__tree_8h_source.html#l00111">111</a> of file <a class="el" href="kd__tree_8h_source.html">kd_tree.h</a>.</p>
 
 </div>
 </div>
@@ -299,14 +302,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a724b67ccea7d3f84698da373751e098b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a724b67ccea7d3f84698da373751e098b">&#9670;&nbsp;</a></span>cr8r_kd_k_closest()</h2>
+<a id="a9cb5b2759ec7baaaf3981a4bc9d03263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cb5b2759ec7baaaf3981a4bc9d03263">&#9670;&nbsp;</a></span>cr8r_kd_k_closest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void cr8r_kd_k_closest </td>
+          <td class="memname">bool cr8r_kd_k_closest </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
           <td class="paramname">, </td>
@@ -350,60 +353,43 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Find the k closest points to a given point. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>The output vec MUST be initialized (<a class="el" href="vec_8h.html#a5d8cd0da55cbed50ba9a46811a807582">cr8r_vec_init</a>), but will be <a class="el" href="vec_8h.html#ac836b7eb6db947abf22dd5e69694814f">cr8r_vec_clear</a>'d. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ft</td><td>(uint64_t)_ft-&gt;super.base.data is interpreted as the depth of the current subarray, and so should be zero when calling this function generally on the whole vector </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bounds</td><td>the bounds of the tree </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>point to find k closest points to. Note that if pt is in the tree, it will be returned. If there is a tie for the kth closest point, the list of the k closest points may contain any of the tied points, but will always contain exactly k unless there are fewer than k entries in the tree. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>the number of points to find </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>vector where the k closest points will be stored, in no specified order (the current implementation unsurprisingly places them in a minmax heap order) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>vector where the k closest points will be stored. Must be allocated but will be cleared before use. The output is in no specified order (the current implementation unsurprisingly places them in a minmax heap order </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success, false on (allocation) failure. Will not allocate if out-&gt;cap &gt;= k + 1 already, but may return fewer than k points if fewer than k are available </dd></dl>
 
 </div>
 </div>
-<a id="afb17769c7119b44b15b18ca157f23a12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb17769c7119b44b15b18ca157f23a12">&#9670;&nbsp;</a></span>cr8r_kd_k_closest_naive()</h2>
+<a id="a7c58dd65bbde950005086be7e5b4b9a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c58dd65bbde950005086be7e5b4b9a7">&#9670;&nbsp;</a></span>cr8r_default_cmp_kd_kcs_pt_dist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void cr8r_kd_k_closest_naive </td>
+          <td class="memname">int cr8r_default_cmp_kd_kcs_pt_dist </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structcr8r__kd__ft.html">cr8r_kd_ft</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>, </td>
+          <td class="paramtype">const <a class="el" href="structcr8r__base__ft.html">cr8r_base_ft</a> *&#160;</td>
+          <td class="paramname"><em>_ft</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>bounds</em>, </td>
+          <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>pt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>k</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structcr8r__vec.html">cr8r_vec</a> *&#160;</td>
-          <td class="paramname"><em>out</em>&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -413,8 +399,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Find the k closest points to a given point. </p>
-<p>This function is designed to enable testing <a class="el" href="kd__tree_8h.html#a724b67ccea7d3f84698da373751e098b">cr8r_kd_k_closest</a>. That function prunes its search area if the max distance of any of the k closest points so far is less than the min distance of the bounding box of the subtree rooted ata a node, then that node and its subtree can be skipped. This function does not do that and just compares all points. </p>
+<p>Comparison function that compares two kd tree points based on their distance from a fixed point. </p>
+<p>This function MUST be called with _ft pointing at a <a class="el" href="structcr8r__base__ft.html" title="Base function table for all Crater containers.">cr8r_base_ft</a> WITHIN <a class="el" href="structcr8r__kd__k__closest__state.html">cr8r_kd_k_closest_state</a>. See the implementation of <a class="el" href="kd__tree_8h.html#a9cb5b2759ec7baaaf3981a4bc9d03263">cr8r_kd_k_closest</a> for more details. This function will only read from the <code>pt</code> field of the <code><a class="el" href="structcr8r__kd__k__closest__state.html" title="Additional state for .">cr8r_kd_k_closest_state</a></code> struct. </p>
 
 </div>
 </div>
@@ -425,7 +411,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_27aea823fd5451555362d8413ef076c0.html">crater</a></li><li class="navelem"><a class="el" href="kd__tree_8h.html">kd_tree.h</a></li>
-    <li class="footer">Generated on Mon Feb 12 2024 01:19:32 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Feb 13 2024 04:57:27 for Crater Container Library by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.1 </li>
   </ul>
 </div>
 </body>

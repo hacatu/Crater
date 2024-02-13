@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['on_5farg_333',['on_arg',['../structcr8r__opt__cfg.html#af3242b2d82ce6af409414539118a52ad',1,'cr8r_opt_cfg']]],
-  ['on_5fmissing_334',['on_missing',['../structcr8r__opt.html#a423f9ed81e2ef8c36aa849f49e9f46d8',1,'cr8r_opt']]],
-  ['on_5fopt_335',['on_opt',['../structcr8r__opt.html#a6d7d46f87c946bfa8e5d35c1ae1a2b2e',1,'cr8r_opt']]],
-  ['opts_2eh_336',['opts.h',['../opts_8h.html',1,'']]]
+  ['on_5farg_335',['on_arg',['../structcr8r__opt__cfg.html#af3242b2d82ce6af409414539118a52ad',1,'cr8r_opt_cfg']]],
+  ['on_5fmissing_336',['on_missing',['../structcr8r__opt.html#a423f9ed81e2ef8c36aa849f49e9f46d8',1,'cr8r_opt']]],
+  ['on_5fopt_337',['on_opt',['../structcr8r__opt.html#a6d7d46f87c946bfa8e5d35c1ae1a2b2e',1,'cr8r_opt']]],
+  ['opts_2eh_338',['opts.h',['../opts_8h.html',1,'']]]
 ];

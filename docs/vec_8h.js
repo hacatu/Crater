@@ -28,6 +28,7 @@ var vec_8h =
     [ "cr8r_vec_forEachPermutation", "vec_8h.html#a7e787957cf8bb14c7a6d60061af07173", null ],
     [ "cr8r_vec_combine", "vec_8h.html#a307ce32661ae90e4b3d5d751f9cea3ba", null ],
     [ "cr8r_vec_augment", "vec_8h.html#a5d51bc905d119424b59a57b6973041f5", null ],
+    [ "cr8r_vec_ensure_cap", "vec_8h.html#a712cd394d39e77a8434442dc382c0e2b", null ],
     [ "cr8r_vec_all", "vec_8h.html#aa09f92dfd14711cb40908e76b826389a", null ],
     [ "cr8r_vec_any", "vec_8h.html#a051014ce44ee03d1f38e9bec0be0dfb3", null ],
     [ "cr8r_vec_contains", "vec_8h.html#a6c46fe63b3e84780b58260594e79a30a", null ],

@@ -11,6 +11,7 @@ var annotated_dup =
     [ "cr8r_hashtbl_t", "structcr8r__hashtbl__t.html", "structcr8r__hashtbl__t" ],
     [ "cr8r_htent_cstr_u64", "structcr8r__htent__cstr__u64.html", "structcr8r__htent__cstr__u64" ],
     [ "cr8r_kd_ft", "structcr8r__kd__ft.html", "structcr8r__kd__ft" ],
+    [ "cr8r_kd_k_closest_state", "structcr8r__kd__k__closest__state.html", "structcr8r__kd__k__closest__state" ],
     [ "cr8r_kdwin_s2i64", "structcr8r__kdwin__s2i64.html", "structcr8r__kdwin__s2i64" ],
     [ "cr8r_opt", "structcr8r__opt.html", "structcr8r__opt" ],
     [ "cr8r_opt_cfg", "structcr8r__opt__cfg.html", "structcr8r__opt__cfg" ],
