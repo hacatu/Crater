@@ -210,7 +210,7 @@ void cr8r_vec_shuffle(cr8r_vec *self, cr8r_vec_ft *ft, cr8r_prng *prng){
 	}
 }
 
-static inline bool ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
+bool cr8r_vec_ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
 	if(cap > self->cap){
 		uint64_t new_cap = ft->new_size(&ft->base, self->cap);
 		if(cap > new_cap){
@@ -227,7 +227,7 @@ static inline bool ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap){
 }
 
 bool cr8r_vec_pushr(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
-	if(!ensure_cap(self, ft, self->len + 1)){
+	if(!cr8r_vec_ensure_cap(self, ft, self->len + 1)){
 		return 0;
 	}else if(ft->base.size){
 		memcpy(self->buf + self->len++*ft->base.size, e, ft->base.size);
@@ -245,7 +245,7 @@ bool cr8r_vec_popr(cr8r_vec *self, cr8r_vec_ft *ft, void *o){
 
 //Accessing the left end of a vector is O(n) -- slow.
 bool cr8r_vec_pushl(cr8r_vec *self, cr8r_vec_ft *ft, const void *e){
-	if(!ensure_cap(self, ft, self->len + 1)){
+	if(!cr8r_vec_ensure_cap(self, ft, self->len + 1)){
 		return 0;
 	}else if(ft->base.size){
 		memmove(self->buf + ft->base.size, self->buf, self->len++*ft->base.size);
@@ -624,21 +624,25 @@ void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b
 	// at *jt are trivially >= the pivot (since *jt points to the last element
 	// initially and the last element holds the pivot)
 	while(1){
+		// now, all elements up to *it are < pivot, and all elements starting at *jt are >= pivot
 		do{
 			it += ft->base.size;
 		}while(it < jt && ft->cmp(&ft->base, it, lst) < 0);
 		// now, *it >= pivot but the elements preceding *it are < pivot
-		if(it == jt){
+		if(it == jt){// in this case, the partitions [a, it) and [jt, b) are complete
 			break;
 		}
 		do{
 			// currently, *jt and subsequent elements are all >= pivot
 			jt -= ft->base.size;
 		}while(it < jt && ft->cmp(&ft->base, jt, lst) >= 0);
-		if(it == jt){
+		// now, EITHER it == jt so *jt >= pivot but the partitions [a, it) and [jt, b) are complete,
+		// OR it < jt BUT *jt < pivot but the elements following *jt are >= pivot
+		if(it == jt){// *jt >= pivot and the partitions [a, it) and [jt, b) are complete
 			break;
-		}
+		}// OTHERWISE, *it >= pivot and *jt < pivot, so we swap them
 		ft->swap(&ft->base, it, jt);
+		// now, all elements up to *it are < pivot, and all elements starting at *jt are >= pivot
 	}
 	// *jt and subsequent elements are >= pivot, so partitioning
 	// is complete and *jt is the first element >= pivot
@@ -648,6 +652,11 @@ void *cr8r_vec_partition(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b
 		// the pivot, and a (possibly empty) >= pivot region
 		ft->swap(&ft->base, jt, lst);
 	}
+#ifdef DEBUG
+	if(!cr8r_vec_check_partition(self, ft, a, b, jt)){
+		__builtin_trap();
+	}
+#endif
 	return jt;
 }
 
@@ -692,14 +701,25 @@ static inline void *sort_end(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64
 }
 
 void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint64_t i){
+#ifdef DEBUG
+	cr8r_vec sorted;
+	if(!cr8r_vec_sub(&sorted, self, ft, a, b)){
+		return NULL;
+	}
+	cr8r_vec_sort(&sorted, ft);
+	void *sorted_res = sorted.buf + i*ft->base.size;
+#endif
+	void *res;
 	while(1){
 		//fprintf(stderr, "cr8r_vec_ith(self, ft, %"PRIu64", %"PRIu64", %"PRIu64")\n", a, b, i);
 		if(i >= b - a){
 			return NULL;
 		}else if(i < CR8R_VEC_ISORT_BOUND){
-			return sort_end(self, ft, a, b, i);
+			res = sort_end(self, ft, a, b, i);
+			break;
 		}else if(b - i <= CR8R_VEC_ISORT_BOUND){
-			return sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
+			res = sort_end(self, ft, a, b, (int64_t)i - (int64_t)b);
+			break;
 		}
 		void *piv = cr8r_vec_pivot_mm(self, ft, a, b);
 		piv = cr8r_vec_partition(self, ft, a, b, piv);
@@ -713,14 +733,20 @@ void *cr8r_vec_ith(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, uint
 			i -= j + 1;
 			a += j + 1;
 		}else{
-			return piv;
+			res = piv;
+			break;
 		}
 	}
+#ifdef DEBUG
+	if(ft->cmp(&ft->base, sorted_res, res)){
+		__builtin_trap();
+	}
+	cr8r_vec_delete(&sorted, ft);
+#endif
+	return res;
 }
 
 typedef struct{
-	void *med;
-	uint64_t med_idx; // median index
 	uint64_t lb; // elements < the median occur in the range [a, lb)
 	uint64_t ea;
 	uint64_t eb; // elements == the median occur in the range [ea, eb)
@@ -736,7 +762,7 @@ typedef struct{
 static inline void pwm_advance_le(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st, bool is_ge_done){
 	char tmp[ft->base.size];
 	while(st->lb < st->ea){
-		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, st->med);
+		int ord = ft->cmp(&ft->base, self->buf + st->lb*ft->base.size, self->buf + st->ea*ft->base.size);
 		if(ord < 0){
 			++st->lb;
 		}else if(!ord){
@@ -772,7 +798,7 @@ static inline void pwm_advance_le(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st
 static inline void pwm_advance_ge(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st, bool is_le_done){
 	char tmp[ft->base.size];
 	while(st->eb < st->ha){
-		int ord = ft->cmp(&ft->base, st->med, self->buf + (st->ha - 1)*ft->base.size);
+		int ord = ft->cmp(&ft->base, self->buf + st->ea*ft->base.size, self->buf + (st->ha - 1)*ft->base.size);
 		if(ord < 0){
 			--st->ha;
 		}else if(!ord){
@@ -801,9 +827,8 @@ static inline void pwm_advance_ge(cr8r_vec *self, cr8r_vec_ft *ft, pwm_state *st
 
 void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a, uint64_t b, void *med){
 	pwm_state st = {};
-	st.med = med;
-	st.med_idx = (med - self->buf)/ft->base.size;
-	if(a >= b || st.med_idx < a || st.med_idx >= b){
+	uint64_t med_idx = (med - self->buf)/ft->base.size;
+	if(a >= b || b > self->len || med_idx < a || med_idx >= b){
 		return NULL;
 	}
 	// We need to partition our array but ensure the median element is placed in the center
@@ -814,10 +839,8 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 	st.ea = (b + a)/2;
 	st.eb = st.ea + 1; // the elements == the median occur in the range [ea, eb)
 	st.ha = b; // the elements > the median occur in the range [ha, b)
-	if(st.med_idx != st.ea){
-		med = self->buf + st.ea*ft->base.size;
-		ft->swap(&ft->base, med, self->buf + st.med_idx*ft->base.size); // ensure the median is placed at the center
-		st.med_idx = st.ea;
+	if(med_idx != st.ea){
+		ft->swap(&ft->base, med, self->buf + st.ea*ft->base.size); // ensure the median is placed at the center
 	}
 	// now we will extend [a, lb), [ha, b), and [ea, eb) until they encompass the entire array
 	// TODO: consider alternating which side we place == elements on
@@ -841,14 +864,12 @@ void *cr8r_vec_partition_with_median(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t a
 	// become no-ops, respectively
 	pwm_advance_le(self, ft, &st, true);
 	pwm_advance_ge(self, ft, &st, true);
-	if(st.lb != st.ea || st.eb != st.ha || st.ea > st.med_idx || st.eb <= st.med_idx){
-		return NULL;
-	}
 #ifdef DEBUG
-	return cr8r_vec_check_pwm(ft, self, a, st.lb, st.ha, b, med) ? med : NULL;
-#else
-	return med;
+	if(st.lb != st.ea || st.eb != st.ha || !cr8r_vec_check_pwm(ft, self, a, st.lb, st.ha, b, self->buf + st.ea*ft->base.size)){
+		__builtin_trap();
+	}
 #endif
+	return med;
 }
 
 uint64_t cr8r_powmod(uint64_t b, uint64_t e, uint64_t n){

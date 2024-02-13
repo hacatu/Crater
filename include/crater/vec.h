@@ -294,6 +294,11 @@ bool cr8r_vec_combine(cr8r_vec *dest, const cr8r_vec *src_a, const cr8r_vec *src
 /// @return 1 on success, 0 on failure (allocation failure)
 bool cr8r_vec_augment(cr8r_vec *self, const cr8r_vec *other, cr8r_vec_ft*);
 
+/// Expand a vector's internal storage if needed to fit a given capacity
+/// Will not reallocate if self->cap >= cap already
+/// Otherwise, try to get a size hint from ft->new_size, but falls back if this is still < cap
+/// @return 1 on success, 0 on failure (allocation failure)
+bool cr8r_vec_ensure_cap(cr8r_vec *self, cr8r_vec_ft *ft, uint64_t cap);
 
 /// Test if a predicate holds for all elements in a vector
 ///
